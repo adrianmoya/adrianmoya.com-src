@@ -42,7 +42,7 @@ El formato de fechas en el [front-matter](http://gohugo.io/content/front-matter/
 
 ### URLs de las entradas
 
-Para mí era importante mantener las urls originales de las entradas. Hugo por defecto utiliza urls en otro formato, por tanto me tocó realizar una modificación a la configuración por defecto para que las entradas anteriores usaran sus urls originales, y que las nuevas utilizaran el formato nuevo que me parece un poco mejor. Eso me llevo a cambios en el [config.toml](https://github.com/adrianmoya/adrianmoya.github.com/blob/2e406f76e8a8e623533f76db88dd54348790e469/config.toml#L7-L8) y en la [plantilla principal](https://github.com/adrianmoya/adrianmoya.github.com/blob/2e406f76e8a8e623533f76db88dd54348790e469/layouts/index.html#L4) del tema que elegí. Adicionalmente, tuve que definir el "slug" específico en cada post, puesto que Hugo maneja los acéntos y caracteres internacionales de manera distinta cuando construye las urls. 
+Para mí era importante mantener las urls originales de las entradas. Hugo por defecto utiliza urls en otro formato, por tanto me tocó realizar una modificación a la configuración por defecto para que las entradas anteriores usaran sus urls originales, y que las nuevas utilizaran el formato nuevo que me parece un poco mejor. Eso me llevo a cambios en el [config.toml](https://github.com/adrianmoya/adrianmoya.com-src/blob/00c99f2655606db51e5a8f9332fc03683a1fa4e2/config.toml#L7-L8) y en la [plantilla principal](https://github.com/adrianmoya/adrianmoya.com-src/blob/00c99f2655606db51e5a8f9332fc03683a1fa4e2/layouts/index.html#L4) del tema que elegí. Adicionalmente, tuve que definir el "slug" específico en cada post, puesto que Hugo maneja los acéntos y caracteres internacionales de manera distinta cuando construye las urls. 
 
 ### Comentarios de Disqus
 
@@ -51,6 +51,10 @@ Al realizar la migración a Hugo, los comentarios de las entradas desaparecieron
 ### Botones de compartir en redes sociales
 
 El tema que utilicé no traía botones para compartir las entradas por las redes sociales, algo que me gusta para facilitar que los lectores compartan el contenido. Decidí comenzar a usar [ShareThis](http://www.sharethis.com/), por tanto abrí una cuenta y modifiqué el tema para incluir el código necesario en cada entrada.
+
+### Despliegue
+
+Para el tema de automatizar el despliegue, utilicé [la recomendación de la documentación de Hugo](http://gohugo.io/tutorials/github-pages-blog/#hosting-personal-organization-pages:fcefb200141ace3e7bfd6542457b7a72) de crear un repo adicional con las fuentes y utilizar un [script de deploy](https://github.com/adrianmoya/adrianmoya.com-src/blob/e2a526c0ed30214c1ba71befd8c2f6b8b4592f39/deploy.sh) que publica los cambios al submodulo. Había intentado usar un solo repositorio y utilizar subtree y dos ramas, pero a verdad se puso complicado el asunto y siempre reportaba conflictos, por lo que decidí irme por la via simple. 
 
 ### Configuraciones finales
 
