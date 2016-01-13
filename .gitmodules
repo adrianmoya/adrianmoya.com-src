@@ -1,0 +1,6 @@
+[submodule "public"]
+	path = public
+	url = git@github.com:adrianmoya/adrianmoya.github.com.git
+[submodule "themes/hyde-x"]
+	path = themes/hyde-x
+	url = git@github.com:adrianmoya/hyde-x.git

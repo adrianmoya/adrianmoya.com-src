@@ -1,14 +1,13 @@
 #!/bin/bash
 
-#Initial setup:
-#git subtree add --prefix=public git@github.com:adrianmoya/adrianmoya.github.com.git master --squash
-#git subtree pull --prefix=public git@github.com:adrianmoya/adrianmoya.github.com.git master --squash # to avoid merge conflicts
+echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
-echo -e "\e[1m\e[7m\e[32mBuilding the project...\e[0m"
-hugo
+# Build the project.
+hugo # if using a theme, replace by `hugo -t <yourtheme>`
 
+# Go To Public folder
+cd public
 # Add changes to git.
-echo -e "\e[1m\e[7m\e[32mCommitting updates to code branch...\e[0m"
 git add -A
 
 # Commit changes.
@@ -19,9 +18,7 @@ fi
 git commit -m "$msg"
 
 # Push source and build repos.
-git push origin source
+git push origin master
 
-echo -e "\e[1m\e[7m\e[32mPushing the changes to master branch...\e[0m"
-echo -e "\e[1m\e[7m\e[32mUpdating the website...\e[0m"
-
-git subtree push --prefix=public git@github.com:adrianmoya/adrianmoya.github.com.git master
+# Come Back
+cd ..
