@@ -1,0 +1,44 @@
+---
+layout: page
+title: "Desarrollo Agil con BDD"
+date: 2013-06-15 13:59
+comments: true
+sharing: true
+footer: true
+sidebar: false
+---
+
+<div style="display: inline-block">
+  <div id="player_video"></div>
+  <div id="slideshow_player"></div>
+</div>
+<br>
+<div id="chapter" style="float:left"></div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/presentz-1.2.2.min.js"></script>
+<script type="text/javascript">
+  var presentation;
+  var presentz;
+
+  function initPresentz(pres) {
+    presentation = pres;
+
+    presentz = new Presentz("#player_video", "340x310", "#slideshow_player", "700x640")
+    presentz.init(presentation);
+    presentz.on("slidechange", function(prevChap, prevSlide, chap, slide) {
+      $("#chapter").text("At chapter " + chap + ", slide " + slide);
+    });
+    presentz.changeChapter(0, 0, true, function(err) {
+      if (err) {
+        alert(err);
+      }
+    });
+  }
+
+  $().ready(function() {
+    $.get("youtube_speakerdeck.json", function(json) {
+      initPresentz(json);
+    });
+  });
+</script>

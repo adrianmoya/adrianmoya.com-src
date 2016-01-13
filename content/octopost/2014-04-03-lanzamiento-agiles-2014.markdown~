@@ -1,0 +1,68 @@
+---
+title: "Lanzamiento Ágiles 2014"
+date: "2014-04-03"
+slug: lanzamiento-agiles-2014
+comments: true
+categories: 
+- Eventos
+- Agiles2014
+- BDD
+---
+
+El 27 de marzo de 2014, en la universidad EAFIT en Medellín, Colombia, fue el [lanzamiento oficial de Ágiles 2014](http://agiles2014.agiles.org/lanzamiento-oficial-de-agiles-2014/), el evento de agilidad más importante de la comunidad latinoamericana. Para complementar los artículos de otros miembros de la comunidad, les cuento como fue mi experiencia.
+
+<!-- more -->
+
+## Inicio del evento ##
+
+El evento, dirigido principalmente a empresas y comunidades que quisieran involucrarse en calidad de patrocinadores, estuvo conducido magistralmente por [Luis Mulato](https://twitter.com/luismulato), encargado principal de la organización del evento este año.
+
+{% img center /images/2014/04/la2014-01.jpg %}
+
+En conjunto con Lina Taborda y [Luis Salazar](https://twitter.com/luchosalazarc) (otros miembros organizadores), presentaron la visión del evento para este año, y conversaron del fortalecimiento que se espera de la comunidad latinoamericana, de aprender de las comunidades más experimentadas como la de Argentina, y ayudar a fortalecer las comunidades que inician. Tambien abordaron temas como el costo de la entrada para el evento (con las fechas para los early birds), el costo de los patrocinios, y mucha información importante de lo que será el evento y que pronto estará publicada en la [página oficial](http://agiles2014.agiles.org/).
+
+##Charlas relámpago ##
+
+Seguido de esto, comenzaron las charlas relámpago. Un total de 10 charlas de 5 minutos presentaron temas diversos de la agilidad, y sirvieron de abreboca a las presentaciones más profundas que de estos y muchos temas adicionales se realizarán durante el evento en Octubre de este año. 
+
+Arrancó el ciclo de charlas [Miguel Teheran](https://twitter.com/Mteheran) con la charla "Usamos Scrum pero no nos funciona", donde expuso problemas comunes que suceden en la implementación de Scrum y algunos tips para prevenirlos.
+
+{% img center /images/2014/04/la2014-02.jpg %}
+
+Seguido de eso [Jorge Johnson](https://twitter.com/jorge_johnson) nos habló de "Falanges, Girasoles, y estimación relativa", donde mostró por que tiene sentido la estimación relativa basada en la sucesión de fibonnaci y el número phi, y cómo esta presente en la naturaleza y es agradable al cerebro humano.
+
+{% img center /images/2014/04/la2014-03.jpg %}
+
+Toco el turno de [Jader Rojas](https://twitter.com/jaheroji), con su presentación "Agile en la Academia: La Fabrica de Software", donde compartió a través de un cuento con personajes graciosos como ha sido la implantación de Agile en la Fabrica de Software del Sena.
+
+{% img center /images/2014/04/la2014-04.jpg %}
+
+Luego de esto vimos un video de una de las charlas remotas, donde [Diego Fontdevila](https://twitter.com/dfontde) nos habló de "Arquitecturas y Organizaciones". 
+
+Continuó [Jaime Andrés García](https://twitter.com/@ingeniosolido) con "Selección Ágil de Software", creando una gran expectativa entre los asistentes al comentar de una técnica para poder elegir software y frameworks de manera ágil, pero que conoceremos sólo en el evento principal.
+
+{% img center /images/2014/04/la2014-05.jpg %}
+
+Al fin tocó mi turno!, y pude compartir con todos un resumen de lo que es en escencia BDD como metodología ágil para la construcción de software que importa. Lás láminas de mi presentación pueden descargarlas [aquí](https://speakerdeck.com/adrianmoya/bdd-en-5-minutos).
+
+{% img center /images/2014/04/la2014-06.jpg %}
+
+Nuevamente toco el turno de una presentación remota, donde [Martín Salias](https://twitter.com/MartinSalias) nos habló de "Como escala la naturaleza", dándonos ideas de como pueden escalar los métodos ágiles en las empresas y tocando temas como el manejo de la complejidad con Cynefin.
+
+[Julian Guevara](https://twitter.com/@julianguevara83) continuó el ciclo con "Cuando agile transforma tu vida desde adentro", un bonito relato de cómo al ir aplicando agile en la empresa, van permeando los valores a tu vida personal. 
+
+{% img center /images/2014/04/la2014-07.jpg %}
+
+Continuó otra charla remota, compartida por [Ricardo Colusso](https://twitter.com/rcolusso) entrevistando a [Carlos Churba](https://twitter.com/@carloschurba), quien nos habló acerca de sus "Principios para Estimular la Creatividad".
+
+Finalmente, para un cierre espectacular del ciclo de charlas, tocó el turno a [Verónica Vera](https://twitter.com/verovera78) con el tema ["Un futuro netamente humano"](http://verovera78.tumblr.com/post/81175305938/agiles2014-un-futuro-netamente-humano), una de las charlas más inspiradores de la noche, que nos habló de hacia donde vamos y del factor humano presente en todas estas prácticas que estudiamos e implementamos. Esta fue la charla ganadora del concurso, por lo que tendremos la oportunidad de escuchar a Verónica en el evento de Octubre.
+
+{% img center /images/2014/04/la2014-08.jpg %}
+
+## Cierre del evento ##
+
+Luego de esto Luis procedió con el cierre del evento, quedando en los presentes el entusiasmo y el ánimo para continuar el camino que nos llevará a tener el mejor evento de agilidad de este año!
+
+{% img center /images/2014/04/la2014-09.png %}
+
+Nos vemos en Ágiles 2014!

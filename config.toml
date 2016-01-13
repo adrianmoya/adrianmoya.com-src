@@ -1,0 +1,18 @@
+baseurl = "http://adrianmoya.com/"
+languageCode = "es-us"
+title = "Adrian Moya"
+theme = "hyde-x"
+disqusShortname = "blogdeadrianmoya"
+
+[permalinks]
+octopost = "/:year/:month/:slug/"
+
+[params]
+    theme = "theme-base-0b"
+    highlight = "default"
+    googleAnalytics = "UA-32342484-1"
+    github = "https://github.com/adrianmoya/"
+    linkedin = "https://www.linkedin.com/in/moyaadrian"
+    twitter = "http://www.twitter.com/adrianmoya"
+    rss = true
+    gravatarHash = "6d34a1145039fce454dea36c5464cf77"

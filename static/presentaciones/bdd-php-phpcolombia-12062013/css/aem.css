@@ -1,0 +1,188 @@
+.reveal h4.espacio-top {
+	margin-top: 100px;
+}
+
+section ul.espacio-top {
+	margin-top: 2em;
+}
+
+section.slide-con-imagen div.contenido {
+	float: left;
+	width: 900px;
+	height: 650px;
+}
+
+section.slide-con-imagen aside.cita-imagen {
+	width: 650px;
+	height: 1em;
+	font-size: 0.4em;
+	margin-left: -250px;
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	writing-mode: tb-rl;
+	transform-origin:100% 0%;
+	-ms-transform-origin:100% 0%; /* IE 9 */
+	-webkit-transform-origin:100% 0%; /* Safari and Chrome */	
+}
+
+html.agile-manifesto body {
+	background-image: url('../img/agilemanifesto.jpg');	
+	-webkit-transition: background 0.5s linear;
+	-moz-transition: background 0.5s linear;
+	-o-transition: background 0.5s linear;
+	transition: background 0.5s linear;
+}
+
+html.agile-manifesto h2 {
+	color: #000000;		
+}
+
+html.agile-manifesto p {
+	color: #000000;		
+}
+
+.reveal section img.clean {
+	background: none;
+	border: none;
+	box-shadow: none;
+}
+
+.pareto, .metodologias-agiles, .marco-polo, .heraclito, .schrodinger {
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	height: 400px;
+}
+
+.pareto {
+	background-image: url('../img/pareto.png');
+}
+
+.heraclito {
+	background-image: url('../img/heraclito.png');
+}
+
+.no-bala-plata {
+	background-image: url('../img/no-bala-plata.png');
+	background-repeat: no-repeat;
+	background-position: center bottom;	
+	height: 400px;
+}
+
+.pareto p, .heraclito p, .marco-polo p {
+	margin-left: 250px;
+	margin-top: 110px;
+}
+
+.metodologias-agiles {
+	background-image: url('../img/metodologias-agiles.png');
+}
+
+.schrodinger {
+	background-image: url('../img/schrodinger.png');	
+}
+
+.ciclo-bdd {
+	background-image: url('../img/ciclo-bdd.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 600px;
+}
+
+.ciclo-bdd-full {
+	background-image: url('../img/ciclo-bdd-niveles.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 600px;
+}
+
+.ciclo-specbdd {
+	background-image: url('../img/ciclo-specbdd.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 600px;	
+}
+
+#behat {
+	background-image: url('../img/logo-behat.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 340px;
+}
+
+#phpspec {
+	background-image: url('../img/logo-phpspec.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 250px;
+}
+
+@keyframes gatoaperro
+{
+	0% {transform: rotate(0deg); -ms-transform: rotate(0deg); -webkit-transform: rotate(0deg);}
+	100% {transform: rotate(180deg); -ms-transform: rotate(180deg); -webkit-transform: rotate(180deg);}
+}
+
+@-webkit-keyframes gatoaperro /* Safari and Chrome */
+{
+	0% {transform: rotate(0deg); -ms-transform: rotate(0deg); -webkit-transform: rotate(0deg);}
+	100% {transform: rotate(180deg); -ms-transform: rotate(180deg); -webkit-transform: rotate(180deg);}
+}
+
+@keyframes perroagato
+{
+	0% {transform: rotate(180deg); -ms-transform: rotate(180deg); -webkit-transform: rotate(180deg);
+	100% {transform: rotate(0deg); -ms-transform: rotate(0deg); -webkit-transform: rotate(0deg);}}
+}
+
+@-webkit-keyframes perroagato /* Safari and Chrome */
+{
+	0% {transform: rotate(180deg); -ms-transform: rotate(180deg); -webkit-transform: rotate(180deg);
+	100% {transform: rotate(0deg); -ms-transform: rotate(0deg); -webkit-transform: rotate(0deg);}}
+}
+
+.gatoaperro {
+	animation: gatoaperro 5s ease 0 1 normal;
+	-webkit-animation: gatoaperro 5s ease 0 1 normal;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;		
+}
+
+.perroagato {
+	animation: perroagato 5s ease 0 1 normal;
+	-webkit-animation: perroagato 5s ease 0 1 normal;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;		
+}
+
+.reveal p.big {
+	font-size: 4em;
+}
+
+.reveal p.espacio-top {
+	margin-top: 2em;
+}
+
+.reveal p.narrativa {
+	text-align: left; 
+}
+
+.reveal p.narrativa span {
+	font-weight: bold; 
+}
+
+.reveal div.fondo-negro {
+	background-color: #3F3F3F;
+}
+
+.marco-polo {
+	background-image: url('../img/marco-polo.png');
+}
+
+.reveal pre code {
+	max-height: 700px;
+}
+
+.reveal p.smaller {
+	font-size: 0.8em;
+}

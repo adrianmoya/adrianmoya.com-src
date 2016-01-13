@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Desarrollo Ágil con BDD en PHP</title>
+
+		<meta name="description" content="Presentación para PHPColombia">
+		<meta name="author" content="Adrian Moya">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="/reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="/reveal.js/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="/reveal.js/lib/css/zenburn.css">
+
+		<link rel="stylesheet" href="css/aem.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="/reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>Desarrollo Ágil</h1>
+					<h1>con BDD</h1>
+					<h4 class="espacio-top">Construyendo el producto correcto de manera efectiva</h4>
+					<p>
+						<small><a href="http://adrianmoya.com">Adrian Moya</a> / <a href="http://twitter.com/adrianmoya">@adrianmoya</a><br/>2013</small>
+					</p>
+				</section>
+				<section>
+					<section>
+						<h2>Agilidad</h2>
+						<p>Capacidad de realizar una tarea o acción <br/>de la manera más rápida y eficiente</p>
+					</section>
+					<section>
+						<h2>Iterativo</h2>
+						<p>Iteraciones cortas y de duración fija</p>
+					</section>
+					<section>
+						<h2>Participación activa del cliente</h2>
+						<p>Cada iteración es aprobada por el cliente, la retroalimentación se implementa en la(s) iteraciones siguientes</p>
+					</section>
+					<section class="pareto">
+						<h2>Dirigido por características</h2>
+						<p>Principio 80/20 para implementar 20% de características que se usen el 80% de las veces</p>
+					</section>
+					<section>
+						<h2>Tiempo fijo</h2>
+						<p>Cada iteración se entrega en un tiempo fijo predeterminado</p>
+					</section>
+					<section>
+						<h2>Entrega basada en prioridades</h2>
+						<p>Prioridad a las necesidades del clientes<br/> y el riesgo en el desarrollo</p>
+					</section>
+					<section class="heraclito">
+						<h2>Adaptable</h2>
+						<p>No buscamos remover la incertidumbre, sino adaptarnos a las necesidades cambiantes</p>
+					</section>
+					<section>
+						<h2>Equipos Auto-organizados</h2>
+						<p>Activamente involucrado, con capacidad de toma de decisiones</p>
+					</section>
+					<section>
+						<h2>Centrado en las personas</h2>
+						<p>Más énfasis en las personas y sus habilidades<br/> que en el proceso</p>
+					</section>
+					<section>
+						<h2>Desarrollo rápido</h2>
+						<p>Utilizando tecnologías lígeras</p>
+					</section>
+					<section>
+						<h2>Más disciplinado</h2>
+						<p>Más rapidez y calidad<br/> involucra disciplina de equipo y personal</p>
+					</section>
+					<section>
+						<h2>Simplicidad</h2>
+						<p>Énfasis en la simplicidad y abierto al cambio</p>
+					</section>
+					<section>
+						<h2>¿Por qué no todos usan ágil?</h2>
+					</section>
+					<section class="no-bala-plata">
+						<h2>No son una bala de plata</h2>
+					</section>
+					<section>
+						<h2>Es difícil implementar ágil correctamente</h2>
+						<p class="fragment espacio-top">BDD nos ayuda a implementar ágil</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>¿Qué es BDD?</h2>
+					</section>				
+					<section>
+						<h2>En palabras de Dan North</h2>
+						<img src="img/dan-north-bdd-tweet.png"/>
+						<p>El uso de ejemplos en múltiples niveles para crear un entendimiento compartido y sacar a flote la incertidumbre para construir software que importa</p>
+					</section>
+					<section>
+						<h2>El uso de ejemplos...</h2>
+					</section>
+					<section>
+						<h3>Sucesión de Fibbonaci</h3>
+						<img src="img/fibonacci.png" />
+						<p class="fragment">Ejemplo: 0, 1, 1, 2, 3, 5, 8...</p>
+					</section>				
+					<section>
+						<h2>...en multiples niveles...</h2>
+					</section>
+					<section>
+						<h3>A nivel del negocio en su lenguaje natural...</h3>
+						<pre><code class="gherkin_es">
+Escenario: listar clientes con deuda por vencer
+  Dado que existen los siguientes clientes:
+    |cliente | fecha_vencimiento_deuda |
+    | Adrian |       30/05/2013        |
+    | Carlos |       15/06/2013        |
+  Y que la fecha actual es "28/05/2013"
+  Cuando solicito la lista de clientes con deuda por vencer
+  Entonces debo ver listado a "Adrian"
+  Pero no debo ver listado a "Carlos"
+
+						</code></pre>
+					</section>
+					<section>
+						<h3>A nivel del código en el lenguaje de programación</h3>
+						<pre><code class="php">
+namespace spec;
+use PhpSpec\ObjectBehavior;
+
+class MarkdownSpec extends ObjectBehavior
+{
+    function it_converts_plain_text_to_html_paragraphs()
+    {
+        $this->toHtml("Hi, there")->shouldReturn("<p>Hi, there</p>");
+    }
+}
+	
+						</code></pre>
+					</section>	
+					<section>
+						<h2>...para crear un entendimiento compartido...</h2>
+					</section>	
+					<section>
+						<img src="img/dubinin-imagen-doble.png" id="dubinin"/>
+						<div class="fragment" id="start-dubinin"></div>
+					</section>	
+					<section>
+						<h2>...y sacar a flote la incertidumbre...</h2>
+					</section>
+					<section class="slide-con-imagen schrodinger">
+						<div class="contenido">
+							<h3>Paradoja de Schrödinger</h3>
+							<img src="img/gato-schrodinger.jpg"/>
+						</div>
+						<aside class="cita-imagen">http://motls.blogspot.com/2009/09/schrodinger-virus-and-decoherence.html</aside>
+					</section>
+					<section>
+						<h2>...para construir software que importa</h2>
+					</section>
+					<section>
+						<h3>¿Qué es software que importa?</h3>
+						<p class="fragment">Aquel que genera valor a la organización</p>
+						<blockquote cite="http://cdn.pols.co.uk/papers/BusinessValue-SoupToNuts.pdf" class="fragment">
+							&ldquo;Un proyecto genera valor de negocio cuando aumenta o protege la ganancia, o reduce los costos, en alineación con la estrategia de la organización.&rdquo;
+							<br/>Andy Pols & Chris Matts - Agile 2008
+						</blockquote>
+					</section>
+					<section>
+						<h2>Ciclo de vida BDD</h2>					
+					</section>
+					<section id="ciclo-bdd" class="ciclo-bdd">
+						<div class="fragment" id="show-ciclo-bdd"></div>					
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>BDD de historias</h1>
+					</section>
+					<section class="marco-polo">
+						<h2>Explorar el dominio</h2>
+						<p class="espacio-top">Nos permite explorar el dominio del negocio en 3 niveles</p>
+						<ol><li class="fragment">Narrativas</li><li class="fragment">Posibles escenarios</li><li class="fragment">Detalle de escenarios</li></ol>
+					</section>
+					<section>
+						<h2>Narrativa</h2>
+						<div class="fondo-negro">
+							<p class="espacio-top narrativa"><span>Para</span> alcanzar alguna característica que agrega valor de negocio<br/>
+							<span>Como</span> rol en el sistema (beneficiario)</br>
+							<span>Yo quiero/necesito</span> realizar alguna acción en el sistema</p>
+						</div>
+					</section>
+					<section>
+						<h2>Autenticación</h2>
+						<div class="fondo-negro">
+							<p class="espacio-top narrativa"><span>Para</span> poder acceder a mi información financiera<br/>
+							<span>Como</span> cliente del banco</br>
+							<span>Yo necesito</span> poder autenticarme</p>
+						</div>
+					</section>
+					<section>
+						<h2>Escenarios</h2>
+						<pre><code class="gherkin_es">
+Característica: Autenticación
+
+Para poder acceder a mi información financiera
+Como cliente del banco
+Yo necesito poder autenticarme
+
+  Escenario: Sin tarjeta de débito activa (cliente nuevo)
+
+  Escenario: Tarjeta activa primera vez
+
+  Escenario: Autenticación normal sin seguridad adicional
+
+  Escenario: Autenticación normal con seguridad adicional
+
+  Escenario: ...
+						</code></pre>											
+					</section>
+					<section>
+						<h2>Detalle del escenario</h2>
+						<p>Expresado en un lenguaje simple:</p>
+						<ul>
+							<li class="fragment"><span>Dado:</span> un cierto contexto</li>
+							<li class="fragment"><span>Cuando:</span> realizo una acción en el sistema</li>
+							<li class="fragment"><span>Entonces:</span> el sistema se comporta de cierta manera</li>
+						</ul>
+					</section>
+					<section>
+						<pre><code class="gherkin_es">
+Característica: Autenticación
+
+Para poder acceder a mi información financiera
+Como cliente del banco
+Yo necesito poder autenticarme
+
+  Escenario: Sin tarjeta de débito activa (cliente nuevo)
+    Dado un cliente "Adrian" con cedula "12345" y tarjeta inactiva
+    Y que me encuentro en la página de autenticación
+    Cuando ingreso la cédula "12345"
+    Y presiono el botón "Autenticar"
+    Entonces debo ver un mensaje que me invite a activar mi tarjeta
+
+						</code></pre>											
+					</section>
+					<section>
+						<p>BDD de historias ayuda a que el equipo de desarrollo tenga un entendimiento del negocio al mismo nivel que el cliente, forzandolo a que conteste las preguntas:</p>
+						<ol><li class="fragment">¿Para quien?</li><li class="fragment">¿Qué?</li><li class="fragment">¿Cómo?</li></ol>
+						<p class="fragment">Pero más importante...</p>
+					</section>
+					<section><h1>¿POR QUE?</h1></section>
+				</section>
+				<section>
+					<p class="big">&lt;&#63;php</p>
+				</section>
+				<section>
+					<section id="behat">			
+					</section>
+					<section>
+						<p>Herramienta para aplicar BDD de historias</p>
+					</section>
+					<section>
+						<h2>Instalación</h2>
+						<p>Usamos composer:</p>
+						<pre><code>
+{
+    "require-dev": {
+        "behat/behat": "2.4.*@stable"
+    },
+    "config": {
+        "bin-dir": "bin/"
+    }
+}
+						</code></pre>
+						<pre>$> composer.phar install --dev</pre>
+					</section>
+					<section>
+						<h2>Nuestra primera característica</h2>
+						<pre>
+$> bin/behat --init
+
++d features - place your *.feature files here
++d features/bootstrap - place bootstrap scripts and static files here
++f features/bootstrap/FeatureContext.php - place your feature related code here
+						</pre>
+						<p>Creamos nuestros archivos de características features/Autenticacion.feature</p>
+					</section>
+					<section>
+						<pre>
+$ bin/behat 
+
+Característica: Autenticación
+  
+  Para poder acceder a mi información financiera
+  Como cliente del banco
+  Yo necesito poder autenticarme
+
+  Escenario: Sin tarjeta de débito activa (cliente nuevo)           # features/Autenticacion.feature:9
+    Dado un cliente "Adrian" con cedula "12345" y tarjeta inactiva
+    Y que me encuentro en la página de autenticación
+    Cuando ingreso la cédula "12345"
+    Y presiono el botón "Autenticar"
+    Entonces debo ver un mensaje que me invite a activar mi tarjeta
+
+1 escenario (1 sin definir)
+5 pasos (5 sin definir)
+0m0.016s
+						</pre>
+					</section>
+					<section>
+						<pre>
+Puedes implementar la definición de pasos de los pasos sin definir con el siguiente código:
+						<code class="php">
+    /**
+     * @Given /^un cliente "([^"]*)" con cedula "([^"]*)" y tarjeta inactiva$/
+     */
+    public function unClienteConCedulaYTarjetaInactiva($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^me encuentro en la página de autenticación$/
+     */
+    public function meEncuentroEnLaPaginaDeAutenticacion()
+    {
+        throw new PendingException();
+    }
+						</code></pre>
+					</section>
+					<section>
+						<pre><code class="php">
+use Behat\Behat\Context\ClosuredContextInterface,
+    Behat\Behat\Context\TranslatedContextInterface,
+    Behat\Behat\Context\BehatContext,
+    Behat\Behat\Exception\PendingException;
+use Behat\Gherkin\Node\PyStringNode,
+    Behat\Gherkin\Node\TableNode;
+
+/**
+ * Features context.
+ */
+class FeatureContext extends BehatContext
+{
+
+    /**
+     * @Given /^un cliente "([^"]*)" con cedula "([^"]*)" y tarjeta inactiva$/
+     */
+    public function unClienteConCedulaYTarjetaInactiva($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
+
+						</code></pre>
+					</section>
+					<section>
+						<h2>Queremos ejercitar el sistema de la manera que lo haría nuestro cliente</h2>
+						<p class="espacio-top fragment">...si es una aplicación web, debemos usar un navegador...</p>
+					</section>
+					<section>
+						<h2>Existen 2 tipos de navegadores para pruebas automatizadas</h2>
+						<ul>
+							<li class="fragment">Emuladores de navegadores sin interfaz: ej. Goutte, Zombie.js</li>
+							<li class="fragment">Controlador de navegadores reales: Chrome, Firefox, IE</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Mink</h2>
+						<p>Es un complemento de Behat que nos ofrece un API único para controlar distintos tipos de navegadores</p>
+					</section>
+					<section>
+						<h2>Instalación</h2>
+						<p>Usamos composer:</p>
+						<pre><code class="json">
+{
+    "require-dev": {
+        "behat/behat": "2.4.*@stable",
+	"behat/mink-extension": "*",
+	"behat/mink": "1.4@stable",
+	"behat/mink-goutte-driver": "*"
+    },
+    "config": {
+        "bin-dir": "bin/"
+    }
+}
+						</code></pre>
+						<pre>$> composer.phar install --dev</pre>
+					</section>
+					<section>
+						<pre><code class="php">
+class FeatureContext extends BehatContext
+{
+
+    static private $APP_URL = "http://localhost/bddsample/";
+    private $session;
+
+    /** @BeforeScenario */
+    public function before()
+    {
+	$driver = new GoutteDriver();
+	$this->session = new Session($driver);
+	$this->session->start();
+    }
+						</code></pre>
+					</section>
+					<section>
+						<pre><code class="php">
+    /**
+     * @Given /^me encuentro en la página de autenticación$/
+     */
+    public function meEncuentroEnLaPaginaDeAutenticacion()
+    {
+        $this->session->visit(self::$APP_URL/autentication);
+	if(200 !== $this->session->getStatusCode()){
+		throw new \RuntimeException('No pude abrir la página de autenticación');
+	}
+    }
+						</code></pre>
+					</section>
+					<section>
+						<p>Es hora de comenzar a codificar...</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>BDD de especificaciones</h1>
+					</section>
+					<section>
+						<h2>Diseño emergente</h2>
+						<p class="espacio-top">Nos permite describir como interactúan los objetos para resolver un problema, sus roles, responsabilidades y mensajes</p>
+						<ul class="espacio-top"><li class="fragment">De manera iterativa</li><li class="fragment">A través de ejemplos de codigos</li></ul>
+					</section>
+					<section>
+						<h2>Tradicionalmente: BDUF</h2>
+						<ul class="espacio-top">
+							<li class="fragment">Difícil de cambiar más adelante</li>
+							<li class="fragment">Tenemos que pensar en todo antes de codificar</li>
+							<li class="fragment">Tratamos de que no se nos escape nada</li>
+						</ul>
+						<p class="fragment">...pero la realidad es...</p>
+					</section>
+					<section class="slide-con-imagen">
+						<div class="contenido">
+							<h2>No estamos construyendo puentes</h2>
+							<img src="img/puente-en-construccion.jpg" />
+						</div>
+						<aside class="cita-imagen">http://commons.wikimedia.org/wiki/File:Rad%C3%A8s-La_Goulette_Bridge_under_construction_2.jpg</aside>
+					</section>
+					<section>
+						<h2>Costo del cambio</h2>
+						<img src="img/funcion-exponencial.jpg" />
+						<p>Aumenta exponencialmente en las fases tardías del desarrollo</p>
+					</section>
+					<section class="ciclo-specbdd">
+						<h2>Ciclo SpecBDD</h2>
+					</section>
+					<section>
+						<ul>
+							<li>Usamos pruebas para especificar el comportamiento</li>
+							<li>Usamos dobles para especificar el intercambio de mensajes</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Más facil decirlo que hacerlo</h2>
+						<p class="espacio-top">BDD de especificaciones es una técnica<br/> que requiere mucha práctica</p>
+					</section>
+				</section>
+				<section>
+					<section id="phpspec">					
+					</section>
+					<section>
+						<h2>Instalación</h2>
+						<p>Usamos composer:</p>
+						<pre><code class="json">
+{
+    "require-dev": {
+        "phpspec/phpspec": "2.0.*@dev"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {"psr-0": {"": "src"}}
+}
+						</code></pre>
+						<pre>$> composer.phar install --dev</pre>
+					</section>
+					<section>
+						<p>Describimos un objeto</p>
+						<pre>
+$> bin/phpspec desc Amoya/MyObject
+
+Specification for Amoya\MyObject created in /home/amoya/Projects/ejemplos/phpspec/spec/Amoya/MyObjectSpec.php.
+						</pre>
+						<pre><code class="php">
+namespace spec\Amoya;
+
+use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
+
+class MyObjectSpec extends ObjectBehavior
+{
+    function it_is_initializable()
+    {
+        $this->shouldHaveType('Amoya\MyObject');
+    }
+}
+						</code></pre>
+					</section>
+					<section>
+						<p>Ejecutamos las especificaciones</p>
+						<img src="img/phpspec-console1.png"/>
+					</section>
+					<section>
+						<p>Agregamos una especificación</p>
+						<pre><code class="php">
+class MyObjectSpec extends ObjectBehavior
+{
+    function it_is_initializable()
+    {
+        $this->shouldHaveType('Amoya\MyObject');
+    }
+
+    function it_returns_foo_when_i_call_bar()
+    {
+	$this->bar()->shouldReturn("foo");
+    }
+}
+						</code></pre>
+					</section>
+					<section>
+						<p>Ejecutamos las especificaciones</p>
+						<img src="img/phpspec-console2.png"/>
+					</section>
+					<section>
+						<p>Nuestro código actual</p>
+						<pre><code class="php">
+namespace Amoya;
+
+class MyObject
+{
+
+    public function bar()
+    {
+        // TODO: write logic here
+    }
+}
+						</code></pre>
+					</section>
+					<section>
+						<p>Implementamos el comportamiento esperado</p>
+						<pre><code class="php">
+namespace Amoya;
+
+class MyObject
+{
+
+    public function bar()
+    {
+        return "foo";
+    }
+}
+						</code></pre>
+					</section>
+					<section>
+						<p>Ejecutamos las especificaciones</p>
+						<img src="img/phpspec-console3.png"/>
+					</section>
+					<section>
+						<h2>Prophecy</h2>
+						<p class="espacio-top">Librería para construir dobles en PHP</p>
+					</section>
+					<section>
+						<p>Agregamos una especificación</p>
+						<pre><code class="php">
+namespace spec\Amoya;
+
+use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
+
+class MyObjectSpec extends ObjectBehavior
+{
+
+    /**
+     * @param Amoya\OtherObject $collaborator
+     */
+    function it_sends_a_message_to_collaborator($collaborator)
+    {
+        $collaborator->sendMessage()->shouldBeCalled();
+	$this->setCollaborator($collaborator);
+
+        // when
+        $this->bar();
+    }
+						</code></pre>
+					</section>
+					<section>
+						<p>Ejecutamos las especificaciones</p>
+						<img src="img/phpspec-console4.png"/>
+					</section>
+					<section>
+						<p>Implementamos el comportamiento esperado</p>
+						<pre><code class="php">
+namespace Amoya;
+
+class MyObject
+{
+    private $collaborator;
+
+    public function __construct()
+    {
+	$this->collaborator = new OtherObject;
+    }
+
+    public function bar()
+    {
+	$this->collaborator->sendMessage();
+        return "foo";
+    }						
+						</code></pre>
+					</section>
+					<section>
+						<p>Ejecutamos las especificaciones</p>
+						<img src="img/phpspec-console5.png"/>
+					</section>
+					<section>
+						<h2>Repetir</h2>
+						<ul class="espacio-top">
+						<li>Hasta que todas las especificaciones esten en verde</li>
+						<li>Hasta que los escenarios de BDD de historia esten en verde</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>Recursos</h1>
+					</section>
+					<section>
+						<img src="img/logo-agiles-colombia.png"/>
+						<p class="smaller espacio-top">Sitio de la comunidad - <a href="http://agilescolombia.org/">http://agilescolombia.org/</a></p>
+						<p class="smaller">Próximos eventos - <a href="http://www.meetup.com/AgilesColombia/">http://www.meetup.com/AgilesColombia/</a></p>
+						<p class="smaller">Foro - <a href="https://groups.google.com/forum/?fromgroups#!forum/agiles-colombia">https://groups.google.com/forum/?fromgroups#!forum/agiles-colombia</a></p>
+					</section>
+					<section>
+						<img src="img/logo-sparkta.png"/>
+						<p class="smaller espacio-top">Sitio web - <a href="http://sparkta.co/">http://sparkta.co/</a></p>
+						<p>Entrenamiento, consultoria, talleres en temas ágiles</p>
+					</section>
+					<section>
+						<h2>Adrian Moya</h2>
+						<img src="img/adrian.jpg"/>
+						<p><a href="https://twitter.com/adrianmoya">@adrianmoya</a></p>
+						<p><a href="http://adrianmoya.com">http://adrianmoya.com</a></p>						
+					</section>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="/reveal.js/lib/js/head.min.js"></script>
+		<script src="/reveal.js/js/reveal.min.js"></script>
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					//{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					//{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/reveal.js/js/highlight_gherkin.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },					
+					//{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },					
+					//{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					//{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+		</script>
+		<script src="js/aem.js"></script>
+	</body>
+</html>

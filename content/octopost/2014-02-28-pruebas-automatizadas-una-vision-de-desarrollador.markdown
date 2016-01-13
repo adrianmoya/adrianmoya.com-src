@@ -1,0 +1,62 @@
+---
+title: "Pruebas automatizadas: una visión de desarrollador"
+slug: pruebas-automatizadas-una-vision-de-desarrollador
+date: "2014-02-28"
+comments: true
+categories: 
+- Testing
+- Agile
+type: post
+---
+
+El mundo de las pruebas en el desarrollo de software es muy amplio, y con la aplicación de metodologías ágiles cada vez más usadas, se ha borrado un poco la línea entre las tareas de un desarrollador y de un tester puro, y han comenzado a compartir algunas responsabilidades. A continuación expongo, desde mi punto de vista como desarrollador y no especialista en pruebas, cuál debe ser la colaboración de un desarrollador en esta parte importante del proceso de desarrollo.
+
+<!--more-->
+
+## Soy un desarrollador ¿Por qué debo escribir pruebas? ##
+
+Esta es la pregunta que se hacen muchos desarrolladores que no entienden el porque deben escribir pruebas si su responsabilidad es la de codificar el sistema. La verdad es que escribir pruebas (sea antes, durante o después de codificar parte de un sistema) es un arnés de seguridad que ponemos a nuestro código para cuidarnos de nosotros mismos y de los otros miembros del equipo. A medida que un software evoluciona, nuestra capacidad de recordar y validar todos los componentes que lo forman, que hemos desarrollado nosotros y nuestros compañeros de trabajo, se reduce. De aqui que hace falta utilizar herramientas que nos permitan asegurar que lo que ya esta codificado, permanezca funcionando de la manera que se diseño y que un cambio a futuro no cambie el comportamiento del componente de manera inesperada, una realidad que sucede mucho con proyectos que crecieron mucho y para los cuales nunca se les escribió pruebas. Si no lo han vivido, créanme que la experiencia es poco agradable. Realizar un cambio a una parte crítica de un sistema sin el arnés de las pruebas es una ruleta rusa, un pase a producción podría significar que estemos dañando otra parte del sistema y esto introduce una carga de estrés muy grande sobre el equipo. Si realizamos pruebas en nuestro desarrollo, esa carga se aligera. Lo ideal es que un pase a producción sea totalmente relajado, y que la norma sea que no tenga inconvenientes.
+
+Por tanto escribimos pruebas del código para nuestra tranquilidad. 
+
+## Las pruebas como elemento de diseño ##
+
+Otra razón, popularizada por técnicas como TDD, que consisten en escribir primero las pruebas y luego el código que las pasan, tiene que ver con ayudarnos a diseñar software. Todos hemos escrito software del cual nos sentimos avergonzados. Si has pasado algunos años en esta labor, sabes que la industria es poco realista con respecto al trabajo que involucra desarrollar un sistema. Todo se quiere para ya, y con la última tecnología. Cuando estas aprendiendo a codificar, la presión de los tiempos de entrega y la poca experiencia terminan en software muy mal escrito. Software acoplado, software que no cumple con los principios S.O.L.I.D., etc. Es lo que todos llamamos código legacy, y el que nadie quiere mantener.
+
+Sumado a la dificultad de aprender a escribir pruebas, el código que se ha escrito durante los últimos años no es software fácil de probar. Por eso surgió esta propuesta de comenzar a escribir la prueba primero, para entrenarnos en el arte de escribir software que facilite cubrirlo con pruebas. Para el software existente no queda más que ir aplicando refactorizaciones para poco a poco llevarlo a un estado en que se pueda probar de forma automática.
+
+Si ya dominas el tema de las pruebas, escribirlas primero o después es cuestión de gustos personales. Mi recomendación: escribe primero las pruebas hasta que en tu mente queden fijados los patrones que te permiten desacoplar los objetos. Luego sé libre de elegir. 
+
+## Tipos de prueba que debo conocer como desarrolador ##
+
+Existen muchos tipos de pruebas, pero como desarrollador, debemos dominar 3 tipos:
+
+**Pruebas Unitarias:** Las pruebas unitarias validan que un objeto, aislado del resto del sistema, funciona como esperamos. Son el tipo de prueba que se ejecutan con mayor rapidez, pues las herramientas de prueba solo tienen que instanciar el objeto y aplicar las pruebas. Estas pruebas me dan la tranquilidad de que el componente independiente cumple sus funciones cuando lo ejercito bajo distintos escenarios. 
+
+Como un sistema esta conformado por distintos objetos que colaboran, y de forma de proveer un entorno donde los resultados sólo dependan del componente que estoy probando, es necesario apoyar este tipo de pruebas con técnicas como dobles (mocks). Todo los colaboradores externos deben ser "simulados" a través de un doble. Como recomendación, solo debemos simular otros componentes que formen parte de nuestro desarrollo, y no librería de terceros, puesto que no tenemos control cuando una librería de éstas puede cambiar su comportamiento. 
+
+Las pruebas unitarias son perfectas para probar componentes que representen la lógica de negocio, o nuestro dominio principal.
+
+**Pruebas de Integración:** Cuando desarrollamos software, es importante no reinventar la rueda. Existen muchísimas librerías y plataformas que proveen funcionalidad común para distintos tipos de sistemas, desde mapeo de objetos a bases de datos (ORMs), hasta construcción de servicios REST. Si tuvieramos que escribir todo desde cero, los proyectos tomarían años escribiendo las mismas cosas. 
+
+Por esto hacemos uso de librerias y plataformas de desarrollo, realizadas por teceros. Y como estos desarrollos no están bajo nuestro control, no debemos simular con la técnica de dobles estas librerías, sino realizar pruebas que me permitan asegurar que mi código integrado con la librería funciona como se espera. Estas pruebas me dan la tranquilidad de que mis componentes y las librerías que lo apoyan cumple sus funciones cuando lo ejercito bajo distintos escenarios.
+
+La velocidad de este tipo de pruebas es menor a las unitarias, porque ahora es necesario integrar componentes de terceros y posiblemente levantar un ambiente con las condiciones requeridas por los componentes de terceros. 
+
+Estas pruebas son ideales para probar integración entre nuestras clases de negocio con otros contextos de la aplicación, como una interfaz de usuario o servicios.
+
+**Pruebas funcionales:** Finalmente es importante probar el sistema como un todo. Esta es quizá el tipo de prueba más compleja de automatizar, porque lo hacemos "desde afuera", aunque podemos apoyarnos en algunas técnicas de más bajo nivel para preparar el contexto de la prueba (como crear datos en la BD). Estas son pruebas mucho más lentas por su naturaleza, requieren que se tenga un ambiente preparado similar al de producción, que se despliegue la aplicación, y que se sigan los procedimientos que utilizarian los usuarios finales, sea interactuando a través de la interfaz de usuario o de las APIs. Requerimos además, si el sistema lo necesita, de una base de datos que debe ser estructuralmente igual a la base de datos final, lo que no siempre es posible.
+
+Estas pruebas, desde nuestra visión como desarrolladores, no representan las pruebas de aceptación, que deben ser responsabilidad de un equipo o individuo que represente los intereses del cliente final. Son más bien pruebas que ayudan a corroborar que la aplicación funciona de acuerdo a como esperamos que se comporte, bajo un conjunto de escenarios. Me dan la tranquilidad del funcionamiento de la aplicación como un todo. 
+
+Para estas pruebas podemos aplicar distintas técnicas, y escribirlas como una prueba más (enfocada en la validación de una funcionalidad) o para automatizar otros elementos de comunicación y diseño, como cuando aplicamos BDD, donde el equipo escribe los escenarios utilizando lenguaje natural, que luego convertimos a código que ejecuta nuestras pruebas.
+
+## ¿Cuántas pruebas de cada tipo son suficientes? ##
+
+Como todas las prácticas ágiles, no existe respuesta definitiva, y varía de acuerdo al contexto. Si bien existe algunas guías como la [pirámide de pruebas](http://martinfowler.com/bliki/TestPyramid.html) que sugiere que la mayor parte de las pruebas sean unitarias y continuemos con integración y funcionales, la realidad es que depende. Veamos algunos ejemplos:
+
+**Proyecto nuevo:** Este es el escenario ideal. El código puede comenzar a escribirse cubierto por pruebas, y la pirámide nos sirve de guía. La cantidad de pruebas unitarias o de integración dependerá de la tecnología. Si hay muchas características provistas por otras librerías, podría convenir más pruebas de integración que unitarias. 
+
+**Proyecto legacy:** Si estamos ante un proyecto con código poco testeable, lo mejor que podemos hacer es cubrilo con pruebas funcionales. Realizar cambios en un proyecto legacy es difícil, y toma tiempo refactorizar una mala arquitectura, por tanto las pruebas funcionales nos proveen el arnés de seguridad que necesitamos para ir "operando" a la aplicación.
+
+Finalmente el número de pruebas que debemos realizar son las que nos den seguridad. Algunos componentes son muy simples o poco usados, mientras otros son críticos para el sistema. A la hora de elegir, debemos cubrir los puntos más críticos de la aplicación, y los más propensos a causar un impacto en el sistema si son modificados. Más importante que tener 100% de cobertura, es que las pruebas sean las correctas. 

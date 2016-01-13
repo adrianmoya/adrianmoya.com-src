@@ -1,0 +1,51 @@
+---
+title: "Organizando un proyecto BDD"
+date: "2014-01-13"
+comments: true
+categories: 
+- BDD
+- Escenarios
+- Agilidad
+type: post
+---
+
+Muchos proyectos que comienzan a usar BDD lo hacen escribiendo escenarios para sus historias de usuario. Esto podría dar a suponer que un escenario es una parte de una historia de usuario, pero lo cierto es que la relación entre historias de usuario y escenarios no es necesariamente jerárquica. También tenemos otros conceptos que son importantes dentro de la organización del proyecto, como las capacidades y características. Veamos algunas ideas de cómo se puede organizar un proyecto BDD y la relación entre algunos de sus artefactos. Todos estos conceptos son tomados de artículos de Liz Keogh y Chris Matts.
+
+<!--more-->
+## Participantes de un proyecto##
+
+Dentro de un proyecto BDD, los stakeholders o partipantes se pueden clasificar en dos grupos: 
+
+**Participantes primarios:** son el grupo de personas o compañía que están invirtiendo su dinero en el proyecto de software. Todo proyecto de software es una inversión, y se lleva a cabo para ganar, ahorrar o proteger el dinero del inversionista. Ellos son los que tienen la Visión del proyecto.
+
+**Participantes incidentales:** son todos los demás participantes del proyecto, cuyos objetivos deben cumplirse para alcanzar la visión. Aquí podemos contar a personas del área Legal, de arquitectura, de seguridad, etc, como también al usuario final. Todos ellos tienen su propia visión del proyecto, y debemos considerar sus objetivos cuando definimos el proyecto.
+
+## Elementos del proyecto##
+
+Para crear software que importa, es escencial partir de una visión bien definida, que nos permita trazar objetivos alcanzables a través de capacidades en el sistema. Dichas capacidades se harán realidad a través de características que añadimos al software, las cuales describimos con ejemplos a través de escenarios e implementamos con código en una o más historias.
+
+**Visión:** representa el nivel más alto que describe el proyecto, generalmente desde el punto de vista de su participante primario.
+
+**Objetivos:** para alcanzar la visión, los participantes incidentales deben de cumplir ciertos objetivos. Dichos objetivos se cumplirán a través de capacidades en el sistema que se va a desarrollar.
+
+**Capacidades:** las capacidades permiten a los usuarios del sistema alcanzar un objetivo de negocio. El analista de negocio es el miembro del equipo que describe cuáles deben ser las capacidades que debe tener el sistema, de manera que cumpla sus objetivos. Ejemplos de estas capacidades pueden ser: consultar mi información financiera personal, comprar productos desde mi casa, consultar el tráfico de la ciudad, proteger la información personal, etc. Podemos llegar a las capacidades del sistema preguntándonos el por qué se debe realizar alguna característica. Muchos sistemas tienen las mismas capacidades, si comparamos productos competidores, generalmente sus capacidades son las mimas o similares, por ejemplo tanto Gmail como Hotmail nos permiten administrar un buzón de correo electrónico, enviar correos, recibir correos, etc.
+
+**Características:** las características son componentes del sistema que habilitan las capacidades. Generalmente describen una manera de interactuar con el sistema, puede ser una interfaz de usuario o un servicio web. 
+
+**Historia:** la historia, un elemento de gestión bastante conocido dentro del mundo ágil que representa una cantidad de trabajo pequeño del cual podemos obtener retroalimentación. Una historia puede representar una característica completa si dicha característica es pequeña, o multiples historias pueden completar una característica que sea más compleja.
+
+**Escenario:** es un ejemplo de cómo el sistema debe comportarse desde el punto de vista de un usuario. A través de escenarios, podemos expresar los ejemplos concretos que nos ayudan a comunicarnos entre todos los participantes. Los escenarios pueden servir para validar el comportamiento y documentar el sistema, siendo este el aspecto más conocido de BDD debido a la abundancia de herramientas para automatizar esta validación.
+
+**Código:** el código es el que finalmente permite que un escenario se torne realidad. 
+
+## Historias y escenarios##
+
+Relacionar estos dos elementos es en principio algo confuso. ¿Debo crear historias de usuario para implementar un escenario? ¿O crear escenarios que implementen una historia de usuario? Lo cierto es que ambos artefactos, como vimos en la descripción anterior, cumplen funciones muy distintas:
+
+La historia sirve para administrar el trabajo en el equipo y su duración es generalmente un ciclo (una iteración si trabajas con Scrum) o un elemento que pasa a través de un flujo de trabajo (si trabajas con kanban). Una vez una historia es terminada, se desecha y se continúa el trabajo con nuevas historias.
+
+El escenario es un elemento más permanente. Un escenario describe el comportamiento actual del sistema. A medida que el proyecto avanza, los escenarios pueden cambiar, y algunos pueden dejar de ser válidos, a medidas que exploramos el dominio o agregamos nuevas funcionalidades. Sin embargo, en cualquier momento del proyecto, podemos leer los escenarios para ver como se comporta el sistema. Son un elemento valioso como documentación y validación del desarrollo. 
+
+## Conclusion##
+
+Cuando organizamos un proyecto BDD, recordemos que los escenarios los creamos para que permanezcan como documentación de las características, y que las historias son elementos de gestión pasajeros, asociados al trabajo requerido para implementarlas. Hagamos uso de las herramientas para automatizar escenarios para validar de manera automática que el sistema cumple con la documentación asociada.
