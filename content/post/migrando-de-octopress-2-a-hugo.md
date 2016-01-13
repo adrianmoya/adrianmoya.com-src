@@ -54,7 +54,7 @@ El tema que utilicé no traía botones para compartir las entradas por las redes
 
 ### Despliegue
 
-Para el tema de automatizar el despliegue, utilicé [la recomendación de la documentación de Hugo](http://gohugo.io/tutorials/github-pages-blog/#hosting-personal-organization-pages:fcefb200141ace3e7bfd6542457b7a72) de crear un repo adicional con las fuentes y utilizar un [script de deploy](https://github.com/adrianmoya/adrianmoya.com-src/blob/e2a526c0ed30214c1ba71befd8c2f6b8b4592f39/deploy.sh) que publica los cambios al submodulo. Había intentado usar un solo repositorio y utilizar subtree y dos ramas, pero a verdad se puso complicado el asunto y siempre reportaba conflictos, por lo que decidí irme por la via simple. 
+Para el tema de automatizar el despliegue, utilicé [la recomendación de la documentación de Hugo](http://gohugo.io/tutorials/github-pages-blog/#hosting-personal-organization-pages:fcefb200141ace3e7bfd6542457b7a72) de crear un repo adicional con las fuentes y utilizar un [script de deploy](https://github.com/adrianmoya/adrianmoya.com-src/blob/e2a526c0ed30214c1ba71befd8c2f6b8b4592f39/deploy.sh) que publica los cambios al submodulo. Agregando el tema y el repo público como submodulo hace muy fácil inicializar un equipo nuevo, simplemente clonando las fuentes con la opción `--recursive` se trae todo lo necesario para trabajar. 
 
 ### Configuraciones finales
 
