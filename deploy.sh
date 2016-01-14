@@ -8,6 +8,10 @@ then
   exit 1
 fi
 
+# Update public to latest version deployed
+echo -e "\033[0;32mPulling latest version of site from GitHub...\033[0m"
+git submodule update --remote public
+
 # Go To Public folder
 cd public
 
@@ -17,10 +21,6 @@ if [ $CURRENT_BRANCH != "master" ]
 then
   git checkout master
 fi
-
-# Update public to latest version deployed
-echo -e "\033[0;32mPulling latest version of site from GitHub...\033[0m"
-git pull origin master
 
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
