@@ -13,7 +13,7 @@ cd public
 
 #If not on master branch, switch to master branch
 CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
-if [ $CURRENT_BRANCH -ne "master" ]
+if [ $CURRENT_BRANCH != "master" ]
 then
   git checkout master
 fi
