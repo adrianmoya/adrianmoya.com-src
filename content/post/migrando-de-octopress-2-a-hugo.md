@@ -4,7 +4,7 @@ title = "Migrando de Octopress 2 a Hugo"
 draft = false 
 +++
 
-Hace [algún tiempo atrás](/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/), migré mi blog desde [Wordpress](https://es.wordpress.org/) a [Octopress 2](http://octopress.org/). Para el momento representaba un gran avance para mi y me introdujo al mundo de los generadores de sitios estáticos. Escribir en markdown es un placer y llevar el "código" de mi blog en git es muy natural para mi como desarrollador. Sin embargo el tiempo paso y encontré algunas dificultades. 
+Hace [algún tiempo atrás](/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/), migré mi blog desde [Wordpress](https://es.wordpress.org/) a [Octopress 2](http://octopress.org/). Para el momento representaba un gran avance para mi y me introdujo al mundo de los generadores de sitios estáticos. Escribir en markdown es un placer y llevar el "código" de mi blog en git es muy natural para mi como desarrollador. Sin embargo el tiempo pasó y encontré algunas dificultades. 
 
 <!--more-->
 
@@ -42,7 +42,7 @@ El formato de fechas en el [front-matter](http://gohugo.io/content/front-matter/
 
 ### URLs de las entradas
 
-Para mí era importante mantener las urls originales de las entradas. Hugo por defecto utiliza urls en otro formato, por tanto me tocó realizar una modificación a la configuración por defecto para que las entradas anteriores usaran sus urls originales, y que las nuevas utilizaran el formato nuevo que me parece un poco mejor. Eso me llevo a cambios en el [config.toml](https://github.com/adrianmoya/adrianmoya.com-src/blob/00c99f2655606db51e5a8f9332fc03683a1fa4e2/config.toml#L7-L8) y en la [plantilla principal](https://github.com/adrianmoya/adrianmoya.com-src/blob/00c99f2655606db51e5a8f9332fc03683a1fa4e2/layouts/index.html#L4) del tema que elegí. Adicionalmente, tuve que definir el "slug" específico en cada post, puesto que Hugo maneja los acéntos y caracteres internacionales de manera distinta cuando construye las urls. 
+Para mí era importante mantener las urls originales de las entradas. Hugo por defecto utiliza urls en otro formato, por tanto me tocó realizar una modificación a la configuración por defecto para que las entradas anteriores usaran sus urls originales, y que las nuevas utilizaran el formato nuevo que me parece un poco mejor. Eso me llevo a cambios en el [config.toml](https://github.com/adrianmoya/adrianmoya.com-src/blob/00c99f2655606db51e5a8f9332fc03683a1fa4e2/config.toml#L7-L8) y en la [plantilla principal](https://github.com/adrianmoya/adrianmoya.com-src/blob/00c99f2655606db51e5a8f9332fc03683a1fa4e2/layouts/index.html#L4) del tema que elegí. Adicionalmente, tuve que definir el "slug" específico en cada post, puesto que Hugo maneja los acentos y caracteres internacionales de manera distinta cuando construye las urls. 
 
 ### Comentarios de Disqus
 
