@@ -148,7 +148,7 @@ Aunque esto pueda parecer artificial, te permite demostrar progreso en términos
 
 ## Entonces, ¿cómo es esto distinto de los Casos de Uso?##
 
-Hay todo tipo de casos de uso. Soy un gran fan de la forma en que Alistair Cockburn describe los casos de uso (opuesto a las versiones con sobre-ingeniería que he encontrado en proyectos usando RUP-como-cascada). Dado que no tengo mucha experiencia en proyectos dirigidos por Casos de uso, dejare que otros que dibujen las diferencias. 
+Hay todo tipo de casos de uso. Soy un gran fan de la forma en que Alistair Cockburn describe los casos de uso (opuesto a las versiones con sobre-ingeniería que he encontrado en proyectos usando RUP-como-cascada). Dado que no tengo mucha experiencia en proyectos dirigidos por Casos de uso, dejare que otros dibujen las diferencias. 
 
 Ciertamente estoy de acuerdo con su proceso de comenzar en la precisión mas baja (de un resultado, o meta) y trabajar hacia la precisión más alta, levantando más escenarios de excepción a medida que avanzas. En BDD, esto significa comenzar con las salidas del negocio, y trabajar a través de areas funcionales de alto nivel para profundizar en historias específicas con criterios de aceptación.
 
