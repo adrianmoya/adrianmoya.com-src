@@ -9,7 +9,7 @@ octopost = "/:year/:month/:slug/"
 
 [params]
     theme = "theme-base-0b"
-    highlight = "default"
+    highlight = "zenburn"
     googleAnalytics = "UA-32342484-1"
     github = "https://github.com/adrianmoya/"
     linkedin = "https://www.linkedin.com/in/moyaadrian"
