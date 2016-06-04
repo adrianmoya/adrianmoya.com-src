@@ -8,6 +8,8 @@ title = "Pruebas con tiempo en aplicaciones legado"
 +++
 Las pruebas unitarias que dependen del tiempo son siempre complicadas. La manera aceptada de hacerlas es envolver todas las llamadas para obtener la hora del sistema en un objeto "Clock". Comenzando con Java 8, [la nueva API de fechas y hora](https://jcp.org/en/jsr/detail?id=310) introdujo el objeto [Clock](https://docs.oracle.com/javase/8/docs/api/java/time/Clock.html) al lenguaje, que hace más simple inyectar en una clase y sustituir por un doble en una prueba. Antes de eso, en Java 7 y anteriores, era tu responsabilidad crear dicho objeto.
 
+<!--more-->
+
 Recientemente me tocó trabajar con un pedazo de código legado que manipulaba la hora y la fecha, y el autor original no se tomó la molestia de envolver estas llamadas. En lugar de eso, el código contenía las siguientes llamadas en diversas partes:
 
 ``` java
