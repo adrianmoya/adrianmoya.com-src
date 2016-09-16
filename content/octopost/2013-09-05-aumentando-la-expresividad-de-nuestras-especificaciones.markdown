@@ -41,6 +41,7 @@ Asi mismo cuando comparamos objetos, por lo general el mensaje de error muestra 
 
 Nos dará un mensaje como "Expected: TaxItem{value=12.00, amount=200.00} but was TaxItem{value=16.00, amount=200.00}", lo que nos permitirá ver que los objetos son distintos porque la propiedad value es distinta.
 
+<a name="separar-contexto"></a>
 ## Usar comentarios para separar las tres fases de la prueba ##
 
 Separar claramente el contexto, el ejemplo de código que se especifica, y las validaciones finales, hacen que una prueba sea mucho más legible. Puedes usar comentarios, como `//Arrange //Act //Assert` o `//Given //When //Then`. Esto ayuda permite al lector enfocarse en cada segmento, pudiendo ver con claridad el contexto, o por ejemplo concentrándose en cual es la operación que se está probando o qué resultados se esperan. Comentarios adicionales dentro de cada sección también ayudan si sientes que es necesario explicar algo adicional, pero si como mínimo tienes estos 3 comentarios separando las secciones ya estás ganando en expresividad.
