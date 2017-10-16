@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Pensando TDD (I) &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="tdd">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2016 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Pensando TDD (I)</h1>
+    <span class="post-date">16/09/2016 &middot; Lectura de 5 minutos  &middot; <a href="http://adrianmoya.com/post/pensando-tdd-i/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/tdd">TDD</a><a class="label" href="http://adrianmoya.com/categories/testing">Testing</a>
+    </span>
+    
+
+<p>Siempre escuchamos que TDD es una técnica de diseño que es guiada por pruebas. Pero dado que tenemos que escribir la prueba primero, nuestra mente comienza a pensar en términos de pruebas en lugar de diseño. Entonces comenzamos a pensar en casos borde, malas entradas, y cosas que son importante pensar, pero desvían nuestra atención del objetivo principal de la técnica, que es diseñar.</p>
+
+<p>En esta entrada voy a volcar mi tren de pensamientos cuando diseño a través de TDD, para que puedan contrastar la diferencia acerca de pensar enfocado en pruebas y pensar acerca de diseño. Así mismo, cada decisión de diseño va a resultar en código para nuestra prueba.</p>
+
+<!-- more -->
+
+<h1 id="el-ejercicio">El ejercicio</h1>
+
+<p>Nuestra area es construir un convertidor de dinero. Para hacer las cosas simples, solo necesitamos convertir entre dólares americanos (USD) y pesos colombianos (COP).</p>
+
+<h1 id="seleccionando-un-nombre-para-el-componente">Seleccionando un nombre para el componente</h1>
+
+<p>La primera decisión de diseño es el nombre del componente. He decidido llamarlo MoneyConverter, que denota su funcionalidad principal. Pense en llamarlo USD2COPConverter pero no sonaba muy bien. Voy a crear esta clase en paquete com.adrianmoya.money. Habiendo decidido el nombre y el paquete, primero creo una clase de prueba llamada MoneyConverterTest en ese paquete. Luego añado una instancia privada de la clase que estoy a punto de crear. El IDE se va a quejar de que la clase no existe, asi que simplemente le digo que la cree para mi. Asi se ve el código:</p>
+
+<pre><code class="language-java">package com.adrianmoya.money;
+
+public class MoneyConverterTest {
+
+	private MoneyConverter converter;
+	
+}
+</code></pre>
+
+<h1 id="pensando-en-las-responsabilidades">Pensando en las responsabilidades</h1>
+
+<p>Cuando diseño un objeto, me gusta pensar en terminos de <a href="https://es.wikipedia.org/wiki/Tarjetas_CRC">Modelos CRC</a>, definiendo el nombre de la clase, las responsabilidades y finalmente los colaboradores. Ya decidi el nombre, y la responsabilidad de esta clase es muy simple: convertir entre dólares y pesos. Tambien tengo muy presente el <a href="https://es.wikipedia.org/wiki/Principio_de_responsabilidad_%C3%BAnica">Principio de Responsabilidad Simple</a>, para que mi componente haga solo una cosa y la haga bien. Esto me ayuda a crear componentes que son pequeños y fáciles de mantener.</p>
+
+<p>Teniendo clara la responsabilidad, pensemos acerca del <a href="https://es.wikipedia.org/wiki/Interfaz_de_programaci%C3%B3n_de_aplicaciones">API</a>. ¿Cómo quiero llamar la funcionalidad de este convertidor, y con qué parámetros? Para esto, pienso en un primer escenario, convertir dólares a pesos, y escribo una prueba con ese nombre. Divido la prueba en 3 secciones, <a href="/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/#separar-contexto">Dado/Cuando/Entonces</a>. Me gustan estos términos ya que inicialmente aprendí de pruebas haciendo BDD, pero podría haber usado Arreglar/Actuar/Asertar o cualquier otra plantilla. Luego, pienso en como llamar esta función, y lo escribo en la sección &ldquo;Cuando&rdquo;. Digamos que la llamo <code>convertUSDtoCOP()</code> y que recibirá la cantidad de dólares a convertir, retornando el resultado en pesos. Como se trata de dinero, me iré con un BigDecimal como el tipo de dato. Quiero que este ejemplo convierta 10 dólares, asi que mi código se ve así:</p>
+
+<pre><code class="language-java">@Test
+public void itConvertsUSDtoCOP(){
+	//Given
+	BigDecimal amountToConvert = new BigDecimal(&quot;10.00&quot;);
+	//When
+	BigDecimal result = converter.convertUSDtoCOP(amountToConvert);
+
+}
+</code></pre>
+
+<p>El IDE se va a quejar nuevamente, asi que le digo que cree el método en la clase. Asi se ve la clase MoneyConverter en este momento:</p>
+
+<pre><code class="language-java">package com.adriamoya.money;
+
+import java.math.BigDecimal;
+
+public class MoneyConverter {
+
+	public BigDecimal convertUSDtoCOP(BigDecimal bigDecimal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+</code></pre>
+
+<h1 id="la-tasa-de-conversión">La tasa de conversión</h1>
+
+<p>Todavía necesitamos decidir como estará disponible la tasa de conversión para la clase. Podría pasarla como un parámetro adicional al método, pero no me gusta asi. Creo que para esta primera pasada, me iré con un argumento en el constructor. Añadiré un <code>Before</code> a la prueba para que instancie correctamente a la clase:</p>
+
+<pre><code class="language-java">@Before
+public void setup(){
+	BigDecimal usdToCopExchangeRate = new BigDecimal(&quot;2920.8167&quot;); //Today! 
+	converter = new MoneyConverter(usdToCopExchangeRate);
+}
+</code></pre>
+
+<p>El IDE se queja de nuevo! Vamos, crea ese constructor para mi. Listo. Asi queda la clase en este momento:</p>
+
+<pre><code class="language-java">package com.adriamoya.money;
+
+import java.math.BigDecimal;
+
+public class MoneyConverter {
+
+	public MoneyConverter(BigDecimal usdToCopExchangeRate) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public BigDecimal convertUSDtoCOP(BigDecimal bigDecimal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+</code></pre>
+
+<p>Ya tenemos todo lo necesario para completar una prueba que falle. Dado una tasa de conversion de 2.920,82 pesos por dólar, mi expectativa es que 10 dólares sean convertidos a 29.208,20 pesos. Completo la prueba y la ejecuto:</p>
+
+<pre><code class="language-java">@Test
+public void itConvertsUSDtoCOP(){
+	//Given
+	BigDecimal amountToConvert = new BigDecimal(&quot;10.00&quot;);
+	//When
+	BigDecimal result = converter.convertUSDtoCOP(amountToConvert);
+	//Then
+	assertEquals(new BigDecimal(&quot;29208.20&quot;), result);
+}
+</code></pre>
+
+<p>Noten que he decidio utilizar una escala de 2 decimales para este ejemplo. Es una decisión de diseño, expresada como una prueba. Esto podría cambiar en el futuro, pero para mi esta bien empezar así.</p>
+
+<h1 id="añadiendo-una-implementación">Añadiendo una implementación</h1>
+
+<p>Voy a añadir una implementación para que pase la prueba:</p>
+
+<pre><code class="language-java">public class MoneyConverter {
+	
+	private static final int SCALE = 2; 
+	private BigDecimal usdToCopExchangeRate;
+
+	public MoneyConverter(BigDecimal usdToCopExchangeRate) {
+		this.usdToCopExchangeRate = usdToCopExchangeRate.setScale(SCALE);
+	}
+
+	public BigDecimal convertUSDtoCOP(BigDecimal amountInUSD) {
+		return amountInUSD.multiply(usdToCopExchangeRate).setScale(SCALE);
+	}
+
+}
+</code></pre>
+
+<h1 id="cerrado-y-próximos-pasos">Cerrado y próximos pasos</h1>
+
+<p>Como pueden ver del ejercicio, he tomado varias decisiones de diseño para nuestra clase mientras escribía la prueba. Mi mente ha estado enfocada en el componente y como quiero que trabaje y no en probar todos los casos posibles buscando hacerlo fallar.</p>
+
+<p>Este diseño inicial va a evolucionar con el tiempo a medida que la aplicación comienza a demandar más características. Si bien no he seguido los pasos de bebé recomendados por TDD, tampoco me he ido de bruces a tratar de diseñar un convertidor-de-todas-las-monedas genérico que podría no necesitar al final.</p>
+
+<p>Finalmente, si mi aplicación solo necesita convertir entre dólares y pesos, sé que la tasa de cambio no va a ser tan estable como quisiera. Así que ¿Cómo podría obtener la tasa actualizada para la conversión? En el próximo artículo, voy a diseñar esa parte usando TDD e introduciré un poco del uso de dobles.</p>
+
+<p>Descarga el código de este artículo en <a href="https://github.com/adrianmoya/moneyconverter-tdd/archive/firstpass.tar.gz">Github</a>.</p>
+
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

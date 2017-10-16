@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Pruebas con tiempo en java 8 &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2016 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Pruebas con tiempo en java 8</h1>
+    <span class="post-date">24/05/2016 &middot; Lectura de 4 minutos  &middot; <a href="http://adrianmoya.com/post/pruebas-con-tiempo-en-java-8/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/unit-testing">Unit Testing</a><a class="label" href="http://adrianmoya.com/categories/junit">JUnit</a><a class="label" href="http://adrianmoya.com/categories/java">Java</a>
+    </span>
+    <p>En <a href="/post/pruebas-con-tiempo-en-aplicaciones-legado/">mi artículo anterior</a> revisé algunas técnicas para escribir pruebas que manipularan el tiempo en una aplicación legado. Hoy estaré compartiendo estrategias para escribir código que manipule el tiempo usando Java 8.</p>
+
+<p></p>
+
+<p>Imaginemos que tenemos que escribir una clase que retorne un mensaje de bienvenida basado en el tiempo que ha pasado desde que el usuario entró por última vez al sistema. Aqui está el requermiento:</p>
+
+<table>
+<thead>
+<tr>
+<th>Tiempo desde la última entrada</th>
+<th>Mensaje de bienvenida</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&lt;=10 minutos</td>
+<td>Hola, no te he visto desde hace unos minutos!</td>
+</tr>
+
+<tr>
+<td>&gt; 10 mins, &lt; 24 horas</td>
+<td>&ldquo;Hola, no te he visto desde hace un rato!&rdquo;</td>
+</tr>
+
+<tr>
+<td>&gt;=24 horas &lt; 48 horas</td>
+<td>&ldquo;Hola, no te he visto desde ayer!&rdquo;</td>
+</tr>
+
+<tr>
+<td>&gt;=48 horas</td>
+<td>&ldquo;Hola, no te he visto desde hace mucho tiempo!&rdquo;</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="escribiendo-clases-que-manipulen-fecha-hora">Escribiendo clases que manipulen fecha/hora</h2>
+
+<p>Siempre que crees una clase en tu aplicación que trabaje con el tiempo, declara e inyecta un <code>Clock</code> para proveer acceso a la información de hora/tiempo actual. Por ejemplo:</p>
+
+<pre><code class="language-Java">public class GreetingsMessage {
+    private Clock clock;
+    public GreetingsMessage(Clock clock) {
+        this.clock = clock;
+    }
+}
+</code></pre>
+
+<p>Existen diversas opciones para manejar las zonas de tiempo, dependiendo de la necesidad de tu aplicación. Inicializar el reloj con <code>Clock.systemDefaultZone();</code> utilizará la zona de tiempo del sistema. Alternativamente, si la aplicación va a trabajar en múltiples zonas de tiempo, <code>Clock.system(ZoneId zone);</code> permite establecer la zona de tiempo del usuario y ajustarse a esa región.</p>
+
+<p>Una vez que el reloj se ha definido, crea las fechas y horas pasando el reloj como parámetro:</p>
+
+<pre><code class="language-Java">LocalDateTime currentDateTime = LocalDateTime.now(clock);
+</code></pre>
+
+<p>Todos los métodos del nuevo API para obtener la fecha u hora actual han sido sobrecargados para recibir el reloj como parámetro.</p>
+
+<h2 id="preparando-la-prueba">Preparando la prueba</h2>
+
+<p>Ahora, prepara la prueba para el mensaje de bienvenida. Las pruebas requieren entradas fijas para que el usuario pueda hacer aserciones de las reglas de negocio basándose en una fecha u hora fijada (Depender de la hora del sistema para pruebas producirá resultados débiles que no funcionan consistentemente). Aquí esta el código:</p>
+
+<pre><code class="language-Java">public class GreetingsMessageTest {
+
+    private GreetingsMessage greetingsMessage;
+    private final LocalDateTime REFERENCE_DATE_TIME = LocalDateTime.of(2016, 4, 1, 10, 0); //2016-04-01 at 10:00am
+    private final ZoneId defaultZone = ZoneId.systemDefault();
+    private final Clock FIXED_CLOCK = Clock.fixed(REFERENCE_DATE_TIME.atZone(defaultZone).toInstant(), defaultZone);
+
+    @Before
+    public void setup(){
+        greetingsMessage = new GreetingsMessage(FIXED_CLOCK);
+    }
+}
+</code></pre>
+
+<p>Para este ejemplo, la fecha y hora de referencia ha sido definida como 1 de Abril de 2016 a las 10:00am. Como esto es una prueba, esta bien usar la zona de tiempo por defecto para construir el reloj. La constante <code>FIXED_CLOCK</code> contiene el reloj con la fecha de referencia fijada. Ahora, cada vez que el código llame <code>LocalDateTime.now(clock)</code> va a recibir 1 de Abril de 2016 a las 10:00am. Eso es suficientemente determinístico para escribir pruebas.</p>
+
+<h2 id="escribiendo-pruebas-con-tiempo">Escribiendo pruebas con tiempo</h2>
+
+<p>La primera prueba ejecutará el escenario en el que el usuario entró al sistema hace 5 minutos.</p>
+
+<pre><code class="language-Java">@Test
+public void testGreetingSinceMinutesAgo(){
+    //Given
+    LocalDateTime lastSeenInstant = REFERENCE_DATE_TIME.minus(5, ChronoUnit.MINUTES);
+
+    //When
+    String greeting = greetingsMessage.getMessage(lastSeenInstant);
+
+    //Then
+    assertEquals(&quot;Hello, I haven't see you in a few minutes!&quot;, greeting);
+}
+</code></pre>
+
+<p>El parámetro <code>lastSeen</code> se deriva desde la hora de referencia de la prueba. Este caso usa las 9:55 a.m. del 1 de Abril de 2016, 5 minutos antes de la hora de referencia. <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html"><code>LocalDateTime</code></a> describe métodos que ayudan a calcular un momento en el tiempo partiendo de un valor actual, puedes revisar el API para aprovechar esos métodos en tus pruebas.</p>
+
+<p>Tambien puedes probar el escenario de &ldquo;ayer&rdquo; usando un método diferente para restar un número de días de la fecha de referencia:</p>
+
+<pre><code class="language-Java">@Test public void testGreetingSinceYesterday(){
+    //Given
+    LocalDateTime lastSeen = REFERENCE_DATE_TIME.minusDays(1);
+
+    //When
+    String greeting = greetingsMessage.getMessage(lastSeen);
+
+    //Then
+    assertEquals(&quot;Hello, I haven't see you since yesterday!&quot;, greeting);
+}	
+</code></pre>
+
+<p>Este ejemplo establece el valor de 10:00 a.m. del 31 de Marzo de 2016 para <code>lastSeen</code>. Aunque podrías crear este valor directamente, pienso que el uso del API ayuda con la legibilidad de la condición para esta prueba.</p>
+
+<p>Siguiendo estos pasos, puedes ir implementando las pruebas de tiempo. El ejemplo completo esta publicado en <a href="https://github.com/adrianmoya/testingtimejava8">mi cuenta de GitHub</a>. Felices pruebas con Java 8!</p>
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

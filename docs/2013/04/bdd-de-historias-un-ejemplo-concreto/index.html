@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>BDD de historias: un ejemplo concreto &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2013 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>BDD de historias: un ejemplo concreto</h1>
+    <span class="post-date">22/04/2013 &middot; Lectura de 3 minutos  &middot; <a href="http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/bdd">BDD</a><a class="label" href="http://adrianmoya.com/categories/agilidad">Agilidad</a>
+    </span>
+    
+
+<p>Para continuar con la serie de artículos acerca del Desarrollo Guiado por Comportamiento, hoy les traigo un ejemplo de BDD de historias, junto con sus implementaciones en Java y PHP.</p>
+
+<!-- more -->
+
+<h2 id="la-historia-y-sus-escenarios">La historia y sus escenarios</h2>
+
+<p>Como he comentado en la serie de artículos de BDD, nuestra intención es partir desde los requerimientos del cliente. Así, para este ejemplo, vamos a partir con la siguiente historia de usuario (característica del sistema):</p>
+
+<pre><code>Característica: Suma de dos números
+
+Como matemático novato
+Yo quiero obtener la suma de dos cifras
+Para aprender a sumar
+</code></pre>
+
+<p>Para poder implementar esta sencilla característica de suma de dos cifras, nos reunimos el equipo y determinamos algunos escenarios con ejemplos concretos que podamos validar. A continuación los escenarios identificados:</p>
+
+<pre><code>Escenario: Sumar dos numeros positivos
+  Dado que estoy en la aplicación
+  Cuando ingreso los números 1 y 3
+  Y solicito el resultado del cálculo
+  Entonces el resultado debe ser 4
+
+Escenario: Sumar dos numeros negativos
+  Dado que estoy en la aplicación
+  Cuando ingreso los números -1 y -3
+  Y solicito el resultado del cálculo
+  Entonces el resultado debe ser -4
+
+Escenario: Sumar un numero positivo y uno negativo
+  Dado que estoy en la aplicación
+  Cuando ingreso los números -2 y 3
+  Y solicito el resultado del cálculo
+  Entonces el resultado debe ser 1
+</code></pre>
+
+<p>Como pueden ver, escribimos 3 simples escenarios con valores concretos que muestran como la funcionalidad de suma debe funcionar. Pudieramos escribir muchas combinaciones de valores, pero nuestra idea aqui es dar un ejemplo concreto, no todas las combinaciones posibles. Los escenarios son fácilmente legibles tanto por el gerente, el dueño del negocio, los desarrolladores, el equipo de pruebas, en fin, todos los interesados.</p>
+
+<p>Partiendo de esta información, creamos un archivo de texto con el nombre de la característica y la extensión feature (Suma.feature) y pasamos la información a ese archivo. Luego, usando las herramientas para BDD, generamos los pasos automáticos que verifican que la aplicación cumple lo que se está solicitando. Finalmente desarrollamos la aplicación que hace pasar los pasos de verificación.</p>
+
+<h2 id="implementación-en-java">Implementación en Java</h2>
+
+<ul>
+<li>Repositorio de código: <a href="https://github.com/adrianmoya/bddsample-java">https://github.com/adrianmoya/bddsample-java</a></li>
+<li>Artículo explicativo: <a href="http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/">http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/</a></li>
+</ul>
+
+<h2 id="implementación-en-php">Implementación en PHP</h2>
+
+<ul>
+<li>Repositorio de código: <a href="https://github.com/adrianmoya/bddsample-php">https://github.com/adrianmoya/bddsample-php</a></li>
+<li>Artículo explicativo: <a href="http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/">http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/</a></li>
+</ul>
+
+<h2 id="implementación-en-otros-lenguajes">Implementación en otros lenguajes</h2>
+
+<p>Si alguien se anima a realizar la implementación en otros lenguajes, con mucho gusto la publicaré junto con este artículo. Los principales lenguajes que yo manejo a nivel de trabajo son Java y PHP, y por eso sólo hice las implementaciones para estos dos lenguajes.</p>
+
+<h2 id="tips-y-notas-finales">Tips y notas finales</h2>
+
+<ul>
+<li><p>Aunque solo te llame la atención una de las dos implementaciones, no dejes de leer la otra. Busqué hacerlas lo bastante similares para que existieran puntos de comparación. Si conoces ambos lenguajes, revisar ambas implementaciones ayudará a entender mejor como se hizo.</p></li>
+
+<li><p>Es importante notar que ambas implementaciones parten del mismo archivo de entrada, Suma.feature. Este archivo tiene una estructura común para las herramientas BDD de la familia Cucumber y Behat. Su sintaxis se conoce como Gherkins. Para una buena documentación sobre que otras cosas podemos añadir a un archivo Gherkins, Behat ofrece una buena referencia en <a href="http://docs.behat.org/guides/1.gherkin.html">Writing Features - Gherkin Language</a>.</p></li>
+
+<li><p>Los tres escenarios realizan los mismos pasos con diferentes valores. Esto podría escribirse como una plantilla, y proporcionar una tabla de valores, lo que se conoce como Esquema del escenario. Pueden ver la sintaxis en <a href="http://docs.behat.org/guides/1.gherkin.html#scenario-outlines">Scenario Outlines</a> de la documentación de Behat. Queda como ejercicio para los lectores.</p></li>
+
+<li><p>A pesar de haber realizado la implementación en ambos lenguajes, podrán notar que en ninguno hay pruebas unitarias. Esto es porque el tema de las pruebas a nivel de clases, que en BDD se conoce como SpecBDD, comenzaré a tratarlo en los próximos artículos. Cuando llegue el momento de un ejemplo concreto, podremos ver el cuadro completo de BDD en acción (Historias + Especificaciones). Los ejemplos actuales solo cubren <a href="/2013/02/describiendo-sistemas-con-bdd/">BDD de Historias</a>.</p></li>
+</ul>
+
+<p>Hasta el próximo artículo!</p>
+
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

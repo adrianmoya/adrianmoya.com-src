@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Crecimiento Personal on Adrian Moya</title>
+    <link>http://adrianmoya.com/categories/crecimiento-personal/</link>
+    <description>Recent content in Crecimiento Personal on Adrian Moya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-us</language>
+    <lastBuildDate>Tue, 17 Jun 2008 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://adrianmoya.com/categories/crecimiento-personal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pensar Deliberadamente</title>
+      <link>http://adrianmoya.com/2008/06/pensar-deliberadamente/</link>
+      <pubDate>Tue, 17 Jun 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2008/06/pensar-deliberadamente/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Conquistar el miedo = Definir el miedo</title>
+      <link>http://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/</link>
+      <pubDate>Mon, 02 Jun 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>El delicado arte de ser feliz</title>
+      <link>http://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/</link>
+      <pubDate>Sun, 18 May 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

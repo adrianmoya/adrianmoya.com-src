@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Turnkeylinux on Adrian Moya</title>
+    <link>http://adrianmoya.com/categories/turnkeylinux/</link>
+    <description>Recent content in Turnkeylinux on Adrian Moya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-us</language>
+    <lastBuildDate>Tue, 23 Aug 2011 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://adrianmoya.com/categories/turnkeylinux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Añadir acceso via Apache a subversion en TurnkeyLinux Revision Control</title>
+      <link>http://adrianmoya.com/2011/08/anadir-acceso-via-apache-a-subversion-en-turnkeylinux-revision-control/</link>
+      <pubDate>Tue, 23 Aug 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2011/08/anadir-acceso-via-apache-a-subversion-en-turnkeylinux-revision-control/</guid>
+      <description>&lt;p&gt;La herramienta &lt;a href=&#34;http://www.turnkeylinux.org/revision-control&#34;&gt;TurnkeyLinux Revision Control&lt;/a&gt; ofrece de manera rápida un servidor de control de versiones con 4 conocidas y muy utilizadas herramientas para dicho trabajo: Subversion, Git, Bazaar y Mercurial. En lo personal yo lo utilizo más que todo para Subversion y Git. A pesar de venir preconfigurado con las opciones más deseables, en lo personal extraño la posibilidad de poder acceder subversion a través del protocolo http (usando Apache). A continuación explico el procedimiento para agregar esta característica  a esta herramienta:
+
+1. Acceder al servidor via ssh (o via webshell a través de &lt;a href=&#34;http://ip-del-servidor:12320&#34;&gt;http://ip-del-servidor:12320&lt;/a&gt;) con el usuario root y el password establecido al momento de la instalación.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Estableciendo la zona horaria en TurnkeyLinux</title>
+      <link>http://adrianmoya.com/2011/08/estableciendo-la-zona-horaria-en-turnkeylinux/</link>
+      <pubDate>Wed, 10 Aug 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2011/08/estableciendo-la-zona-horaria-en-turnkeylinux/</guid>
+      <description>&lt;p&gt;Para algunas aplicaciones de turnkeylinux, es importante fijar las fechas y horas del sistema antes de comenzar a trabajar. Por ejemplo, si estamos instalando un blog o foro, y queremos saber la fecha y hora exacta en que se produce una publicación. O si estamos usando una herramienta de control de incidencias, y necesitamos precisión en cuanto a la fecha y hora en que se crea y responde una incidencia. Finalmente, en aplicaciones de base de datos, si es importante realizar una auditoria, es importante que el sistema refleje correctamente las fechas y horas de los registros de la base de datos.
+
+Al desplegar una aplicación turnkeylinux, esta viene configurada por defecto en la zona horaria UTC, a partir de la cual se calculan el resto de las zonas horarias. Configurar la zona horaria que nos interesa es muy sencillo:&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

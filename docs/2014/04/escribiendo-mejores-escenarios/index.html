@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Escribiendo mejores escenarios &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2014 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Escribiendo mejores escenarios</h1>
+    <span class="post-date">25/04/2014 &middot; Lectura de 7 minutos  &middot; <a href="http://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/bdd">BDD</a><a class="label" href="http://adrianmoya.com/categories/an%C3%A1lisis">Análisis</a><a class="label" href="http://adrianmoya.com/categories/escenarios">Escenarios</a>
+    </span>
+    <p>Al momento de describir las características de un sistema a través de BDD, utilizamos ejemplos planteados en forma de escenarios para expresar cómo debe comportarse el sistema. Dichos escenarios son esenciales porque en ellos está plasmado el conocimiento del dominio de la aplicación, y sirven para documentar el sistema y también como insumo en el proceso de validación cuando los automatizamos utilizando herramientas BDD. A continuación veremos algunas preguntas que surgen y recomendaciones para lograr escenarios de calidad en nuestro proyecto.</p>
+
+<p></p>
+
+<h2 id="el-lenguaje-es-importante">El lenguaje es importante</h2>
+
+<p>La idea de escribir escenarios en lenguaje legible por personas no técnicas es mejorar la comunicación. Siendo así, no recomiendo mezclar distintos idiomas en un documento de características. Las herramientas modernas soportan todos los lenguajes disponibles, por tanto podemos usar el idioma en que nuestro equipo se comunica principalmente, y no mezclas de palabras claves en inglés con frases en castellano, como &ldquo;Given que el usuario hace login&rdquo;.</p>
+
+<h2 id="longitud-del-escenario">Longitud del escenario</h2>
+
+<p>Un punto importante a considerar cuando escribimos escenarios es su longitud. El tamaño ideal de un escenario es de 3 líneas, una para el contexto, la acción y el resultado respectivamente. Los escenarios muy largos son aburridos de leer, y complejos de automatizar. Escenarios con 3 pasos (o 2 si no hay un contexto relevante que mencionar) son simples de leer por todo el equipo. Cinco pasos sería lo máximo aceptable, más de cinco toca ver como podemos refactorizarlo, quiza dividiendo en 2 el escenario o creando antecedentes al conjunto de escenarios.</p>
+
+<p>Para lograr escenarios cortos, podemos prescindir en el contexto de todo detalle innecesario, pudiendo hacer uso de la descripción de la característica en el documento para expresar más detalles si es necesario. Así debemos procurar colocar los datos relevantes de entrada en una sola línea. Detalles de navegación/autenticación no son relevantes al escenario, a menos que estemos describiendo algún tema particular de seguridad.</p>
+
+<p>La acción debe ser simple y no una serie de pasos encadenados. Si el proceso por alguna razón requiere que el usuario interactue con más de un elemento de la interfaz, podemos utilizar el término de negocio del proceso en lugar de encadenar pasos en el escenario. Por ejemplo &ldquo;CUANDO el usuario aprueba la cotización&rdquo; es mejor que &ldquo;CUANDO el usuario hace click en aprobar Y hace click en el botón si&rdquo;.</p>
+
+<p>El resultado debe ser expresado como lo debe percibir nuestro usuario, y no como cambios a bajo nivel, osea expresa comportamiento observable, por ejemplo un mensaje de éxito, y no especifiques cosas como que un registro se haya creado en la base de datos.</p>
+
+<h2 id="imperativo-vs-declarativo">Imperativo vs. Declarativo</h2>
+
+<p>Este es un punto que depende un poco de la situación particular del proyecto. Un escenario escrito de forma imperativa se refiere a cuando escribimos cada paso a ejecutar en la interfaz de usuario, por ejemplo:</p>
+
+<pre><code>Dado que ingreso &quot;Adrian&quot; en el campo &quot;nombre&quot;
+Y que ingreso &quot;Moya&quot; en el campo &quot;apellido&quot;
+Cuando presiono el boton &quot;Crear&quot;
+Entonces veo el mensaje &quot;Usuario creado exitosamente&quot;
+</code></pre>
+
+<p>Este tipo de escenario provee más detalles al lector acerca de los pasos a realizar para lograr un resultado, y es más sencillo de automatizar pues el paso hace una sola acción, pero crea escenarios muy largos, y es sensible a cambios de la interfaz, lo que no es deseable. Este tipo de escenario puede ser usado donde se requieren detalles para comunicar claramente como funciona una característica.</p>
+
+<p>El escenario declarativo obvia los detalles y habla más del proceso como tal:</p>
+
+<pre><code>Dado que ingreso los datos de &quot;Adrian&quot;
+Cuando creo el usuario
+Entonces debo ver un mensaje de éxito.
+</code></pre>
+
+<p>Estos pasos son más complejos de automatizar (cada paso es un conjunto de acciones que hay que automatizar), y perdemos detalles de los datos usados, pero obtenemos como resultado escenarios cortos que hablan del proceso y que son muy robustos si hay constantes cambios en la interfaz (como en las etapas tempranas del proceso). Aqui las recomendaciones para mantener corta la longitud del escenario son escenciales (haciendo uso de la descripción y utilizando antecedentes).</p>
+
+<p>La recomendación es escribir de forma más declarativa para los casos que son bien entendidos por todos los miembros del equipo, y pasar a un modo más imperativo en los casos en que hay alguna funcionalidad compleja donde el entendimiento es poco o esta concentrado en una sola persona.</p>
+
+<h2 id="nunca-utilizar-detalles-de-implementación">Nunca utilizar detalles de implementación</h2>
+
+<p>En líneas generales, debemos evitar escribir escenarios atados a detalles específicos de la interfaz,como &ldquo;id&rsquo;s&rdquo; de elementos html o elementos asociados a la tecnología particular en la que estamos desarrollando la interfaz. Esto hará que los escenarios se tornen débiles ya que cada cambio en la interfaz implicaría cambiar el escenario.</p>
+
+<h2 id="identificando-reglas-de-negocio">Identificando reglas de negocio</h2>
+
+<p>A medida que vas explorando el dominio a través de ejemplos, de los mismos puedes inferir las reglas de negocio. Una regla de negocio viene a ser lo más general en que podemos describir el problema, y podemos colocarla en la descripción de la característica y no en los ejemplos. Algunas herramientas como Cucumber permiten utilizar las reglas de negocio como plantillas (Esquema de escenario) y ejecutar una tabla de valores concretos sobre esta plantilla, lo que es también válido y ayuda a reducir la cantidad de escenarios en un documento de característica. Veamos un ejemplo:</p>
+
+<pre><code>Esquema del escenario: Suma
+  Cuando sumo &lt;numero1&gt; con &lt;numero2&gt;
+  Entonces el resultado es &lt;resultado&gt;
+
+Ejemplos:
+  | numero1 | numero2 | resultado |
+  |    2    |    2    |     4     |
+  |   -2    |    2    |     0     |
+  |   -2    |   -2    |    -4     |
+</code></pre>
+
+<p>En este caso la regla de negocio es la suma de dos números que da un resultado, y la tabla muestra los ejemplos y resultados concretos que deben obtenerse. Con esta funcionalidad evitamos escribir multiples escenarios que se repiten.</p>
+
+<h2 id="usar-terminos-familiares">Usar terminos familiares</h2>
+
+<p>Nunca escribamos escenarios con variables, ya que automatizarlos implicaría desarrollar la aplicación en el código de prueba. Cosas como &ldquo;Dado que sumo A con B Entonces obtengo C&rdquo;, fuera de usarlo como plantilla para valores concretos como vimos en el punto anterior, son totalmente indeseables. Por el contrario, la sugerencia es utilizar valores concretos que sean sencillos de recordar para el lector. Recordemos que la principal función del escenario es comunicar.</p>
+
+<p>Si vamos a crear usuarios, podemos darles nombres y personalidades, de manera que los escenarios se conviertan en pequeñas historias acerca de ese usuario. Al ser humano se le hace sencillo recordar y llevar seguimiento en su mente de nombres como &ldquo;Adrian&rdquo; más fácilmente que Usuario1. Utiliza números sencillos si el escenario maneja números. Los montos tambien deben ser simples para que leer el escenario sea una tarea ligera. Tus pruebas unitarias se encargarán de casos de calculos más complejos.</p>
+
+<p>Los titulos del escenario deben ser sencillos también. Queremos que cuando se discutan los escenarios, sea fácil recordar un escenario particular.</p>
+
+<h2 id="un-ejemplo-final">Un ejemplo final</h2>
+
+<p>Veamos un ejemplo aplicando todas estas técnicas, colocando contexto en la descripción de la característica, escenarios cortos, forma declarativa, usando antecedentes, nombres familiares y titulos sencillos:</p>
+
+<pre><code>Característica: Consulta de saldos
+
+  La consulta de saldos permite que el usuario registrado en el sistema pueda ver los saldos de sus cuentas corrientes y de ahorro. Si el usuario es premium, ademas puede ver un enlace para consultar los movimientos. Estos ejemplos asumen que existe un usuario registrado llamado &quot;Adrian&quot; y un usuario registrado premium (ver wiki para detalles del usuario premium) llamado &quot;Andreina&quot;
+
+  Narrativa:
+  Para consultar los saldos de mis instrumentos financieros
+  Como cliente del banco
+  Yo quiero consultar mis saldos
+
+Antecedentes:
+  Dado un cliente del banco llamado &quot;Adrian&quot; 
+  Y un cliente premium llamado &quot;Andreina&quot;
+
+Escenario: Adrian consulta las cuentas
+  Dado que estoy logueado como &quot;Adrian&quot;
+  Cuando consulto las cuentas
+  Entonces veo los saldos
+  Pero no veo el enlace de movimientos
+
+Escenario: Andreina consulta las cuentas
+  Dado que estoy logueado como &quot;Andreina&quot;
+  Cuando consulto las cuentas
+  Entonces veo los saldos
+  Y veo el enlace hacia la consulta de movimientos
+</code></pre>
+
+<p>Espero que estas recomendaciones les ayuden a escribir mejores escenarios!</p>
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

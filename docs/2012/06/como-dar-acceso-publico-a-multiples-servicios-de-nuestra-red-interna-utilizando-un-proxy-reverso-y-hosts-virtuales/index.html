@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Como dar acceso público a multiples servicios de nuestra red interna utilizando un proxy reverso y hosts virtuales. &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2012 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Como dar acceso público a multiples servicios de nuestra red interna utilizando un proxy reverso y hosts virtuales.</h1>
+    <span class="post-date">18/06/2012 &middot; Lectura de 5 minutos  &middot; <a href="http://adrianmoya.com/2012/06/como-dar-acceso-publico-a-multiples-servicios-de-nuestra-red-interna-utilizando-un-proxy-reverso-y-hosts-virtuales/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/sysadmin">Sysadmin</a>
+    </span>
+    <p>Es común tener en nuestra red interna (ya sea de casa o en la empresa) varios servicios corriendo y querer exponer dos o más de ellos públicamente a través de internet. Existen muchas maneras de realizar esto, pero personalmente me gusta una técnica conocida como Proxy Reverso combinada con el uso de hosts virtuales, que describo a continuación:
+</p>
+
+<h2 id="algunos-términos-antes-de-comenzar">Algunos términos antes de comenzar</h2>
+
+<p><strong>IP Pública</strong>: Es la IP que nuestro proveedor de servicio nos da y es única en internet. Generalmente es dínamica, lo que quiere decir que el proveedor no garantiza que sea siempre la misma, aunque no cambia tampoco con tanta frecuencia. El mismo proveedor puede vendernos IPs públicas fijas, pero tienen un costo elevado. La IP Pública nos permite llegar hasta nuestro router desde internet. Podemos saber la IP accediendo desde nuestra red a <a href="http://www.whatismyip.com/">WhatIsMyIP.com</a></p>
+
+<p><strong>IP Privada</strong>: Es la IP que nuestros dispositivos reciben dentro de la red interna. Generalmente de la forma 192.168.x.x. Esta IP no puede ser accedida desde internet, pues es privada a cada red.</p>
+
+<p><strong>Router</strong>: Es el dispositivo que conecta nuestra red interna y el internet. Para mayor detalles del concepto, pueden ver <a href="http://es.wikipedia.org/wiki/Router">wikipedia</a>. Para el tema de este artículo nos interesa es saber que es el encargado de hacer lo que llamamos <strong>Reenvio de puertos</strong>.</p>
+
+<p><strong>Reenvio de puertos</strong>: Es la capacidad del router de encaminar un paquete de datos proveniente de internet hacia cualquier servidor/dispositivo conectado a nuestra red interna. Dependiendo de la marca/modelo, el reenvio de puertos se configura de manera distinta, pero el resultado es el mismo: un conjunto de reglas que le dicen al router que hacer cuando llega un paquete de datos a nuestra IP Pública en un puerto específico. Por ejemplo, si hay una petición http (cuyo puerto estándar es el 80), podemos especificar que servidor (IP Privada) atenderá la petición.</p>
+
+<p><strong>Dominio</strong>: Es el nombre unico que identifica a un sitio web o servicio. Los dominios internamente son traducidos a direcciones IP.</p>
+
+<p><strong>Proxy Reverso</strong>: Es un servidor que recibe y despacha las peticiones de entrada y salida. En el caso de este artículo, las peticiones web (a los puertos 80 y 443).</p>
+
+<p><strong>Host Virtual</strong>: Es un concepto que permite a un servidor web atender peticiones para varios dominios, como si se tuvieran distintos servidores web.</p>
+
+<h2 id="instalando-el-proxy-reverso">Instalando el proxy reverso</h2>
+
+<p>Necesitamos instalar un servidor que hará la función de proxy reverso. Puede ser físico o virtual (recomendado), y pueden usar cualquier distribución de Linux y ajustar los pasos, yo para este artículo usaré <a href="http://www.ubuntu.com/">Ubuntu 12.04 Server</a>. Luego de instalarlo (que hay miles de guías en internet de como hacerlo) accedemos a él con el usuario administrador y seguimos estos pasos:</p>
+
+<ul>
+<li>Instalamos los componentes necesarios (Apache, certificados SSL).</li>
+</ul>
+
+<pre><code class="language-bash">$ apt-get update &amp;&amp; apt-get install apache2 ssl-cert
+</code></pre>
+
+<ul>
+<li>Editamos el archivo de puertos de apache, para deshabilitar el puerto 80 que es el puerto de http, y habilitar los host virtuales para el puerto 443 (https). Este    paso es opcional, pero me gusta hacerlo porque es mas seguro acceder via https a los servicios, sobre todo si vamos a introducir contraseñas para hacer login. Simplemente basta con comentar la linea <code>Listen 80</code> en el archivo <code>/etc/apache2/ports.conf</code> y agregar la linea <code>NameVirtualHost *:443</code> debajo de <code>Listen 443</code>.</li>
+</ul>
+
+<pre><code class="language-apache">    #NameVirtualHost *:80
+    #Listen 80
+    
+    &lt;IfModule mod_ssl.c&gt;
+        # If you add NameVirtualHost *:443 here, you will also have to change
+        # the VirtualHost statement in /etc/apache2/sites-available/default-ssl
+        # to &lt;VirtualHost *:443&gt;
+        # Server Name Indication for SSL named virtual hosts is currently not
+        # supported by MSIE on Windows XP.
+        Listen 443
+        NameVirtualHost *:443
+    &lt;/IfModule&gt;
+</code></pre>
+
+<ul>
+<li>Habilitamos los modulos de apache <code>ssl</code>, <code>proxy</code> y <code>proxy_http</code> y reiniciamos el servidor.</li>
+</ul>
+
+<pre><code class="language-bash">    $ sudo a2enmod ssl proxy proxy_http
+    $ sudo service apache2 restart
+</code></pre>
+
+<ul>
+<li>Deshabilitamos el sitio por defecto de apache.</li>
+</ul>
+
+<pre><code class="language-bash">    $ sudo a2dissite default
+</code></pre>
+
+<ul>
+<li>Ahora, por cada servicio que queremos exponer, creamos un host virtual en apache, asignándole un dominio. Aqui pueden usar dominios gratuitos (por ejemplo de <a href="http://www.no-ip.com/">NO-IP</a>), subdominios de algun dominio que les pertenezca. Estos dominios debemos configurarlos para que apunten a la IP Pública de nuestra red. Luego para cada uno de ellos, creamos la configuración en la ruta <code>/etc/apache2/sites-available/</code>. La plantilla es como sigue (usare como ejemplo un sitio blog ficticio con un dominio gratuito):</li>
+</ul>
+
+<pre><code class="language-apache">#/etc/apache2/sites-available/miblog.no-ip.org
+#VHost configuration for miblog
+
+&lt;VirtualHost *:443&gt;
+        ServerName miblog.no-ip.org
+        ProxyPass               /       http://192.168.1.x/
+        ProxyPassReverse        /       http://192.168.1.x/
+        SSLCertificateFile    /etc/ssl/certs/ssl-cert-snakeoil.pem
+        SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+        SSLEngine on
+        SSLProxyEngine on
+&lt;/VirtualHost&gt;
+
+</code></pre>
+
+<p>Noten que a pesar de que para acceder al proxy uso https, internamente puedo usar http. El certificado SSL del proxy esta cubriendo todas los servicios internos y por tanto no es necesario instalar un certificado en cada uno de ellos. Por supuesto los datos viajan desde el proxy al servicio sin encriptación, por tanto si desean una seguridad en la red interna, simplemente expongan cada servicio por https y configuran el proxy de manera acorde.</p>
+
+<p>Si no deseamos usar SSL (no recomendado) simplemente usamos una plantilla como la que sigue (y en este caso no comentar la linea <code>Listen 80</code> en la configuración de puertos de apache):</p>
+
+<pre><code class="language-apache">#/etc/apache2/sites-available/miblog.no-ip.org
+#VHost configuration for miblog
+
+&lt;VirtualHost *:80&gt;
+        ServerName miblog.no-ip.org
+        ProxyPass               /       http://192.168.1.x/
+        ProxyPassReverse        /       http://192.168.1.x/
+&lt;/VirtualHost&gt;
+
+</code></pre>
+
+<ul>
+<li>Luego de crear el sitio, lo activamos y reiniciamos apache</li>
+</ul>
+
+<pre><code class="language-bash">$ sudo a2ensite miblog.no-ip.org
+$ sudo service apache2 reload
+</code></pre>
+
+<p>Cada vez que queremos añadir un sitio nuevo, repetimos los 2 pasos anteriores.</p>
+
+<ul>
+<li>El siguiente paso debemos realizarlo en la aplicación de administración del router. La misma varía por cada modelo, asi que deben consultar el manual, pero generalmente se accede a ella en la dirección 192.168.1.1. Lo que debemos configurar aqui es el redireccionamiento de puertos. Queremos apuntar el puerto 80 (si usamos http) y el puerto 443 (https) para que se redirijan a la dirección interna del proxy usando el protocolo TCP. En mi router (un Belkin) la cosa se ve mas o menos asi:</li>
+</ul>
+
+<p><img src="/images/2012/06/portforward.png" alt="" /></p>
+
+<p>Y listo. Esto es lo que va a pasar la proxima vez que hagamos una petición al dominio:</p>
+
+<ol>
+<li>Nos dirigimos al dominio en el navegador (ejemplo miblog.no-ip.org) y el mismo nos lleva a nuestra IP Pública (puesto que lo hemos configurado asi en nuestro manejador del dominio)</li>
+<li>El router redirige la petición al proxy.</li>
+<li>El proxy atiende la petición, y basado en el dominio, elige a que servidor debe redirigir la misma.</li>
+<li>El servicio responde al proxy, quien a su vez le responde al navegador.</li>
+</ol>
+
+<p>Asi podemos tener varios servicios corriendo y acceder a ellos asignandoles un dominio distinto. Saludos!</p>
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

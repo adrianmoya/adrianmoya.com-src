@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Probando constraints de clases de dominio en Grails &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2011 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Probando constraints de clases de dominio en Grails</h1>
+    <span class="post-date">11/09/2011 &middot; Lectura de 4 minutos  &middot; <a href="http://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/desarrollo">Desarrollo</a>
+    </span>
+    <p>Comenzando con una serie de publicaciones que hare en el tema de las pruebas unitarias para grails, comenzaré detallando la manera de probar los constrains de una clase de Dominio. Para ello, tomare como ejemplo la siguiente clase, con dos propiedades y algunas restricciones:
+</p>
+
+<pre><code class="language-groovy">class Person {
+
+    String name
+    Integer age
+
+    static constraints = {
+        name blank:false, unique:true, nullable: false
+        age min:18, max:20
+    }
+}
+</code></pre>
+
+<p>Como se puede ver, debemos probar que name no sea null, ni blanco y que sea unico, y que age este comprendida entre 18 y 20. Comencemos:</p>
+
+<ol>
+<li>Dentro de nuestra clase de pruebas unitarias, creamos el método TestConstraints() (puede ser cualquier nombre pero este deja bastante claro lo que hace). Si son muchos campos, se puede crear un método separado por cada campo, de manera que estén mas organizadas las pruebas. Para este ejemplo corto lo dejare como un solo método.</li>
+</ol>
+
+<pre><code class="language-groovy">void testConstraints() {
+}
+</code></pre>
+
+<ol>
+<li>Si necesitamos probar unicidad en algun campo, definimos una instancia (o varias) de la clase en nuestro método de prueba de manera correcta, para que durante las pruebas probemos que no admite campos duplicados. En el ejemplo, name debe ser unico, por lo que crearemos una instancia válida para poder probar este constraint mas adelante.</li>
+</ol>
+
+<pre><code class="language-groovy">def existingPerson = new Person(name:'Adrian', age:18)
+</code></pre>
+
+<ol>
+<li>Utilizamos el método mockForConstraintsTests aplicado a nuestra clase de dominio. Este paso añade los métodos de validación que Grails inyecta en la clase de dominio (y que no están presentes aqui en las pruebas unitarias). Recibe como segundo parámetro una lista de instancias de la clase. En nuestro ejemplo, le paso la que acabamos de crear, existingPerson.</li>
+</ol>
+
+<pre><code class="language-groovy">mockForConstraintsTests(Person, [existingPerson])
+</code></pre>
+
+<p> 4. A partir de aqui comenzamos a probar cada una de las restricciones, creando instancias inválidas de la clase, ejecutando el método validate() y verificando que en el mapa de errores generado por validate, estan los errores que esperamos.</p>
+
+<p>4.1. Para probar nullable: Creamos una instancia con el campo en null, verificamos que no sea válida y que el error asociado al campo sea nullable.</p>
+
+<pre><code class="language-groovy">//Probando nullables
+def person = new Person()
+assertFalse person.validate()
+assertEquals 'El campo name no es null', 'nullable', person.errors['name']
+</code></pre>
+
+<p>4.2. Para probar blank: Creamos una instancia con el campo en blanco, verificamos que no sea válida y que el error asociado al campo sea blank.</p>
+
+<pre><code class="language-groovy">//Probando blanks
+person = new Person(name:'')
+assertFalse person.validate()
+assertEquals 'El campo name no es blank', 'blank', person.errors['name']
+</code></pre>
+
+<p>4.3. Para probar unique, vamos a hacer uso de la instancia correcta definida mas temprano en el paso 2, en este caso duplicando el campo name (poniendo el valor &lsquo;Adrian&rsquo;) y verificando que no sea válida y que el error asociado sea unique:</p>
+
+<pre><code class="language-groovy">//Probando unique
+person = new Person(name:'Adrian')
+assertFalse person.validate()
+assertEquals 'El campo name no puede ser duplicado', 'unique', person.errors['name']
+</code></pre>
+
+<p>4.4. Para probar mínimos, creamos una instancia con el campo con el valor menor al aceptado, verificamos que no sea válida y que el error asociado sea min:</p>
+
+<pre><code class="language-groovy">//Probando minimo
+person = new Person(age:17)
+assertFalse person.validate()
+assertEquals 'El campo age debe ser mayor a 17', 'min', person.errors['age']
+</code></pre>
+
+<p>4.5. Para probar máximos, creamos una instancia con el campo con el valor mayor al aceptado, verificamos que no sea válida y que el error asociado sea max:</p>
+
+<pre><code class="language-groovy">//Probando máximo
+person = new Person(age:21)
+assertFalse person.validate()
+assertEquals 'El campo age debe ser menor a 20', 'max', person.errors['age']
+</code></pre>
+
+<p>4.6. Por ultimo construimos una instancia correcta y verificamos que sea válida.</p>
+
+<pre><code class="language-groovy">//Probar exito
+person = new Person(name:'Chuck', age: 18)
+assertTrue 'La instancia Chuck SIEMPRE debe ser válida', person.validate()
+</code></pre>
+
+<p>Como pueden ver, el proceso es muy sencillo y pasa siempre por crear la instancia con el campo que rompa la restricción que queremos probar, verificar con assertFalse que el método validate() devuelve false (que no es válida) y verificar que en el error del campo este la descripción del constraint que violamos en la prueba. De esta manera podemos probar todos los constraints de nuestra clase de dominio.</p>
+
+<p>Algunos tips finales: solo durante la creación de nuestra primera instancia usamos la palabra clave def, de ahi en adelante usamos la misma variable para el resto de las instancias. Esto es básico de groovy pero es una de esas conchas de mango que le hacen a uno perder tiempo. Tambien es recomendable colocar un mensaje descriptivo del error que estamos probando, como se ve en el ejemplo, para que los reportes de las pruebas sean más claros cuando fallen.</p>
+
+<p>Esto es todo, hasta la próxima!</p>
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

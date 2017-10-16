@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>BDD de especificaciones: un ejemplo concreto en Java &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2013 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>BDD de especificaciones: un ejemplo concreto en Java</h1>
+    <span class="post-date">14/07/2013 &middot; Lectura de 3 minutos  &middot; <a href="http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/bdd">BDD</a><a class="label" href="http://adrianmoya.com/categories/java">Java</a><a class="label" href="http://adrianmoya.com/categories/junit">JUnit</a><a class="label" href="http://adrianmoya.com/categories/mockito">Mockito</a>
+    </span>
+    <p>Esta es la implementación en Java de <a href="/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/">un ejemplo concreto de BDD de Especificaciones</a>. Es importante que leas primero de que se trata el ejemplo en el artículo anterior, antes de proceder a ver la implementación.</p>
+
+<p></p>
+
+<h2 id="herramientas">Herramientas</h2>
+
+<p>Para el lenguaje Java, las herramientas que utilizaré son las siguientes:</p>
+
+<p><a href="http://junit.org/"><strong>JUnit</strong></a>: La herramienta de pruebas unitarias más utilizada del mundo Java, sirve perfectamente para escribir nuestras especificaciones.</p>
+
+<p><a href="https://code.google.com/p/mockito/"><strong>Mockito</strong></a>: Es una librería para crear <a href="http://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/">dobles de pruebas</a>. En este ejercicio lo usamos para describir como nuestro objeto cuenta se comunica con el colaborador que envía las alertas (que no existe).</p>
+
+<p><a href="http://maven.apache.org/"><strong>Maven</strong></a>: Es la herramienta de manejo de dependencias y construcción del proyecto.</p>
+
+<h2 id="implementando-el-ejemplo">Implementando el ejemplo</h2>
+
+<p>Como he comentado en artículos anteriores, la idea del artículo no es explicar el funcionamiento de las herramientas, sino de la técnica. Existen muchas otras herramientas que podrías usar para implementar el mismo ejemplo, y cada una esta debidamente documentada en sus sitios web respectivos.</p>
+
+<h2 id="configuración-del-ambiente">Configuración del ambiente</h2>
+
+<p>Estos son los pasos que sigo para comenzar a escribir especificaciones usando BDD:</p>
+
+<p><strong>pom.xml</strong>: En el archivo de proyecto de maven, procedo a especificar las dependencias para las herramientas que uso, en este caso junit y mockito. Además de esto, configuro el plugin de pruebas de maven (surfire), que por defecto ejecuta con junit aquellas clases que tienen &ldquo;Test&rdquo; en su nombre, para que detecte clases con la palabra &ldquo;Spec&rdquo; en el nombre, ya que me gusta nombrar mis clases de especificaciones con el sufijo Spec.</p>
+
+<h2 id="el-archivo-de-especificaciones">El archivo de especificaciones</h2>
+
+<p><strong>AccountSpec.java</strong>: En este archivo es donde voy especificando que debe hacer el objeto Account. Aqui se encuentra un método por cada especificación, con un ejemplo de código de como debe funcionar. Esta clase es la que sirve como documentación para otros miembros del equipo, además de asegurarse de que el comportamiento del objeto se mantiene cada que la ejecutamos con junit.</p>
+
+<h2 id="archivos-de-soporte-para-las-pruebas">Archivos de soporte para las pruebas</h2>
+
+<p><strong>AccountBuilder.java</strong>: Este archivo es una implementación del [patrón builder](<a href="http://es.wikipedia.org/wiki/Builder_(patr%C3%B3n_de_dise%C3%B1o)">http://es.wikipedia.org/wiki/Builder_(patr%C3%B3n_de_dise%C3%B1o)</a>) del cual estaré hablando más en detalle en un próximo artículo, pero que sirve en este caso para construir objetos para la prueba que cumplan unas ciertas características necesarias para darle contexto a la prueba.</p>
+
+<h2 id="el-código-del-objeto">El código del objeto</h2>
+
+<p><strong>Account.java</strong>: Es el objeto que estamos diseñando en el ejercicio. El objeto debe comportarse tal como es descrito en el archivo de especificaciones.</p>
+
+<p><strong>AlertListener.java</strong>: Esta es una interfaz que usaremos para describir la comunicación con el colaborador que envía las alertas. Cuando llegue el momento de implementar este colaborador, el mismo implementará esta interfaz, de manera que provea los métodos que nuestra clase Account espera. Por tanto en la prueba del envío de la alerta, hacemos un mock de esta clase para utilizarla en la prueba y validar que el resultado es el esperado.</p>
+
+<h2 id="obteniendo-el-código-del-ejemplo">Obteniendo el código del ejemplo</h2>
+
+<p>Puedes clonar el ejemplo usando git o simplemente descargarlo desde esta dirección:</p>
+
+<p><a href="https://github.com/adrianmoya/specbddsample-java">https://github.com/adrianmoya/specbddsample-java</a></p>
+
+<h2 id="ejecutando-el-ejemplo">Ejecutando el ejemplo</h2>
+
+<p>Para ejecutarlo, puedes utilizar el IDE de tu preferencia y ejecutar la clase AccountSpec como si fuera una prueba de Junit. En Netbeans, el resultado se ve asi:</p>
+
+<p><img src="/images/2013/07/specbddsample-netbeans.png" alt="" /></p>
+
+<p>El ejemplo también puedes ejecutarlo desde la consola con la instrucción <code>mvn test</code>. (Requiere tener configurado maven en la consola), pero en este caso maven solo nos da un resumen de las pruebas que ejecutó, por tanto es ideal para un servidor de integración continua, pero no es muy expresivo para ver como usando un IDE.</p>
+
+<p>Hasta la próxima!</p>
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

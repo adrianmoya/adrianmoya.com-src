@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Ruby básico en un solo post &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2010 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Ruby básico en un solo post</h1>
+    <span class="post-date">14/12/2010 &middot; Lectura de 5 minutos  &middot; <a href="http://adrianmoya.com/2010/12/ruby-basico-en-un-solo-post/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/desarrollo">Desarrollo</a>
+    </span>
+    <p>La siguiente no intenta ser una guia para enseñar ruby a personas que no programen. Más bien es mi guia rapida para programar ruby, pero cualquiera que tenga nociones de programación la puede encontrar útil.
+
+<strong>Consultar la documentación.</strong></p>
+
+<p>Podemos consultar la documentación de ruby en linea en <a href="http://www.ruby-doc.org">http://www.ruby-doc.org</a> o a través del comando:</p>
+
+<pre><code>$ ri Class.metodo
+</code></pre>
+
+<p><strong>Usar la consola interactiva:</strong></p>
+
+<pre><code>$ irb
+</code></pre>
+
+<p><strong>Arrays:</strong></p>
+
+<p>Los arrays en ruby tienen indice basado en 0.</p>
+
+<pre><code class="language-ruby">a = ['hola', 0, 'chao', 1] # Crea e inicializa un array.
+a = %w{ hola chao avion carro } # Atajo para crear un array de palabras
+a[0] # Retorna &quot;hola&quot; (Accede al elemento 0 del array)
+</code></pre>
+
+<p><strong>Hash:</strong></p>
+
+<pre><code class="language-ruby">mi_hash = Hash.new(0) # Crea un nuevo Hash con valor por defecto 0
+mi_hash['key1'] # Llave que no existe, devuelve 0 (valor por defecto)
+mi_hash = { 'key1' =&gt; 'value1', 'key2' =&gt; 'value2' }  # Crear un hash con valores
+mi_hash['key2'] # Retorna 'value2'
+</code></pre>
+
+<p><strong>If y unless:</strong> Los bloques if y unless se terminan con end. Unless es el negado de if.</p>
+
+<pre><code class="language-ruby">if cont &gt; 5
+  cont -= 1
+end
+</code></pre>
+
+<p>Si es una sola linea dentro del if:</p>
+
+<pre><code class="language-ruby">cont -= 1 if cont &gt; 5
+</code></pre>
+
+<p><strong>While y Until:</strong> Los bloques while y until tambien terminan con end. Until es el negado de while.</p>
+
+<pre><code class="language-ruby">while cont &lt; 10
+  cont += 1
+end
+</code></pre>
+
+<p>Si es una sola línea dentro del while:</p>
+
+<pre><code class="language-ruby">cont += 1 while cont &lt; 10
+</code></pre>
+
+<p><strong>Case:</strong> los bloques case tienen dos formas de escribirse.</p>
+
+<pre><code class="language-ruby">valor = case
+          when a &gt; 0 then true
+          when a &lt; 0 then false
+          else false
+end
+    
+case valor
+when &quot;valor1&quot;
+  codigo
+when &quot;valor2&quot;
+  codigo
+else
+  codigo
+end
+</code></pre>
+
+<p><strong>Expresiones regulares:</strong> Se escriben entre // y se verifican con =~</p>
+
+<pre><code class="language-ruby">if hola =~ /pattern/
+  match = true
+end
+</code></pre>
+
+<p><strong>Bloques de código:</strong> se asocian a un metodo y se ejecutan con yield dentro del método. Usar {} para una linea y begin/end para multiples. Para recibir parametros ponerlos entre ||.</p>
+
+<pre><code class="language-ruby">def metodo
+  yield
+  puts &quot;En la mitad del metodo&quot;
+  yield
+end
+metodo { puts &quot;En mi bloque de codigo&quot; } # Aqui estoy llamando a mi metodo con el bloque de codigo asociado
+</code></pre>
+
+<p>La salida de esto es:</p>
+
+<pre><code>En mi bloque de codigo
+En la mitad del metodo
+En mi bloque de codigo
+</code></pre>
+
+<p><strong>Un bloque con parámetros:</strong></p>
+
+<pre><code class="language-ruby">def metodo { |param1, param2| bloquecodigo }  # metodo con un bloque de codigo con dos parámetros
+  yield(param1, param2)     # Se ejecuta el bloque de codigo
+  codigo                    # Aqui hay codigo del metodo
+  yield(param1, param2)     # Se ejecuta nuevamente el bloque de codigo
+end
+</code></pre>
+
+<p><strong>Ejemplo común:</strong> El metodo each esta definido como una iteración de la colección con una llamada a yield con el elemento como parámetro. Por eso el siguiente bloque imprime cada palabra del hash:</p>
+
+<pre><code class="language-ruby">['Hola', 'Chao'].each {|palabra| print palabra, &quot; &quot;}
+</code></pre>
+
+<p><strong>For:</strong> Los bloques de código son la base de los iteradores internos de ruby. El mas importante, each, es la base de un ciclo for:</p>
+
+<pre><code class="language-ruby">for i in [1, 2, 3]
+  print i
+end
+</code></pre>
+
+<p>Que termina traduciendose en:</p>
+
+<pre><code class="language-ruby">[1, 2, 3].each do |i|
+  print i
+end
+</code></pre>
+
+<p><strong>Clases:</strong> A continuación una clase MiClase con su metodo inicializador y dos atributos (nombre y apellido). Los att_reader y attr_writer son atajos para definir metodos de lectura y escritura a los atributos de la clase, y crean un metodo parecido a este:</p>
+
+<pre><code class="language-ruby">def mivariable
+  @mivariable
+end
+def mivariable=(valor)
+  @mivariable = valor
+end
+</code></pre>
+
+<pre><code class="language-ruby">class MiClase &lt; MiClasePadre            # Clase Miclase que hereda de MiClasePadre
+  attr_reader :nombre, :apellido        # Métodos para acceder a los valores de estas variables
+  attr_writer :nombre, :apellido        # Métodos para escribir en estas variables
+  @@variable1                           # Variable de clase (igual en todas las instancias de esta clase)
+  def initialize (nombre, apellido)     # Método initialize para inicializar las clases
+    @nombre   = nombre                  # Variable de instancia
+    @apellido = apellido
+  end
+  private                               # De aqui para abajo todo es private. Por defecto es public.
+  def metodoprivado (nombre)            # Metodo privado de la clase
+    nombre
+  end
+end
+</code></pre>
+
+<p>Clase singleton:</p>
+
+<pre><code class="language-ruby">class MiSingleton
+  private_class_method :new               # Hago el método privado para que no pueda crear una nueva instancia
+  @@singleton = nil                       # Variable de clase, igual para todas las instancias de la clase
+  def MiSingleton.create                  # Método de clase
+    @@singleton = new unless @@singleton  # La crea a menos que exista
+    @@singleton                           # Siempre devuelve la misma instancia. No funciona para programación multihilo.
+  end
+end
+</code></pre>
+
+<p><strong>Manejo de Excepciones:</strong> El codigo se pone entre bloques begin end y se usa rescue para capturar las excepciones. El bloque else se ejecuta si no hubieron excepciones. El bloque ensure se ejecuta hubiera o no excepciones.</p>
+
+<pre><code class="language-ruby">begin
+  # Proceso
+rescue SystemCallError
+  # Codigo para manejar SystemCallError
+rescue SyntaxError =&gt; error
+  print &quot;Se produjo un error:&quot; + error
+else
+  puts &quot;No se produjeron errores&quot;
+ensure
+  puts &quot;Bloque final&quot;
+end
+</code></pre>
+
+<p><strong>Throw y Catch:</strong> Se pueden definir bloques catch y luego en cualquier parte hacer un throw que seran atrapados por los catch.</p>
+
+<pre><code class="language-ruby">def metodo
+  throw :salir if true
+end
+catch :salir do
+  # Procesar info
+end
+</code></pre>
+
+<p><strong>Modulos:</strong> Ruby permite definir modulos, que vienen a ser namespaces. Se pueden llamar con require o incluir dentro de una clase con include (esto se llama mixin y hace las veces de herencia multiple).</p>
+
+<pre><code class="language-ruby">module MiModulo
+  def metodo1
+  end
+end
+module OtroModulo
+  CONSTANTE = 1
+  def OtroModulo.metodo1
+  end
+end
+require 'MiModulo'
+require 'OtroModulo'
+MiModulo.metodo1      # Para llamar metodos igual que los metodos de clases
+OtroModulo::CONSTANTE # Para leer constantes usar ::
+class MiClase
+  include MiModulo
+end
+MiClase.metodo1   # Llama a metodo1 definido en el modulo MiModulo
+</code></pre>
+
+<p>Para todo lo demas, consultar google y la documentación. A codificar!</p>
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

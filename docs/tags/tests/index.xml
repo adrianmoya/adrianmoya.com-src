@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tests on Adrian Moya</title>
+    <link>http://adrianmoya.com/tags/tests/</link>
+    <description>Recent content in Tests on Adrian Moya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-us</language>
+    <lastBuildDate>Sun, 11 Sep 2011 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://adrianmoya.com/tags/tests/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Probando constraints de clases de dominio en Grails</title>
+      <link>http://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</link>
+      <pubDate>Sun, 11 Sep 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</guid>
+      <description>&lt;p&gt;Comenzando con una serie de publicaciones que hare en el tema de las pruebas unitarias para grails, comenzaré detallando la manera de probar los constrains de una clase de Dominio. Para ello, tomare como ejemplo la siguiente clase, con dos propiedades y algunas restricciones:
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

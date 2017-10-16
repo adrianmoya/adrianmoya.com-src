@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Añadir acceso via Apache a subversion en TurnkeyLinux Revision Control &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2011 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Añadir acceso via Apache a subversion en TurnkeyLinux Revision Control</h1>
+    <span class="post-date">23/08/2011 &middot; Lectura de 4 minutos  &middot; <a href="http://adrianmoya.com/2011/08/anadir-acceso-via-apache-a-subversion-en-turnkeylinux-revision-control/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/turnkeylinux">TurnkeyLinux</a>
+    </span>
+    <p>La herramienta <a href="http://www.turnkeylinux.org/revision-control">TurnkeyLinux Revision Control</a> ofrece de manera rápida un servidor de control de versiones con 4 conocidas y muy utilizadas herramientas para dicho trabajo: Subversion, Git, Bazaar y Mercurial. En lo personal yo lo utilizo más que todo para Subversion y Git. A pesar de venir preconfigurado con las opciones más deseables, en lo personal extraño la posibilidad de poder acceder subversion a través del protocolo http (usando Apache). A continuación explico el procedimiento para agregar esta característica  a esta herramienta:
+
+1. Acceder al servidor via ssh (o via webshell a través de <a href="http://ip-del-servidor:12320">http://ip-del-servidor:12320</a>) con el usuario root y el password establecido al momento de la instalación.</p>
+
+<ol>
+<li>Primero debemos instalar el módulo de apache que permite integrar svn. Para ello ejecutamos el siguiente comando (No olvidar ejecutar apt-get update si es la primera vez que instalamos paquetes en este servidor):</li>
+</ol>
+
+<pre><code>$ apt-get install libapache2-svn
+</code></pre>
+
+<ol>
+<li>Luego procedemos a crear un archivo para guardar los usuarios y passwords encriptados para acceder a los repositorios. El archivo estará ubicado en /etc/subversion y lo llamaremos svn-auth-file. Lo crearemos usando la herramienta de creación de usuarios de Apache htpasswd. Con la opción -cm creamos el archivo por primera vez. Luego para añadir usuarios adicionales solo usaremos -m. Nos preguntará el password del usuario 2 veces. Podemos revisar el archivo generado para ver el listado de usuarios.</li>
+</ol>
+
+<pre><code>$ htpasswd -cm /etc/subversion/svn-auth-file usuario1
+$ htpasswd -m /etc/subversion/svn-auth-file usuario2
+</code></pre>
+
+<ol>
+<li>Luego debemos editar el archivo de apache para el sitio websvn. Vamos a agregarle seguridad a dicho sitio utilizando nuestro nuevo archivo de usuarios. Para esto editamos el archivo /etc/apache2/conf.d/websvn y agregamos 4 lineas en la descripción del sitio. El archivo debe quedar como sigue:</li>
+</ol>
+
+<pre><code>    Alias /svn /usr/share/websvn
+
+    &lt;Directory /usr/share/websvn&gt;
+      DirectoryIndex index.php
+      Options FollowSymLinks
+      Order allow,deny
+      Allow from all
+      AuthType Basic
+      AuthName &quot;Subversion repository&quot;
+      AuthUserFile /etc/subversion/svn-auth-file
+      Require valid-user
+    &lt;/Directory&gt;
+</code></pre>
+
+<ol>
+<li>Configuramos el apache para poder acceder a los repositorios. Para ello creamos y editamos el archivo /etc/apache2/conf.d/svnprivate con el siguiente contenido: </li>
+</ol>
+
+<pre><code>    &lt;Location /svn-private&gt;
+      DAV svn
+      SVNParentPath /srv/repos/svn/
+      AuthType Basic
+      AuthName &quot;Subversion repository&quot;
+      AuthUserFile /etc/subversion/svn-auth-file
+      Require valid-user
+    &lt;/Location&gt;
+</code></pre>
+
+<ol>
+<li>Procedemos a recargar apache para que tome las nuevas configuraciones. Debemos ademas darle a apache la propiedad de los archivos de los repositorios de subversion, que estan ubicados en /srv/repos/svn</li>
+</ol>
+
+<pre><code>$ service apache2 reload
+$ chown -R www-data:www-data /srv/repos/svn/
+</code></pre>
+
+<ol>
+<li>Hasta aqui, ya podremos acceder via http a nuestros repositorios, puedes probar con tu navegador web abriendo el url <a href="http://ip-del-servidor/svn-private/nombredelrepositorio">http://ip-del-servidor/svn-private/nombredelrepositorio</a> . Aparecerá el dialogo estándar de apache que solicita el usuario y la contraseña. Introducimos los datos del usuario y podremos ver el contenido del repositorio:</li>
+</ol>
+
+<p><img src="/images/2011/08/svn-http.png" alt="" /></p>
+
+<h2 id="agregando-acceso-seguro-ssl-https">Agregando Acceso Seguro SSL (https)</h2>
+
+<p>Si intentamos hacer checkout con el cliente subversion via https, vamos a recibir el siguiente error:
+&ldquo;Al certificado del servidor le falta el atributo commonName en el nombre del sujeto&rdquo;
+El cliente de subversion requiere, para poder acceder via https a un repositorio, que el certificado del servidor contenga el atributo commonName, cosa que el certificado por defecto no trae. Por tanto debemos crear un certificado nuevo que contenga ese atributo. Para esto, ejecutamos los siguientes comandos (utilizare el dominio svn.ejemplo.com como ejemplo):</p>
+
+<h2 id="1-instalamos-la-herramienta-openssl">1. Instalamos la herramienta openssl:</h2>
+
+<pre><code>$ apt-get install openssl
+</code></pre>
+
+<ol>
+<li>Creamos la llave del certificado utilizando como nombre el dominio (esto es para recordar que la llave pertenece a ese dominio)</li>
+</ol>
+
+<pre><code>$ openssl genrsa 4096 &gt; /etc/ssl/private/svn.ejemplo.com.key
+</code></pre>
+
+<ol>
+<li>Generamos el certificado, y nos aseguramos de colocar un valor en el atributo commonName, que puede ser el dominio del servidor (svn.ejemplo.com).</li>
+</ol>
+
+<pre><code>$ openssl req -new -key /etc/ssl/private/svn.ejemplo.com.key -x509 -days 365 -out /etc/ssl/certs/svn.ejemplo.com.pem
+</code></pre>
+
+<ol>
+<li>Editamos el archivo /etc/apache2/sites-available/default-ssl para configurar el acceso utilizando nuestro certificado recién creado. Para ello modificamos las lineas siguientes:</li>
+</ol>
+
+<pre><code>    SSLCertificateFile    /etc/ssl/certs/svn.ejemplo.com.pem
+    SSLCertificateKeyFile /etc/ssl/private/svn.ejemplo.com.key
+</code></pre>
+
+<ol>
+<li>Desactivamos y activamos el sitio para que tome los cambios, y finalmente recargamos la configuración de apache:</li>
+</ol>
+
+<pre><code>$ a2dissite default-ssl
+$ a2ensite default-ssl
+$ service apache2 reload
+</code></pre>
+
+<p>Listo, ahora la primera vez que intentemos acceder al repositorio con el cliente de subversion, nos alertará de que el certificado es emitido por una autoridad marcada como confiable. Simplemente respondemos que aceptamos permanentemente el certificado. Luego intentamos de nuevo y nos pedira el nombre de usuario y password y podremos terminar de acceder al codigo fuente.</p>
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

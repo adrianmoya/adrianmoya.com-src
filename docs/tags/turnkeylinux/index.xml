@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Turnkeylinux on Adrian Moya</title>
+    <link>http://adrianmoya.com/tags/turnkeylinux/</link>
+    <description>Recent content in Turnkeylinux on Adrian Moya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-us</language>
+    <lastBuildDate>Wed, 10 Aug 2011 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://adrianmoya.com/tags/turnkeylinux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Estableciendo la zona horaria en TurnkeyLinux</title>
+      <link>http://adrianmoya.com/2011/08/estableciendo-la-zona-horaria-en-turnkeylinux/</link>
+      <pubDate>Wed, 10 Aug 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2011/08/estableciendo-la-zona-horaria-en-turnkeylinux/</guid>
+      <description>&lt;p&gt;Para algunas aplicaciones de turnkeylinux, es importante fijar las fechas y horas del sistema antes de comenzar a trabajar. Por ejemplo, si estamos instalando un blog o foro, y queremos saber la fecha y hora exacta en que se produce una publicación. O si estamos usando una herramienta de control de incidencias, y necesitamos precisión en cuanto a la fecha y hora en que se crea y responde una incidencia. Finalmente, en aplicaciones de base de datos, si es importante realizar una auditoria, es importante que el sistema refleje correctamente las fechas y horas de los registros de la base de datos.
+
+Al desplegar una aplicación turnkeylinux, esta viene configurada por defecto en la zona horaria UTC, a partir de la cual se calculan el resto de las zonas horarias. Configurar la zona horaria que nos interesa es muy sencillo:&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

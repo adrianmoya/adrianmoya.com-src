@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Desarrollo Ágil con BDD en Java</title>
+
+		<meta name="description" content="Presentación para Java User Group Colombia">
+		<meta name="author" content="Adrian Moya">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="/reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="/reveal.js/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="/reveal.js/lib/css/zenburn.css">
+
+		<link rel="stylesheet" href="css/aem.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>Desarrollo Ágil</h1>
+					<h1>con BDD</h1>
+					<h4 class="espacio-top">Construyendo el producto correcto de manera efectiva</h4>
+					<p>
+						<small><a href="http://adrianmoya.com">Adrian Moya</a> / <a href="http://twitter.com/adrianmoya">@adrianmoya</a><br/>2013</small>
+					</p>
+				</section>
+				<section>
+					<section>
+						<h2>Agilidad</h2>
+						<p>Capacidad de realizar una tarea o acción <br/>de la manera más rápida y eficiente</p>
+					</section>
+					<section>
+						<h2>Iterativo de Tiempo fijo</h2>
+						<p>Iteraciones cortas y de duración fija predeterminada</p>
+					</section>
+					<section>
+						<h2>Participación activa del cliente</h2>
+						<p>Cada iteración es aprobada por el cliente, la retroalimentación se implementa en la(s) iteraciones siguientes</p>
+					</section>
+					<section class="pareto">
+						<h2>Dirigido por características</h2>
+						<p>Principio 80/20 para implementar 20% de características que se usen el 80% de las veces</p>
+					</section>
+					<section>
+						<h2>Entrega basada en prioridades</h2>
+						<p>Prioridad a las necesidades del clientes<br/> y el riesgo en el desarrollo</p>
+					</section>
+					<section class="heraclito">
+						<h2>Adaptable</h2>
+						<p>No buscamos remover la incertidumbre, sino adaptarnos a las necesidades cambiantes</p>
+					</section>
+					<section>
+						<h2>Equipos Auto-organizados</h2>
+						<p>Activamente involucrado, con capacidad de toma de decisiones</p>
+						<p>Más énfasis en las personas y sus habilidades<br/> que en el proceso</p>
+					</section>
+					<section>
+						<h2>Más disciplinado</h2>
+						<p>Más rapidez y calidad<br/> involucra disciplina de equipo y personal</p>
+					</section>
+					<section>
+						<h2>Simplicidad</h2>
+						<p>Énfasis en la simplicidad y abierto al cambio, utilizando tecnologías ligeras</p>
+					</section>
+					<section>
+						<h2>¿Por qué no todos usan ágil?</h2>
+					</section>
+					<section class="no-bala-plata">
+						<h2>No son una bala de plata</h2>
+					</section>
+					<section>
+						<h2>Es difícil implementar ágil correctamente</h2>
+						<p class="fragment espacio-top">BDD nos ayuda a implementar ágil</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>¿Qué es BDD?</h2>
+					</section>				
+					<section>
+						<h2>En palabras de Dan North</h2>
+						<img src="img/dan-north-bdd-tweet.png"/>
+						<p>El uso de ejemplos en múltiples niveles para crear un entendimiento compartido y sacar a flote la incertidumbre para construir software que importa</p>
+					</section>
+					<section>
+						<h2>El uso de ejemplos...</h2>
+					</section>
+					<section>
+						<h3>Sucesión de Fibbonaci</h3>
+						<img src="img/fibonacci.png" />
+						<p class="fragment">Ejemplo: 0, 1, 1, 2, 3, 5, 8...</p>
+					</section>				
+					<section>
+						<h2>...en multiples niveles...</h2>
+					</section>
+					<section>
+						<h3>A nivel del negocio en su lenguaje natural...</h3>
+						<pre><code class="gherkin_es">
+Escenario: listar clientes con deuda por vencer
+  Dado que existen los siguientes clientes:
+    |cliente | fecha_vencimiento_deuda |
+    | Adrian |       30/05/2013        |
+    | Carlos |       15/06/2013        |
+  Y que la fecha actual es "28/05/2013"
+  Cuando solicito la lista de clientes con deuda por vencer
+  Entonces debo ver listado a "Adrian"
+  Pero no debo ver listado a "Carlos"
+
+						</code></pre>
+					</section>
+					<section>
+						<h3>A nivel del código en el lenguaje de programación</h3>
+						<pre><code class="java">
+public class MarkdownSpec {
+
+    @Test
+    public void it_converts_plain_text_to_html_paragraphs() {
+	Markdown markdown = new Markdown();
+	String htmlResult = markdown.toHtml("Hi, there"); 
+	assertThat(htmlResult, is("<p>Hi, there</p>"));
+    }
+
+}
+						</code></pre>
+					</section>	
+					<section>
+						<h2>...para crear un entendimiento compartido...</h2>
+					</section>	
+					<section>
+						<img src="img/dubinin-imagen-doble.png" id="dubinin"/>
+						<div class="fragment" id="start-dubinin"></div>
+					</section>	
+					<section>
+						<h2>...y sacar a flote la incertidumbre...</h2>
+					</section>
+					<section class="slide-con-imagen schrodinger">
+						<div class="contenido">
+							<h3>Paradoja de Schrödinger</h3>
+							<img src="img/gato-schrodinger.jpg"/>
+						</div>
+						<aside class="cita-imagen">http://motls.blogspot.com/2009/09/schrodinger-virus-and-decoherence.html</aside>
+					</section>
+					<section>
+						<h2>...para construir software que importa</h2>
+					</section>
+					<section>
+						<h3>¿Qué es software que importa?</h3>
+						<p class="fragment">Aquel que genera valor a la organización</p>
+						<blockquote cite="http://cdn.pols.co.uk/papers/BusinessValue-SoupToNuts.pdf" class="fragment">
+							&ldquo;Un proyecto genera valor de negocio cuando aumenta o protege la ganancia, o reduce los costos, en alineación con la estrategia de la organización.&rdquo;
+							<br/>Andy Pols & Chris Matts - Agile 2008
+						</blockquote>
+					</section>
+					<section>
+						<h2>Ciclo de vida BDD</h2>					
+					</section>
+					<section id="ciclo-bdd" class="ciclo-bdd">
+						<div class="fragment" id="show-ciclo-bdd"></div>					
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>BDD de historias</h1>
+					</section>
+					<section class="marco-polo">
+						<h2>Explorar el dominio</h2>
+						<p class="espacio-top">Nos permite explorar el dominio del negocio en 3 niveles</p>
+						<ol><li class="fragment">Narrativas</li><li class="fragment">Posibles escenarios</li><li class="fragment">Detalle de escenarios</li></ol>
+					</section>
+					<section>
+						<h2>Narrativa</h2>
+						<div class="fondo-negro">
+							<p class="espacio-top narrativa"><span>Para</span> alcanzar alguna característica que agrega valor de negocio<br/>
+							<span>Como</span> rol en el sistema (beneficiario)</br>
+							<span>Yo quiero/necesito</span> realizar alguna acción en el sistema</p>
+						</div>
+					</section>
+					<section>
+						<h2>Autenticación</h2>
+						<div class="fondo-negro">
+							<p class="espacio-top narrativa"><span>Para</span> poder acceder a mi información financiera<br/>
+							<span>Como</span> cliente del banco</br>
+							<span>Yo necesito</span> poder autenticarme</p>
+						</div>
+					</section>
+					<section>
+						<h2>Escenarios</h2>
+						<pre><code class="gherkin_es">
+Característica: Autenticación
+
+Para poder acceder a mi información financiera
+Como cliente del banco
+Yo necesito poder autenticarme
+
+  Escenario: Sin tarjeta de débito activa (cliente nuevo)
+
+  Escenario: Tarjeta activa primera vez
+
+  Escenario: Autenticación normal sin seguridad adicional
+
+  Escenario: Autenticación normal con seguridad adicional
+
+  Escenario: ...
+						</code></pre>											
+					</section>
+					<section>
+						<h2>Detalle del escenario</h2>
+						<p>Expresado en un lenguaje simple:</p>
+						<ul>
+							<li class="fragment"><span>Dado:</span> un cierto contexto</li>
+							<li class="fragment"><span>Cuando:</span> realizo una acción en el sistema</li>
+							<li class="fragment"><span>Entonces:</span> el sistema se comporta de cierta manera</li>
+						</ul>
+					</section>
+					<section>
+						<pre><code class="gherkin_es">
+Característica: Autenticación
+
+Para poder acceder a mi información financiera
+Como cliente del banco
+Yo necesito poder autenticarme
+
+  Escenario: Sin tarjeta de débito activa (cliente nuevo)
+    Dado un cliente "Adrian" con cedula "12345" y tarjeta inactiva
+    Y que me encuentro en la página de autenticación
+    Cuando ingreso la cédula "12345"
+    Y presiono el botón "Autenticar"
+    Entonces debo ver un mensaje que me invite a activar mi tarjeta
+
+						</code></pre>											
+					</section>
+					<section>
+						<p>BDD de historias ayuda a que el equipo de desarrollo tenga un entendimiento del negocio al mismo nivel que el cliente, forzandolo a que conteste las preguntas:</p>
+						<ol><li class="fragment">¿Para quien?</li><li class="fragment">¿Qué?</li><li class="fragment">¿Cómo?</li></ol>
+						<p class="fragment">Pero más importante...</p>
+					</section>
+					<section><h1>¿POR QUE?</h1></section>
+				</section>
+				<section>
+					<p class="big">Java</p>
+				</section>
+				<section>
+					<section id="cucumber">
+						<img src="img/cuke_logo.png"/>
+						<p>Herramienta para aplicar BDD de historias</p>
+					</section>
+					<section>
+						<h2>Instalación</h2>
+						<p>Maven pom.xml:</p>
+						<pre><code class="xml">
+<dependency>
+    <groupId>info.cukes</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>1.1.3</version>
+    <scope>test</scope>
+</dependency>
+						</code></pre>
+					</section>
+					<section>
+						<h2>Clase runner</h2>
+						<pre><code class="java">
+package com.adrianmoya.bddsample.cucumber;
+
+import cucumber.api.junit.Cucumber;
+import org.junit.runner.RunWith;
+
+@RunWith(Cucumber.class)
+@Cucumber.Options(format = {"pretty", "html:target/cucumber"}, 
+	features = {"src/test/resources/features/"},
+	glue = {"com.adrianmoya.bddsample.cucumber"})
+public class CucumberIT {
+    
+}
+</code></pre>
+					</section>
+					<section>
+						<h2>Clase de definición de pasos</h2>
+						<pre><code class="java">
+package com.adrianmoya.bddsample.cucumber;
+
+public class StepDefinition {
+
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>Nuestra primera característica</h2>
+						<pre><code class="gherkin_es">
+Característica: Autenticación
+  
+  Para poder acceder a mi información financiera
+  Como cliente del banco
+  Yo necesito poder autenticarme
+
+  Escenario: Sin tarjeta de débito activa (cliente nuevo)
+    Dado un cliente "Adrian" con cedula "12345" y tarjeta inactiva
+    Y que me encuentro en la página de autenticación
+    Cuando ingreso la cédula "12345"
+    Y presiono el botón Autenticar
+    Entonces debo ver un mensaje que me invite a activar mi tarjeta
+						</code></pre>
+						<p>Creamos nuestro archivo de característica en src/test/resources/features/Autenticacion.feature</p>
+					</section>
+					<section>
+						<h2>Cucumber nos da ejemplos para implementar los pasos</h2>
+						<pre>
+$ mvn verify
+</pre><pre>
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.adrianmoya.bddsample.cucumber.CucumberIT
+
+
+You can implement missing steps with the snippets below:
+
+@Dado("^un cliente \"([^\"]*)\" con cedula \"([^\"]*)\" y tarjeta inactiva$")
+public void un_cliente_con_cedula_y_tarjeta_inactiva(String arg1, String arg2) throws Throwable {
+    // Express the Regexp above with the code you wish you had
+    throw new PendingException();
+}
+
+						</pre>
+					</section>
+					<section>
+						<h2>Estadísticas de los escenarios</h2>
+						<pre>
+#language: es
+Característica: Autenticación
+  
+  Para poder acceder a mi información financiera
+  Como cliente del banco
+  Yo necesito poder autenticarme
+
+  Escenario: Sin tarjeta de débito activa (cliente nuevo)           # Autenticacion.feature:9
+<span class="cuke-undefined">    Dado un cliente "Adrian" con cedula "12345" y tarjeta inactiva
+    Y que me encuentro en la página de autenticación
+    Cuando ingreso la cédula "12345"
+    Y presiono el botón Autenticar
+    Entonces debo ver un mensaje que me invite a activar mi tarjeta</span>
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 6, Time elapsed: 1.311 sec
+
+Results :
+
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 6
+						</pre>
+					</section>
+					<section>
+						<pre><code class="java">
+package com.adrianmoya.bddsample.cucumber;
+
+import cucumber.api.PendingException;
+import cucumber.api.java.es.Cuando;
+import cucumber.api.java.es.Dado;
+import cucumber.api.java.es.Entonces;
+
+
+public class StepDefinition {
+
+    @Dado("^un cliente \"([^\"]*)\" con cedula \"([^\"]*)\" y tarjeta inactiva$")
+    public void un_cliente_con_cedula_y_tarjeta_inactiva(String arg1, String arg2) throws Throwable {
+        // Express the Regexp above with the code you wish you had
+        throw new PendingException();
+    }
+
+    @Dado("^que me encuentro en la página de autenticación$")
+    public void que_me_encuentro_en_la_página_de_autenticación() throws Throwable {
+        // Express the Regexp above with the code you wish you had
+        throw new PendingException();
+    }
+						</code></pre>
+					</section>
+					<section>
+						<h2>Queremos ejercitar el sistema de la manera que lo haría nuestro cliente</h2>
+						<p class="espacio-top fragment">...si es una aplicación web, debemos usar un navegador...</p>
+					</section>
+					<section>
+						<h2>Existen 2 tipos de navegadores para pruebas automatizadas</h2>
+						<ul>
+							<li class="fragment">Emuladores de navegadores sin interfaz: ej. HtmlUnit, Phantom.js</li>
+							<li class="fragment">Controlador de navegadores reales: Chrome, Firefox, IE</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Selenium WebDriver</h2>
+						<p>Librería de automatización que nos ofrece un API único para controlar distintos tipos de navegadores</p>
+					</section>
+					<section>
+						<h2>Instalación</h2>
+						<p>Maven pom.xml:</p>
+						<pre><code class="xml">
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>2.33.0</version>
+    <scope>test</scope>
+</dependency>
+						</code></pre>
+						<a href="http://docs.seleniumhq.org/download/maven.jsp">http://docs.seleniumhq.org/download/maven.jsp</a>
+					</section>
+					<section>
+						<h2>Configurando el driver</h2>
+						<pre><code class="java">
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+public class StepDefinition {
+
+    static final String APP_URL = "http://localhost:8080/javasample/";
+    WebDriver driver;
+
+    @Before
+    public void setup() {
+        this.driver = new HtmlUnitDriver();
+    }						</code></pre>
+					</section>
+					<section>
+						<h2>Uso el driver en mis pasos</h2>
+						<pre><code class="java">
+@Dado("^que me encuentro en la página de autenticación$")
+public void que_me_encuentro_en_la_página_de_autenticación() throws Throwable {
+    driver.get(APP_URL + "autenticacion/");
+}
+   
+@Cuando("^ingreso la cédula \"([^\"]*)\"$")
+public void ingreso_la_cédula(String cedula) throws Throwable {
+    WebElement campoCedula = this.driver.findElement(By.id("login_form:documentNumber"));
+    campoCedula.sendKeys(cedula);
+}    
+
+@Cuando("^presiono el botón Autenticar$")
+public void presiono_el_botón_Autenticar() throws Throwable {
+    WebElement button = this.driver.findElement(By.id("login_form:loginBtn"));
+    button.click();
+}
+						</code></pre>
+					</section>
+					<section>
+						<p>Es hora de comenzar a codificar el sistema...</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>BDD de especificaciones</h1>
+					</section>
+					<section>
+						<h2>Diseño emergente</h2>
+						<p class="espacio-top">Nos permite describir como interactúan los objetos para resolver un problema, sus roles, responsabilidades y mensajes</p>
+						<ul class="espacio-top"><li class="fragment">De manera iterativa</li><li class="fragment">A través de ejemplos de codigos</li></ul>
+					</section>
+					<section>
+						<h2>Tradicionalmente: BDUF</h2>
+						<ul class="espacio-top">
+							<li class="fragment">Difícil de cambiar más adelante</li>
+							<li class="fragment">Tenemos que pensar en todo antes de codificar</li>
+							<li class="fragment">Tratamos de que no se nos escape nada</li>
+						</ul>
+						<p class="fragment">...pero la realidad es...</p>
+					</section>
+					<section class="slide-con-imagen">
+						<div class="contenido">
+							<h2>No estamos construyendo puentes</h2>
+							<img src="img/puente-en-construccion.jpg" />
+						</div>
+						<aside class="cita-imagen">http://commons.wikimedia.org/wiki/File:Rad%C3%A8s-La_Goulette_Bridge_under_construction_2.jpg</aside>
+					</section>
+					<section>
+						<h2>Costo del cambio</h2>
+						<img src="img/funcion-exponencial.jpg" />
+						<p>Aumenta exponencialmente en las fases tardías del desarrollo</p>
+					</section>
+					<section class="ciclo-specbdd">
+						<h2>Ciclo SpecBDD</h2>
+					</section>
+					<section>
+						<ul>
+							<li>Usamos ejemplos de código para especificar el comportamiento</li>
+							<li>Usamos dobles para especificar el intercambio de mensajes</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Más facil decirlo que hacerlo</h2>
+						<p class="espacio-top">BDD de especificaciones es una técnica<br/> que requiere mucha práctica</p>
+					</section>
+				</section>
+				<section>
+					<section id="junit">
+						<p class="big">JUnit</p>
+					</section>
+					<section>
+						<h2>Instalación</h2>
+						<p>Maven pom.xml:</p>
+						<pre><code class="xml">
+<dependency>
+  <groupId>junit</groupId>
+  <artifactId>junit</artifactId>
+  <version>4.11</version>
+  <scope>test</scope>
+</dependency>
+						</code></pre>
+					</section>
+					<section>
+						<p>Describimos un objeto mediante una clase</p>
+						<pre><code class="java">
+package com.adrianmoya.bddsample;
+
+public class MyObjectSpec {
+
+     @Test
+     public void it_returns_foo_when_i_call_bar() {
+	 //Dado
+         MyObject myObject = new MyObject();
+         
+	 //Cuando
+         String result = myObject.bar();
+         
+	 //Entonces
+         assertThat(result, is("foo"));
+     }
+}
+						</code></pre>
+					</section>
+					<section>
+						<p>Ejecutamos las especificaciones</p>
+<pre>
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.adrianmoya.bddsample.MyObjectSpec
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.088 sec <<< FAILURE!
+it_returns_foo_when_i_call_bar(com.adrianmoya.bddsample.MyObjectSpec)  Time elapsed: 0.02 sec  <<< FAILURE!
+java.lang.AssertionError: 
+Expected: is "foo"
+     but: was null
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+	at org.junit.Assert.assertThat(Assert.java:865)
+	at org.junit.Assert.assertThat(Assert.java:832)
+	at com.adrianmoya.bddsample.MyObjectSpec.it_returns_foo_when_i_call_bar(MyObjectSpec.java:15)
+</pre>
+					</section>
+					<section>
+						<p>Nuestro código actual</p>
+						<pre><code class="java">
+package com.adrianmoya.bddsample;
+
+class MyObject {
+
+    public MyObject() {
+    }
+
+    String bar() {
+        return null;
+    }
+    
+}
+						</code></pre>
+					</section>
+					<section>
+						<p>Implementamos el comportamiento esperado</p>
+						<pre><code class="java">
+package com.adrianmoya.bddsample;
+
+class MyObject {
+
+    public MyObject() {
+    }
+
+    String bar() {
+        return "foo";
+    }
+    
+}
+						</code></pre>
+					</section>
+					<section>
+						<p>Ejecutamos las especificaciones</p>
+						<pre>
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.adrianmoya.bddsample.MyObjectSpec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+						</pre>
+					</section>
+					<section>
+						<img src="img/logo_mockito.jpg"/>
+						<p class="espacio-top">Librería para construir dobles en Java</p>
+					</section>
+					<section>
+						<h2>Instalación</h2>
+						<p>Maven pom.xml:</p>
+						<pre><code class="xml">
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>  
+    <version>1.9.5</version> 
+    <scope>test</scope>
+</dependency>
+						</code></pre>
+					</section>
+					<section>
+						<p>Agregamos una especificación</p>
+						<pre><code class="java">
+public class MyObjectSpec { 
+
+ @Test
+ public void it_sends_a_message_to_collaborator(){
+    //Dado
+    MyCollaborator myCollaborator = mock(MyCollaborator.class);
+    MyObject myObject = new MyObject(myCollaborator);
+
+    //Cuando
+    myObject.bar();
+
+    //Entonces
+    verify(myCollaborator).sendMessage("Mensaje");
+ }
+						</code></pre>
+					</section>
+					<section>
+						<p>Ejecutamos las especificaciones</p>
+<pre>
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.adrianmoya.bddsample.MyObjectSpec
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.227 sec <<< FAILURE!
+it_sends_a_message_to_collaborator(com.adrianmoya.bddsample.MyObjectSpec)  Time elapsed: 0.18 sec  <<< FAILURE!
+org.mockito.exceptions.verification.WantedButNotInvoked: 
+Wanted but not invoked:
+myCollaborator.sendMessage("Mensaje");
+-> at com.adrianmoya.bddsample.MyObjectSpec.it_sends_a_message_to_collaborator(MyObjectSpec.java:32)
+Actually, there were zero interactions with this mock.
+
+	at com.adrianmoya.bddsample.MyObjectSpec.it_sends_a_message_to_collaborator(MyObjectSpec.java:32)
+
+</pre>
+					</section>
+					<section>
+						<p>Implementamos el comportamiento esperado</p>
+						<pre><code class="java">
+class MyObject {
+    
+    MyCollaborator collaborator;
+
+    public MyObject() {
+        this.collaborator = new MyCollaborator();
+    }
+
+    MyObject(MyCollaborator myCollaborator) {
+        this.collaborator = myCollaborator;
+    }
+
+    String bar() {
+        this.collaborator.sendMessage("Mensaje");
+        return "foo";
+    }
+						</code></pre>
+					</section>
+					<section>
+						<p>Ejecutamos las especificaciones</p>
+<pre>
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.adrianmoya.bddsample.MyObjectSpec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.248 sec
+
+Results :
+
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+</pre>
+					<img src="img/netbeans-green.png"/>
+					</section>
+					<section>
+						<h2>Repetir</h2>
+						<ul class="espacio-top">
+						<li>Hasta que todas las especificaciones esten en verde</li>
+						<li>Hasta que los escenarios de BDD de historia esten en verde</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>Recursos</h1>
+					</section>
+					<section>
+						<img src="img/logo-agiles-colombia.png"/>
+						<p class="smaller espacio-top">Sitio de la comunidad - <a href="http://agilescolombia.org/">http://agilescolombia.org/</a></p>
+						<p class="smaller">Próximos eventos - <a href="http://www.meetup.com/AgilesColombia/">http://www.meetup.com/AgilesColombia/</a></p>
+						<p class="smaller">Foro - <a href="https://groups.google.com/forum/?fromgroups#!forum/agiles-colombia">https://groups.google.com/forum/?fromgroups#!forum/agiles-colombia</a></p>
+					</section>
+					<section>
+						<img src="img/logo-sparkta.png"/>
+						<p class="smaller espacio-top">Sitio web - <a href="http://sparkta.co/">http://sparkta.co/</a></p>
+						<p>Entrenamiento, consultoria, talleres en temas ágiles</p>
+					</section>
+					<section>
+						<h2>Adrian Moya</h2>
+						<img src="img/adrian.jpg"/>
+						<p><a href="https://twitter.com/adrianmoya">@adrianmoya</a></p>
+						<p><a href="http://adrianmoya.com">http://adrianmoya.com</a></p>						
+					</section>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="/reveal.js/lib/js/head.min.js"></script>
+		<script src="/reveal.js/js/reveal.min.js"></script>
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in //reveal.js/css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					//{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					//{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/reveal.js/js/highlight_gherkin.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },					
+					//{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },					
+					//{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					//{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+		</script>
+		<script src="js/aem.js"></script>
+	</body>
+</html>

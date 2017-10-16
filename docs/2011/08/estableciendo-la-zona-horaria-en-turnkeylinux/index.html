@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Estableciendo la zona horaria en TurnkeyLinux &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2011 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Estableciendo la zona horaria en TurnkeyLinux</h1>
+    <span class="post-date">10/08/2011 &middot; Lectura de 2 minutos  &middot; <a href="http://adrianmoya.com/2011/08/estableciendo-la-zona-horaria-en-turnkeylinux/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/turnkeylinux">TurnkeyLinux</a>
+    </span>
+    <p>Para algunas aplicaciones de turnkeylinux, es importante fijar las fechas y horas del sistema antes de comenzar a trabajar. Por ejemplo, si estamos instalando un blog o foro, y queremos saber la fecha y hora exacta en que se produce una publicación. O si estamos usando una herramienta de control de incidencias, y necesitamos precisión en cuanto a la fecha y hora en que se crea y responde una incidencia. Finalmente, en aplicaciones de base de datos, si es importante realizar una auditoria, es importante que el sistema refleje correctamente las fechas y horas de los registros de la base de datos.
+
+Al desplegar una aplicación turnkeylinux, esta viene configurada por defecto en la zona horaria UTC, a partir de la cual se calculan el resto de las zonas horarias. Configurar la zona horaria que nos interesa es muy sencillo:</p>
+
+<h2 id="configurando-la-zona-horaria-via-la-interface-de-administración-webmin">Configurando la zona horaria via la interface de administración webmin</h2>
+
+<p>Por defecto, turnkeylinux no incluye el modulo para manejar la hora del sistema, por lo que procedemos a instalarlo:</p>
+
+<ol>
+<li>Accedemos a webmin apuntando nuestro navegador a <a href="https://ip-de-la-aplicación:12321">https://ip-de-la-aplicación:12321</a>, haciendo login como root con la contraseña que hayamos configurado al momento de la instalación.</li>
+</ol>
+
+<p><img src="/images/2011/08/turnkey-login.png" alt="" /></p>
+
+<ol>
+<li>En el menu principal, seleccionamos System-&gt;Software Packages, y en la sección Install a New Package seleccionamos Package from APT y colocamos webmin-time como el nombre del paquete. Procedemos a hacer click en el botón Install.</li>
+</ol>
+
+<p><img src="/images/2011/08/tkl-softwarepackages.png" alt="" /></p>
+
+<ol>
+<li>Una vez que confirmamos que el modulo se ha instalado correctamente, seguimos el enlace de Return to module index. Ahora tendremos disponible en el menu System la opción System Time.</li>
+</ol>
+
+<p><img src="/images/2011/08/tkl-installpackage.png" alt="" /></p>
+
+<ol>
+<li>Accedemos a la opción System Time, y seleccionamos Change timezone. Alli podremos establecer nuestra zona horaria y automáticamente el servidor tomará la fecha y hora correspondiente.
+<img src="/images/2011/08/tkl-systemtime-1.png" alt="" />
+<img src="/images/2011/08/tkl-systemtime-2.png" alt="" /></li>
+</ol>
+
+<h2 id="configurando-la-zona-horaria-via-la-linea-de-comando">Configurando la zona horaria via la linea de comando</h2>
+
+<ol>
+<li><p>Hacemos ssh a nuestro servidor como root, usando el password que establecimos durante la instalación.</p></li>
+
+<li><p>Ejecutamos el comando dpkg-reconfigure tzdata. Se nos presentara una lista desplegable donde podremos seleccionar nuestra zona horaria.</p></li>
+</ol>
+
+<p><img src="/images/2011/08/console-tzdata.png" alt="" /></p>
+
+<p>Eso es todo, ahora nuestro servidor estara trabajando con la fecha y hora de nuestro país, y podremos proceder a comenzar a utilizar nuestra aplicación Turnkeylinux.</p>
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

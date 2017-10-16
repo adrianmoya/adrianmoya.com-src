@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Adrian Moya</title>
+    <link>http://adrianmoya.com/post/</link>
+    <description>Recent content in Posts on Adrian Moya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-us</language>
+    <lastBuildDate>Fri, 16 Sep 2016 14:51:09 -0500</lastBuildDate>
+    
+	<atom:link href="http://adrianmoya.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pensando TDD (I)</title>
+      <link>http://adrianmoya.com/post/pensando-tdd-i/</link>
+      <pubDate>Fri, 16 Sep 2016 14:51:09 -0500</pubDate>
+      
+      <guid>http://adrianmoya.com/post/pensando-tdd-i/</guid>
+      <description>Siempre escuchamos que TDD es una técnica de diseño que es guiada por pruebas. Pero dado que tenemos que escribir la prueba primero, nuestra mente comienza a pensar en términos de pruebas en lugar de diseño. Entonces comenzamos a pensar en casos borde, malas entradas, y cosas que son importante pensar, pero desvían nuestra atención del objetivo principal de la técnica, que es diseñar.
+En esta entrada voy a volcar mi tren de pensamientos cuando diseño a través de TDD, para que puedan contrastar la diferencia acerca de pensar enfocado en pruebas y pensar acerca de diseño.</description>
+    </item>
+    
+    <item>
+      <title>Pruebas con tiempo en java 8</title>
+      <link>http://adrianmoya.com/post/pruebas-con-tiempo-en-java-8/</link>
+      <pubDate>Tue, 24 May 2016 08:14:30 -0500</pubDate>
+      
+      <guid>http://adrianmoya.com/post/pruebas-con-tiempo-en-java-8/</guid>
+      <description>&lt;p&gt;En &lt;a href=&#34;http://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/&#34;&gt;mi artículo anterior&lt;/a&gt; revisé algunas técnicas para escribir pruebas que manipularan el tiempo en una aplicación legado. Hoy estaré compartiendo estrategias para escribir código que manipule el tiempo usando Java 8.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Pruebas con tiempo en aplicaciones legado</title>
+      <link>http://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/</link>
+      <pubDate>Mon, 22 Feb 2016 16:04:31 -0500</pubDate>
+      
+      <guid>http://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/</guid>
+      <description>&lt;p&gt;Las pruebas unitarias que dependen del tiempo son siempre complicadas. La manera aceptada de hacerlas es envolver todas las llamadas para obtener la hora del sistema en un objeto &amp;ldquo;Clock&amp;rdquo;. Comenzando con Java 8, &lt;a href=&#34;https://jcp.org/en/jsr/detail?id=310&#34;&gt;la nueva API de fechas y hora&lt;/a&gt; introdujo el objeto &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/api/java/time/Clock.html&#34;&gt;Clock&lt;/a&gt; al lenguaje, que hace más simple inyectar en una clase y sustituir por un doble en una prueba. Antes de eso, en Java 7 y anteriores, era tu responsabilidad crear dicho objeto.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Migrando de Octopress 2 a Hugo</title>
+      <link>http://adrianmoya.com/post/migrando-de-octopress-2-a-hugo/</link>
+      <pubDate>Mon, 11 Jan 2016 20:40:28 -0500</pubDate>
+      
+      <guid>http://adrianmoya.com/post/migrando-de-octopress-2-a-hugo/</guid>
+      <description>&lt;p&gt;Hace &lt;a href=&#34;http://adrianmoya.com/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/&#34;&gt;algún tiempo atrás&lt;/a&gt;, migré mi blog desde &lt;a href=&#34;https://es.wordpress.org/&#34;&gt;Wordpress&lt;/a&gt; a &lt;a href=&#34;http://octopress.org/&#34;&gt;Octopress 2&lt;/a&gt;. Para el momento representaba un gran avance para mi y me introdujo al mundo de los generadores de sitios estáticos. Escribir en markdown es un placer y llevar el &amp;ldquo;código&amp;rdquo; de mi blog en git es muy natural para mi como desarrollador. Sin embargo el tiempo pasó y encontré algunas dificultades.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TDD o no TDD</title>
+      <link>http://adrianmoya.com/post/tdd-o-no-tdd/</link>
+      <pubDate>Fri, 18 Dec 2015 07:14:08 -0800</pubDate>
+      
+      <guid>http://adrianmoya.com/post/tdd-o-no-tdd/</guid>
+      <description>&lt;p&gt;No cabe duda de que escribir pruebas unitarias para nuestro código en los proyectos es una práctica excelente que rinde grandes beneficios. Sin embargo, en este artículo quiero tratar el tema de si debo escribir las pruebas primero que el código de producción (técnica conocida como TDD), o si debo cubrir el código con pruebas (escribirlas después del código de producción).&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

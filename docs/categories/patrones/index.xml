@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Patrones on Adrian Moya</title>
+    <link>http://adrianmoya.com/categories/patrones/</link>
+    <description>Recent content in Patrones on Adrian Moya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-us</language>
+    <lastBuildDate>Tue, 30 Jul 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://adrianmoya.com/categories/patrones/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Utilizando el patron Databuilder en nuestras pruebas unitarias</title>
+      <link>http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</link>
+      <pubDate>Tue, 30 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</guid>
+      <description>&lt;p&gt;Para aplicar TDD o BDDSpec de manera efectiva, es importante que conozcamos algunos patrones y técnicas que nos permitan mantener nuestra suite de pruebas ordenada y mantenible. El código de prueba debe ser tratado como ciudadano de primera categoría al igual que el de nuestra aplicación. A continuación describiré el uso del patrón DataBuilder, y cómo nos ayuda a escribir pruebas más expresivas.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

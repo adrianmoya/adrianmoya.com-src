@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on Adrian Moya</title>
+    <link>http://adrianmoya.com/categories/git/</link>
+    <description>Recent content in Git on Adrian Moya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-us</language>
+    <lastBuildDate>Sat, 05 Jan 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://adrianmoya.com/categories/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Usando git de manera remota</title>
+      <link>http://adrianmoya.com/2013/01/usando-git-de-manera-remota/</link>
+      <pubDate>Sat, 05 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/01/usando-git-de-manera-remota/</guid>
+      <description>&lt;p&gt;En el primer artículo, &lt;a href=&#34;http://adrianmoya.com/2012/07/usando-git-de-manera-local/&#34;&gt;Usando Git de manera local&lt;/a&gt;, mostré algunos de los comandos más útiles a la hora de trabajar con git de manera local. Continuando la serie de artículos de git, en esta oportunidad tratare el tema de los remotos. Git es un sistema de control de versiones distribuido, lo que nos permite conectar nuestro repositorio local a otra copia remota, y de esa manera poder trabajar en equipo con otros desarrolladores.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Usando git de manera local</title>
+      <link>http://adrianmoya.com/2012/07/usando-git-de-manera-local/</link>
+      <pubDate>Mon, 16 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2012/07/usando-git-de-manera-local/</guid>
+      <description>&lt;p&gt;Han pasado meses desde que me cambié de usar subversion en mis proyectos a git. Si bien al principio me parecio complicado, la verdad es que git es bastante sencillo. Los comandos que se usan a diario son fáciles de aprender. Y para los casos complicados de resolución de conflictos, siempre hay respuesta por internet. Asi que me he animado a escribir una serie de artículos referente al uso de este poderoso &lt;a href=&#34;http://es.wikipedia.org/wiki/Control_de_versiones&#34;&gt;sistema de control de versiones&lt;/a&gt; distribuido.
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

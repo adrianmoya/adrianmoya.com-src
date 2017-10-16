@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>BDD: El panorama completo &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2013 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>BDD: El panorama completo</h1>
+    <span class="post-date">16/11/2013 &middot; Lectura de 8 minutos  &middot; <a href="http://adrianmoya.com/2013/11/bdd-el-panorama-completo/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/bdd">BDD</a><a class="label" href="http://adrianmoya.com/categories/agilidad">Agilidad</a>
+    </span>
+    <p>El desarrollo guiado por comportamiento se vuelve cada vez más una técnica que todos quieren utilizar. Pero siento que no existe un concepto claro en la comunidad de qué implica utilizar BDD en un proyecto. Como muchos, comencé a explorar BDD desde el punto de vista de la automatización de escenarios. Pero a medida que fui profundizando en el estudio de BDD, descubrí que esto es sólo una pequeña parte de BDD, y que existe mucho más y se encuentra disperso en la internet por lo que es difícil ver el panorama completo.</p>
+
+<p>Este post pretende ampliar la visión de BDD como metodología ágil, para aquellos que aún no han ido más allá de la automatización.</p>
+
+<p></p>
+
+<h2 id="el-concepto-de-bdd-actualizado">El concepto de BDD, actualizado</h2>
+
+<p>En el 2009, en un evento llamado <a href="http://skillsmatter.com/event/agile-testing/agile-specifications-bdd-and-testing-exchange">Agile specifications, BDD and Testing eXchange</a>, <a href="http://dannorth.net/">Dan North</a>, originador del término BDD, definío BDD como:</p>
+
+<blockquote>
+<p>BDD es una metodología ágil de segunda generación, de afuera hacia adentro, basada en demanda, de multiples interesados, multiple escala y alta automatización. Describe un ciclo de interacciones con salidas bien definidas, resultando en la entrega de software funcionando y probado que importa.</p>
+</blockquote>
+
+<p>Inicialmente para mi era dudoso llamar BDD una metodología hasta que pude ver este panorama completo (además si lo dijo Dan, ¿quién soy yo para decir lo contrario? :P). Lo cierto es que BDD es comparable a XP, en el sentido de que engloba una filosofía y un conjunto de prácticas a todos los niveles para llevar a cabo el desarrollo de un producto. BDD evoluciona constantemente y se apalanca en nuevas técnicas ágiles que van apareciendo, no es una receta prescrita de cosas que hay que hacer. Pero como metodología, tiene algo fundamental, la manera de abordar el desarrollo de software.</p>
+
+<p>Preparando mis láminas para las presentaciones de Desarrollo Ágil con BDD (<a href="/2013/06/desarrollo-agil-con-bdd-en-php/">PHP</a> y <a href="/2013/07/desarrollo-agil-con-bdd-en-java/">Java</a>), encontré este concepto largo, dificil de traducir y de colocar en la lámina. Me animé a preguntarle a Dan por twitter por un concepto corto y esencial de BDD. Dan contestó:</p>
+
+<p><img src="/images/2013/11/dan-north-bdd-tweet.png" alt="" /></p>
+
+<blockquote>
+<p>El uso de ejemplo en múltiples niveles para crear un entendimiento compartido y sacar a flote la incertidumbre para entregar software que importa.</p>
+</blockquote>
+
+<p>Este nuevo concepto establece la escencia de BDD como metodología, y combinado con el anterior, nos permite ahondar en lo que significa realmente aplica desarrollo guiado por comportamiento.</p>
+
+<h2 id="bdd-es-acerca-de-comunicación-no-de-automatización">BDD es acerca de comunicación, no de automatización</h2>
+
+<p>En sintonía con el <a href="http://agilemanifesto.org/iso/es/">Manifiesto Ágil</a>, BDD es una metodología que valora <strong>Individuos e interacciones</strong> sobre procesos y herramientas. Lo que sucede es que hay muchísimas herramientas para apoyar y automatizar la verificación de los ejemplos, y generalmente tendemos a conocer BDD a través de la herramienta. Pero si automatizas escenarios y no estás teniendo las conversaciones, no estás haciendo BDD. Si por el contrario, tienes las conversaciones, pero no automatizas los escenarios, estás aplicando BDD en tu proyecto.</p>
+
+<p>¿Qué conversaciones debo tener? Pues conversaciones alrededor de los requerimientos y el dominio del proyecto, estableciendo ejemplos concretos acerca de cómo debe comportarse la aplicación. En estas conversaciones deben participar el cliente, los analistas de negocio, los desarrolladores y el equipo de pruebas. La comunicación entre todos es esencial para una buena aplicación de BDD a un proyecto. Las puedes llevar a cabo en el marco de un taller de especificaciones, que es una práctica que puedes realizar con cierta frecuencia para explorar nuevas características que el sistema debe cumplir.</p>
+
+<p>La meta final de BDD es crear entendimiento compartido, creando un lenguaje ubicuo que mejore la comunicación, y que estas conversaciones permitan identificar cuales son los temas donde existe mayor incertidumbre y riesgo, para que sean atendidos temprano en el proyecto, cuando es menos costoso incorporar cambios.</p>
+
+<h2 id="el-panorama-completo">El panorama completo</h2>
+
+<p>Veamos algunas prácticas ágiles que nos pueden dar soporte a nuestra aplicación de BDD en varios niveles. Algunas nacieron bajo el marco de BDD, otras son incorporadas al proceso porque se alinean perfectamente con BDD:</p>
+
+<p><strong>Inyección de Características</strong>: Esta técnica de análisis de proyecto fue concebida por Chris Matts para dar soporte a BDD en la fase de análisis, y permite trabajar desde afuera hacia adentro, tomando como punto de partida las salidas del sistema. Ayuda además a alinear los objetivos de la organización con el software que se desarrolla, mediante un proceso de búsqueda del valor real, la inyección de características que soporten ese valor, y la consecución de los ejemplos necesarios para comunicar como debe comportarse el sistema en los distintos escenarios. <a href="http://www.infoq.com/articles/feature-injection-success">Aquí</a> un artículo sobre el tema.</p>
+
+<p><strong>Especificación mediante ejemplos</strong>: Este es el término general que <a href="http://gojko.net/">Gojko Adzic</a> da al uso de ejemplos para comunicar utilizado en BDD. En su libro <a href="http://specificationbyexample.com/">Especificación Mediante Ejemplos</a>, Gojko habla de las experiencias de múltiples empresas aplicando distintas herramientas y formas en su proceso de desarrollo, y describe el proceso de los talleres de especificación, y de como partir del objetivo y derivar el alcance, especificar colaborativamente, ilustrar mediante ejemplos, refinar la especificación, automatizar la validación, validar frecuentemente evolucionar un sistema de documentación viva. De este tema tuve la oportunidad de compartir durante el <a href="http://comunidadagilven.wix.com/atccs12">Agile Tour de Caracas en el 2012</a>.</p>
+
+<p><strong>Opciones Reales</strong>: esta técnica, creada por Chris Matts, nos permite manejar los riesgos dentro de un proyecto de una manera ágil, aplicando técnicas basadas en la Teoría de Opciones Financieras, utilizada por inversionistas de la bolsa de valores. Siguiendo el mantra de que las opciones tienen valor, las opciones expiran, y nunca comprometerse temprano a menos que sepas el porque, Chris nos da herramientas que permite la toma de decisiones difiriéndolas hasta el ultimo momento responsable, muy en la onda de Lean Thinking. Más información <a href="http://www.infoq.com/articles/real-options-enhance-agility">acá</a>.</p>
+
+<p><strong>Mapeo de impacto</strong>: otra técnica de Gojko Adzic, que permite tener un panorama completo del proyecto y conocer quienes son los involucrados, permitiendo tener trazabilidad y dar respuesta a las preguntas Qué, Cómo, Cuando, y por qué del proyecto. Dentro del mundo BDD, está técnica es importante para cumplir la parte de &ldquo;software que importa&rdquo;. Cuando Dan contestó mi tweet del concepto de BDD, me dio una variación mencionando a Gojko, y terminando el concepto en &ldquo;software que impacte&rdquo;. Más info en el <a href="http://impactmapping.org/">sitio web del libro</a>.</p>
+
+<p><strong>Descubrimiento Deliberado</strong>: esta práctica fue introducida por Dan North, y consiste en identificar constantemente los puntos oscuros o de mayor incertidumbre dentro de un proyecto, y tomar tiempo para estudiar, experimentar y entender esos puntos, de forma deliberada, permitiendo que los equipos adquieran las habilidades, conocimientos técnicos o del negocio, y solventen cualquier otra incógnita que puedan tener que este deteniendo su productividad o impidiendo el avance del proyecto, e incluso descubrir las cosas que no sabemos que no sabemos. Aqui el <a href="http://dannorth.net/2010/08/30/introducing-deliberate-discovery/">post de introducción</a> de Dan.</p>
+
+<p><strong>BDD de historias</strong>: es la práctica de tomar los ejemplos escritos en forma de escenarios y validarlos de forma automática haciendo uso de algún framework de pruebas. Es lo que comúnmente todo el mundo conoce como BDD. Esta técnica es principalmente útil para permitir que se valide el comportamiento de la aplicación en alineación a los objetivos y características descubiertas en la fase de análisis, y debe ser usada con moderación, pues las pruebas punto a punto que se escriben son las más costosas de ejecutar. Principalmente los caminos felices y las variaciones importantes deben ser abordadas. Más info en mi post <a href="/2013/02/describiendo-sistemas-con-bdd/">Describiendo Sistemas con BDD</a></p>
+
+<p><strong>BDD de especificaciones</strong>: esta práctica viene heredada de XP, y es esencialmente lo mismo que TDD. Trata de aplicar ejemplos en el ámbito meramente técnico, escribiendo ejemplos de código que permitan describir y validar el comportamiento de objetos y la comunicación con sus colaboradores a nivel del código. El cambio de nombre quizo crear una diferenciación en el énfasis de las pruebas, que pretenden comunicar intenciones y ser usadas como un mecanismo de diseño, ya que el nombre de TDD le daba una connotación muy orientada a pruebas, haciendo confuso entender el verdadero objetivo de la práctica. Más info en mi post <a href="/2013/05/disenando-objetos-con-bdd-de-especificaciones/">Diseñando objetos con BDD de especificaciones</a>.</p>
+
+<h2 id="software-que-importa">Software que importa</h2>
+
+<p>Uno de los beneficios de usar BDD en un proyecto es lograr capturar con estás técnicas las características principales que dan valor a los involucrados, quienes no sólo son los usuarios del sistema, sino tambien quienes dan soporte, quienes deben velar por que se cumplan los temas legales, y principalmente, quienes estan poniendo el dinero para la realización del proyecto. Despues de todo, un proyecto de software es una inversión, y debe producir valor para la empresa que lo financia, ya sea aumentando sus ingresos, disminuyendo las pérdidas o protegiendo las ganancias actuales.</p>
+
+<p>Como pueden ver, BDD va muy de la mano con Lean, por lo que es una excelente metodología para crear productos mínimos viables, partiendo desde los objetivos que se quieren alcanzar y permitiéndonos (debido a que desarrollamos de afuera hacia adentro) reducir el desperdicio, y escribir software que importa.</p>
+
+<h2 id="líderes-a-quien-seguir">Líderes a quien seguir</h2>
+
+<p>A continuación los líderes de este movimiento, a quienes puedes seguir en twitter y leer sus blogs para aprender más sobre toda esta metodología:</p>
+
+<p><strong>Dan North</strong>
+<a href="https://twitter.com/tastapod">@tastapod</a>
+<a href="http://dannorth.net/blog/">http://dannorth.net/blog/</a></p>
+
+<p><strong>Liz Keogh</strong>
+<a href="https://twitter.com/lunivore">@lunivor</a>
+<a href="http://lizkeogh.com/">http://lizkeogh.com/</a></p>
+
+<p><strong>Chris Matts</strong>
+<a href="https://twitter.com/PapaChrisMatts">@PapaChrisMatts</a>
+<a href="http://theitriskmanager.wordpress.com/">http://theitriskmanager.wordpress.com/</a></p>
+
+<p><strong>Gojko Adzic</strong>
+<a href="http://twitter.com/gojkoadzic">@gojkoadzic</a>
+<a href="http://gojko.net/">http://gojko.net/</a></p>
+
+<h2 id="conclusión">Conclusión</h2>
+
+<p>Espero que este post ayude a ver un poco el panorama completo de lo que significa aplicar BDD, y permita recordar a los equipos que decidan aplicarlo que no dejen de lado los principios del manifiesto ágil, e introduzcan estas técnicas de forma que apoyen su proceso y les permitan entregar de manera más rápida y eficiente.</p>
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bdd on Adrian Moya</title>
+    <link>http://adrianmoya.com/categories/bdd/</link>
+    <description>Recent content in Bdd on Adrian Moya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-us</language>
+    <lastBuildDate>Fri, 25 Apr 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://adrianmoya.com/categories/bdd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Escribiendo mejores escenarios</title>
+      <link>http://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</link>
+      <pubDate>Fri, 25 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</guid>
+      <description>&lt;p&gt;Al momento de describir las características de un sistema a través de BDD, utilizamos ejemplos planteados en forma de escenarios para expresar cómo debe comportarse el sistema. Dichos escenarios son esenciales porque en ellos está plasmado el conocimiento del dominio de la aplicación, y sirven para documentar el sistema y también como insumo en el proceso de validación cuando los automatizamos utilizando herramientas BDD. A continuación veremos algunas preguntas que surgen y recomendaciones para lograr escenarios de calidad en nuestro proyecto.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Lanzamiento Ágiles 2014</title>
+      <link>http://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</link>
+      <pubDate>Thu, 03 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</guid>
+      <description>&lt;p&gt;El 27 de marzo de 2014, en la universidad EAFIT en Medellín, Colombia, fue el &lt;a href=&#34;http://agiles2014.agiles.org/lanzamiento-oficial-de-agiles-2014/&#34;&gt;lanzamiento oficial de Ágiles 2014&lt;/a&gt;, el evento de agilidad más importante de la comunidad latinoamericana. Para complementar los artículos de otros miembros de la comunidad, les cuento como fue mi experiencia.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Inyección de Características</title>
+      <link>http://adrianmoya.com/2014/02/inyeccion-de-caracteristicas/</link>
+      <pubDate>Sun, 02 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2014/02/inyeccion-de-caracteristicas/</guid>
+      <description>&lt;p&gt;Según la definición, BDD es una metodología que nos permite construir software que importa. La inyección de características es una técnica de análisis creada por Chris Matts que nos ayuda a encontrar características que nos permitan aportar el máximo de valor.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Organizando un proyecto BDD</title>
+      <link>http://adrianmoya.com/2014/01/organizando-un-proyecto-bdd/</link>
+      <pubDate>Mon, 13 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2014/01/organizando-un-proyecto-bdd/</guid>
+      <description>&lt;p&gt;Muchos proyectos que comienzan a usar BDD lo hacen escribiendo escenarios para sus historias de usuario. Esto podría dar a suponer que un escenario es una parte de una historia de usuario, pero lo cierto es que la relación entre historias de usuario y escenarios no es necesariamente jerárquica. También tenemos otros conceptos que son importantes dentro de la organización del proyecto, como las capacidades y características. Veamos algunas ideas de cómo se puede organizar un proyecto BDD y la relación entre algunos de sus artefactos. Todos estos conceptos son tomados de artículos de Liz Keogh y Chris Matts.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BDD: El panorama completo</title>
+      <link>http://adrianmoya.com/2013/11/bdd-el-panorama-completo/</link>
+      <pubDate>Sat, 16 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/11/bdd-el-panorama-completo/</guid>
+      <description>&lt;p&gt;El desarrollo guiado por comportamiento se vuelve cada vez más una técnica que todos quieren utilizar. Pero siento que no existe un concepto claro en la comunidad de qué implica utilizar BDD en un proyecto. Como muchos, comencé a explorar BDD desde el punto de vista de la automatización de escenarios. Pero a medida que fui profundizando en el estudio de BDD, descubrí que esto es sólo una pequeña parte de BDD, y que existe mucho más y se encuentra disperso en la internet por lo que es difícil ver el panorama completo.&lt;/p&gt;
+
+&lt;p&gt;Este post pretende ampliar la visión de BDD como metodología ágil, para aquellos que aún no han ido más allá de la automatización.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Aplicando el patrón Page Object en la automatización de escenarios</title>
+      <link>http://adrianmoya.com/2013/09/aplicando-el-patron-page-object-en-la-automatizacion-de-escenarios/</link>
+      <pubDate>Sun, 29 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/09/aplicando-el-patron-page-object-en-la-automatizacion-de-escenarios/</guid>
+      <description>&lt;p&gt;En los últimos dos post, he comentado acerca de patrones y técnicas para las pruebas unitarias. En esta oportunidad, hablaré de un patrón que podemos utilizar a nivel de nuestras pruebas de extremo a extremo (end to end). Se trata del patron Page Object.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BDD de especificaciones: un ejemplo concreto en Java</title>
+      <link>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</link>
+      <pubDate>Sun, 14 Jul 2013 00:00:01 -0500</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</guid>
+      <description>&lt;p&gt;Esta es la implementación en Java de &lt;a href=&#34;http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/&#34;&gt;un ejemplo concreto de BDD de Especificaciones&lt;/a&gt;. Es importante que leas primero de que se trata el ejemplo en el artículo anterior, antes de proceder a ver la implementación.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BDD de especificaciones: Un ejemplo concreto</title>
+      <link>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/</link>
+      <pubDate>Sun, 14 Jul 2013 00:00:00 -0500</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/</guid>
+      <description>&lt;p&gt;En un artículo anterior, había compartido con ustedes un &lt;a href=&#34;http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/&#34;&gt;ejemplo concreto de BDD de historias&lt;/a&gt;. Ahora toca el turno de un ejemplo de lo que es BDD de especificaciones.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Desarrollo Agil con BDD en Java</title>
+      <link>http://adrianmoya.com/2013/07/desarrollo-agil-con-bdd-en-java/</link>
+      <pubDate>Tue, 09 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/07/desarrollo-agil-con-bdd-en-java/</guid>
+      <description>&lt;p&gt;Continuando mi tour por las comunidades de desarrolladores de Bogotá, hice presencia en el &lt;a href=&#34;http://colombiajug.wordpress.com/2013/06/26/septimo-javaday/&#34;&gt;7mo. Java Day&lt;/a&gt; para compartir con la comunidad de Java mi charla de Desarrollo Ágil con BDD.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Desarrollo Agil con BDD en PHP</title>
+      <link>http://adrianmoya.com/2013/06/desarrollo-agil-con-bdd-en-php/</link>
+      <pubDate>Wed, 19 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/06/desarrollo-agil-con-bdd-en-php/</guid>
+      <description>&lt;p&gt;El 12 de Junio de 2013 tuve la oportunidad de compartir mi charla acerca del Desarrollo Ágil utilizando BDD con la comunidad de PHP en Bogotá. Es la primera de una serie de charlas que tengo planificadas para este año donde pretendo difunfir el tema del desarrollo guiado por comportamiento con las comunidades de desarrolladores de la ciudad.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Usando dobles para especificar la comunicación entre objetos</title>
+      <link>http://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/</link>
+      <pubDate>Wed, 29 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/</guid>
+      <description>&lt;p&gt;Cuando usamos &lt;a href=&#34;http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/&#34;&gt;BDD de especificaciones para diseñar objetos&lt;/a&gt;, queremos describir el comportamiento de nuestros objetos como una unidad. Pero ¿qué pasa cuando este objeto debe interactuar con otros para lograr su propósito?. A continuación explicaré cómo hacer uso de dobles de prueba para describir la comunicación entre distintos objetos.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Diseñando objetos con BDD de especificaciones</title>
+      <link>http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/</link>
+      <pubDate>Sun, 12 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/</guid>
+      <description>&lt;p&gt;Ya hemos visto en los artículos anteriores como utilizar el lenguaje natural del cliente para &lt;a href=&#34;http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/&#34;&gt;describir un sistema utilizando BDD de historias&lt;/a&gt;, y comunicar el comportamiento esperado a través de un conjunto de escenarios. Hoy comenzaremos a adentrarnos en el segundo nivel de BDD, para especificar el comportamiento del sistema a nivel técnico.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BDD de historias: un ejemplo concreto en PHP</title>
+      <link>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/</link>
+      <pubDate>Mon, 22 Apr 2013 00:00:02 -0500</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/</guid>
+      <description>A continuación, veamos como es la implementación en PHP del ejemplo presentado en BDD de historias: un ejemplo concreto.
+Las librerías y herramientas Para este ejemplo concreto, realizado en PHP, voy a utilizar las siguientes librerías y herramientas:
+Silex: Silex es un micro framework basado en los componentes de Symfony2, el cual permite construir rápidamente una aplicación sencilla en PHP. También utilice Twig como mecanismo de plantillas para la vista.</description>
+    </item>
+    
+    <item>
+      <title>BDD de historias: un ejemplo concreto en Java</title>
+      <link>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/</link>
+      <pubDate>Mon, 22 Apr 2013 00:00:01 -0500</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/</guid>
+      <description>&lt;p&gt;A continuación, veamos como es la implementación en Java del ejemplo presentado en &lt;a href=&#34;http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/&#34;&gt;BDD de historias: un ejemplo concreto&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BDD de historias: un ejemplo concreto</title>
+      <link>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/</link>
+      <pubDate>Mon, 22 Apr 2013 00:00:00 -0500</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/</guid>
+      <description>Para continuar con la serie de artículos acerca del Desarrollo Guiado por Comportamiento, hoy les traigo un ejemplo de BDD de historias, junto con sus implementaciones en Java y PHP.
+La historia y sus escenarios Como he comentado en la serie de artículos de BDD, nuestra intención es partir desde los requerimientos del cliente. Así, para este ejemplo, vamos a partir con la siguiente historia de usuario (característica del sistema):</description>
+    </item>
+    
+    <item>
+      <title>Automatizando la verificación de historias en BDD</title>
+      <link>http://adrianmoya.com/2013/03/automatizando-la-verificacion-de-historias-en-bdd/</link>
+      <pubDate>Sun, 31 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/03/automatizando-la-verificacion-de-historias-en-bdd/</guid>
+      <description>&lt;p&gt;En el artículo &lt;a href=&#34;http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/&#34;&gt;Describiendo Sistemas con BDD&lt;/a&gt;, vimos como escribir los requerimientos de un sistema utilizando el lenguaje natural del cliente, y describiendo los escenarios principales mediante una serie de pasos. En este artículo comentaré acerca de cómo automatizar estos requerimientos, y algunos tips que debemos tener en cuenta.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Describiendo sistemas con BDD</title>
+      <link>http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/</link>
+      <pubDate>Thu, 07 Feb 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/</guid>
+      <description>&lt;p&gt;Luego de mi &lt;a href=&#34;http://adrianmoya.com/2013/01/introduccion-a-desarrollo-guiado-por-comportamiento-bdd/&#34;&gt;Introducción a BDD&lt;/a&gt;, quisiera comenzar a escribir acerca de BDD de historias, o Story BDD. Se trata de la parte de BDD que cubre las especificaciones de un sistema, expresadas en el lenguaje natural de nuestro cliente mediante características y escenarios.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Introducción a Desarrollo Guiado por Comportamiento (BDD)</title>
+      <link>http://adrianmoya.com/2013/01/introduccion-a-desarrollo-guiado-por-comportamiento-bdd/</link>
+      <pubDate>Sat, 19 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/01/introduccion-a-desarrollo-guiado-por-comportamiento-bdd/</guid>
+      <description>&lt;p&gt;A finales del año 2011 decidí que el 2012 sería el año en el que me enfocaría en aprender todo lo relacionado a las prácticas de pruebas del mundo ágil. Ya para ese entonces escuchaba y leía de BDD (Desarrollo guiado por comportamiento) pero decidí que me enfocaría en TDD &amp;ldquo;puro y simple&amp;rdquo; antes de comenzar a explorar otras prácticas &amp;ldquo;más avanzadas&amp;rdquo;. Y ahí fue cuando comenzo mi frustración.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>¿Qué hay en una historia?</title>
+      <link>http://adrianmoya.com/2012/08/que-hay-en-una-historia/</link>
+      <pubDate>Wed, 08 Aug 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2012/08/que-hay-en-una-historia/</guid>
+      <description>&lt;p&gt;En estos dias he estado trabajando en un proyecto probando la práctica de especificación mediante ejemplos, o como es más comunmente conocida, desarrollo dirigido por comportamiento. Entre los principales promotores de esta práctica esta &lt;a href=&#34;http://dannorth.net/&#34;&gt;Dan North&lt;/a&gt;, quien ha escrito varios artículos del tema. Como no se consigue mucha documentación (a la fecha solo aparenta haber un libro dedicado, el de &lt;a href=&#34;http://www.amazon.com/Specification-Example-Successful-Deliver-Software/dp/1617290084/ref=sr_1_1?ie=UTF8&amp;amp;qid=1343940845&amp;amp;sr=8-1&amp;amp;keywords=specifications+by+example&#34;&gt;Especificación Mediante Ejemplos&lt;/a&gt; de &lt;a href=&#34;http://gojko.net/about/&#34;&gt;Gojko Adzic&lt;/a&gt;), he decidido traducir un artículo titulado &lt;a href=&#34;http://dannorth.net/whats-in-a-story/&#34;&gt;¿Qué hay en una historia?&lt;/a&gt; para ponerlo a disposición del público latinoamericano, ya que lo considero excelente para orientarnos en cómo escribir historias de usuario con pruebas de aceptación. Demás esta decir que las opiniones expresadas son las del autor original y no las mias propias. ¡Que lo disfruten!&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

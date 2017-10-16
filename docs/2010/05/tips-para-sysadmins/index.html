@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Tips para Sysadmins &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2010 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Tips para Sysadmins</h1>
+    <span class="post-date">03/05/2010 &middot; Lectura de 2 minutos  &middot; <a href="http://adrianmoya.com/2010/05/tips-para-sysadmins/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/sysadmin">Sysadmin</a>
+    </span>
+    <p>En este post he decidido recopilar una serie de comandos que son utiles para aquellos que administramos sistemas linux, de manera de tener una referencia rápida al momento que haga falta. Espero que alguien la encuentre útil ademas de mi:
+</p>
+
+<h3 id="mysql">MySQL</h3>
+
+<p><strong>Crear base de datos MySQL y usuario con todos los permisos.</strong></p>
+
+<pre><code>amoya@amoya-laptop: $ mysql -u root
+mysql&gt; create database basededatos;
+mysql&gt; use basededatos;
+mysql&gt; grant all on basededatos.* to 'usuario'@'localhost' identified by 'contraseña';
+</code></pre>
+
+<p><strong>Ver bases de datos, tablas y campos en mysql:</strong></p>
+
+<pre><code>mysql&gt; show databases;
+mysql&gt; use basededatos;
+mysql&gt; show tables;
+mysql&gt; desc tabla;
+</code></pre>
+
+<p><strong>Respaldar y restaurar una base de datos MySQL</strong></p>
+
+<pre><code>amoya@amoya-laptop: $ mysqldump -u username -p --opt dbname &gt; dump.sql
+amoya@amoya-laptop: $ mysql -u username -p --database=dbname &lt; dump.sql
+</code></pre>
+
+<h3 id="ssh-y-scp">SSH y SCP</h3>
+
+<p><strong>Copiar llave publica a un servidor:</strong></p>
+
+<pre><code>amoya@amoya-laptop: $ ssh-copy-id servidor-destino
+</code></pre>
+
+<p><strong>Crear un proxy con ssh en puerto 5000:</strong></p>
+
+<pre><code>amoya@amoya-laptop: $ ssh usuario@servidor-destino -D5000
+</code></pre>
+
+<p><strong>Copias con scp</strong></p>
+
+<pre><code>amoya@amoya-laptop: $ scp archivo-origen usuario@servidor-destino:path-destino
+</code></pre>
+
+<h3 id="recuperación-de-disco-con-fallas-boteando-con-un-livecd">Recuperación de disco con fallas (boteando con un liveCD):</h3>
+
+<pre><code>amoya@amoya-laptop: $ sudo fdisk -l  #Para ver el punto de montaje
+amoya@amoya-laptop: $ mount #Chequea el tipo de filesystem
+amoya@amoya-laptop: $ sudo fsck -y -t ext3 /dev/sda1 #Para ext3 montado en /dev/sda1
+</code></pre>
+
+<h3 id="miscelaneos">Miscelaneos:</h3>
+
+<p><strong>Colocar la tilde en la consola:</strong></p>
+
+<p>Alt Gr + ñ</p>
+
+<p><strong>Buscar archivos:</strong></p>
+
+<pre><code>amoya@amoya-laptop: $ find path-base -name &quot;nombrearchivo&quot;
+</code></pre>
+
+<p><strong>Memoria libre en el sistema:</strong></p>
+
+<pre><code>amoya@amoya-laptop: $ free -m
+</code></pre>
+
+<p><strong>Espacio libre en disco:</strong></p>
+
+<pre><code>amoya@amoya-laptop: $ df -h
+</code></pre>
+
+<p><strong>Crear Enlace Simbolico:</strong></p>
+
+<pre><code>amoya@amoya-laptop: $ ln -s /ruta/real/archivo /ruta/destino/del/enlace
+</code></pre>
+
+<p>Listo, hasta un proximo post de tips para sysadmins!</p>
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

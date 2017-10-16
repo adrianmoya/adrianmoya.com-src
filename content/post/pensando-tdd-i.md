@@ -1,6 +1,6 @@
 +++
 categories = ["TDD", "Testing"]
-date = "2016-09-16T14:51:09-05:00"
+date = "2017-10-16T00:00:00-05:00"
 description = ""
 keywords = ["tdd"]
 title = "Pensando TDD (I)"

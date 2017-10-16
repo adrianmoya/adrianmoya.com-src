@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cucumber on Adrian Moya</title>
+    <link>http://adrianmoya.com/categories/cucumber/</link>
+    <description>Recent content in Cucumber on Adrian Moya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-us</language>
+    <lastBuildDate>Sun, 29 Sep 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://adrianmoya.com/categories/cucumber/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Aplicando el patrón Page Object en la automatización de escenarios</title>
+      <link>http://adrianmoya.com/2013/09/aplicando-el-patron-page-object-en-la-automatizacion-de-escenarios/</link>
+      <pubDate>Sun, 29 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/09/aplicando-el-patron-page-object-en-la-automatizacion-de-escenarios/</guid>
+      <description>&lt;p&gt;En los últimos dos post, he comentado acerca de patrones y técnicas para las pruebas unitarias. En esta oportunidad, hablaré de un patrón que podemos utilizar a nivel de nuestras pruebas de extremo a extremo (end to end). Se trata del patron Page Object.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BDD de historias: un ejemplo concreto en Java</title>
+      <link>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/</link>
+      <pubDate>Mon, 22 Apr 2013 00:00:01 -0500</pubDate>
+      
+      <guid>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/</guid>
+      <description>&lt;p&gt;A continuación, veamos como es la implementación en Java del ejemplo presentado en &lt;a href=&#34;http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/&#34;&gt;BDD de historias: un ejemplo concreto&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

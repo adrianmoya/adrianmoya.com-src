@@ -3,6 +3,7 @@ languageCode = "es-us"
 title = "Adrian Moya"
 theme = "hyde-x"
 disqusShortname = "blogdeadrianmoya"
+publishDir = "docs"
 
 [permalinks]
 octopost = "/:year/:month/:slug/"
