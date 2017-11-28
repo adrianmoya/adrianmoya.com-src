@@ -91,13 +91,11 @@
     <br/>
     <a class="label" href="http://adrianmoya.com/categories/tdd">TDD</a><a class="label" href="http://adrianmoya.com/categories/testing">Testing</a>
     </span>
-    
-
-<p>Siempre escuchamos que TDD es una técnica de diseño que es guiada por pruebas. Pero dado que tenemos que escribir la prueba primero, nuestra mente comienza a pensar en términos de pruebas en lugar de diseño. Entonces comenzamos a pensar en casos borde, malas entradas, y cosas que son importante pensar, pero desvían nuestra atención del objetivo principal de la técnica, que es diseñar.</p>
+    <p>Siempre escuchamos que TDD es una técnica de diseño que es guiada por pruebas. Pero dado que tenemos que escribir la prueba primero, nuestra mente comienza a pensar en términos de pruebas en lugar de diseño. Entonces comenzamos a pensar en casos borde, malas entradas, y cosas que son importante pensar, pero desvían nuestra atención del objetivo principal de la técnica, que es diseñar.</p>
 
 <p>En esta entrada voy a volcar mi tren de pensamientos cuando diseño a través de TDD, para que puedan contrastar la diferencia acerca de pensar enfocado en pruebas y pensar acerca de diseño. Así mismo, cada decisión de diseño va a resultar en código para nuestra prueba.</p>
 
-<!-- more -->
+<p></p>
 
 <h1 id="el-ejercicio">El ejercicio</h1>
 
@@ -111,8 +109,8 @@
 
 public class MoneyConverterTest {
 
-	private MoneyConverter converter;
-	
+    private MoneyConverter converter;
+    
 }
 </code></pre>
 
@@ -124,10 +122,10 @@ public class MoneyConverterTest {
 
 <pre><code class="language-java">@Test
 public void itConvertsUSDtoCOP(){
-	//Given
-	BigDecimal amountToConvert = new BigDecimal(&quot;10.00&quot;);
-	//When
-	BigDecimal result = converter.convertUSDtoCOP(amountToConvert);
+    //Given
+    BigDecimal amountToConvert = new BigDecimal(&quot;10.00&quot;);
+    //When
+    BigDecimal result = converter.convertUSDtoCOP(amountToConvert);
 
 }
 </code></pre>
@@ -140,10 +138,10 @@ import java.math.BigDecimal;
 
 public class MoneyConverter {
 
-	public BigDecimal convertUSDtoCOP(BigDecimal bigDecimal) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public BigDecimal convertUSDtoCOP(BigDecimal bigDecimal) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }
 </code></pre>
@@ -154,8 +152,8 @@ public class MoneyConverter {
 
 <pre><code class="language-java">@Before
 public void setup(){
-	BigDecimal usdToCopExchangeRate = new BigDecimal(&quot;2920.8167&quot;); //Today! 
-	converter = new MoneyConverter(usdToCopExchangeRate);
+    BigDecimal usdToCopExchangeRate = new BigDecimal(&quot;2920.8167&quot;); //Today! 
+    converter = new MoneyConverter(usdToCopExchangeRate);
 }
 </code></pre>
 
@@ -167,14 +165,14 @@ import java.math.BigDecimal;
 
 public class MoneyConverter {
 
-	public MoneyConverter(BigDecimal usdToCopExchangeRate) {
-		// TODO Auto-generated constructor stub
-	}
+    public MoneyConverter(BigDecimal usdToCopExchangeRate) {
+        // TODO Auto-generated constructor stub
+    }
 
-	public BigDecimal convertUSDtoCOP(BigDecimal bigDecimal) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public BigDecimal convertUSDtoCOP(BigDecimal bigDecimal) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }
 </code></pre>
@@ -183,12 +181,12 @@ public class MoneyConverter {
 
 <pre><code class="language-java">@Test
 public void itConvertsUSDtoCOP(){
-	//Given
-	BigDecimal amountToConvert = new BigDecimal(&quot;10.00&quot;);
-	//When
-	BigDecimal result = converter.convertUSDtoCOP(amountToConvert);
-	//Then
-	assertEquals(new BigDecimal(&quot;29208.20&quot;), result);
+    //Given
+    BigDecimal amountToConvert = new BigDecimal(&quot;10.00&quot;);
+    //When
+    BigDecimal result = converter.convertUSDtoCOP(amountToConvert);
+    //Then
+    assertEquals(new BigDecimal(&quot;29208.20&quot;), result);
 }
 </code></pre>
 
@@ -199,17 +197,17 @@ public void itConvertsUSDtoCOP(){
 <p>Voy a añadir una implementación para que pase la prueba:</p>
 
 <pre><code class="language-java">public class MoneyConverter {
-	
-	private static final int SCALE = 2; 
-	private BigDecimal usdToCopExchangeRate;
+    
+    private static final int SCALE = 2; 
+    private BigDecimal usdToCopExchangeRate;
 
-	public MoneyConverter(BigDecimal usdToCopExchangeRate) {
-		this.usdToCopExchangeRate = usdToCopExchangeRate.setScale(SCALE);
-	}
+    public MoneyConverter(BigDecimal usdToCopExchangeRate) {
+        this.usdToCopExchangeRate = usdToCopExchangeRate.setScale(SCALE);
+    }
 
-	public BigDecimal convertUSDtoCOP(BigDecimal amountInUSD) {
-		return amountInUSD.multiply(usdToCopExchangeRate).setScale(SCALE);
-	}
+    public BigDecimal convertUSDtoCOP(BigDecimal amountInUSD) {
+        return amountInUSD.multiply(usdToCopExchangeRate).setScale(SCALE);
+    }
 
 }
 </code></pre>
@@ -223,7 +221,6 @@ public void itConvertsUSDtoCOP(){
 <p>Finalmente, si mi aplicación solo necesita convertir entre dólares y pesos, sé que la tasa de cambio no va a ser tan estable como quisiera. Así que ¿Cómo podría obtener la tasa actualizada para la conversión? En el próximo artículo, voy a diseñar esa parte usando TDD e introduciré un poco del uso de dobles.</p>
 
 <p>Descarga el código de este artículo en <a href="https://github.com/adrianmoya/moneyconverter-tdd/archive/firstpass.tar.gz">Github</a>.</p>
-
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>
     <span class='st_twitter_large' displayText='Tweet'></span>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Pensando TDD (II) &middot; </title>
+
+  
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="tdd">
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-32342484-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+        <img src="https://www.gravatar.com/avatar/6d34a1145039fce454dea36c5464cf77?s=200"
+             alt="gravatar" title="">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/adrianmoya/"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2017 <a href="http://adrianmoya.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Pensando TDD (II)</h1>
+    <span class="post-date">28/11/2017 &middot; Lectura de 5 minutos  &middot; <a href="http://adrianmoya.com/post/pensando-tdd-ii/#disqus_thread">Comentarios</a>
+
+    
+    <br/>
+    <a class="label" href="http://adrianmoya.com/categories/tdd">TDD</a><a class="label" href="http://adrianmoya.com/categories/testing">Testing</a>
+    </span>
+    <p>En mi <a href="/post/pensando-tdd-i/">artículo anterior</a>, exploramos el tren de pensamientos cuando se usa desarrollo guiado por pruebas (TDD) diseñando un componente para convertir dinero de USD a COP. En esta segunda parte, añadiré algo de diseño adicional e introduciré el tema de los dobles.</p>
+
+<p></p>
+
+<p>Hasta ahora, hemos diseñado un componente <code>MoneyConverter</code> con un método <code>convertUSDtoCOP()</code> que usa una tasa de conversión fija como parámetro del constructor. Obviamente, la tasa de conversión va a variar con el tiempo y vamos a querer obtener la tasa actual al momento de hacer la conversión para tener resultados reales.</p>
+
+<p>Siguiendo el principio de responsabilidad simple, queremos que otro componente se encargue de obtener la última tasa de cambio entre ambas monedas.</p>
+
+<h1 id="introduciendo-colaboradores">Introduciendo colaboradores</h1>
+
+<p>Dado que estoy diseñando el <code>MoneyConverter</code> usando TDD, los colaboradores serán introducidos como dobles (comúnmente conocidos como mocks). Para esto, añado la dependencia de Mockito al proyecto, pues esta es la librería que uso para mocking en Java. Para este ejemplo, es simplemente añadirla al pom.xml:</p>
+
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.mockito&lt;/groupId&gt;
+    &lt;artifactId&gt;mockito-core&lt;/artifactId&gt;
+    &lt;version&gt;2.8.47&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>Luego, imagino a este colaborador como un servicio, al cual le llamaré <code>ExchangeRateService</code>. Declararé un mock en mi prueba para comenzar a usarlo.</p>
+
+<pre><code class="language-java">@Mock private ExchangeRateService mockedExchageRateService;
+</code></pre>
+
+<p>Para usar este doble, debo inicializarlo durante el <code>setup()</code> de la prueba:</p>
+
+<pre><code class="language-java">MockitoAnnotations.initMocks(this);
+</code></pre>
+
+<p>El IDE se va a quejar inmediatamente acerca de que <code>ExchangeRateService</code> no existe. Deja que el IDE lo cree por tí, como una interface. ¿Por qué una interface? Pudiera ser una clase concreta, pero prefiero trabajar en una interface en este punto porque quiero enfocar mis esfuerzos de diseño en el protocolo usado para colaborar con ese objeto, osea, lo que voy a enviar y lo que voy a recibir de él. Cuando comience a diseñar el componente <code>ExchangeRateService</code>, será más fácil implementar esta interface para respetar el protocolo que voy a establecer ahora mismo. Aqui está lo que produjo el IDE:</p>
+
+<pre><code class="language-java">package net.velocitypartners.money;
+ 
+public interface ExchangeRateService {
+}
+</code></pre>
+
+<h1 id="obteniendo-la-tasa-de-cambio">Obteniendo la tasa de cambio</h1>
+
+<p>El próximo paso es pensar como quiero obtener la tasa de cambio del servicio. Creo que llamaré a un método de nombre <code>getExchangeRate(String fromCurrencyCode, String toCurrencyCode)</code>, pasando un par de códigos de moneda y esperando un resultado <code>BigDecimal</code>. Estoy decidiendo que este servicio debería manejar cualquier moneda como parámetro, aunque solo pasaré las que me interesan en este momento, COP y USD. Esto es porque pienso envolver un servicio externo con éste, asi que dejo la API abierta para el futuro. Añadamos esto a la interface de manera que quede como de esta manera:</p>
+
+<pre><code class="language-java">public interface ExchangeRateService {
+    BigDecimal getExchangeRate(String fromCurrencyCode, String toCurrencyCode);
+}
+</code></pre>
+
+<h1 id="qué-tan-frecuentemente-debería-actualizar-la-tasa-de-cambio">¿Qué tan frecuentemente debería actualizar la tasa de cambio?</h1>
+
+<p>La frecuencia de las actualizaciones es también otra decisión de diseño. Para este ejemplo sencillo, decido consultar la tasa de cambio en cada llamada, y expresaré esto a través de mi prueba. Puede que esta no sea la mejor decisión a nivel de rendimiento, pero funcionará para el ejemplo. Comencemos entonces modificando el método <code>setup()</code> de la prueba para enviar el <code>ExchangeRateService</code> en el constructor del <code>MoneyConverter</code> en lugar de la tasa actual. El IDE va a quejarse de que no existe un constructor con ese tipo de parámetro, asi que le pedimos que cambie el constructor actual. Esto va a romper el constructor, pero por ahora, comentaré el código del constructor para poder seguir configurando el test. También voy a remover el <code>usdToCopExchangeRate</code>, que ya no es necesario. Mi método de <code>setup()</code> se ve asi:</p>
+
+<pre><code class="language-java">@Before public void setup(){ 
+    MockitoAnnotations.initMocks(this);  
+    converter = new MoneyConverter(mockedExchangeRateService); 
+}
+</code></pre>
+
+<p>Ahora, cambiemos la prueba: en la sección &ldquo;Given&rdquo;, voy a preparar un valor para cuando se llame al servicio de conversión, en este caso, voy a mantener la tasa de conversión de 2920.82 pesos por dólar del artículo anterior, para no tener que modificar mi aserción. La sección &ldquo;When&rdquo; va a ser la misma, llamando al método <code>convertUSDtoCOP()</code>. En la sección &ldquo;Then&rdquo;, quiero verificar que mi componente interactua con el <code>ExchangeRateService</code> de la manera que he decidido, actualizando la tasa con cada llamado al servicio de conversión. Usare la función <code>verify</code> de Mockito para esto. El código final se ve de esta manera:</p>
+
+<pre><code class="language-java">@Test public void itConvertsUSDtoCOP(){ 
+    //Given 
+    BigDecimal amountToConvert = new BigDecimal(&quot;10.00&quot;); 
+    when(mockedExchangeRateService.getExchangeRate(&quot;USD&quot;, &quot;COP&quot;)).thenReturn(new BigDecimal(&quot;2920.82&quot;)); 
+    //When 
+    BigDecimal result = converter.convertUSDtoCOP(amountToConvert); 
+    //Then 
+    assertEquals(new BigDecimal(&quot;29208.20&quot;), result); 
+    verify(mockedExchangeRateService).getExchangeRate(&quot;USD&quot;, &quot;COP&quot;); 
+}
+</code></pre>
+
+<p>Asi tenemos nuestra prueba que falla, expresando nuestro diseño. Podemos ahora implementar los cambios para hacerla pasar:</p>
+
+<pre><code class="language-java">public class MoneyConverter { 
+    private static final int SCALE = 2;  
+    private ExchangeRateService exchangeRateService;
+ 
+    public MoneyConverter(ExchangeRateService exchangeRateService) { 
+        this.exchangeRateService = exchangeRateService; 
+    }
+ 
+    public BigDecimal convertUSDtoCOP(BigDecimal amountInUSD) { 
+        BigDecimal usdToCopExchangeRate = exchangeRateService.getExchangeRate(&quot;USD&quot;, &quot;COP&quot;); 
+        return amountInUSD.multiply(usdToCopExchangeRate).setScale(SCALE); 
+    }
+}
+</code></pre>
+
+<p>Ejecutamos la prueba y bingo! prueba en verde. Hemos codificado nuestro diseño de manera exitosa. Puedes ver el código de este artículo en mi <a href="https://github.com/adrianmoya/moneyconverter-tdd/">Github</a>, haciendo checkout de la rama &ldquo;part2&rdquo;.</p>
+
+<h1 id="cerrando">Cerrando</h1>
+
+<p>Espero que estos dos artículos expongan la idea de como aplicar el pensamiento del desarrollo guiado por pruebas en tus proyectos. Recuerda que aunque son tests, el propósito real es crear el API y expresar la relación y el protocolo de comunicación entre los componentes. Un buen conocimiento de las herramientas y librerías usadas te hará sentir en casa cuando estes aplicando esta técnica. Feliz desarrollo guiado por pruebas!</p>
+  </div>
+  <div><span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_sharethis_large' displayText='ShareThis'></span>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "blogdeadrianmoya";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "blogdeadrianmoya";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-32342484-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "0c419bc1-abc8-46e5-881e-16e6f73a9665", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
+</body>
+</html>
+

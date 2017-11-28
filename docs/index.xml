@@ -6,10 +6,21 @@
     <description>Recent content on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Mon, 16 Oct 2017 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 28 Nov 2017 00:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://adrianmoya.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pensando TDD (II)</title>
+      <link>http://adrianmoya.com/post/pensando-tdd-ii/</link>
+      <pubDate>Tue, 28 Nov 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://adrianmoya.com/post/pensando-tdd-ii/</guid>
+      <description>&lt;p&gt;En mi &lt;a href=&#34;http://adrianmoya.com/post/pensando-tdd-i/&#34;&gt;artículo anterior&lt;/a&gt;, exploramos el tren de pensamientos cuando se usa desarrollo guiado por pruebas (TDD) diseñando un componente para convertir dinero de USD a COP. En esta segunda parte, añadiré algo de diseño adicional e introduciré el tema de los dobles.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Pensando TDD (I)</title>
@@ -17,8 +28,11 @@
       <pubDate>Mon, 16 Oct 2017 00:00:00 -0500</pubDate>
       
       <guid>http://adrianmoya.com/post/pensando-tdd-i/</guid>
-      <description>Siempre escuchamos que TDD es una técnica de diseño que es guiada por pruebas. Pero dado que tenemos que escribir la prueba primero, nuestra mente comienza a pensar en términos de pruebas en lugar de diseño. Entonces comenzamos a pensar en casos borde, malas entradas, y cosas que son importante pensar, pero desvían nuestra atención del objetivo principal de la técnica, que es diseñar.
-En esta entrada voy a volcar mi tren de pensamientos cuando diseño a través de TDD, para que puedan contrastar la diferencia acerca de pensar enfocado en pruebas y pensar acerca de diseño.</description>
+      <description>&lt;p&gt;Siempre escuchamos que TDD es una técnica de diseño que es guiada por pruebas. Pero dado que tenemos que escribir la prueba primero, nuestra mente comienza a pensar en términos de pruebas en lugar de diseño. Entonces comenzamos a pensar en casos borde, malas entradas, y cosas que son importante pensar, pero desvían nuestra atención del objetivo principal de la técnica, que es diseñar.&lt;/p&gt;
+
+&lt;p&gt;En esta entrada voy a volcar mi tren de pensamientos cuando diseño a través de TDD, para que puedan contrastar la diferencia acerca de pensar enfocado en pruebas y pensar acerca de diseño. Así mismo, cada decisión de diseño va a resultar en código para nuestra prueba.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>

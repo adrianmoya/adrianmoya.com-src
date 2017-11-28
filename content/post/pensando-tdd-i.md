@@ -10,7 +10,7 @@ Siempre escuchamos que TDD es una técnica de diseño que es guiada por pruebas.
 
 En esta entrada voy a volcar mi tren de pensamientos cuando diseño a través de TDD, para que puedan contrastar la diferencia acerca de pensar enfocado en pruebas y pensar acerca de diseño. Así mismo, cada decisión de diseño va a resultar en código para nuestra prueba.
 
-<!-- more -->
+<!--more-->
 
 # El ejercicio
 
