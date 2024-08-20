@@ -91,48 +91,37 @@
     <br/>
     <a class="label" href="http://adrianmoya.com/categories/turnkeylinux">TurnkeyLinux</a>
     </span>
-    <p>Para algunas aplicaciones de turnkeylinux, es importante fijar las fechas y horas del sistema antes de comenzar a trabajar. Por ejemplo, si estamos instalando un blog o foro, y queremos saber la fecha y hora exacta en que se produce una publicación. O si estamos usando una herramienta de control de incidencias, y necesitamos precisión en cuanto a la fecha y hora en que se crea y responde una incidencia. Finalmente, en aplicaciones de base de datos, si es importante realizar una auditoria, es importante que el sistema refleje correctamente las fechas y horas de los registros de la base de datos.
-
-Al desplegar una aplicación turnkeylinux, esta viene configurada por defecto en la zona horaria UTC, a partir de la cual se calculan el resto de las zonas horarias. Configurar la zona horaria que nos interesa es muy sencillo:</p>
-
+    <p>Para algunas aplicaciones de turnkeylinux, es importante fijar las fechas y horas del sistema antes de comenzar a trabajar. Por ejemplo, si estamos instalando un blog o foro, y queremos saber la fecha y hora exacta en que se produce una publicación. O si estamos usando una herramienta de control de incidencias, y necesitamos precisión en cuanto a la fecha y hora en que se crea y responde una incidencia. Finalmente, en aplicaciones de base de datos, si es importante realizar una auditoria, es importante que el sistema refleje correctamente las fechas y horas de los registros de la base de datos.</p>
+<p>Al desplegar una aplicación turnkeylinux, esta viene configurada por defecto en la zona horaria UTC, a partir de la cual se calculan el resto de las zonas horarias. Configurar la zona horaria que nos interesa es muy sencillo:</p>
 <h2 id="configurando-la-zona-horaria-via-la-interface-de-administración-webmin">Configurando la zona horaria via la interface de administración webmin</h2>
-
 <p>Por defecto, turnkeylinux no incluye el modulo para manejar la hora del sistema, por lo que procedemos a instalarlo:</p>
-
 <ol>
-<li>Accedemos a webmin apuntando nuestro navegador a <a href="https://ip-de-la-aplicación:12321">https://ip-de-la-aplicación:12321</a>, haciendo login como root con la contraseña que hayamos configurado al momento de la instalación.</li>
+<li>Accedemos a webmin apuntando nuestro navegador a https://ip-de-la-aplicación:12321, haciendo login como root con la contraseña que hayamos configurado al momento de la instalación.</li>
 </ol>
-
-<p><img src="/images/2011/08/turnkey-login.png" alt="" /></p>
-
-<ol>
+<p><img src="/images/2011/08/turnkey-login.png" alt=""></p>
+<ol start="2">
 <li>En el menu principal, seleccionamos System-&gt;Software Packages, y en la sección Install a New Package seleccionamos Package from APT y colocamos webmin-time como el nombre del paquete. Procedemos a hacer click en el botón Install.</li>
 </ol>
-
-<p><img src="/images/2011/08/tkl-softwarepackages.png" alt="" /></p>
-
-<ol>
+<p><img src="/images/2011/08/tkl-softwarepackages.png" alt=""></p>
+<ol start="3">
 <li>Una vez que confirmamos que el modulo se ha instalado correctamente, seguimos el enlace de Return to module index. Ahora tendremos disponible en el menu System la opción System Time.</li>
 </ol>
-
-<p><img src="/images/2011/08/tkl-installpackage.png" alt="" /></p>
-
-<ol>
+<p><img src="/images/2011/08/tkl-installpackage.png" alt=""></p>
+<ol start="4">
 <li>Accedemos a la opción System Time, y seleccionamos Change timezone. Alli podremos establecer nuestra zona horaria y automáticamente el servidor tomará la fecha y hora correspondiente.
-<img src="/images/2011/08/tkl-systemtime-1.png" alt="" />
-<img src="/images/2011/08/tkl-systemtime-2.png" alt="" /></li>
+<img src="/images/2011/08/tkl-systemtime-1.png" alt="">
+<img src="/images/2011/08/tkl-systemtime-2.png" alt=""></li>
 </ol>
-
 <h2 id="configurando-la-zona-horaria-via-la-linea-de-comando">Configurando la zona horaria via la linea de comando</h2>
-
 <ol>
-<li><p>Hacemos ssh a nuestro servidor como root, usando el password que establecimos durante la instalación.</p></li>
-
-<li><p>Ejecutamos el comando dpkg-reconfigure tzdata. Se nos presentara una lista desplegable donde podremos seleccionar nuestra zona horaria.</p></li>
+<li>
+<p>Hacemos ssh a nuestro servidor como root, usando el password que establecimos durante la instalación.</p>
+</li>
+<li>
+<p>Ejecutamos el comando dpkg-reconfigure tzdata. Se nos presentara una lista desplegable donde podremos seleccionar nuestra zona horaria.</p>
+</li>
 </ol>
-
-<p><img src="/images/2011/08/console-tzdata.png" alt="" /></p>
-
+<p><img src="/images/2011/08/console-tzdata.png" alt=""></p>
 <p>Eso es todo, ahora nuestro servidor estara trabajando con la fecha y hora de nuestro país, y podremos proceder a comenzar a utilizar nuestra aplicación Turnkeylinux.</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

@@ -92,73 +92,50 @@
     <a class="label" href="http://adrianmoya.com/categories/unit-testing">Unit Testing</a><a class="label" href="http://adrianmoya.com/categories/junit">JUnit</a><a class="label" href="http://adrianmoya.com/categories/java">Java</a>
     </span>
     <p>Las pruebas unitarias que dependen del tiempo son siempre complicadas. La manera aceptada de hacerlas es envolver todas las llamadas para obtener la hora del sistema en un objeto &ldquo;Clock&rdquo;. Comenzando con Java 8, <a href="https://jcp.org/en/jsr/detail?id=310">la nueva API de fechas y hora</a> introdujo el objeto <a href="https://docs.oracle.com/javase/8/docs/api/java/time/Clock.html">Clock</a> al lenguaje, que hace más simple inyectar en una clase y sustituir por un doble en una prueba. Antes de eso, en Java 7 y anteriores, era tu responsabilidad crear dicho objeto.</p>
-
-<p></p>
-
 <p>Recientemente me tocó trabajar con un pedazo de código legado que manipulaba la hora y la fecha, y el autor original no se tomó la molestia de envolver estas llamadas. En lugar de eso, el código contenía las siguientes llamadas en diversas partes:</p>
-
-<pre><code class="language-java">//Obtener una instancia de Calendar usando el método 
-//estático getInstance()
-Calendar cal = Calendar.getInstance();
-//Manipular el calendario para obtener una fecha 20 días después
-cal.add(Calendar.DATE, 20);
-//Obtener el resultado como un objeto Date
-Date finalDate = cal.getTime();
-</code></pre>
-
-<p>También podías encontrar cosas como esta:</p>
-
-<pre><code class="language-java">//Obtener la fecha/hora actual:
-Date now = new Date();
-</code></pre>
-
-<p>Esto es un patrón común cuando se manipula el tiempo en aplicaciones legado. Para cubrir este tipo de código con pruebas, puedes usar algunas herramientas como <a href="https://github.com/jayway/powermock">Powermock</a> y sustituir las respuestas de las llamadas estáticas para retornar dobles con las horas y fechas fijadas cuando llamas <code>cal.getTime()</code>. Pero esto no te ayudará con las operaciones como añadir horas o días. Para el segundo caso, que obtiene la hora actual, no puedes hacer nada. Esta clase necesita una refactorización grande para poder hacerla amigable a las pruebas.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//Obtener una instancia de Calendar usando el método 
+</span><span style="color:#75715e">//estático getInstance()
+</span><span style="color:#75715e"></span>Calendar cal <span style="color:#f92672">=</span> Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">//Manipular el calendario para obtener una fecha 20 días después
+</span><span style="color:#75715e"></span>cal<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">DATE</span><span style="color:#f92672">,</span> 20<span style="color:#f92672">);</span>
+<span style="color:#75715e">//Obtener el resultado como un objeto Date
+</span><span style="color:#75715e"></span>Date finalDate <span style="color:#f92672">=</span> cal<span style="color:#f92672">.</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">();</span>
+</code></pre></div><p>También podías encontrar cosas como esta:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//Obtener la fecha/hora actual:
+</span><span style="color:#75715e"></span>Date now <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">();</span>
+</code></pre></div><p>Esto es un patrón común cuando se manipula el tiempo en aplicaciones legado. Para cubrir este tipo de código con pruebas, puedes usar algunas herramientas como <a href="https://github.com/jayway/powermock">Powermock</a> y sustituir las respuestas de las llamadas estáticas para retornar dobles con las horas y fechas fijadas cuando llamas <code>cal.getTime()</code>. Pero esto no te ayudará con las operaciones como añadir horas o días. Para el segundo caso, que obtiene la hora actual, no puedes hacer nada. Esta clase necesita una refactorización grande para poder hacerla amigable a las pruebas.</p>
 <h2 id="joda-time">Joda-Time</h2>
-
 <p><a href="http://www.joda.org/joda-time/index.html">Joda-Time</a> es una librería muy común usada para manipular fechas y tiempo en java, y se convirtió en el reemplazo <em>de facto</em> para las clases propias de Java. Incluso si tu proyecto no la usó desde el comienzo, esta librería incluye una poderosa clase utilitaria que <a href="http://www.joda.org/joda-time/userguide.html#Change_the_Current_Time">puede fijar una hora definida para usar en pruebas unitarias</a>. Todos los objetos en la librería que obtienen la hora actual son afectados por esta clase. La puedes usar en la preparación de tu prueba unitaria de esta manera:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Before</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span><span style="color:#f92672">(){</span>
+    <span style="color:#75715e">//El objeto DateTime de Joda-Time recibe el año, mes, día, 
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//hora, minuto, segundo como parámetro
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//Así establecemos la fecha de Enero 01 de 2016 a las 09:00:00am
+</span><span style="color:#75715e"></span>    DateTime fixedDateTime <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DateTime<span style="color:#f92672">(</span>2016<span style="color:#f92672">,</span> 1<span style="color:#f92672">,</span> 1<span style="color:#f92672">,</span> 9<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> 0<span style="color:#f92672">);</span>
 
-<pre><code class="language-java">@Before
-public void setup(){
-    //El objeto DateTime de Joda-Time recibe el año, mes, día, 
-    //hora, minuto, segundo como parámetro
-    //Así establecemos la fecha de Enero 01 de 2016 a las 09:00:00am
-    DateTime fixedDateTime = new DateTime(2016, 1, 1, 9, 0, 0);
+    <span style="color:#75715e">//Fijamos la fecha a la hora establecida
+</span><span style="color:#75715e"></span>    DateTimeUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">setCurrentMillisFixed</span><span style="color:#f92672">(</span>fixedDateTime<span style="color:#f92672">.</span><span style="color:#a6e22e">getMillis</span><span style="color:#f92672">());</span>
+<span style="color:#f92672">}</span>
 
-    //Fijamos la fecha a la hora establecida
-    DateTimeUtils.setCurrentMillisFixed(fixedDateTime.getMillis());
-}
-
-@After
-public void teardown(){
-    //Reiniciamos la librería para que use la hora actual del sistema.
-    DateTimeUtils.setCurrentMillisSystem();
-}
-</code></pre>
-
-<p>De esta manera podemos establecer una hora/fecha fija antes de cada prueba, y reiniciar a la hora del sistema una vez que la prueba finalice. Ahora, ¿cómo podemos hacer que nuestro código legado respete esta regla? Joda-Time provee una manera de convertir los objetos de la librería a los objetos originales de Java. Puedes leer acerca de esta interoperabilidad <a href="http://www.joda.org/joda-time/userguide.html#JDK_Interoperability">en la documentación</a>. Aprovecharemos ésto y haremos un ligero cambio en nuestra aplicación legado:</p>
-
-<pre><code class="language-java">//Para obtener una instancia de Calendar
-Calendar cal = new DateTime().toCalendar(Locale.getDefault());
-//Manipular el calendario para obtener una fecha 20 días después
-cal.add(Calendar.DATE, 20);
-//Obtener el resultado como un objeto Date
-Date finalDate = cal.getTime();
-</code></pre>
-
-<pre><code class="language-java">//Obtener la fecha/hora actual:
-Date now = new DateTime().toDate();
-</code></pre>
-
-<p>Como puedes ver, estamos usando el objeto DateTime de la librería Joda-Time como un proxy para crear los objetos Calendar y Date del JDK. No necesitas realizar ningún otro cambio en tu código legado, va a funcionar tal como lo hace actualmente. La diferencia es que ahora cuando escribas una prueba unitaria para éste código, obtienes un resultado determinístico ya que has fijado la hora del sistema a un valor que puedes usar como base para realizar tus aserciones. En el caso del ejemplo, puedes asegurarte de que el objeto Date resultante está 20 días después del 1 de Enero de 2016 a las 9am.</p>
-
-<pre><code class="language-java">//Espero obtener una fecha 20 días después
-DateTime expectedDate = new DateTime(2016, 1, 21, 9, 0, 0); 
-assertThat(myTestSubject.getExpectedDate(), is(expectedDate.toDate()));
-</code></pre>
-
-<h2 id="cerrando">Cerrando</h2>
-
+<span style="color:#a6e22e">@After</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">teardown</span><span style="color:#f92672">(){</span>
+    <span style="color:#75715e">//Reiniciamos la librería para que use la hora actual del sistema.
+</span><span style="color:#75715e"></span>    DateTimeUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">setCurrentMillisSystem</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>De esta manera podemos establecer una hora/fecha fija antes de cada prueba, y reiniciar a la hora del sistema una vez que la prueba finalice. Ahora, ¿cómo podemos hacer que nuestro código legado respete esta regla? Joda-Time provee una manera de convertir los objetos de la librería a los objetos originales de Java. Puedes leer acerca de esta interoperabilidad <a href="http://www.joda.org/joda-time/userguide.html#JDK_Interoperability">en la documentación</a>. Aprovecharemos ésto y haremos un ligero cambio en nuestra aplicación legado:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//Para obtener una instancia de Calendar
+</span><span style="color:#75715e"></span>Calendar cal <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DateTime<span style="color:#f92672">().</span><span style="color:#a6e22e">toCalendar</span><span style="color:#f92672">(</span>Locale<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">());</span>
+<span style="color:#75715e">//Manipular el calendario para obtener una fecha 20 días después
+</span><span style="color:#75715e"></span>cal<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">DATE</span><span style="color:#f92672">,</span> 20<span style="color:#f92672">);</span>
+<span style="color:#75715e">//Obtener el resultado como un objeto Date
+</span><span style="color:#75715e"></span>Date finalDate <span style="color:#f92672">=</span> cal<span style="color:#f92672">.</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">();</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//Obtener la fecha/hora actual:
+</span><span style="color:#75715e"></span>Date now <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DateTime<span style="color:#f92672">().</span><span style="color:#a6e22e">toDate</span><span style="color:#f92672">();</span>
+</code></pre></div><p>Como puedes ver, estamos usando el objeto DateTime de la librería Joda-Time como un proxy para crear los objetos Calendar y Date del JDK. No necesitas realizar ningún otro cambio en tu código legado, va a funcionar tal como lo hace actualmente. La diferencia es que ahora cuando escribas una prueba unitaria para éste código, obtienes un resultado determinístico ya que has fijado la hora del sistema a un valor que puedes usar como base para realizar tus aserciones. En el caso del ejemplo, puedes asegurarte de que el objeto Date resultante está 20 días después del 1 de Enero de 2016 a las 9am.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//Espero obtener una fecha 20 días después
+</span><span style="color:#75715e"></span>DateTime expectedDate <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DateTime<span style="color:#f92672">(</span>2016<span style="color:#f92672">,</span> 1<span style="color:#f92672">,</span> 21<span style="color:#f92672">,</span> 9<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> 0<span style="color:#f92672">);</span> 
+assertThat<span style="color:#f92672">(</span>myTestSubject<span style="color:#f92672">.</span><span style="color:#a6e22e">getExpectedDate</span><span style="color:#f92672">(),</span> is<span style="color:#f92672">(</span>expectedDate<span style="color:#f92672">.</span><span style="color:#a6e22e">toDate</span><span style="color:#f92672">()));</span>
+</code></pre></div><h2 id="cerrando">Cerrando</h2>
 <p>Este truco me ha parecido muy simpático a la hora de probar tiempo en aplicaciones legado sin tener que recurrir a mocking complejo de los objetos de Java. Dado el suficiente tiempo para refactorizar, deberías hacerlo para que la clase utilice los objetos de Joda-Time, extrayendo un objeto Clock para obtener la hora y fecha actuales del sistema. Pero si el tiempo no está disponible, esto puede ayudarte a cubrir tu lógica de negocios con pruebas con un mínimo de impacto en tu aplicación legado. Incluso puedes envolver esto en <a href="https://github.com/junit-team/junit/wiki/Rules">una regla de JUnit</a> para hacerlo más fácil de reutilizar en otras pruebas!</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

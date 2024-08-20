@@ -92,11 +92,7 @@
     <a class="label" href="http://adrianmoya.com/categories/unit-testing">Unit Testing</a><a class="label" href="http://adrianmoya.com/categories/junit">JUnit</a><a class="label" href="http://adrianmoya.com/categories/java">Java</a>
     </span>
     <p>En <a href="/post/pruebas-con-tiempo-en-aplicaciones-legado/">mi artículo anterior</a> revisé algunas técnicas para escribir pruebas que manipularan el tiempo en una aplicación legado. Hoy estaré compartiendo estrategias para escribir código que manipule el tiempo usando Java 8.</p>
-
-<p></p>
-
 <p>Imaginemos que tenemos que escribir una clase que retorne un mensaje de bienvenida basado en el tiempo que ha pasado desde que el usuario entró por última vez al sistema. Aqui está el requermiento:</p>
-
 <table>
 <thead>
 <tr>
@@ -104,106 +100,78 @@
 <th>Mensaje de bienvenida</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>&lt;=10 minutos</td>
 <td>Hola, no te he visto desde hace unos minutos!</td>
 </tr>
-
 <tr>
 <td>&gt; 10 mins, &lt; 24 horas</td>
 <td>&ldquo;Hola, no te he visto desde hace un rato!&rdquo;</td>
 </tr>
-
 <tr>
 <td>&gt;=24 horas &lt; 48 horas</td>
 <td>&ldquo;Hola, no te he visto desde ayer!&rdquo;</td>
 </tr>
-
 <tr>
 <td>&gt;=48 horas</td>
 <td>&ldquo;Hola, no te he visto desde hace mucho tiempo!&rdquo;</td>
 </tr>
 </tbody>
 </table>
-
-<h2 id="escribiendo-clases-que-manipulen-fecha-hora">Escribiendo clases que manipulen fecha/hora</h2>
-
+<h2 id="escribiendo-clases-que-manipulen-fechahora">Escribiendo clases que manipulen fecha/hora</h2>
 <p>Siempre que crees una clase en tu aplicación que trabaje con el tiempo, declara e inyecta un <code>Clock</code> para proveer acceso a la información de hora/tiempo actual. Por ejemplo:</p>
-
-<pre><code class="language-Java">public class GreetingsMessage {
-    private Clock clock;
-    public GreetingsMessage(Clock clock) {
-        this.clock = clock;
-    }
-}
-</code></pre>
-
-<p>Existen diversas opciones para manejar las zonas de tiempo, dependiendo de la necesidad de tu aplicación. Inicializar el reloj con <code>Clock.systemDefaultZone();</code> utilizará la zona de tiempo del sistema. Alternativamente, si la aplicación va a trabajar en múltiples zonas de tiempo, <code>Clock.system(ZoneId zone);</code> permite establecer la zona de tiempo del usuario y ajustarse a esa región.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GreetingsMessage</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> Clock clock<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">GreetingsMessage</span><span style="color:#f92672">(</span>Clock clock<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">clock</span> <span style="color:#f92672">=</span> clock<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Existen diversas opciones para manejar las zonas de tiempo, dependiendo de la necesidad de tu aplicación. Inicializar el reloj con <code>Clock.systemDefaultZone();</code> utilizará la zona de tiempo del sistema. Alternativamente, si la aplicación va a trabajar en múltiples zonas de tiempo, <code>Clock.system(ZoneId zone);</code> permite establecer la zona de tiempo del usuario y ajustarse a esa región.</p>
 <p>Una vez que el reloj se ha definido, crea las fechas y horas pasando el reloj como parámetro:</p>
-
-<pre><code class="language-Java">LocalDateTime currentDateTime = LocalDateTime.now(clock);
-</code></pre>
-
-<p>Todos los métodos del nuevo API para obtener la fecha u hora actual han sido sobrecargados para recibir el reloj como parámetro.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">LocalDateTime currentDateTime <span style="color:#f92672">=</span> LocalDateTime<span style="color:#f92672">.</span><span style="color:#a6e22e">now</span><span style="color:#f92672">(</span>clock<span style="color:#f92672">);</span>
+</code></pre></div><p>Todos los métodos del nuevo API para obtener la fecha u hora actual han sido sobrecargados para recibir el reloj como parámetro.</p>
 <h2 id="preparando-la-prueba">Preparando la prueba</h2>
-
 <p>Ahora, prepara la prueba para el mensaje de bienvenida. Las pruebas requieren entradas fijas para que el usuario pueda hacer aserciones de las reglas de negocio basándose en una fecha u hora fijada (Depender de la hora del sistema para pruebas producirá resultados débiles que no funcionan consistentemente). Aquí esta el código:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GreetingsMessageTest</span> <span style="color:#f92672">{</span>
 
-<pre><code class="language-Java">public class GreetingsMessageTest {
+    <span style="color:#66d9ef">private</span> GreetingsMessage greetingsMessage<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> LocalDateTime REFERENCE_DATE_TIME <span style="color:#f92672">=</span> LocalDateTime<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>2016<span style="color:#f92672">,</span> 4<span style="color:#f92672">,</span> 1<span style="color:#f92672">,</span> 10<span style="color:#f92672">,</span> 0<span style="color:#f92672">);</span> <span style="color:#75715e">//2016-04-01 at 10:00am
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ZoneId defaultZone <span style="color:#f92672">=</span> ZoneId<span style="color:#f92672">.</span><span style="color:#a6e22e">systemDefault</span><span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Clock FIXED_CLOCK <span style="color:#f92672">=</span> Clock<span style="color:#f92672">.</span><span style="color:#a6e22e">fixed</span><span style="color:#f92672">(</span>REFERENCE_DATE_TIME<span style="color:#f92672">.</span><span style="color:#a6e22e">atZone</span><span style="color:#f92672">(</span>defaultZone<span style="color:#f92672">).</span><span style="color:#a6e22e">toInstant</span><span style="color:#f92672">(),</span> defaultZone<span style="color:#f92672">);</span>
 
-    private GreetingsMessage greetingsMessage;
-    private final LocalDateTime REFERENCE_DATE_TIME = LocalDateTime.of(2016, 4, 1, 10, 0); //2016-04-01 at 10:00am
-    private final ZoneId defaultZone = ZoneId.systemDefault();
-    private final Clock FIXED_CLOCK = Clock.fixed(REFERENCE_DATE_TIME.atZone(defaultZone).toInstant(), defaultZone);
-
-    @Before
-    public void setup(){
-        greetingsMessage = new GreetingsMessage(FIXED_CLOCK);
-    }
-}
-</code></pre>
-
-<p>Para este ejemplo, la fecha y hora de referencia ha sido definida como 1 de Abril de 2016 a las 10:00am. Como esto es una prueba, esta bien usar la zona de tiempo por defecto para construir el reloj. La constante <code>FIXED_CLOCK</code> contiene el reloj con la fecha de referencia fijada. Ahora, cada vez que el código llame <code>LocalDateTime.now(clock)</code> va a recibir 1 de Abril de 2016 a las 10:00am. Eso es suficientemente determinístico para escribir pruebas.</p>
-
+    <span style="color:#a6e22e">@Before</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span><span style="color:#f92672">(){</span>
+        greetingsMessage <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GreetingsMessage<span style="color:#f92672">(</span>FIXED_CLOCK<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Para este ejemplo, la fecha y hora de referencia ha sido definida como 1 de Abril de 2016 a las 10:00am. Como esto es una prueba, esta bien usar la zona de tiempo por defecto para construir el reloj. La constante <code>FIXED_CLOCK</code> contiene el reloj con la fecha de referencia fijada. Ahora, cada vez que el código llame <code>LocalDateTime.now(clock)</code> va a recibir 1 de Abril de 2016 a las 10:00am. Eso es suficientemente determinístico para escribir pruebas.</p>
 <h2 id="escribiendo-pruebas-con-tiempo">Escribiendo pruebas con tiempo</h2>
-
 <p>La primera prueba ejecutará el escenario en el que el usuario entró al sistema hace 5 minutos.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a6e22e">@Test</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testGreetingSinceMinutesAgo</span><span style="color:#f92672">(){</span>
+    <span style="color:#75715e">//Given
+</span><span style="color:#75715e"></span>    LocalDateTime lastSeenInstant <span style="color:#f92672">=</span> REFERENCE_DATE_TIME<span style="color:#f92672">.</span><span style="color:#a6e22e">minus</span><span style="color:#f92672">(</span>5<span style="color:#f92672">,</span> ChronoUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">MINUTES</span><span style="color:#f92672">);</span>
 
-<pre><code class="language-Java">@Test
-public void testGreetingSinceMinutesAgo(){
-    //Given
-    LocalDateTime lastSeenInstant = REFERENCE_DATE_TIME.minus(5, ChronoUnit.MINUTES);
+    <span style="color:#75715e">//When
+</span><span style="color:#75715e"></span>    String greeting <span style="color:#f92672">=</span> greetingsMessage<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">(</span>lastSeenInstant<span style="color:#f92672">);</span>
 
-    //When
-    String greeting = greetingsMessage.getMessage(lastSeenInstant);
-
-    //Then
-    assertEquals(&quot;Hello, I haven't see you in a few minutes!&quot;, greeting);
-}
-</code></pre>
-
-<p>El parámetro <code>lastSeen</code> se deriva desde la hora de referencia de la prueba. Este caso usa las 9:55 a.m. del 1 de Abril de 2016, 5 minutos antes de la hora de referencia. <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html"><code>LocalDateTime</code></a> describe métodos que ayudan a calcular un momento en el tiempo partiendo de un valor actual, puedes revisar el API para aprovechar esos métodos en tus pruebas.</p>
-
+    <span style="color:#75715e">//Then
+</span><span style="color:#75715e"></span>    assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello, I haven&#39;t see you in a few minutes!&#34;</span><span style="color:#f92672">,</span> greeting<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>El parámetro <code>lastSeen</code> se deriva desde la hora de referencia de la prueba. Este caso usa las 9:55 a.m. del 1 de Abril de 2016, 5 minutos antes de la hora de referencia. <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html"><code>LocalDateTime</code></a> describe métodos que ayudan a calcular un momento en el tiempo partiendo de un valor actual, puedes revisar el API para aprovechar esos métodos en tus pruebas.</p>
 <p>Tambien puedes probar el escenario de &ldquo;ayer&rdquo; usando un método diferente para restar un número de días de la fecha de referencia:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a6e22e">@Test</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testGreetingSinceYesterday</span><span style="color:#f92672">(){</span>
+    <span style="color:#75715e">//Given
+</span><span style="color:#75715e"></span>    LocalDateTime lastSeen <span style="color:#f92672">=</span> REFERENCE_DATE_TIME<span style="color:#f92672">.</span><span style="color:#a6e22e">minusDays</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
 
-<pre><code class="language-Java">@Test public void testGreetingSinceYesterday(){
-    //Given
-    LocalDateTime lastSeen = REFERENCE_DATE_TIME.minusDays(1);
+    <span style="color:#75715e">//When
+</span><span style="color:#75715e"></span>    String greeting <span style="color:#f92672">=</span> greetingsMessage<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">(</span>lastSeen<span style="color:#f92672">);</span>
 
-    //When
-    String greeting = greetingsMessage.getMessage(lastSeen);
-
-    //Then
-    assertEquals(&quot;Hello, I haven't see you since yesterday!&quot;, greeting);
-}   
-</code></pre>
-
-<p>Este ejemplo establece el valor de 10:00 a.m. del 31 de Marzo de 2016 para <code>lastSeen</code>. Aunque podrías crear este valor directamente, pienso que el uso del API ayuda con la legibilidad de la condición para esta prueba.</p>
-
+    <span style="color:#75715e">//Then
+</span><span style="color:#75715e"></span>    assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello, I haven&#39;t see you since yesterday!&#34;</span><span style="color:#f92672">,</span> greeting<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>	
+</code></pre></div><p>Este ejemplo establece el valor de 10:00 a.m. del 31 de Marzo de 2016 para <code>lastSeen</code>. Aunque podrías crear este valor directamente, pienso que el uso del API ayuda con la legibilidad de la condición para esta prueba.</p>
 <p>Siguiendo estos pasos, puedes ir implementando las pruebas de tiempo. El ejemplo completo esta publicado en <a href="https://github.com/adrianmoya/testingtimejava8">mi cuenta de GitHub</a>. Felices pruebas con Java 8!</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

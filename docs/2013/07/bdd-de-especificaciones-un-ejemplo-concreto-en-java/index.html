@@ -92,57 +92,30 @@
     <a class="label" href="http://adrianmoya.com/categories/bdd">BDD</a><a class="label" href="http://adrianmoya.com/categories/java">Java</a><a class="label" href="http://adrianmoya.com/categories/junit">JUnit</a><a class="label" href="http://adrianmoya.com/categories/mockito">Mockito</a>
     </span>
     <p>Esta es la implementación en Java de <a href="/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/">un ejemplo concreto de BDD de Especificaciones</a>. Es importante que leas primero de que se trata el ejemplo en el artículo anterior, antes de proceder a ver la implementación.</p>
-
-<p></p>
-
 <h2 id="herramientas">Herramientas</h2>
-
 <p>Para el lenguaje Java, las herramientas que utilizaré son las siguientes:</p>
-
 <p><a href="http://junit.org/"><strong>JUnit</strong></a>: La herramienta de pruebas unitarias más utilizada del mundo Java, sirve perfectamente para escribir nuestras especificaciones.</p>
-
 <p><a href="https://code.google.com/p/mockito/"><strong>Mockito</strong></a>: Es una librería para crear <a href="http://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/">dobles de pruebas</a>. En este ejercicio lo usamos para describir como nuestro objeto cuenta se comunica con el colaborador que envía las alertas (que no existe).</p>
-
 <p><a href="http://maven.apache.org/"><strong>Maven</strong></a>: Es la herramienta de manejo de dependencias y construcción del proyecto.</p>
-
 <h2 id="implementando-el-ejemplo">Implementando el ejemplo</h2>
-
 <p>Como he comentado en artículos anteriores, la idea del artículo no es explicar el funcionamiento de las herramientas, sino de la técnica. Existen muchas otras herramientas que podrías usar para implementar el mismo ejemplo, y cada una esta debidamente documentada en sus sitios web respectivos.</p>
-
 <h2 id="configuración-del-ambiente">Configuración del ambiente</h2>
-
 <p>Estos son los pasos que sigo para comenzar a escribir especificaciones usando BDD:</p>
-
 <p><strong>pom.xml</strong>: En el archivo de proyecto de maven, procedo a especificar las dependencias para las herramientas que uso, en este caso junit y mockito. Además de esto, configuro el plugin de pruebas de maven (surfire), que por defecto ejecuta con junit aquellas clases que tienen &ldquo;Test&rdquo; en su nombre, para que detecte clases con la palabra &ldquo;Spec&rdquo; en el nombre, ya que me gusta nombrar mis clases de especificaciones con el sufijo Spec.</p>
-
 <h2 id="el-archivo-de-especificaciones">El archivo de especificaciones</h2>
-
 <p><strong>AccountSpec.java</strong>: En este archivo es donde voy especificando que debe hacer el objeto Account. Aqui se encuentra un método por cada especificación, con un ejemplo de código de como debe funcionar. Esta clase es la que sirve como documentación para otros miembros del equipo, además de asegurarse de que el comportamiento del objeto se mantiene cada que la ejecutamos con junit.</p>
-
 <h2 id="archivos-de-soporte-para-las-pruebas">Archivos de soporte para las pruebas</h2>
-
-<p><strong>AccountBuilder.java</strong>: Este archivo es una implementación del [patrón builder](<a href="http://es.wikipedia.org/wiki/Builder_(patr%C3%B3n_de_dise%C3%B1o)">http://es.wikipedia.org/wiki/Builder_(patr%C3%B3n_de_dise%C3%B1o)</a>) del cual estaré hablando más en detalle en un próximo artículo, pero que sirve en este caso para construir objetos para la prueba que cumplan unas ciertas características necesarias para darle contexto a la prueba.</p>
-
+<p><strong>AccountBuilder.java</strong>: Este archivo es una implementación del [patrón builder](<a href="http://es.wikipedia.org/wiki/Builder_(patr%C3%B3n_de_dise%C3%B1o">http://es.wikipedia.org/wiki/Builder_(patr%C3%B3n_de_dise%C3%B1o</a>)) del cual estaré hablando más en detalle en un próximo artículo, pero que sirve en este caso para construir objetos para la prueba que cumplan unas ciertas características necesarias para darle contexto a la prueba.</p>
 <h2 id="el-código-del-objeto">El código del objeto</h2>
-
 <p><strong>Account.java</strong>: Es el objeto que estamos diseñando en el ejercicio. El objeto debe comportarse tal como es descrito en el archivo de especificaciones.</p>
-
 <p><strong>AlertListener.java</strong>: Esta es una interfaz que usaremos para describir la comunicación con el colaborador que envía las alertas. Cuando llegue el momento de implementar este colaborador, el mismo implementará esta interfaz, de manera que provea los métodos que nuestra clase Account espera. Por tanto en la prueba del envío de la alerta, hacemos un mock de esta clase para utilizarla en la prueba y validar que el resultado es el esperado.</p>
-
 <h2 id="obteniendo-el-código-del-ejemplo">Obteniendo el código del ejemplo</h2>
-
 <p>Puedes clonar el ejemplo usando git o simplemente descargarlo desde esta dirección:</p>
-
 <p><a href="https://github.com/adrianmoya/specbddsample-java">https://github.com/adrianmoya/specbddsample-java</a></p>
-
 <h2 id="ejecutando-el-ejemplo">Ejecutando el ejemplo</h2>
-
 <p>Para ejecutarlo, puedes utilizar el IDE de tu preferencia y ejecutar la clase AccountSpec como si fuera una prueba de Junit. En Netbeans, el resultado se ve asi:</p>
-
-<p><img src="/images/2013/07/specbddsample-netbeans.png" alt="" /></p>
-
+<p><img src="/images/2013/07/specbddsample-netbeans.png" alt=""></p>
 <p>El ejemplo también puedes ejecutarlo desde la consola con la instrucción <code>mvn test</code>. (Requiere tener configurado maven en la consola), pero en este caso maven solo nos da un resumen de las pruebas que ejecutó, por tanto es ideal para un servidor de integración continua, pero no es muy expresivo para ver como usando un IDE.</p>
-
 <p>Hasta la próxima!</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

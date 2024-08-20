@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mocking on Adrian Moya</title>
@@ -6,19 +6,14 @@
     <description>Recent content in Mocking on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Wed, 29 May 2013 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://adrianmoya.com/categories/mocking/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 29 May 2013 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/categories/mocking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Usando dobles para especificar la comunicación entre objetos</title>
       <link>http://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/</link>
       <pubDate>Wed, 29 May 2013 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/</guid>
-      <description>&lt;p&gt;Cuando usamos &lt;a href=&#34;http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/&#34;&gt;BDD de especificaciones para diseñar objetos&lt;/a&gt;, queremos describir el comportamiento de nuestros objetos como una unidad. Pero ¿qué pasa cuando este objeto debe interactuar con otros para lograr su propósito?. A continuación explicaré cómo hacer uso de dobles de prueba para describir la comunicación entre distintos objetos.
-&lt;/p&gt;</description>
+      <description>&lt;p&gt;Cuando usamos &lt;a href=&#34;http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/&#34;&gt;BDD de especificaciones para diseñar objetos&lt;/a&gt;, queremos describir el comportamiento de nuestros objetos como una unidad. Pero ¿qué pasa cuando este objeto debe interactuar con otros para lograr su propósito?. A continuación explicaré cómo hacer uso de dobles de prueba para describir la comunicación entre distintos objetos.&lt;/p&gt;</description>
     </item>
     
   </channel>

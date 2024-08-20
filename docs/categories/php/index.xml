@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Php on Adrian Moya</title>
+    <title>PHP on Adrian Moya</title>
     <link>http://adrianmoya.com/categories/php/</link>
-    <description>Recent content in Php on Adrian Moya</description>
+    <description>Recent content in PHP on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Wed, 19 Jun 2013 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://adrianmoya.com/categories/php/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 19 Jun 2013 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/categories/php/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Desarrollo Agil con BDD en PHP</title>
       <link>http://adrianmoya.com/2013/06/desarrollo-agil-con-bdd-en-php/</link>
       <pubDate>Wed, 19 Jun 2013 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2013/06/desarrollo-agil-con-bdd-en-php/</guid>
-      <description>&lt;p&gt;El 12 de Junio de 2013 tuve la oportunidad de compartir mi charla acerca del Desarrollo Ágil utilizando BDD con la comunidad de PHP en Bogotá. Es la primera de una serie de charlas que tengo planificadas para este año donde pretendo difunfir el tema del desarrollo guiado por comportamiento con las comunidades de desarrolladores de la ciudad.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;El 12 de Junio de 2013 tuve la oportunidad de compartir mi charla acerca del Desarrollo Ágil utilizando BDD con la comunidad de PHP en Bogotá. Es la primera de una serie de charlas que tengo planificadas para este año donde pretendo difunfir el tema del desarrollo guiado por comportamiento con las comunidades de desarrolladores de la ciudad.&lt;/p&gt;</description>
     </item>
     
     <item>

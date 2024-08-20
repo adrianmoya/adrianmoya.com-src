@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Características on Adrian Moya</title>
@@ -6,20 +6,14 @@
     <description>Recent content in Características on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Sun, 02 Feb 2014 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://adrianmoya.com/categories/caracter%C3%ADsticas/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 02 Feb 2014 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/categories/caracter%C3%ADsticas/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Inyección de Características</title>
       <link>http://adrianmoya.com/2014/02/inyeccion-de-caracteristicas/</link>
       <pubDate>Sun, 02 Feb 2014 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2014/02/inyeccion-de-caracteristicas/</guid>
-      <description>&lt;p&gt;Según la definición, BDD es una metodología que nos permite construir software que importa. La inyección de características es una técnica de análisis creada por Chris Matts que nos ayuda a encontrar características que nos permitan aportar el máximo de valor.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Según la definición, BDD es una metodología que nos permite construir software que importa. La inyección de características es una técnica de análisis creada por Chris Matts que nos ayuda a encontrar características que nos permitan aportar el máximo de valor.&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -91,98 +91,63 @@
     <br/>
     <a class="label" href="http://adrianmoya.com/categories/desarrollo">Desarrollo</a>
     </span>
-    <p>Comenzando con una serie de publicaciones que hare en el tema de las pruebas unitarias para grails, comenzaré detallando la manera de probar los constrains de una clase de Dominio. Para ello, tomare como ejemplo la siguiente clase, con dos propiedades y algunas restricciones:
-</p>
-
-<pre><code class="language-groovy">class Person {
+    <p>Comenzando con una serie de publicaciones que hare en el tema de las pruebas unitarias para grails, comenzaré detallando la manera de probar los constrains de una clase de Dominio. Para ello, tomare como ejemplo la siguiente clase, con dos propiedades y algunas restricciones:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> <span style="color:#f92672">{</span>
 
     String name
     Integer age
 
-    static constraints = {
-        name blank:false, unique:true, nullable: false
-        age min:18, max:20
-    }
-}
-</code></pre>
-
-<p>Como se puede ver, debemos probar que name no sea null, ni blanco y que sea unico, y que age este comprendida entre 18 y 20. Comencemos:</p>
-
+    <span style="color:#66d9ef">static</span> constraints <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+        name blank:<span style="color:#66d9ef">false</span><span style="color:#f92672">,</span> unique:<span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> nullable: <span style="color:#66d9ef">false</span>
+        age min:<span style="color:#ae81ff">18</span><span style="color:#f92672">,</span> max:<span style="color:#ae81ff">20</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Como se puede ver, debemos probar que name no sea null, ni blanco y que sea unico, y que age este comprendida entre 18 y 20. Comencemos:</p>
 <ol>
 <li>Dentro de nuestra clase de pruebas unitarias, creamos el método TestConstraints() (puede ser cualquier nombre pero este deja bastante claro lo que hace). Si son muchos campos, se puede crear un método separado por cada campo, de manera que estén mas organizadas las pruebas. Para este ejemplo corto lo dejare como un solo método.</li>
 </ol>
-
-<pre><code class="language-groovy">void testConstraints() {
-}
-</code></pre>
-
-<ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testConstraints</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ol start="2">
 <li>Si necesitamos probar unicidad en algun campo, definimos una instancia (o varias) de la clase en nuestro método de prueba de manera correcta, para que durante las pruebas probemos que no admite campos duplicados. En el ejemplo, name debe ser unico, por lo que crearemos una instancia válida para poder probar este constraint mas adelante.</li>
 </ol>
-
-<pre><code class="language-groovy">def existingPerson = new Person(name:'Adrian', age:18)
-</code></pre>
-
-<ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">def</span> existingPerson <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span>name:<span style="color:#e6db74">&#39;Adrian&#39;</span><span style="color:#f92672">,</span> age:<span style="color:#ae81ff">18</span><span style="color:#f92672">)</span>
+</code></pre></div><ol start="3">
 <li>Utilizamos el método mockForConstraintsTests aplicado a nuestra clase de dominio. Este paso añade los métodos de validación que Grails inyecta en la clase de dominio (y que no están presentes aqui en las pruebas unitarias). Recibe como segundo parámetro una lista de instancias de la clase. En nuestro ejemplo, le paso la que acabamos de crear, existingPerson.</li>
 </ol>
-
-<pre><code class="language-groovy">mockForConstraintsTests(Person, [existingPerson])
-</code></pre>
-
-<p> 4. A partir de aqui comenzamos a probar cada una de las restricciones, creando instancias inválidas de la clase, ejecutando el método validate() y verificando que en el mapa de errores generado por validate, estan los errores que esperamos.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">mockForConstraintsTests<span style="color:#f92672">(</span>Person<span style="color:#f92672">,</span> <span style="color:#f92672">[</span>existingPerson<span style="color:#f92672">])</span>
+</code></pre></div><p> 4. A partir de aqui comenzamos a probar cada una de las restricciones, creando instancias inválidas de la clase, ejecutando el método validate() y verificando que en el mapa de errores generado por validate, estan los errores que esperamos.</p>
 <p>4.1. Para probar nullable: Creamos una instancia con el campo en null, verificamos que no sea válida y que el error asociado al campo sea nullable.</p>
-
-<pre><code class="language-groovy">//Probando nullables
-def person = new Person()
-assertFalse person.validate()
-assertEquals 'El campo name no es null', 'nullable', person.errors['name']
-</code></pre>
-
-<p>4.2. Para probar blank: Creamos una instancia con el campo en blanco, verificamos que no sea válida y que el error asociado al campo sea blank.</p>
-
-<pre><code class="language-groovy">//Probando blanks
-person = new Person(name:'')
-assertFalse person.validate()
-assertEquals 'El campo name no es blank', 'blank', person.errors['name']
-</code></pre>
-
-<p>4.3. Para probar unique, vamos a hacer uso de la instancia correcta definida mas temprano en el paso 2, en este caso duplicando el campo name (poniendo el valor &lsquo;Adrian&rsquo;) y verificando que no sea válida y que el error asociado sea unique:</p>
-
-<pre><code class="language-groovy">//Probando unique
-person = new Person(name:'Adrian')
-assertFalse person.validate()
-assertEquals 'El campo name no puede ser duplicado', 'unique', person.errors['name']
-</code></pre>
-
-<p>4.4. Para probar mínimos, creamos una instancia con el campo con el valor menor al aceptado, verificamos que no sea válida y que el error asociado sea min:</p>
-
-<pre><code class="language-groovy">//Probando minimo
-person = new Person(age:17)
-assertFalse person.validate()
-assertEquals 'El campo age debe ser mayor a 17', 'min', person.errors['age']
-</code></pre>
-
-<p>4.5. Para probar máximos, creamos una instancia con el campo con el valor mayor al aceptado, verificamos que no sea válida y que el error asociado sea max:</p>
-
-<pre><code class="language-groovy">//Probando máximo
-person = new Person(age:21)
-assertFalse person.validate()
-assertEquals 'El campo age debe ser menor a 20', 'max', person.errors['age']
-</code></pre>
-
-<p>4.6. Por ultimo construimos una instancia correcta y verificamos que sea válida.</p>
-
-<pre><code class="language-groovy">//Probar exito
-person = new Person(name:'Chuck', age: 18)
-assertTrue 'La instancia Chuck SIEMPRE debe ser válida', person.validate()
-</code></pre>
-
-<p>Como pueden ver, el proceso es muy sencillo y pasa siempre por crear la instancia con el campo que rompa la restricción que queremos probar, verificar con assertFalse que el método validate() devuelve false (que no es válida) y verificar que en el error del campo este la descripción del constraint que violamos en la prueba. De esta manera podemos probar todos los constraints de nuestra clase de dominio.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#75715e">//Probando nullables
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">def</span> person <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">()</span>
+assertFalse person<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">()</span>
+assertEquals <span style="color:#e6db74">&#39;El campo name no es null&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;nullable&#39;</span><span style="color:#f92672">,</span> person<span style="color:#f92672">.</span><span style="color:#a6e22e">errors</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">]</span>
+</code></pre></div><p>4.2. Para probar blank: Creamos una instancia con el campo en blanco, verificamos que no sea válida y que el error asociado al campo sea blank.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#75715e">//Probando blanks
+</span><span style="color:#75715e"></span>person <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span>name:<span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">)</span>
+assertFalse person<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">()</span>
+assertEquals <span style="color:#e6db74">&#39;El campo name no es blank&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;blank&#39;</span><span style="color:#f92672">,</span> person<span style="color:#f92672">.</span><span style="color:#a6e22e">errors</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">]</span>
+</code></pre></div><p>4.3. Para probar unique, vamos a hacer uso de la instancia correcta definida mas temprano en el paso 2, en este caso duplicando el campo name (poniendo el valor &lsquo;Adrian&rsquo;) y verificando que no sea válida y que el error asociado sea unique:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#75715e">//Probando unique
+</span><span style="color:#75715e"></span>person <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span>name:<span style="color:#e6db74">&#39;Adrian&#39;</span><span style="color:#f92672">)</span>
+assertFalse person<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">()</span>
+assertEquals <span style="color:#e6db74">&#39;El campo name no puede ser duplicado&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;unique&#39;</span><span style="color:#f92672">,</span> person<span style="color:#f92672">.</span><span style="color:#a6e22e">errors</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">]</span>
+</code></pre></div><p>4.4. Para probar mínimos, creamos una instancia con el campo con el valor menor al aceptado, verificamos que no sea válida y que el error asociado sea min:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#75715e">//Probando minimo
+</span><span style="color:#75715e"></span>person <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span>age:<span style="color:#ae81ff">17</span><span style="color:#f92672">)</span>
+assertFalse person<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">()</span>
+assertEquals <span style="color:#e6db74">&#39;El campo age debe ser mayor a 17&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;min&#39;</span><span style="color:#f92672">,</span> person<span style="color:#f92672">.</span><span style="color:#a6e22e">errors</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;age&#39;</span><span style="color:#f92672">]</span>
+</code></pre></div><p>4.5. Para probar máximos, creamos una instancia con el campo con el valor mayor al aceptado, verificamos que no sea válida y que el error asociado sea max:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#75715e">//Probando máximo
+</span><span style="color:#75715e"></span>person <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span>age:<span style="color:#ae81ff">21</span><span style="color:#f92672">)</span>
+assertFalse person<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">()</span>
+assertEquals <span style="color:#e6db74">&#39;El campo age debe ser menor a 20&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;max&#39;</span><span style="color:#f92672">,</span> person<span style="color:#f92672">.</span><span style="color:#a6e22e">errors</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;age&#39;</span><span style="color:#f92672">]</span>
+</code></pre></div><p>4.6. Por ultimo construimos una instancia correcta y verificamos que sea válida.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#75715e">//Probar exito
+</span><span style="color:#75715e"></span>person <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person<span style="color:#f92672">(</span>name:<span style="color:#e6db74">&#39;Chuck&#39;</span><span style="color:#f92672">,</span> age: <span style="color:#ae81ff">18</span><span style="color:#f92672">)</span>
+assertTrue <span style="color:#e6db74">&#39;La instancia Chuck SIEMPRE debe ser válida&#39;</span><span style="color:#f92672">,</span> person<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">()</span>
+</code></pre></div><p>Como pueden ver, el proceso es muy sencillo y pasa siempre por crear la instancia con el campo que rompa la restricción que queremos probar, verificar con assertFalse que el método validate() devuelve false (que no es válida) y verificar que en el error del campo este la descripción del constraint que violamos en la prueba. De esta manera podemos probar todos los constraints de nuestra clase de dominio.</p>
 <p>Algunos tips finales: solo durante la creación de nuestra primera instancia usamos la palabra clave def, de ahi en adelante usamos la misma variable para el resto de las instancias. Esto es básico de groovy pero es una de esas conchas de mango que le hacen a uno perder tiempo. Tambien es recomendable colocar un mensaje descriptivo del error que estamos probando, como se ve en el ejemplo, para que los reportes de las pruebas sean más claros cuando fallen.</p>
-
 <p>Esto es todo, hasta la próxima!</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

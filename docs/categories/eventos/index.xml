@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Eventos on Adrian Moya</title>
@@ -6,20 +6,14 @@
     <description>Recent content in Eventos on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Thu, 03 Apr 2014 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://adrianmoya.com/categories/eventos/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 03 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/categories/eventos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lanzamiento Ágiles 2014</title>
       <link>http://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</link>
       <pubDate>Thu, 03 Apr 2014 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</guid>
-      <description>&lt;p&gt;El 27 de marzo de 2014, en la universidad EAFIT en Medellín, Colombia, fue el &lt;a href=&#34;http://agiles2014.agiles.org/lanzamiento-oficial-de-agiles-2014/&#34;&gt;lanzamiento oficial de Ágiles 2014&lt;/a&gt;, el evento de agilidad más importante de la comunidad latinoamericana. Para complementar los artículos de otros miembros de la comunidad, les cuento como fue mi experiencia.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;El 27 de marzo de 2014, en la universidad EAFIT en Medellín, Colombia, fue el &lt;a href=&#34;http://agiles2014.agiles.org/lanzamiento-oficial-de-agiles-2014/&#34;&gt;lanzamiento oficial de Ágiles 2014&lt;/a&gt;, el evento de agilidad más importante de la comunidad latinoamericana. Para complementar los artículos de otros miembros de la comunidad, les cuento como fue mi experiencia.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -28,9 +22,7 @@
       <pubDate>Sun, 16 Mar 2014 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2014/03/agileopenbogota-2014-mi-experiencia/</guid>
-      <description>&lt;p&gt;El sábado 8 de marzo de 2014 se llevó a cabo el Agile Open Bogotá 2014, en las instalaciones de la Cámara de Comercio de Bogotá. El evento contó con una asistencia aproximada de 150 personas, dedicadas al agilismo, dispuestas a compartir experiencias, enseñar y aprender. Tuve la oportunidad de asistir, y a continuación les comparto mi experiencia.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;El sábado 8 de marzo de 2014 se llevó a cabo el Agile Open Bogotá 2014, en las instalaciones de la Cámara de Comercio de Bogotá. El evento contó con una asistencia aproximada de 150 personas, dedicadas al agilismo, dispuestas a compartir experiencias, enseñar y aprender. Tuve la oportunidad de asistir, y a continuación les comparto mi experiencia.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -39,8 +31,7 @@
       <pubDate>Tue, 09 Jul 2013 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2013/07/desarrollo-agil-con-bdd-en-java/</guid>
-      <description>&lt;p&gt;Continuando mi tour por las comunidades de desarrolladores de Bogotá, hice presencia en el &lt;a href=&#34;http://colombiajug.wordpress.com/2013/06/26/septimo-javaday/&#34;&gt;7mo. Java Day&lt;/a&gt; para compartir con la comunidad de Java mi charla de Desarrollo Ágil con BDD.
-&lt;/p&gt;</description>
+      <description>&lt;p&gt;Continuando mi tour por las comunidades de desarrolladores de Bogotá, hice presencia en el &lt;a href=&#34;http://colombiajug.wordpress.com/2013/06/26/septimo-javaday/&#34;&gt;7mo. Java Day&lt;/a&gt; para compartir con la comunidad de Java mi charla de Desarrollo Ágil con BDD.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -58,9 +49,7 @@
       <pubDate>Wed, 19 Jun 2013 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2013/06/desarrollo-agil-con-bdd-en-php/</guid>
-      <description>&lt;p&gt;El 12 de Junio de 2013 tuve la oportunidad de compartir mi charla acerca del Desarrollo Ágil utilizando BDD con la comunidad de PHP en Bogotá. Es la primera de una serie de charlas que tengo planificadas para este año donde pretendo difunfir el tema del desarrollo guiado por comportamiento con las comunidades de desarrolladores de la ciudad.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;El 12 de Junio de 2013 tuve la oportunidad de compartir mi charla acerca del Desarrollo Ágil utilizando BDD con la comunidad de PHP en Bogotá. Es la primera de una serie de charlas que tengo planificadas para este año donde pretendo difunfir el tema del desarrollo guiado por comportamiento con las comunidades de desarrolladores de la ciudad.&lt;/p&gt;</description>
     </item>
     
   </channel>

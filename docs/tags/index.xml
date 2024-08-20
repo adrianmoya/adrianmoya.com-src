@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Adrian Moya</title>
@@ -6,13 +6,9 @@
     <description>Recent content in Tags on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Sun, 11 Sep 2011 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://adrianmoya.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 11 Sep 2011 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Grails</title>
+      <title>grails</title>
       <link>http://adrianmoya.com/tags/grails/</link>
       <pubDate>Sun, 11 Sep 2011 00:00:00 +0000</pubDate>
       
@@ -21,7 +17,7 @@
     </item>
     
     <item>
-      <title>Tests</title>
+      <title>tests</title>
       <link>http://adrianmoya.com/tags/tests/</link>
       <pubDate>Sun, 11 Sep 2011 00:00:00 +0000</pubDate>
       
@@ -30,25 +26,7 @@
     </item>
     
     <item>
-      <title>Turnkeylinux</title>
-      <link>http://adrianmoya.com/tags/turnkeylinux/</link>
-      <pubDate>Wed, 10 Aug 2011 00:00:00 +0000</pubDate>
-      
-      <guid>http://adrianmoya.com/tags/turnkeylinux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ubuntu</title>
-      <link>http://adrianmoya.com/tags/ubuntu/</link>
-      <pubDate>Fri, 01 May 2009 00:00:00 +0000</pubDate>
-      
-      <guid>http://adrianmoya.com/tags/ubuntu/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Unit</title>
+      <title>unit</title>
       <link>http://adrianmoya.com/tags/unit/</link>
       <pubDate>Sun, 11 Sep 2011 00:00:00 +0000</pubDate>
       
@@ -57,7 +35,25 @@
     </item>
     
     <item>
-      <title>Xenserver</title>
+      <title>turnkeylinux</title>
+      <link>http://adrianmoya.com/tags/turnkeylinux/</link>
+      <pubDate>Wed, 10 Aug 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/tags/turnkeylinux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>http://adrianmoya.com/tags/ubuntu/</link>
+      <pubDate>Fri, 01 May 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://adrianmoya.com/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xenserver</title>
       <link>http://adrianmoya.com/tags/xenserver/</link>
       <pubDate>Fri, 01 May 2009 00:00:00 +0000</pubDate>
       

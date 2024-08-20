@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Agiles2014 on Adrian Moya</title>
@@ -6,20 +6,14 @@
     <description>Recent content in Agiles2014 on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Thu, 03 Apr 2014 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://adrianmoya.com/categories/agiles2014/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 03 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/categories/agiles2014/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lanzamiento Ágiles 2014</title>
       <link>http://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</link>
       <pubDate>Thu, 03 Apr 2014 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</guid>
-      <description>&lt;p&gt;El 27 de marzo de 2014, en la universidad EAFIT en Medellín, Colombia, fue el &lt;a href=&#34;http://agiles2014.agiles.org/lanzamiento-oficial-de-agiles-2014/&#34;&gt;lanzamiento oficial de Ágiles 2014&lt;/a&gt;, el evento de agilidad más importante de la comunidad latinoamericana. Para complementar los artículos de otros miembros de la comunidad, les cuento como fue mi experiencia.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;El 27 de marzo de 2014, en la universidad EAFIT en Medellín, Colombia, fue el &lt;a href=&#34;http://agiles2014.agiles.org/lanzamiento-oficial-de-agiles-2014/&#34;&gt;lanzamiento oficial de Ágiles 2014&lt;/a&gt;, el evento de agilidad más importante de la comunidad latinoamericana. Para complementar los artículos de otros miembros de la comunidad, les cuento como fue mi experiencia.&lt;/p&gt;</description>
     </item>
     
   </channel>

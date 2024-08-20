@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tdd on Adrian Moya</title>
+    <title>TDD on Adrian Moya</title>
     <link>http://adrianmoya.com/categories/tdd/</link>
-    <description>Recent content in Tdd on Adrian Moya</description>
+    <description>Recent content in TDD on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Tue, 28 Nov 2017 00:00:00 -0500</lastBuildDate>
-    
-	<atom:link href="http://adrianmoya.com/categories/tdd/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 28 Nov 2017 00:00:00 -0500</lastBuildDate><atom:link href="http://adrianmoya.com/categories/tdd/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pensando TDD (II)</title>
       <link>http://adrianmoya.com/post/pensando-tdd-ii/</link>
       <pubDate>Tue, 28 Nov 2017 00:00:00 -0500</pubDate>
       
       <guid>http://adrianmoya.com/post/pensando-tdd-ii/</guid>
-      <description>&lt;p&gt;En mi &lt;a href=&#34;http://adrianmoya.com/post/pensando-tdd-i/&#34;&gt;artículo anterior&lt;/a&gt;, exploramos el tren de pensamientos cuando se usa desarrollo guiado por pruebas (TDD) diseñando un componente para convertir dinero de USD a COP. En esta segunda parte, añadiré algo de diseño adicional e introduciré el tema de los dobles.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;En mi &lt;a href=&#34;http://adrianmoya.com/post/pensando-tdd-i/&#34;&gt;artículo anterior&lt;/a&gt;, exploramos el tren de pensamientos cuando se usa desarrollo guiado por pruebas (TDD) diseñando un componente para convertir dinero de USD a COP. En esta segunda parte, añadiré algo de diseño adicional e introduciré el tema de los dobles.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -29,10 +23,7 @@
       
       <guid>http://adrianmoya.com/post/pensando-tdd-i/</guid>
       <description>&lt;p&gt;Siempre escuchamos que TDD es una técnica de diseño que es guiada por pruebas. Pero dado que tenemos que escribir la prueba primero, nuestra mente comienza a pensar en términos de pruebas en lugar de diseño. Entonces comenzamos a pensar en casos borde, malas entradas, y cosas que son importante pensar, pero desvían nuestra atención del objetivo principal de la técnica, que es diseñar.&lt;/p&gt;
-
-&lt;p&gt;En esta entrada voy a volcar mi tren de pensamientos cuando diseño a través de TDD, para que puedan contrastar la diferencia acerca de pensar enfocado en pruebas y pensar acerca de diseño. Así mismo, cada decisión de diseño va a resultar en código para nuestra prueba.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;En esta entrada voy a volcar mi tren de pensamientos cuando diseño a través de TDD, para que puedan contrastar la diferencia acerca de pensar enfocado en pruebas y pensar acerca de diseño. Así mismo, cada decisión de diseño va a resultar en código para nuestra prueba.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -41,9 +32,7 @@
       <pubDate>Fri, 18 Dec 2015 07:14:08 -0800</pubDate>
       
       <guid>http://adrianmoya.com/post/tdd-o-no-tdd/</guid>
-      <description>&lt;p&gt;No cabe duda de que escribir pruebas unitarias para nuestro código en los proyectos es una práctica excelente que rinde grandes beneficios. Sin embargo, en este artículo quiero tratar el tema de si debo escribir las pruebas primero que el código de producción (técnica conocida como TDD), o si debo cubrir el código con pruebas (escribirlas después del código de producción).&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;No cabe duda de que escribir pruebas unitarias para nuestro código en los proyectos es una práctica excelente que rinde grandes beneficios. Sin embargo, en este artículo quiero tratar el tema de si debo escribir las pruebas primero que el código de producción (técnica conocida como TDD), o si debo cubrir el código con pruebas (escribirlas después del código de producción).&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -52,9 +41,7 @@
       <pubDate>Thu, 05 Sep 2013 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/</guid>
-      <description>&lt;p&gt;En el post anterior, vimos como &lt;a href=&#34;http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/&#34;&gt;aplicar el patrón databuilder&lt;/a&gt; puede ayudarnos a escribir el contexto inicial de nuestras especificaciones de manera más clara. En este artículo describiré algunas técnicas adicionales que ayudan a mejorar la expresividad de las pruebas.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;En el post anterior, vimos como &lt;a href=&#34;http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/&#34;&gt;aplicar el patrón databuilder&lt;/a&gt; puede ayudarnos a escribir el contexto inicial de nuestras especificaciones de manera más clara. En este artículo describiré algunas técnicas adicionales que ayudan a mejorar la expresividad de las pruebas.&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Escenarios on Adrian Moya</title>
@@ -6,20 +6,14 @@
     <description>Recent content in Escenarios on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Fri, 25 Apr 2014 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://adrianmoya.com/categories/escenarios/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 25 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/categories/escenarios/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Escribiendo mejores escenarios</title>
       <link>http://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</link>
       <pubDate>Fri, 25 Apr 2014 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</guid>
-      <description>&lt;p&gt;Al momento de describir las características de un sistema a través de BDD, utilizamos ejemplos planteados en forma de escenarios para expresar cómo debe comportarse el sistema. Dichos escenarios son esenciales porque en ellos está plasmado el conocimiento del dominio de la aplicación, y sirven para documentar el sistema y también como insumo en el proceso de validación cuando los automatizamos utilizando herramientas BDD. A continuación veremos algunas preguntas que surgen y recomendaciones para lograr escenarios de calidad en nuestro proyecto.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Al momento de describir las características de un sistema a través de BDD, utilizamos ejemplos planteados en forma de escenarios para expresar cómo debe comportarse el sistema. Dichos escenarios son esenciales porque en ellos está plasmado el conocimiento del dominio de la aplicación, y sirven para documentar el sistema y también como insumo en el proceso de validación cuando los automatizamos utilizando herramientas BDD. A continuación veremos algunas preguntas que surgen y recomendaciones para lograr escenarios de calidad en nuestro proyecto.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -28,9 +22,7 @@
       <pubDate>Mon, 13 Jan 2014 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2014/01/organizando-un-proyecto-bdd/</guid>
-      <description>&lt;p&gt;Muchos proyectos que comienzan a usar BDD lo hacen escribiendo escenarios para sus historias de usuario. Esto podría dar a suponer que un escenario es una parte de una historia de usuario, pero lo cierto es que la relación entre historias de usuario y escenarios no es necesariamente jerárquica. También tenemos otros conceptos que son importantes dentro de la organización del proyecto, como las capacidades y características. Veamos algunas ideas de cómo se puede organizar un proyecto BDD y la relación entre algunos de sus artefactos. Todos estos conceptos son tomados de artículos de Liz Keogh y Chris Matts.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Muchos proyectos que comienzan a usar BDD lo hacen escribiendo escenarios para sus historias de usuario. Esto podría dar a suponer que un escenario es una parte de una historia de usuario, pero lo cierto es que la relación entre historias de usuario y escenarios no es necesariamente jerárquica. También tenemos otros conceptos que son importantes dentro de la organización del proyecto, como las capacidades y características. Veamos algunas ideas de cómo se puede organizar un proyecto BDD y la relación entre algunos de sus artefactos. Todos estos conceptos son tomados de artículos de Liz Keogh y Chris Matts.&lt;/p&gt;</description>
     </item>
     
   </channel>

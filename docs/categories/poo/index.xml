@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Poo on Adrian Moya</title>
+    <title>POO on Adrian Moya</title>
     <link>http://adrianmoya.com/categories/poo/</link>
-    <description>Recent content in Poo on Adrian Moya</description>
+    <description>Recent content in POO on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Sun, 12 May 2013 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://adrianmoya.com/categories/poo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 12 May 2013 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/categories/poo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Diseñando objetos con BDD de especificaciones</title>
       <link>http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/</link>
       <pubDate>Sun, 12 May 2013 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/</guid>
-      <description>&lt;p&gt;Ya hemos visto en los artículos anteriores como utilizar el lenguaje natural del cliente para &lt;a href=&#34;http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/&#34;&gt;describir un sistema utilizando BDD de historias&lt;/a&gt;, y comunicar el comportamiento esperado a través de un conjunto de escenarios. Hoy comenzaremos a adentrarnos en el segundo nivel de BDD, para especificar el comportamiento del sistema a nivel técnico.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Ya hemos visto en los artículos anteriores como utilizar el lenguaje natural del cliente para &lt;a href=&#34;http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/&#34;&gt;describir un sistema utilizando BDD de historias&lt;/a&gt;, y comunicar el comportamiento esperado a través de un conjunto de escenarios. Hoy comenzaremos a adentrarnos en el segundo nivel de BDD, para especificar el comportamiento del sistema a nivel técnico.&lt;/p&gt;</description>
     </item>
     
   </channel>

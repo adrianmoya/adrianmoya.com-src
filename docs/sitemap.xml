@@ -1,499 +1,275 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <url>
-    <loc>http://adrianmoya.com/post/pensando-tdd-ii/</loc>
-    <lastmod>2017-11-28T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/post/pensando-tdd-i/</loc>
-    <lastmod>2017-10-16T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/post/pruebas-con-tiempo-en-java-8/</loc>
-    <lastmod>2016-05-24T08:14:30-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/</loc>
-    <lastmod>2016-02-22T16:04:31-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/post/migrando-de-octopress-2-a-hugo/</loc>
-    <lastmod>2016-01-11T20:40:28-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/post/tdd-o-no-tdd/</loc>
-    <lastmod>2015-12-18T07:14:08-08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</loc>
-    <lastmod>2014-04-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</loc>
-    <lastmod>2014-04-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2014/03/agileopenbogota-2014-mi-experiencia/</loc>
-    <lastmod>2014-03-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2014/02/pruebas-automatizadas-una-vision-de-desarrollador/</loc>
-    <lastmod>2014-02-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2014/02/inyeccion-de-caracteristicas/</loc>
-    <lastmod>2014-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2014/01/organizando-un-proyecto-bdd/</loc>
-    <lastmod>2014-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/11/bdd-el-panorama-completo/</loc>
-    <lastmod>2013-11-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/09/aplicando-el-patron-page-object-en-la-automatizacion-de-escenarios/</loc>
-    <lastmod>2013-09-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/</loc>
-    <lastmod>2013-09-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</loc>
-    <lastmod>2013-07-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</loc>
-    <lastmod>2013-07-14T00:00:01-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/</loc>
-    <lastmod>2013-07-14T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/07/desarrollo-agil-con-bdd-en-java/</loc>
-    <lastmod>2013-07-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/06/agileopenmedellin-mi-experiencia/</loc>
-    <lastmod>2013-06-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/06/desarrollo-agil-con-bdd-en-php/</loc>
-    <lastmod>2013-06-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/</loc>
-    <lastmod>2013-05-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/</loc>
-    <lastmod>2013-05-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/</loc>
-    <lastmod>2013-04-22T00:00:02-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/</loc>
-    <lastmod>2013-04-22T00:00:01-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/</loc>
-    <lastmod>2013-04-22T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/03/automatizando-la-verificacion-de-historias-en-bdd/</loc>
-    <lastmod>2013-03-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/02/participando-en-dojos-de-agilidad/</loc>
-    <lastmod>2013-02-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/</loc>
-    <lastmod>2013-02-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/01/introduccion-a-desarrollo-guiado-por-comportamiento-bdd/</loc>
-    <lastmod>2013-01-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2013/01/usando-git-de-manera-remota/</loc>
-    <lastmod>2013-01-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2012/08/que-hay-en-una-historia/</loc>
-    <lastmod>2012-08-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2012/07/usando-git-de-manera-local/</loc>
-    <lastmod>2012-07-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2012/06/como-dar-acceso-publico-a-multiples-servicios-de-nuestra-red-interna-utilizando-un-proxy-reverso-y-hosts-virtuales/</loc>
-    <lastmod>2012-06-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/</loc>
-    <lastmod>2012-06-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</loc>
-    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2011/08/anadir-acceso-via-apache-a-subversion-en-turnkeylinux-revision-control/</loc>
-    <lastmod>2011-08-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2011/08/estableciendo-la-zona-horaria-en-turnkeylinux/</loc>
-    <lastmod>2011-08-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2010/12/ruby-basico-en-un-solo-post/</loc>
-    <lastmod>2010-12-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2010/05/tips-para-sysadmins/</loc>
-    <lastmod>2010-05-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/</loc>
-    <lastmod>2009-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2008/06/pensar-deliberadamente/</loc>
-    <lastmod>2008-06-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/</loc>
-    <lastmod>2008-06-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/</loc>
-    <lastmod>2008-05-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/</loc>
-    <lastmod>2008-05-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/2008/05/inicio-del-blog/</loc>
-    <lastmod>2008-05-08T00:00:00+00:00</lastmod>
-  </url>
-  
   <url>
     <loc>http://adrianmoya.com/</loc>
     <lastmod>2017-11-28T00:00:00-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/agile/</loc>
-    <lastmod>2014-02-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/agiles2014/</loc>
-    <lastmod>2014-04-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/agilidad/</loc>
-    <lastmod>2014-02-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/an%C3%A1lisis/</loc>
-    <lastmod>2014-04-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/bdd/</loc>
-    <lastmod>2014-04-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/behat/</loc>
-    <lastmod>2013-04-22T00:00:02-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/bogot%C3%A1/</loc>
-    <lastmod>2014-03-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/caracter%C3%ADsticas/</loc>
-    <lastmod>2014-02-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://adrianmoya.com/categories/</loc>
-    <lastmod>2014-02-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/crecimiento-personal/</loc>
-    <lastmod>2008-06-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/cucumber/</loc>
-    <lastmod>2013-09-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/desarrollo/</loc>
-    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/dojo/</loc>
-    <lastmod>2013-02-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/escenarios/</loc>
-    <lastmod>2014-04-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/eventos/</loc>
-    <lastmod>2014-04-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/general/</loc>
-    <lastmod>2012-06-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/git/</loc>
-    <lastmod>2013-01-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/tags/grails/</loc>
-    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/java/</loc>
-    <lastmod>2016-05-24T08:14:30-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/junit/</loc>
-    <lastmod>2016-05-24T08:14:30-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/kata/</loc>
-    <lastmod>2013-02-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/mink/</loc>
-    <lastmod>2013-04-22T00:00:02-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/mocking/</loc>
-    <lastmod>2013-05-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/mockito/</loc>
-    <lastmod>2013-07-14T00:00:01-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/octopost/</loc>
-    <lastmod>2014-04-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/patrones/</loc>
-    <lastmod>2013-07-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/pensamientos/</loc>
-    <lastmod>2008-05-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/php/</loc>
-    <lastmod>2013-06-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/poo/</loc>
-    <lastmod>2013-05-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+    <lastmod>2017-11-28T00:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/post/pensando-tdd-ii/</loc>
+    <lastmod>2017-11-28T00:00:00-05:00</lastmod>
+  </url><url>
     <loc>http://adrianmoya.com/post/</loc>
     <lastmod>2017-11-28T00:00:00-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/selenium/</loc>
-    <lastmod>2013-09-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/sysadmin/</loc>
-    <lastmod>2012-06-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/tags/</loc>
-    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://adrianmoya.com/categories/tdd/</loc>
     <lastmod>2017-11-28T00:00:00-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://adrianmoya.com/categories/testing/</loc>
     <lastmod>2017-11-28T00:00:00-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/tags/tests/</loc>
-    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/tags/turnkeylinux/</loc>
-    <lastmod>2011-08-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/categories/turnkeylinux/</loc>
-    <lastmod>2011-08-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/tags/ubuntu/</loc>
-    <lastmod>2009-05-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://adrianmoya.com/tags/unit/</loc>
-    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>http://adrianmoya.com/post/pensando-tdd-i/</loc>
+    <lastmod>2017-10-16T00:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/java/</loc>
+    <lastmod>2016-05-24T08:14:30-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/junit/</loc>
+    <lastmod>2016-05-24T08:14:30-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/post/pruebas-con-tiempo-en-java-8/</loc>
+    <lastmod>2016-05-24T08:14:30-05:00</lastmod>
+  </url><url>
     <loc>http://adrianmoya.com/categories/unit-testing/</loc>
     <lastmod>2016-05-24T08:14:30-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>http://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/</loc>
+    <lastmod>2016-02-22T16:04:31-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/post/migrando-de-octopress-2-a-hugo/</loc>
+    <lastmod>2016-01-11T20:40:28-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/post/tdd-o-no-tdd/</loc>
+    <lastmod>2015-12-18T07:14:08-08:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/an%C3%A1lisis/</loc>
+    <lastmod>2014-04-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/bdd/</loc>
+    <lastmod>2014-04-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/escenarios/</loc>
+    <lastmod>2014-04-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</loc>
+    <lastmod>2014-04-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/octopost/</loc>
+    <lastmod>2014-04-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/agiles2014/</loc>
+    <lastmod>2014-04-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/eventos/</loc>
+    <lastmod>2014-04-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</loc>
+    <lastmod>2014-04-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2014/03/agileopenbogota-2014-mi-experiencia/</loc>
+    <lastmod>2014-03-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/bogot%C3%A1/</loc>
+    <lastmod>2014-03-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/agile/</loc>
+    <lastmod>2014-02-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2014/02/pruebas-automatizadas-una-vision-de-desarrollador/</loc>
+    <lastmod>2014-02-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/agilidad/</loc>
+    <lastmod>2014-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/caracter%C3%ADsticas/</loc>
+    <lastmod>2014-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2014/02/inyeccion-de-caracteristicas/</loc>
+    <lastmod>2014-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2014/01/organizando-un-proyecto-bdd/</loc>
+    <lastmod>2014-01-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/11/bdd-el-panorama-completo/</loc>
+    <lastmod>2013-11-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/09/aplicando-el-patron-page-object-en-la-automatizacion-de-escenarios/</loc>
+    <lastmod>2013-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/cucumber/</loc>
+    <lastmod>2013-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/selenium/</loc>
+    <lastmod>2013-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/</loc>
+    <lastmod>2013-09-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/patrones/</loc>
+    <lastmod>2013-07-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</loc>
+    <lastmod>2013-07-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</loc>
+    <lastmod>2013-07-14T00:00:01-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/mockito/</loc>
+    <lastmod>2013-07-14T00:00:01-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/</loc>
+    <lastmod>2013-07-14T00:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/07/desarrollo-agil-con-bdd-en-java/</loc>
+    <lastmod>2013-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/06/agileopenmedellin-mi-experiencia/</loc>
+    <lastmod>2013-06-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/06/desarrollo-agil-con-bdd-en-php/</loc>
+    <lastmod>2013-06-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/php/</loc>
+    <lastmod>2013-06-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/mocking/</loc>
+    <lastmod>2013-05-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/</loc>
+    <lastmod>2013-05-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/</loc>
+    <lastmod>2013-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/poo/</loc>
+    <lastmod>2013-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/</loc>
+    <lastmod>2013-04-22T00:00:02-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/behat/</loc>
+    <lastmod>2013-04-22T00:00:02-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/mink/</loc>
+    <lastmod>2013-04-22T00:00:02-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/</loc>
+    <lastmod>2013-04-22T00:00:01-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/</loc>
+    <lastmod>2013-04-22T00:00:00-05:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/03/automatizando-la-verificacion-de-historias-en-bdd/</loc>
+    <lastmod>2013-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/dojo/</loc>
+    <lastmod>2013-02-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/kata/</loc>
+    <lastmod>2013-02-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/02/participando-en-dojos-de-agilidad/</loc>
+    <lastmod>2013-02-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/</loc>
+    <lastmod>2013-02-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/01/introduccion-a-desarrollo-guiado-por-comportamiento-bdd/</loc>
+    <lastmod>2013-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/git/</loc>
+    <lastmod>2013-01-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2013/01/usando-git-de-manera-remota/</loc>
+    <lastmod>2013-01-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2012/08/que-hay-en-una-historia/</loc>
+    <lastmod>2012-08-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2012/07/usando-git-de-manera-local/</loc>
+    <lastmod>2012-07-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2012/06/como-dar-acceso-publico-a-multiples-servicios-de-nuestra-red-interna-utilizando-un-proxy-reverso-y-hosts-virtuales/</loc>
+    <lastmod>2012-06-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/sysadmin/</loc>
+    <lastmod>2012-06-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/general/</loc>
+    <lastmod>2012-06-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/</loc>
+    <lastmod>2012-06-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/desarrollo/</loc>
+    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/tags/grails/</loc>
+    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</loc>
+    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/tags/</loc>
+    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/tags/tests/</loc>
+    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/tags/unit/</loc>
+    <lastmod>2011-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2011/08/anadir-acceso-via-apache-a-subversion-en-turnkeylinux-revision-control/</loc>
+    <lastmod>2011-08-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/turnkeylinux/</loc>
+    <lastmod>2011-08-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2011/08/estableciendo-la-zona-horaria-en-turnkeylinux/</loc>
+    <lastmod>2011-08-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/tags/turnkeylinux/</loc>
+    <lastmod>2011-08-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2010/12/ruby-basico-en-un-solo-post/</loc>
+    <lastmod>2010-12-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2010/05/tips-para-sysadmins/</loc>
+    <lastmod>2010-05-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/</loc>
+    <lastmod>2009-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/tags/ubuntu/</loc>
+    <lastmod>2009-05-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://adrianmoya.com/categories/virtualizaci%C3%B3n/</loc>
     <lastmod>2009-05-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://adrianmoya.com/tags/xenserver/</loc>
     <lastmod>2009-05-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/crecimiento-personal/</loc>
+    <lastmod>2008-06-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2008/06/pensar-deliberadamente/</loc>
+    <lastmod>2008-06-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/</loc>
+    <lastmod>2008-06-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/</loc>
+    <lastmod>2008-05-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/categories/pensamientos/</loc>
+    <lastmod>2008-05-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/</loc>
+    <lastmod>2008-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://adrianmoya.com/2008/05/inicio-del-blog/</loc>
+    <lastmod>2008-05-08T00:00:00+00:00</lastmod>
   </url>
-  
 </urlset>

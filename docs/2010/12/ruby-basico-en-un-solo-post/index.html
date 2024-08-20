@@ -91,215 +91,147 @@
     <br/>
     <a class="label" href="http://adrianmoya.com/categories/desarrollo">Desarrollo</a>
     </span>
-    <p>La siguiente no intenta ser una guia para enseñar ruby a personas que no programen. Más bien es mi guia rapida para programar ruby, pero cualquiera que tenga nociones de programación la puede encontrar útil.
-
-<strong>Consultar la documentación.</strong></p>
-
+    <p>La siguiente no intenta ser una guia para enseñar ruby a personas que no programen. Más bien es mi guia rapida para programar ruby, pero cualquiera que tenga nociones de programación la puede encontrar útil.</p>
+<p><strong>Consultar la documentación.</strong></p>
 <p>Podemos consultar la documentación de ruby en linea en <a href="http://www.ruby-doc.org">http://www.ruby-doc.org</a> o a través del comando:</p>
-
 <pre><code>$ ri Class.metodo
-</code></pre>
-
-<p><strong>Usar la consola interactiva:</strong></p>
-
+</code></pre><p><strong>Usar la consola interactiva:</strong></p>
 <pre><code>$ irb
-</code></pre>
-
-<p><strong>Arrays:</strong></p>
-
+</code></pre><p><strong>Arrays:</strong></p>
 <p>Los arrays en ruby tienen indice basado en 0.</p>
-
-<pre><code class="language-ruby">a = ['hola', 0, 'chao', 1] # Crea e inicializa un array.
-a = %w{ hola chao avion carro } # Atajo para crear un array de palabras
-a[0] # Retorna &quot;hola&quot; (Accede al elemento 0 del array)
-</code></pre>
-
-<p><strong>Hash:</strong></p>
-
-<pre><code class="language-ruby">mi_hash = Hash.new(0) # Crea un nuevo Hash con valor por defecto 0
-mi_hash['key1'] # Llave que no existe, devuelve 0 (valor por defecto)
-mi_hash = { 'key1' =&gt; 'value1', 'key2' =&gt; 'value2' }  # Crear un hash con valores
-mi_hash['key2'] # Retorna 'value2'
-</code></pre>
-
-<p><strong>If y unless:</strong> Los bloques if y unless se terminan con end. Unless es el negado de if.</p>
-
-<pre><code class="language-ruby">if cont &gt; 5
-  cont -= 1
-end
-</code></pre>
-
-<p>Si es una sola linea dentro del if:</p>
-
-<pre><code class="language-ruby">cont -= 1 if cont &gt; 5
-</code></pre>
-
-<p><strong>While y Until:</strong> Los bloques while y until tambien terminan con end. Until es el negado de while.</p>
-
-<pre><code class="language-ruby">while cont &lt; 10
-  cont += 1
-end
-</code></pre>
-
-<p>Si es una sola línea dentro del while:</p>
-
-<pre><code class="language-ruby">cont += 1 while cont &lt; 10
-</code></pre>
-
-<p><strong>Case:</strong> los bloques case tienen dos formas de escribirse.</p>
-
-<pre><code class="language-ruby">valor = case
-          when a &gt; 0 then true
-          when a &lt; 0 then false
-          else false
-end
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">a <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;hola&#39;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;chao&#39;</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">]</span> <span style="color:#75715e"># Crea e inicializa un array.</span>
+a <span style="color:#f92672">=</span> <span style="color:#e6db74">%w{ hola chao avion carro }</span> <span style="color:#75715e"># Atajo para crear un array de palabras</span>
+a<span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]</span> <span style="color:#75715e"># Retorna &#34;hola&#34; (Accede al elemento 0 del array)</span>
+</code></pre></div><p><strong>Hash:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">mi_hash <span style="color:#f92672">=</span> <span style="color:#66d9ef">Hash</span><span style="color:#f92672">.</span>new(<span style="color:#ae81ff">0</span>) <span style="color:#75715e"># Crea un nuevo Hash con valor por defecto 0</span>
+mi_hash<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;key1&#39;</span><span style="color:#f92672">]</span> <span style="color:#75715e"># Llave que no existe, devuelve 0 (valor por defecto)</span>
+mi_hash <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#39;key1&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;value1&#39;</span>, <span style="color:#e6db74">&#39;key2&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;value2&#39;</span> }  <span style="color:#75715e"># Crear un hash con valores</span>
+mi_hash<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;key2&#39;</span><span style="color:#f92672">]</span> <span style="color:#75715e"># Retorna &#39;value2&#39;</span>
+</code></pre></div><p><strong>If y unless:</strong> Los bloques if y unless se terminan con end. Unless es el negado de if.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">if</span> cont <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">5</span>
+  cont <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p>Si es una sola linea dentro del if:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">cont <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> cont <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">5</span>
+</code></pre></div><p><strong>While y Until:</strong> Los bloques while y until tambien terminan con end. Until es el negado de while.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">while</span> cont <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>
+  cont <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p>Si es una sola línea dentro del while:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">cont <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">while</span> cont <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>
+</code></pre></div><p><strong>Case:</strong> los bloques case tienen dos formas de escribirse.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">valor <span style="color:#f92672">=</span> <span style="color:#66d9ef">case</span>
+          <span style="color:#66d9ef">when</span> a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">true</span>
+          <span style="color:#66d9ef">when</span> a <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">false</span>
+          <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">false</span>
+<span style="color:#66d9ef">end</span>
     
-case valor
-when &quot;valor1&quot;
+<span style="color:#66d9ef">case</span> valor
+<span style="color:#66d9ef">when</span> <span style="color:#e6db74">&#34;valor1&#34;</span>
   codigo
-when &quot;valor2&quot;
+<span style="color:#66d9ef">when</span> <span style="color:#e6db74">&#34;valor2&#34;</span>
   codigo
-else
+<span style="color:#66d9ef">else</span>
   codigo
-end
-</code></pre>
-
-<p><strong>Expresiones regulares:</strong> Se escriben entre // y se verifican con =~</p>
-
-<pre><code class="language-ruby">if hola =~ /pattern/
-  match = true
-end
-</code></pre>
-
-<p><strong>Bloques de código:</strong> se asocian a un metodo y se ejecutan con yield dentro del método. Usar {} para una linea y begin/end para multiples. Para recibir parametros ponerlos entre ||.</p>
-
-<pre><code class="language-ruby">def metodo
-  yield
-  puts &quot;En la mitad del metodo&quot;
-  yield
-end
-metodo { puts &quot;En mi bloque de codigo&quot; } # Aqui estoy llamando a mi metodo con el bloque de codigo asociado
-</code></pre>
-
-<p>La salida de esto es:</p>
-
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p><strong>Expresiones regulares:</strong> Se escriben entre // y se verifican con =~</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">if</span> hola <span style="color:#f92672">=~</span> <span style="color:#e6db74">/pattern/</span>
+  match <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p><strong>Bloques de código:</strong> se asocian a un metodo y se ejecutan con yield dentro del método. Usar {} para una linea y begin/end para multiples. Para recibir parametros ponerlos entre ||.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">metodo</span>
+  <span style="color:#66d9ef">yield</span>
+  puts <span style="color:#e6db74">&#34;En la mitad del metodo&#34;</span>
+  <span style="color:#66d9ef">yield</span>
+<span style="color:#66d9ef">end</span>
+metodo { puts <span style="color:#e6db74">&#34;En mi bloque de codigo&#34;</span> } <span style="color:#75715e"># Aqui estoy llamando a mi metodo con el bloque de codigo asociado</span>
+</code></pre></div><p>La salida de esto es:</p>
 <pre><code>En mi bloque de codigo
 En la mitad del metodo
 En mi bloque de codigo
-</code></pre>
-
-<p><strong>Un bloque con parámetros:</strong></p>
-
-<pre><code class="language-ruby">def metodo { |param1, param2| bloquecodigo }  # metodo con un bloque de codigo con dos parámetros
-  yield(param1, param2)     # Se ejecuta el bloque de codigo
-  codigo                    # Aqui hay codigo del metodo
-  yield(param1, param2)     # Se ejecuta nuevamente el bloque de codigo
-end
-</code></pre>
-
-<p><strong>Ejemplo común:</strong> El metodo each esta definido como una iteración de la colección con una llamada a yield con el elemento como parámetro. Por eso el siguiente bloque imprime cada palabra del hash:</p>
-
-<pre><code class="language-ruby">['Hola', 'Chao'].each {|palabra| print palabra, &quot; &quot;}
-</code></pre>
-
-<p><strong>For:</strong> Los bloques de código son la base de los iteradores internos de ruby. El mas importante, each, es la base de un ciclo for:</p>
-
-<pre><code class="language-ruby">for i in [1, 2, 3]
+</code></pre><p><strong>Un bloque con parámetros:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">metodo</span> { <span style="color:#f92672">|</span>param1, param2<span style="color:#f92672">|</span> bloquecodigo }  <span style="color:#75715e"># metodo con un bloque de codigo con dos parámetros</span>
+  <span style="color:#66d9ef">yield</span>(param1, param2)     <span style="color:#75715e"># Se ejecuta el bloque de codigo</span>
+  codigo                    <span style="color:#75715e"># Aqui hay codigo del metodo</span>
+  <span style="color:#66d9ef">yield</span>(param1, param2)     <span style="color:#75715e"># Se ejecuta nuevamente el bloque de codigo</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p><strong>Ejemplo común:</strong> El metodo each esta definido como una iteración de la colección con una llamada a yield con el elemento como parámetro. Por eso el siguiente bloque imprime cada palabra del hash:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;Hola&#39;</span>, <span style="color:#e6db74">&#39;Chao&#39;</span><span style="color:#f92672">].</span>each {<span style="color:#f92672">|</span>palabra<span style="color:#f92672">|</span> print palabra, <span style="color:#e6db74">&#34; &#34;</span>}
+</code></pre></div><p><strong>For:</strong> Los bloques de código son la base de los iteradores internos de ruby. El mas importante, each, es la base de un ciclo for:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span><span style="color:#f92672">]</span>
   print i
-end
-</code></pre>
-
-<p>Que termina traduciendose en:</p>
-
-<pre><code class="language-ruby">[1, 2, 3].each do |i|
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p>Que termina traduciendose en:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#f92672">[</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span><span style="color:#f92672">].</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>i<span style="color:#f92672">|</span>
   print i
-end
-</code></pre>
-
-<p><strong>Clases:</strong> A continuación una clase MiClase con su metodo inicializador y dos atributos (nombre y apellido). Los att_reader y attr_writer son atajos para definir metodos de lectura y escritura a los atributos de la clase, y crean un metodo parecido a este:</p>
-
-<pre><code class="language-ruby">def mivariable
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p><strong>Clases:</strong> A continuación una clase MiClase con su metodo inicializador y dos atributos (nombre y apellido). Los att_reader y attr_writer son atajos para definir metodos de lectura y escritura a los atributos de la clase, y crean un metodo parecido a este:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mivariable</span>
   @mivariable
-end
-def mivariable=(valor)
-  @mivariable = valor
-end
-</code></pre>
-
-<pre><code class="language-ruby">class MiClase &lt; MiClasePadre            # Clase Miclase que hereda de MiClasePadre
-  attr_reader :nombre, :apellido        # Métodos para acceder a los valores de estas variables
-  attr_writer :nombre, :apellido        # Métodos para escribir en estas variables
-  @@variable1                           # Variable de clase (igual en todas las instancias de esta clase)
-  def initialize (nombre, apellido)     # Método initialize para inicializar las clases
-    @nombre   = nombre                  # Variable de instancia
-    @apellido = apellido
-  end
-  private                               # De aqui para abajo todo es private. Por defecto es public.
-  def metodoprivado (nombre)            # Metodo privado de la clase
+<span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mivariable</span><span style="color:#f92672">=</span>(valor)
+  @mivariable <span style="color:#f92672">=</span> valor
+<span style="color:#66d9ef">end</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MiClase</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">MiClasePadre</span>            <span style="color:#75715e"># Clase Miclase que hereda de MiClasePadre</span>
+  <span style="color:#66d9ef">attr_reader</span> <span style="color:#e6db74">:nombre</span>, <span style="color:#e6db74">:apellido</span>        <span style="color:#75715e"># Métodos para acceder a los valores de estas variables</span>
+  <span style="color:#66d9ef">attr_writer</span> <span style="color:#e6db74">:nombre</span>, <span style="color:#e6db74">:apellido</span>        <span style="color:#75715e"># Métodos para escribir en estas variables</span>
+  @@variable1                           <span style="color:#75715e"># Variable de clase (igual en todas las instancias de esta clase)</span>
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">initialize</span> (nombre, apellido)     <span style="color:#75715e"># Método initialize para inicializar las clases</span>
+    @nombre   <span style="color:#f92672">=</span> nombre                  <span style="color:#75715e"># Variable de instancia</span>
+    @apellido <span style="color:#f92672">=</span> apellido
+  <span style="color:#66d9ef">end</span>
+  <span style="color:#66d9ef">private</span>                               <span style="color:#75715e"># De aqui para abajo todo es private. Por defecto es public.</span>
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">metodoprivado</span> (nombre)            <span style="color:#75715e"># Metodo privado de la clase</span>
     nombre
-  end
-end
-</code></pre>
-
-<p>Clase singleton:</p>
-
-<pre><code class="language-ruby">class MiSingleton
-  private_class_method :new               # Hago el método privado para que no pueda crear una nueva instancia
-  @@singleton = nil                       # Variable de clase, igual para todas las instancias de la clase
-  def MiSingleton.create                  # Método de clase
-    @@singleton = new unless @@singleton  # La crea a menos que exista
-    @@singleton                           # Siempre devuelve la misma instancia. No funciona para programación multihilo.
-  end
-end
-</code></pre>
-
-<p><strong>Manejo de Excepciones:</strong> El codigo se pone entre bloques begin end y se usa rescue para capturar las excepciones. El bloque else se ejecuta si no hubieron excepciones. El bloque ensure se ejecuta hubiera o no excepciones.</p>
-
-<pre><code class="language-ruby">begin
-  # Proceso
-rescue SystemCallError
-  # Codigo para manejar SystemCallError
-rescue SyntaxError =&gt; error
-  print &quot;Se produjo un error:&quot; + error
-else
-  puts &quot;No se produjeron errores&quot;
-ensure
-  puts &quot;Bloque final&quot;
-end
-</code></pre>
-
-<p><strong>Throw y Catch:</strong> Se pueden definir bloques catch y luego en cualquier parte hacer un throw que seran atrapados por los catch.</p>
-
-<pre><code class="language-ruby">def metodo
-  throw :salir if true
-end
-catch :salir do
-  # Procesar info
-end
-</code></pre>
-
-<p><strong>Modulos:</strong> Ruby permite definir modulos, que vienen a ser namespaces. Se pueden llamar con require o incluir dentro de una clase con include (esto se llama mixin y hace las veces de herencia multiple).</p>
-
-<pre><code class="language-ruby">module MiModulo
-  def metodo1
-  end
-end
-module OtroModulo
-  CONSTANTE = 1
-  def OtroModulo.metodo1
-  end
-end
-require 'MiModulo'
-require 'OtroModulo'
-MiModulo.metodo1      # Para llamar metodos igual que los metodos de clases
-OtroModulo::CONSTANTE # Para leer constantes usar ::
-class MiClase
-  include MiModulo
-end
-MiClase.metodo1   # Llama a metodo1 definido en el modulo MiModulo
-</code></pre>
-
-<p>Para todo lo demas, consultar google y la documentación. A codificar!</p>
+  <span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p>Clase singleton:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MiSingleton</span>
+  private_class_method <span style="color:#e6db74">:new</span>               <span style="color:#75715e"># Hago el método privado para que no pueda crear una nueva instancia</span>
+  @@singleton <span style="color:#f92672">=</span> <span style="color:#66d9ef">nil</span>                       <span style="color:#75715e"># Variable de clase, igual para todas las instancias de la clase</span>
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">MiSingleton</span><span style="color:#f92672">.</span><span style="color:#a6e22e">create</span>                  <span style="color:#75715e"># Método de clase</span>
+    @@singleton <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">unless</span> @@singleton  <span style="color:#75715e"># La crea a menos que exista</span>
+    @@singleton                           <span style="color:#75715e"># Siempre devuelve la misma instancia. No funciona para programación multihilo.</span>
+  <span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p><strong>Manejo de Excepciones:</strong> El codigo se pone entre bloques begin end y se usa rescue para capturar las excepciones. El bloque else se ejecuta si no hubieron excepciones. El bloque ensure se ejecuta hubiera o no excepciones.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">begin</span>
+  <span style="color:#75715e"># Proceso</span>
+<span style="color:#66d9ef">rescue</span> <span style="color:#66d9ef">SystemCallError</span>
+  <span style="color:#75715e"># Codigo para manejar SystemCallError</span>
+<span style="color:#66d9ef">rescue</span> <span style="color:#66d9ef">SyntaxError</span> <span style="color:#f92672">=&gt;</span> error
+  print <span style="color:#e6db74">&#34;Se produjo un error:&#34;</span> <span style="color:#f92672">+</span> error
+<span style="color:#66d9ef">else</span>
+  puts <span style="color:#e6db74">&#34;No se produjeron errores&#34;</span>
+<span style="color:#66d9ef">ensure</span>
+  puts <span style="color:#e6db74">&#34;Bloque final&#34;</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p><strong>Throw y Catch:</strong> Se pueden definir bloques catch y luego en cualquier parte hacer un throw que seran atrapados por los catch.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">metodo</span>
+  <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">:salir</span> <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">catch</span> <span style="color:#e6db74">:salir</span> <span style="color:#66d9ef">do</span>
+  <span style="color:#75715e"># Procesar info</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p><strong>Modulos:</strong> Ruby permite definir modulos, que vienen a ser namespaces. Se pueden llamar con require o incluir dentro de una clase con include (esto se llama mixin y hace las veces de herencia multiple).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">module</span> MiModulo
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">metodo1</span>
+  <span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">module</span> OtroModulo
+  <span style="color:#66d9ef">CONSTANTE</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">OtroModulo</span><span style="color:#f92672">.</span><span style="color:#a6e22e">metodo1</span>
+  <span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">end</span>
+require <span style="color:#e6db74">&#39;MiModulo&#39;</span>
+require <span style="color:#e6db74">&#39;OtroModulo&#39;</span>
+<span style="color:#66d9ef">MiModulo</span><span style="color:#f92672">.</span>metodo1      <span style="color:#75715e"># Para llamar metodos igual que los metodos de clases</span>
+<span style="color:#66d9ef">OtroModulo</span><span style="color:#f92672">::</span><span style="color:#66d9ef">CONSTANTE</span> <span style="color:#75715e"># Para leer constantes usar ::</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MiClase</span>
+  <span style="color:#66d9ef">include</span> <span style="color:#66d9ef">MiModulo</span>
+<span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">MiClase</span><span style="color:#f92672">.</span>metodo1   <span style="color:#75715e"># Llama a metodo1 definido en el modulo MiModulo</span>
+</code></pre></div><p>Para todo lo demas, consultar google y la documentación. A codificar!</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>
     <span class='st_twitter_large' displayText='Tweet'></span>

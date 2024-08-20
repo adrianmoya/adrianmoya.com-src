@@ -91,128 +91,89 @@
     <br/>
     <a class="label" href="http://adrianmoya.com/categories/sysadmin">Sysadmin</a>
     </span>
-    <p>Es común tener en nuestra red interna (ya sea de casa o en la empresa) varios servicios corriendo y querer exponer dos o más de ellos públicamente a través de internet. Existen muchas maneras de realizar esto, pero personalmente me gusta una técnica conocida como Proxy Reverso combinada con el uso de hosts virtuales, que describo a continuación:
-</p>
-
+    <p>Es común tener en nuestra red interna (ya sea de casa o en la empresa) varios servicios corriendo y querer exponer dos o más de ellos públicamente a través de internet. Existen muchas maneras de realizar esto, pero personalmente me gusta una técnica conocida como Proxy Reverso combinada con el uso de hosts virtuales, que describo a continuación:</p>
 <h2 id="algunos-términos-antes-de-comenzar">Algunos términos antes de comenzar</h2>
-
 <p><strong>IP Pública</strong>: Es la IP que nuestro proveedor de servicio nos da y es única en internet. Generalmente es dínamica, lo que quiere decir que el proveedor no garantiza que sea siempre la misma, aunque no cambia tampoco con tanta frecuencia. El mismo proveedor puede vendernos IPs públicas fijas, pero tienen un costo elevado. La IP Pública nos permite llegar hasta nuestro router desde internet. Podemos saber la IP accediendo desde nuestra red a <a href="http://www.whatismyip.com/">WhatIsMyIP.com</a></p>
-
 <p><strong>IP Privada</strong>: Es la IP que nuestros dispositivos reciben dentro de la red interna. Generalmente de la forma 192.168.x.x. Esta IP no puede ser accedida desde internet, pues es privada a cada red.</p>
-
 <p><strong>Router</strong>: Es el dispositivo que conecta nuestra red interna y el internet. Para mayor detalles del concepto, pueden ver <a href="http://es.wikipedia.org/wiki/Router">wikipedia</a>. Para el tema de este artículo nos interesa es saber que es el encargado de hacer lo que llamamos <strong>Reenvio de puertos</strong>.</p>
-
 <p><strong>Reenvio de puertos</strong>: Es la capacidad del router de encaminar un paquete de datos proveniente de internet hacia cualquier servidor/dispositivo conectado a nuestra red interna. Dependiendo de la marca/modelo, el reenvio de puertos se configura de manera distinta, pero el resultado es el mismo: un conjunto de reglas que le dicen al router que hacer cuando llega un paquete de datos a nuestra IP Pública en un puerto específico. Por ejemplo, si hay una petición http (cuyo puerto estándar es el 80), podemos especificar que servidor (IP Privada) atenderá la petición.</p>
-
 <p><strong>Dominio</strong>: Es el nombre unico que identifica a un sitio web o servicio. Los dominios internamente son traducidos a direcciones IP.</p>
-
 <p><strong>Proxy Reverso</strong>: Es un servidor que recibe y despacha las peticiones de entrada y salida. En el caso de este artículo, las peticiones web (a los puertos 80 y 443).</p>
-
 <p><strong>Host Virtual</strong>: Es un concepto que permite a un servidor web atender peticiones para varios dominios, como si se tuvieran distintos servidores web.</p>
-
 <h2 id="instalando-el-proxy-reverso">Instalando el proxy reverso</h2>
-
 <p>Necesitamos instalar un servidor que hará la función de proxy reverso. Puede ser físico o virtual (recomendado), y pueden usar cualquier distribución de Linux y ajustar los pasos, yo para este artículo usaré <a href="http://www.ubuntu.com/">Ubuntu 12.04 Server</a>. Luego de instalarlo (que hay miles de guías en internet de como hacerlo) accedemos a él con el usuario administrador y seguimos estos pasos:</p>
-
 <ul>
 <li>Instalamos los componentes necesarios (Apache, certificados SSL).</li>
 </ul>
-
-<pre><code class="language-bash">$ apt-get update &amp;&amp; apt-get install apache2 ssl-cert
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install apache2 ssl-cert
+</code></pre></div><ul>
 <li>Editamos el archivo de puertos de apache, para deshabilitar el puerto 80 que es el puerto de http, y habilitar los host virtuales para el puerto 443 (https). Este    paso es opcional, pero me gusta hacerlo porque es mas seguro acceder via https a los servicios, sobre todo si vamos a introducir contraseñas para hacer login. Simplemente basta con comentar la linea <code>Listen 80</code> en el archivo <code>/etc/apache2/ports.conf</code> y agregar la linea <code>NameVirtualHost *:443</code> debajo de <code>Listen 443</code>.</li>
 </ul>
-
-<pre><code class="language-apache">    #NameVirtualHost *:80
-    #Listen 80
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-apache" data-lang="apache">    <span style="color:#75715e">#NameVirtualHost *:80</span>
+    <span style="color:#75715e">#Listen 80</span>
     
-    &lt;IfModule mod_ssl.c&gt;
-        # If you add NameVirtualHost *:443 here, you will also have to change
-        # the VirtualHost statement in /etc/apache2/sites-available/default-ssl
-        # to &lt;VirtualHost *:443&gt;
-        # Server Name Indication for SSL named virtual hosts is currently not
-        # supported by MSIE on Windows XP.
-        Listen 443
+    <span style="color:#f92672">&lt;IfModule</span> <span style="color:#e6db74">mod_ssl.c</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#75715e"># If you add NameVirtualHost *:443 here, you will also have to change</span>
+        <span style="color:#75715e"># the VirtualHost statement in /etc/apache2/sites-available/default-ssl</span>
+        <span style="color:#75715e"># to &lt;VirtualHost *:443&gt;</span>
+        <span style="color:#75715e"># Server Name Indication for SSL named virtual hosts is currently not</span>
+        <span style="color:#75715e"># supported by MSIE on Windows XP.</span>
+        Listen <span style="color:#ae81ff">443</span>
         NameVirtualHost *:443
-    &lt;/IfModule&gt;
-</code></pre>
-
-<ul>
+    <span style="color:#f92672">&lt;/IfModule&gt;</span>
+</code></pre></div><ul>
 <li>Habilitamos los modulos de apache <code>ssl</code>, <code>proxy</code> y <code>proxy_http</code> y reiniciamos el servidor.</li>
 </ul>
-
-<pre><code class="language-bash">    $ sudo a2enmod ssl proxy proxy_http
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    $ sudo a2enmod ssl proxy proxy_http
     $ sudo service apache2 restart
-</code></pre>
-
-<ul>
+</code></pre></div><ul>
 <li>Deshabilitamos el sitio por defecto de apache.</li>
 </ul>
-
-<pre><code class="language-bash">    $ sudo a2dissite default
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    $ sudo a2dissite default
+</code></pre></div><ul>
 <li>Ahora, por cada servicio que queremos exponer, creamos un host virtual en apache, asignándole un dominio. Aqui pueden usar dominios gratuitos (por ejemplo de <a href="http://www.no-ip.com/">NO-IP</a>), subdominios de algun dominio que les pertenezca. Estos dominios debemos configurarlos para que apunten a la IP Pública de nuestra red. Luego para cada uno de ellos, creamos la configuración en la ruta <code>/etc/apache2/sites-available/</code>. La plantilla es como sigue (usare como ejemplo un sitio blog ficticio con un dominio gratuito):</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-apache" data-lang="apache"><span style="color:#75715e">#/etc/apache2/sites-available/miblog.no-ip.org</span>
+<span style="color:#75715e">#VHost configuration for miblog</span>
 
-<pre><code class="language-apache">#/etc/apache2/sites-available/miblog.no-ip.org
-#VHost configuration for miblog
-
-&lt;VirtualHost *:443&gt;
+<span style="color:#f92672">&lt;VirtualHost</span> <span style="color:#e6db74">*:443</span><span style="color:#f92672">&gt;</span>
         ServerName miblog.no-ip.org
         ProxyPass               /       http://192.168.1.x/
         ProxyPassReverse        /       http://192.168.1.x/
-        SSLCertificateFile    /etc/ssl/certs/ssl-cert-snakeoil.pem
-        SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
-        SSLEngine on
-        SSLProxyEngine on
-&lt;/VirtualHost&gt;
+        SSLCertificateFile    <span style="color:#e6db74">/etc/ssl/certs/ssl-cert-snakeoil.pem</span>
+        SSLCertificateKeyFile <span style="color:#e6db74">/etc/ssl/private/ssl-cert-snakeoil.key</span>
+        SSLEngine <span style="color:#66d9ef">on</span>
+        SSLProxyEngine <span style="color:#66d9ef">on</span>
+<span style="color:#f92672">&lt;/VirtualHost&gt;</span>
 
-</code></pre>
-
-<p>Noten que a pesar de que para acceder al proxy uso https, internamente puedo usar http. El certificado SSL del proxy esta cubriendo todas los servicios internos y por tanto no es necesario instalar un certificado en cada uno de ellos. Por supuesto los datos viajan desde el proxy al servicio sin encriptación, por tanto si desean una seguridad en la red interna, simplemente expongan cada servicio por https y configuran el proxy de manera acorde.</p>
-
+</code></pre></div><p>Noten que a pesar de que para acceder al proxy uso https, internamente puedo usar http. El certificado SSL del proxy esta cubriendo todas los servicios internos y por tanto no es necesario instalar un certificado en cada uno de ellos. Por supuesto los datos viajan desde el proxy al servicio sin encriptación, por tanto si desean una seguridad en la red interna, simplemente expongan cada servicio por https y configuran el proxy de manera acorde.</p>
 <p>Si no deseamos usar SSL (no recomendado) simplemente usamos una plantilla como la que sigue (y en este caso no comentar la linea <code>Listen 80</code> en la configuración de puertos de apache):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-apache" data-lang="apache"><span style="color:#75715e">#/etc/apache2/sites-available/miblog.no-ip.org</span>
+<span style="color:#75715e">#VHost configuration for miblog</span>
 
-<pre><code class="language-apache">#/etc/apache2/sites-available/miblog.no-ip.org
-#VHost configuration for miblog
-
-&lt;VirtualHost *:80&gt;
+<span style="color:#f92672">&lt;VirtualHost</span> <span style="color:#e6db74">*:80</span><span style="color:#f92672">&gt;</span>
         ServerName miblog.no-ip.org
         ProxyPass               /       http://192.168.1.x/
         ProxyPassReverse        /       http://192.168.1.x/
-&lt;/VirtualHost&gt;
+<span style="color:#f92672">&lt;/VirtualHost&gt;</span>
 
-</code></pre>
-
-<ul>
+</code></pre></div><ul>
 <li>Luego de crear el sitio, lo activamos y reiniciamos apache</li>
 </ul>
-
-<pre><code class="language-bash">$ sudo a2ensite miblog.no-ip.org
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo a2ensite miblog.no-ip.org
 $ sudo service apache2 reload
-</code></pre>
-
-<p>Cada vez que queremos añadir un sitio nuevo, repetimos los 2 pasos anteriores.</p>
-
+</code></pre></div><p>Cada vez que queremos añadir un sitio nuevo, repetimos los 2 pasos anteriores.</p>
 <ul>
 <li>El siguiente paso debemos realizarlo en la aplicación de administración del router. La misma varía por cada modelo, asi que deben consultar el manual, pero generalmente se accede a ella en la dirección 192.168.1.1. Lo que debemos configurar aqui es el redireccionamiento de puertos. Queremos apuntar el puerto 80 (si usamos http) y el puerto 443 (https) para que se redirijan a la dirección interna del proxy usando el protocolo TCP. En mi router (un Belkin) la cosa se ve mas o menos asi:</li>
 </ul>
-
-<p><img src="/images/2012/06/portforward.png" alt="" /></p>
-
+<p><img src="/images/2012/06/portforward.png" alt=""></p>
 <p>Y listo. Esto es lo que va a pasar la proxima vez que hagamos una petición al dominio:</p>
-
 <ol>
 <li>Nos dirigimos al dominio en el navegador (ejemplo miblog.no-ip.org) y el mismo nos lleva a nuestra IP Pública (puesto que lo hemos configurado asi en nuestro manejador del dominio)</li>
 <li>El router redirige la petición al proxy.</li>
 <li>El proxy atiende la petición, y basado en el dominio, elige a que servidor debe redirigir la misma.</li>
 <li>El servicio responde al proxy, quien a su vez le responde al navegador.</li>
 </ol>
-
 <p>Asi podemos tener varios servicios corriendo y acceder a ellos asignandoles un dominio distinto. Saludos!</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

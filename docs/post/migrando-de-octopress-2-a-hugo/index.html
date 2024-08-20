@@ -89,61 +89,34 @@
 
     </span>
     <p>Hace <a href="/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/">algún tiempo atrás</a>, migré mi blog desde <a href="https://es.wordpress.org/">Wordpress</a> a <a href="http://octopress.org/">Octopress 2</a>. Para el momento representaba un gran avance para mi y me introdujo al mundo de los generadores de sitios estáticos. Escribir en markdown es un placer y llevar el &ldquo;código&rdquo; de mi blog en git es muy natural para mi como desarrollador. Sin embargo el tiempo pasó y encontré algunas dificultades.</p>
-
-<p></p>
-
 <p>Preparar una máquina nueva para trabajar con el blog era super incómodo y problemático, partiendo del hecho que tenía que instalar Ruby, instalar las gemas, y hacer el setup de ambas ramas del repo para que siguiera funcionando tal como venían funcionando en el equipo original. Octopress 2 tenía serios errores de diseño que <a href="http://octopress.org/2015/01/15/octopress-3.0-is-coming/">el mismo autor reconoció</a>, y prometió corregir en la futura versión 3. Entre ellas me molestaba tener que clonar el repositorio original de Octopress cada que quisiera iniciar un nuevo sitio. Instalar los temas tampoco era muy elegante.</p>
-
 <h2 id="primera-opción-esperar-a-octopress-3">Primera opción: esperar a Octopress 3</h2>
-
 <p>Mi primer plan era simplemente esperar Octopress 3, siendo fiel a este generador que me sirvió mucho a pesar de sus defectos. Sin embargo me di cuenta de que el desarrollo iba demasiado lento. Esperé durante mucho tiempo un release oficial, que nunca llegó. La verdad es que octopress se convirtió en una gema de Ruby, y está disponible actualmente, pero la documentación a la fecha nunca se publicó, nunca hubo disponible una guía de migración oficial, y al parecer el tema por defecto tampoco estaba listo. Lo que si noté es que el autor <a href="https://twitter.com/imathis">@imathis</a> hizo un esfuerzo por desacoplar todas las partes de Octopress y alinearse a la comunidad del generador de sitios estáticos sobre el cual se basaba, <a href="https://jekyllrb.com/">Jekyll</a>. Siendo esto así, decidí cambiar el plan.</p>
-
 <h2 id="segunda-opción-migrar-el-blog-a-jekyll">Segunda opción: migrar el blog a Jekyll</h2>
-
 <p>Comencé a leer un poco la documentación de Jekkyl que es excelente. Y a migrar los primeros posts. Busqué un tema nuevo y me puse manos a la obra. Pero para ese momento Jekyll estaba por lanzar la version 3. Venía con nuevas características, mejor rendimiento, mejoras para la instalación de plugins, etc etc. Entonces comencé a sentir que el esfuerzo se perdería si no me pasaba de inmediato a Jekkyl 3. Decidí una vez más esperar al release, que finalmente <a href="http://jekyllrb.com/news/2015/10/26/jekyll-3-0-released/">se dió en Octubre de 2015</a>.</p>
-
 <p>Durante la espera comencé a aprender de <a href="https://golang.org/">Go</a>, e investigando un poco de generadores de sitios estáticos, di con <a href="http://gohugo.io/">Hugo</a>. Decidí darle una oportunidad por las siguientes razones:</p>
-
 <ul>
 <li>Soportaba markdown (todas mis entradas están escritas en markdown).</li>
 <li>La descarga es un binario. Ya no tendría que instalar Ruby en mi equipo, simplemente bajar el ejecutable y comenzar a trabajar.</li>
 <li>Utiliza por defecto el sistema de plantillas de Go, el cual es parte de las cosas que estoy aprendiendo, y el blog sería el mejor proyecto para practicar.</li>
 </ul>
-
 <h2 id="la-tercera-es-la-vencida-migrar-el-blog-a-hugo">La tercera es la vencida: migrar el blog a Hugo</h2>
-
 <p>Probé un poco Hugo y leí la documentación, que es muy completa (aunque desordenada en mi opinión). Y me gustó. Así que me puse manos a la obra. Aquí algunos puntos relativos a la migración:</p>
-
 <h3 id="tema">Tema</h3>
-
 <p>Elegí el tema <a href="http://themes.gohugo.io/hyde-x/">Hyde-X</a>, un tema algo común pero que me gusta, y tiene soporte para varias cosas interesantes, entre ellas los comentarios de Disqus que usaba en el blog, Google Analitycs y algunas cosillas más. Me tocó hacer algunas pequeñas modificaciones a las plantillas para traducir por ejemplo la información de la entrada al castellano y cambiar el formato de las fechas.</p>
-
 <h3 id="imágenes">Imágenes</h3>
-
 <p>Las imágenes que tenía en algunas entradas en el blog utilizaban una sintáxis de un plugin de Octopress. No lo había notado hasta esta migración. Decidí utilizar la sintáxis nativa de markdown que aunque no ofrece tanto control como el plugin, hace que el contenido sea más compatible con cualquier sistema que soporte markdown (por si en un futuro decido migrar a otra cosa).</p>
-
 <h3 id="formato-de-fechas">Formato de Fechas</h3>
-
 <p>El formato de fechas en el <a href="http://gohugo.io/content/front-matter/">front-matter</a> de las entradas es distinto al que usaba en Octopress. Me tocó corregir el formato para Hugo lo entendiera y pudiera generar los contenidos.</p>
-
 <h3 id="urls-de-las-entradas">URLs de las entradas</h3>
-
 <p>Para mí era importante mantener las urls originales de las entradas. Hugo por defecto utiliza urls en otro formato, por tanto me tocó realizar una modificación a la configuración por defecto para que las entradas anteriores usaran sus urls originales, y que las nuevas utilizaran el formato nuevo que me parece un poco mejor. Eso me llevo a cambios en el <a href="https://github.com/adrianmoya/adrianmoya.com-src/blob/00c99f2655606db51e5a8f9332fc03683a1fa4e2/config.toml#L7-L8">config.toml</a> y en la <a href="https://github.com/adrianmoya/adrianmoya.com-src/blob/00c99f2655606db51e5a8f9332fc03683a1fa4e2/layouts/index.html#L4">plantilla principal</a> del tema que elegí. Adicionalmente, tuve que definir el &ldquo;slug&rdquo; específico en cada post, puesto que Hugo maneja los acentos y caracteres internacionales de manera distinta cuando construye las urls.</p>
-
 <h3 id="comentarios-de-disqus">Comentarios de Disqus</h3>
-
 <p>Al realizar la migración a Hugo, los comentarios de las entradas desaparecieron. Esto se debió a que originalmente tenía configurado el dominio de github para el blog (adrianmoya.github.io). Por suerte, Disqus tiene una herramienta de migración de dominio, y al realizar la migración al dominio del blog (adrianmoya.com) los comentarios fueron reestablecidos.</p>
-
 <h3 id="botones-de-compartir-en-redes-sociales">Botones de compartir en redes sociales</h3>
-
 <p>El tema que utilicé no traía botones para compartir las entradas por las redes sociales, algo que me gusta para facilitar que los lectores compartan el contenido. Decidí comenzar a usar <a href="http://www.sharethis.com/">ShareThis</a>, por tanto abrí una cuenta y modifiqué el tema para incluir el código necesario en cada entrada.</p>
-
 <h3 id="despliegue">Despliegue</h3>
-
 <p>Para el tema de automatizar el despliegue, utilicé <a href="http://gohugo.io/tutorials/github-pages-blog/#hosting-personal-organization-pages:fcefb200141ace3e7bfd6542457b7a72">la recomendación de la documentación de Hugo</a> de crear un repo adicional con las fuentes y utilizar un <a href="https://github.com/adrianmoya/adrianmoya.com-src/blob/e2a526c0ed30214c1ba71befd8c2f6b8b4592f39/deploy.sh">script de deploy</a> que publica los cambios al submodulo. Agregando el tema y el repo público como submodulo hace muy fácil inicializar un equipo nuevo, simplemente clonando las fuentes con la opción <code>--recursive</code> se trae todo lo necesario para trabajar.</p>
-
 <h3 id="configuraciones-finales">Configuraciones finales</h3>
-
 <p>Finalmente configuré algunas cosas que me ofrecía el tema, como las urls de las páginas sociales, el gravatar, etc. El resultado final es lo que ven ahora. Aún faltan detallitos pero creo que ya está bastante completo para seguir agregando contenido!</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

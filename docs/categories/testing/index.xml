@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Testing on Adrian Moya</title>
@@ -6,20 +6,14 @@
     <description>Recent content in Testing on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Tue, 28 Nov 2017 00:00:00 -0500</lastBuildDate>
-    
-	<atom:link href="http://adrianmoya.com/categories/testing/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 28 Nov 2017 00:00:00 -0500</lastBuildDate><atom:link href="http://adrianmoya.com/categories/testing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pensando TDD (II)</title>
       <link>http://adrianmoya.com/post/pensando-tdd-ii/</link>
       <pubDate>Tue, 28 Nov 2017 00:00:00 -0500</pubDate>
       
       <guid>http://adrianmoya.com/post/pensando-tdd-ii/</guid>
-      <description>&lt;p&gt;En mi &lt;a href=&#34;http://adrianmoya.com/post/pensando-tdd-i/&#34;&gt;artículo anterior&lt;/a&gt;, exploramos el tren de pensamientos cuando se usa desarrollo guiado por pruebas (TDD) diseñando un componente para convertir dinero de USD a COP. En esta segunda parte, añadiré algo de diseño adicional e introduciré el tema de los dobles.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;En mi &lt;a href=&#34;http://adrianmoya.com/post/pensando-tdd-i/&#34;&gt;artículo anterior&lt;/a&gt;, exploramos el tren de pensamientos cuando se usa desarrollo guiado por pruebas (TDD) diseñando un componente para convertir dinero de USD a COP. En esta segunda parte, añadiré algo de diseño adicional e introduciré el tema de los dobles.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -29,10 +23,7 @@
       
       <guid>http://adrianmoya.com/post/pensando-tdd-i/</guid>
       <description>&lt;p&gt;Siempre escuchamos que TDD es una técnica de diseño que es guiada por pruebas. Pero dado que tenemos que escribir la prueba primero, nuestra mente comienza a pensar en términos de pruebas en lugar de diseño. Entonces comenzamos a pensar en casos borde, malas entradas, y cosas que son importante pensar, pero desvían nuestra atención del objetivo principal de la técnica, que es diseñar.&lt;/p&gt;
-
-&lt;p&gt;En esta entrada voy a volcar mi tren de pensamientos cuando diseño a través de TDD, para que puedan contrastar la diferencia acerca de pensar enfocado en pruebas y pensar acerca de diseño. Así mismo, cada decisión de diseño va a resultar en código para nuestra prueba.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;En esta entrada voy a volcar mi tren de pensamientos cuando diseño a través de TDD, para que puedan contrastar la diferencia acerca de pensar enfocado en pruebas y pensar acerca de diseño. Así mismo, cada decisión de diseño va a resultar en código para nuestra prueba.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -41,9 +32,7 @@
       <pubDate>Fri, 28 Feb 2014 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2014/02/pruebas-automatizadas-una-vision-de-desarrollador/</guid>
-      <description>&lt;p&gt;El mundo de las pruebas en el desarrollo de software es muy amplio, y con la aplicación de metodologías ágiles cada vez más usadas, se ha borrado un poco la línea entre las tareas de un desarrollador y de un tester puro, y han comenzado a compartir algunas responsabilidades. A continuación expongo, desde mi punto de vista como desarrollador y no especialista en pruebas, cuál debe ser la colaboración de un desarrollador en esta parte importante del proceso de desarrollo.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;El mundo de las pruebas en el desarrollo de software es muy amplio, y con la aplicación de metodologías ágiles cada vez más usadas, se ha borrado un poco la línea entre las tareas de un desarrollador y de un tester puro, y han comenzado a compartir algunas responsabilidades. A continuación expongo, desde mi punto de vista como desarrollador y no especialista en pruebas, cuál debe ser la colaboración de un desarrollador en esta parte importante del proceso de desarrollo.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -52,9 +41,7 @@
       <pubDate>Sun, 29 Sep 2013 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2013/09/aplicando-el-patron-page-object-en-la-automatizacion-de-escenarios/</guid>
-      <description>&lt;p&gt;En los últimos dos post, he comentado acerca de patrones y técnicas para las pruebas unitarias. En esta oportunidad, hablaré de un patrón que podemos utilizar a nivel de nuestras pruebas de extremo a extremo (end to end). Se trata del patron Page Object.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;En los últimos dos post, he comentado acerca de patrones y técnicas para las pruebas unitarias. En esta oportunidad, hablaré de un patrón que podemos utilizar a nivel de nuestras pruebas de extremo a extremo (end to end). Se trata del patron Page Object.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -63,9 +50,7 @@
       <pubDate>Tue, 30 Jul 2013 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</guid>
-      <description>&lt;p&gt;Para aplicar TDD o BDDSpec de manera efectiva, es importante que conozcamos algunos patrones y técnicas que nos permitan mantener nuestra suite de pruebas ordenada y mantenible. El código de prueba debe ser tratado como ciudadano de primera categoría al igual que el de nuestra aplicación. A continuación describiré el uso del patrón DataBuilder, y cómo nos ayuda a escribir pruebas más expresivas.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Para aplicar TDD o BDDSpec de manera efectiva, es importante que conozcamos algunos patrones y técnicas que nos permitan mantener nuestra suite de pruebas ordenada y mantenible. El código de prueba debe ser tratado como ciudadano de primera categoría al igual que el de nuestra aplicación. A continuación describiré el uso del patrón DataBuilder, y cómo nos ayuda a escribir pruebas más expresivas.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -74,8 +59,7 @@
       <pubDate>Wed, 29 May 2013 00:00:00 +0000</pubDate>
       
       <guid>http://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/</guid>
-      <description>&lt;p&gt;Cuando usamos &lt;a href=&#34;http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/&#34;&gt;BDD de especificaciones para diseñar objetos&lt;/a&gt;, queremos describir el comportamiento de nuestros objetos como una unidad. Pero ¿qué pasa cuando este objeto debe interactuar con otros para lograr su propósito?. A continuación explicaré cómo hacer uso de dobles de prueba para describir la comunicación entre distintos objetos.
-&lt;/p&gt;</description>
+      <description>&lt;p&gt;Cuando usamos &lt;a href=&#34;http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/&#34;&gt;BDD de especificaciones para diseñar objetos&lt;/a&gt;, queremos describir el comportamiento de nuestros objetos como una unidad. Pero ¿qué pasa cuando este objeto debe interactuar con otros para lograr su propósito?. A continuación explicaré cómo hacer uso de dobles de prueba para describir la comunicación entre distintos objetos.&lt;/p&gt;</description>
     </item>
     
   </channel>

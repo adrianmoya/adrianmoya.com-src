@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Unit Testing on Adrian Moya</title>
@@ -6,20 +6,14 @@
     <description>Recent content in Unit Testing on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Tue, 24 May 2016 08:14:30 -0500</lastBuildDate>
-    
-	<atom:link href="http://adrianmoya.com/categories/unit-testing/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 24 May 2016 08:14:30 -0500</lastBuildDate><atom:link href="http://adrianmoya.com/categories/unit-testing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pruebas con tiempo en java 8</title>
       <link>http://adrianmoya.com/post/pruebas-con-tiempo-en-java-8/</link>
       <pubDate>Tue, 24 May 2016 08:14:30 -0500</pubDate>
       
       <guid>http://adrianmoya.com/post/pruebas-con-tiempo-en-java-8/</guid>
-      <description>&lt;p&gt;En &lt;a href=&#34;http://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/&#34;&gt;mi artículo anterior&lt;/a&gt; revisé algunas técnicas para escribir pruebas que manipularan el tiempo en una aplicación legado. Hoy estaré compartiendo estrategias para escribir código que manipule el tiempo usando Java 8.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;En &lt;a href=&#34;http://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/&#34;&gt;mi artículo anterior&lt;/a&gt; revisé algunas técnicas para escribir pruebas que manipularan el tiempo en una aplicación legado. Hoy estaré compartiendo estrategias para escribir código que manipule el tiempo usando Java 8.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -28,9 +22,7 @@
       <pubDate>Mon, 22 Feb 2016 16:04:31 -0500</pubDate>
       
       <guid>http://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/</guid>
-      <description>&lt;p&gt;Las pruebas unitarias que dependen del tiempo son siempre complicadas. La manera aceptada de hacerlas es envolver todas las llamadas para obtener la hora del sistema en un objeto &amp;ldquo;Clock&amp;rdquo;. Comenzando con Java 8, &lt;a href=&#34;https://jcp.org/en/jsr/detail?id=310&#34;&gt;la nueva API de fechas y hora&lt;/a&gt; introdujo el objeto &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/api/java/time/Clock.html&#34;&gt;Clock&lt;/a&gt; al lenguaje, que hace más simple inyectar en una clase y sustituir por un doble en una prueba. Antes de eso, en Java 7 y anteriores, era tu responsabilidad crear dicho objeto.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Las pruebas unitarias que dependen del tiempo son siempre complicadas. La manera aceptada de hacerlas es envolver todas las llamadas para obtener la hora del sistema en un objeto &amp;ldquo;Clock&amp;rdquo;. Comenzando con Java 8, &lt;a href=&#34;https://jcp.org/en/jsr/detail?id=310&#34;&gt;la nueva API de fechas y hora&lt;/a&gt; introdujo el objeto &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/api/java/time/Clock.html&#34;&gt;Clock&lt;/a&gt; al lenguaje, que hace más simple inyectar en una clase y sustituir por un doble en una prueba. Antes de eso, en Java 7 y anteriores, era tu responsabilidad crear dicho objeto.&lt;/p&gt;</description>
     </item>
     
   </channel>

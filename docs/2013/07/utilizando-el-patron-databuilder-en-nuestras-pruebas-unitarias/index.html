@@ -92,267 +92,200 @@
     <a class="label" href="http://adrianmoya.com/categories/testing">Testing</a><a class="label" href="http://adrianmoya.com/categories/patrones">Patrones</a><a class="label" href="http://adrianmoya.com/categories/junit">JUnit</a>
     </span>
     <p>Para aplicar TDD o BDDSpec de manera efectiva, es importante que conozcamos algunos patrones y técnicas que nos permitan mantener nuestra suite de pruebas ordenada y mantenible. El código de prueba debe ser tratado como ciudadano de primera categoría al igual que el de nuestra aplicación. A continuación describiré el uso del patrón DataBuilder, y cómo nos ayuda a escribir pruebas más expresivas.</p>
-
-<p></p>
-
 <p>Recordemos que en una prueba unitaria automatizada, existen tres partes que debemos expresar con claridad:</p>
-
 <p><strong>Arrange (Given)</strong>: En esta parte establecemos el contexto inicial de nuestra prueba.</p>
-
 <p><strong>Act (When)</strong>: La parte que ejecuta el código que deseamos probar.</p>
-
 <p><strong>Assert (Then)</strong>: La parte donde verificamos que el resultado es el esperado.</p>
-
 <p>Durante la parte de establecer el contexto, muchas veces necesitamos construir varios objetos de nuestro dominio con ciertos valores predefinidos que son importantes o determinantes en la manera en que nuestro objeto se va a comportar cuando ejecutemos la operación que estamos probando.</p>
-
 <p>Para este propósito, me he encontrado que el patrón databuilder es esencial. Nos permite construir distintas versiones de un objeto con las características que necesitamos para cada prueba, reduciendo la cantidad de código que hay que escribir y aumentando la expresividad de la prueba.</p>
-
 <h2 id="el-patrón-databuilder-en-las-pruebas">El patrón Databuilder en las pruebas</h2>
-
 <p>Supongamos que queremos diseñar la operación de transferencia entre dos cuentas de un AccountManager. Necesitamos instanciar 2 objetos de tipo cuenta con un saldo conocido y luego llamar a la operación y definir los resultados esperados. Si nuestro objeto cuenta está definido asi:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//Account.java
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Account</span> <span style="color:#f92672">{</span>
 
-<pre><code class="language-java">//Account.java
-public class Account {
-
-    private String number;
-    private int balance;
+    <span style="color:#66d9ef">private</span> String number<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> balance<span style="color:#f92672">;</span>
     
-    public Account(String number, int balanceInicial) {
-        this.number = number;
-        this.balance = balanceInicial;        
-    }
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Account</span><span style="color:#f92672">(</span>String number<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> balanceInicial<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> number<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">balance</span> <span style="color:#f92672">=</span> balanceInicial<span style="color:#f92672">;</span>        
+    <span style="color:#f92672">}</span>
     
-    //Setters y Getters
-}
-</code></pre>
-
-<p>Entonces nuestra prueba se vería así:</p>
-
-<pre><code class="language-java">//AccountManagerSpec.java
-    @Test
-    public void it_should_transfer_between_two_accounts(){
-        //Given
-        Account account1 = new Account(&quot;12345&quot;, 100);
-        Account account2 = new Account(&quot;54321&quot;, 200);
-</code></pre>
-
-<p>Como pueden ver, este ejemplo es muy sencillo y sin embargo no queda muy claro a qué se refieren los parámetros del constructor de Account. Veamos entonces como nos puede ayudar un databuilder para los objetos Account.</p>
-
+    <span style="color:#75715e">//Setters y Getters
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>Entonces nuestra prueba se vería así:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//AccountManagerSpec.java
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Test</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">it_should_transfer_between_two_accounts</span><span style="color:#f92672">(){</span>
+        <span style="color:#75715e">//Given
+</span><span style="color:#75715e"></span>        Account account1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Account<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;12345&#34;</span><span style="color:#f92672">,</span> 100<span style="color:#f92672">);</span>
+        Account account2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Account<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;54321&#34;</span><span style="color:#f92672">,</span> 200<span style="color:#f92672">);</span>
+</code></pre></div><p>Como pueden ver, este ejemplo es muy sencillo y sin embargo no queda muy claro a qué se refieren los parámetros del constructor de Account. Veamos entonces como nos puede ayudar un databuilder para los objetos Account.</p>
 <h2 id="construyendo-un-databuilder-para-account">Construyendo un databuilder para Account</h2>
-
 <h3 id="paso-1-clase-builder">Paso 1: Clase Builder</h3>
-
 <p>El primer paso para crear un databuilder para nuestro objeto es definir una clase (que generalmente lleva el mismo nombre de la clase y el sufijo &ldquo;Builder&rdquo;) y definir propiedades iguales a las de nuestro objeto. Nuestra clase Account tiene dos propiedades, por lo tanto nuestro builder comenzaría inicialmente asi:</p>
-
-<pre><code class="language-java">//AccountBuilder.java
-public class AccountBuilder {
-    private String number;
-    private int balance;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//AccountBuilder.java
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccountBuilder</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> String number<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> balance<span style="color:#f92672">;</span>
     
-}
-</code></pre>
-
-<h3 id="paso-2-constructor-con-valores-por-defecto">Paso 2: Constructor con valores por defecto</h3>
-
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="paso-2-constructor-con-valores-por-defecto">Paso 2: Constructor con valores por defecto</h3>
 <p>Como segundo paso, agregamos a nuestro builder un constructor que establece valores genéricos válidos para cada propiedad. Para el caso de nuestro Account, inicialicemos en el constructor el número de cuenta y el balance como sigue:</p>
-
-<pre><code class="language-java">//AccountBuilder.java
-    public AccountBuilder(){
-        number = &quot;12345&quot;;
-        balance = 0;
-    }
-</code></pre>
-
-<h3 id="paso-3-agregamos-métodos-para-cambiar-los-valores-por-defecto">Paso 3: Agregamos métodos para cambiar los valores por defecto</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//AccountBuilder.java
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">AccountBuilder</span><span style="color:#f92672">(){</span>
+        number <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;12345&#34;</span><span style="color:#f92672">;</span>
+        balance <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h3 id="paso-3-agregamos-métodos-para-cambiar-los-valores-por-defecto">Paso 3: Agregamos métodos para cambiar los valores por defecto</h3>
 <p>El nombre de los métodos usualmente se establece con el nombre de la propiedad con el sufijo &ldquo;with&rdquo;. Los métodos devuelven la misma instancia del databuilder (this) de manera que podamos construir un API fluente. Veamos el ejemplo:</p>
-
-<pre><code class="language-java">//AccountBuilder.java
-    public AccountBuilder withNumber(String number){
-        this.number = number;
-        return this;
-    }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//AccountBuilder.java
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> AccountBuilder <span style="color:#a6e22e">withNumber</span><span style="color:#f92672">(</span>String number<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> number<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
     
-    public AccountBuilder withBalance(int balance){
-        this.balance = balance;
-        return this;
-    }
-</code></pre>
-
-<h3 id="paso-4-creamos-un-método-build">Paso 4: Creamos un método build()</h3>
-
+    <span style="color:#66d9ef">public</span> AccountBuilder <span style="color:#a6e22e">withBalance</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> balance<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">balance</span> <span style="color:#f92672">=</span> balance<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h3 id="paso-4-creamos-un-método-build">Paso 4: Creamos un método build()</h3>
 <p>Este método es el que se encarga de construir nuestro objeto final, por lo que devuelve una instancia del mismo. Para ello, hace uso de los valores establecidos en las propiedades del builder.</p>
-
-<pre><code class="language-java">//AccountBuilder.java
-    public Account build(){
-        return new Account(number, balance);
-    }
-</code></pre>
-
-<h3 id="paso-5-agregamos-un-método-estático-para-obtener-una-instancia-del-builder">Paso 5: Agregamos un método estático para obtener una instancia del builder</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//AccountBuilder.java
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> Account <span style="color:#a6e22e">build</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Account<span style="color:#f92672">(</span>number<span style="color:#f92672">,</span> balance<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h3 id="paso-5-agregamos-un-método-estático-para-obtener-una-instancia-del-builder">Paso 5: Agregamos un método estático para obtener una instancia del builder</h3>
 <p>Este paso es solo para añadir más expresividad a la prueba (uno de los objetivos de usar el patrón). Aqui usualmente llamamos al método con el nombre del objeto y el prefijo &ldquo;a&rdquo; (o &ldquo;an&rdquo; si comienza por vocal).</p>
-
-<pre><code class="language-java">//AccountBuilder.java
-    public static AccountBuilder anAccount(){
-        return new AccountBuilder();
-    }
-</code></pre>
-
-<h2 id="usando-el-accountbuilder">Usando el AccountBuilder</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//AccountBuilder.java
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> AccountBuilder <span style="color:#a6e22e">anAccount</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> AccountBuilder<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h2 id="usando-el-accountbuilder">Usando el AccountBuilder</h2>
 <p>Ahora veamos como usamos nuestro builder recien creado, y como expresa mejor el contexto de nuestra prueba. Lo primero es importar el método estático del Builder:</p>
-
-<pre><code class="language-java">//AccountManagerSpec.java
-import static com.adrianmoya.specbddsample.builders.AccountBuilder.anAccount;
-</code></pre>
-
-<p>Y luego podemos usarlo para establecer el contexto:</p>
-
-<pre><code class="language-java">//AccountManagerSpec.java
-    @Test
-    public void it_should_transfer_between_two_accounts(){
-        //Given
-        Account account1 = anAccount()
-                .withBalance(100)
-                .build();
-        Account account2 = anAccount()
-                .withBalance(200)
-                .build();
-</code></pre>
-
-<p>Como pueden ver, la prueba se vuelve más expresiva, y al leer el contexto es más fácil de entender que se trata de una cuenta con un balance de 100 y una cuenta con un balance de 200. Además, podemos sacar del contexto cualquier valor que no nos interese para la prueba, en este caso el número de cuenta no aparece por ningun lado (es asignado a un valor por defecto por el builder). Si quisiéramos que la transferencia verificara que no se trata de la misma cuenta, podemos agregar el numero asi:</p>
-
-<pre><code class="language-java">//AccountManagerSpec.java
-        Account account1 = anAccount()
-                .withNumber(&quot;12345&quot;)
-                .withBalance(100)
-                .build();
-</code></pre>
-
-<p>Cuando los objetos tienen muchas más propiedades, el builder nos ayuda a entender bien cuales son las propiedades que afectan la prueba.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//AccountManagerSpec.java
+</span><span style="color:#75715e"></span><span style="color:#f92672">import static</span> com.adrianmoya.specbddsample.builders.AccountBuilder.anAccount<span style="color:#f92672">;</span>
+</code></pre></div><p>Y luego podemos usarlo para establecer el contexto:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//AccountManagerSpec.java
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Test</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">it_should_transfer_between_two_accounts</span><span style="color:#f92672">(){</span>
+        <span style="color:#75715e">//Given
+</span><span style="color:#75715e"></span>        Account account1 <span style="color:#f92672">=</span> anAccount<span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">withBalance</span><span style="color:#f92672">(</span>100<span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+        Account account2 <span style="color:#f92672">=</span> anAccount<span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">withBalance</span><span style="color:#f92672">(</span>200<span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+</code></pre></div><p>Como pueden ver, la prueba se vuelve más expresiva, y al leer el contexto es más fácil de entender que se trata de una cuenta con un balance de 100 y una cuenta con un balance de 200. Además, podemos sacar del contexto cualquier valor que no nos interese para la prueba, en este caso el número de cuenta no aparece por ningun lado (es asignado a un valor por defecto por el builder). Si quisiéramos que la transferencia verificara que no se trata de la misma cuenta, podemos agregar el numero asi:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//AccountManagerSpec.java
+</span><span style="color:#75715e"></span>        Account account1 <span style="color:#f92672">=</span> anAccount<span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">withNumber</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;12345&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">withBalance</span><span style="color:#f92672">(</span>100<span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+</code></pre></div><p>Cuando los objetos tienen muchas más propiedades, el builder nos ayuda a entender bien cuales son las propiedades que afectan la prueba.</p>
 <h2 id="combinando-builders">Combinando builders</h2>
-
 <p>Ahora veamos el caso en el que tenemos objetos complejos que contienen otros objetos. Supongamos que una cuenta tiene una lista de transacciones asociadas.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//Account.java
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Account</span> <span style="color:#f92672">{</span>
 
-<pre><code class="language-java">//Account.java
-public class Account {
-
-    private String number;
-    private int balance;
-    private List&lt;Transaction&gt; transactions;
+    <span style="color:#66d9ef">private</span> String number<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> balance<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>Transaction<span style="color:#f92672">&gt;</span> transactions<span style="color:#f92672">;</span>
         
-    public Account(String number, int balanceInicial) {
-        this.number = number;
-        this.balance = balanceInicial;
-        transactions = new ArrayList&lt;Transaction&gt;();
-    }
-</code></pre>
-
-<pre><code class="language-java">//Transaction.java
-public class Transaction {
-    private int amount;
-    private String type;
-    private Date date;
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Account</span><span style="color:#f92672">(</span>String number<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> balanceInicial<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> number<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">balance</span> <span style="color:#f92672">=</span> balanceInicial<span style="color:#f92672">;</span>
+        transactions <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>Transaction<span style="color:#f92672">&gt;();</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//Transaction.java
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Transaction</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> amount<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> String type<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Date date<span style="color:#f92672">;</span>
     
-    public Transaction(int amount, String type, Date date){
-        this.amount = amount;
-        this.type = type;
-        this.date = date;
-    }
-}
-</code></pre>
-
-<p>Para este caso, cuando queremos crear una cuenta con unas transacciones específicas, estos son los pasos que debemos realizar:</p>
-
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Transaction</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> amount<span style="color:#f92672">,</span> String type<span style="color:#f92672">,</span> Date date<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">amount</span> <span style="color:#f92672">=</span> amount<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> type<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">date</span> <span style="color:#f92672">=</span> date<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Para este caso, cuando queremos crear una cuenta con unas transacciones específicas, estos son los pasos que debemos realizar:</p>
 <h3 id="paso-1-construir-un-builder-para-el-objeto-asociado">Paso 1: Construir un builder para el objeto asociado</h3>
-
 <p>En este caso seguimos los pasos antes establecidos y construimos un builder para nuestro objeto Transaction.</p>
-
-<pre><code class="language-java">//TransactionBuilder.java
-public class TransactionBuilder {
-    private int amount;
-    private String type;
-    private Date date;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//TransactionBuilder.java
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TransactionBuilder</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> amount<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> String type<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Date date<span style="color:#f92672">;</span>
     
-    public TransactionBuilder(){
-        this.amount = 10;
-        this.type = &quot;Credito&quot;;
-        this.date = new Date();
-    }
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">TransactionBuilder</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">amount</span> <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Credito&#34;</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">date</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
     
-    public TransactionBuilder withAmount(int amount){
-        this.amount = amount;
-        return this;
-    }
+    <span style="color:#66d9ef">public</span> TransactionBuilder <span style="color:#a6e22e">withAmount</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> amount<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">amount</span> <span style="color:#f92672">=</span> amount<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
     
-    public TransactionBuilder withType(String type){
-        this.type = type;
-        return this;
-    }
+    <span style="color:#66d9ef">public</span> TransactionBuilder <span style="color:#a6e22e">withType</span><span style="color:#f92672">(</span>String type<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> type<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
     
-    public TransactionBuilder withDate(Date date){
-        this.date = date;
-        return this;
-    }
+    <span style="color:#66d9ef">public</span> TransactionBuilder <span style="color:#a6e22e">withDate</span><span style="color:#f92672">(</span>Date date<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">date</span> <span style="color:#f92672">=</span> date<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
     
-    public Transaction build(){
-        return new Transaction(amount, type, date);
-    }
+    <span style="color:#66d9ef">public</span> Transaction <span style="color:#a6e22e">build</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Transaction<span style="color:#f92672">(</span>amount<span style="color:#f92672">,</span> type<span style="color:#f92672">,</span> date<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
     
-    public static TransactionBuilder aTransaction(){
-        return new TransactionBuilder();
-    }
-}
-</code></pre>
-
-<h3 id="paso-2-creamos-un-método-que-recibe-como-parámetro-el-builder-o-array-de-builders-del-otro-objeto">Paso 2: Creamos un método que recibe como parámetro el builder (o array de builders) del otro objeto</h3>
-
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> TransactionBuilder <span style="color:#a6e22e">aTransaction</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> TransactionBuilder<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="paso-2-creamos-un-método-que-recibe-como-parámetro-el-builder-o-array-de-builders-del-otro-objeto">Paso 2: Creamos un método que recibe como parámetro el builder (o array de builders) del otro objeto</h3>
 <p>Un Account contiene varios Transactions. En el caso de las colecciones, podemos hacer uso de los argumentos variables introducidos en java 5 (operador tres puntos). El método recibe el Builder del objeto asociado para evitar tener que llamar build por cada objeto adicional que queremos crear cuando usemos los builders en la prueba. Delegamos la llamada a build() a nuestro método with, como se ve en el ejemplo:</p>
-
-<pre><code class="language-java">//AccountBuilder.java
-    public AccountBuilder with(TransactionBuilder... transactionBuilders){
-        transactions = new ArrayList&lt;Transaction&gt;();
-        for(TransactionBuilder transactionBuilder: transactionBuilders){
-            transactions.add(transactionBuilder.build());
-        }
-        return this;
-    }
-</code></pre>
-
-<p>Podemos recibir cualquier cantidad de TransactionBuilder. Limpiamos la lista de transacciones existentes en el AccountBuilder, y por cada builder que recibimos, llamamos build() y lo añadimos a la cuenta. Noten tambien que hemos llamado al método solamente <code>with()</code>. Como java nos permite sobrecargar métodos, llamarlos with nos ayudara con la expresividad de la prueba, como vamos a ver a continuación.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//AccountBuilder.java
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> AccountBuilder <span style="color:#a6e22e">with</span><span style="color:#f92672">(</span>TransactionBuilder<span style="color:#f92672">...</span> transactionBuilders<span style="color:#f92672">){</span>
+        transactions <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>Transaction<span style="color:#f92672">&gt;();</span>
+        <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>TransactionBuilder transactionBuilder<span style="color:#f92672">:</span> transactionBuilders<span style="color:#f92672">){</span>
+            transactions<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>transactionBuilder<span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">());</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>Podemos recibir cualquier cantidad de TransactionBuilder. Limpiamos la lista de transacciones existentes en el AccountBuilder, y por cada builder que recibimos, llamamos build() y lo añadimos a la cuenta. Noten tambien que hemos llamado al método solamente <code>with()</code>. Como java nos permite sobrecargar métodos, llamarlos with nos ayudara con la expresividad de la prueba, como vamos a ver a continuación.</p>
 <h2 id="usando-los-builders-combinados">Usando los builders combinados</h2>
-
 <p>Finalmente, podemos ver como se ve el uso del AccountBuilder en combinación con el TransactionBuilder, y como expresa claramente la condición inicial de la prueba que estamos escribiendo:</p>
-
-<pre><code class="language-java">//AccountManagerSpec.java
-        //Given
-        Account account1 = anAccount()
-                .withNumber(&quot;12345&quot;)
-                .withBalance(100)
-                .with(
-                    aTransaction().withType(&quot;Credito&quot;).withAmount(200),
-                    aTransaction().withType(&quot;Credito&quot;).withAmount(100),
-                    aTransaction().withType(&quot;Debito&quot;).withAmount(200))
-                .build();
-</code></pre>
-
-<p>Cualquier desarrollador que lea el código de esta prueba ve claramente que la cuenta 1 tiene número &ldquo;12345&rdquo;, balance 100, y tres transacciones, 2 créditos de 200 y 100 respectivamente, y un débito de 200. Podemos notar que no establecimos fecha para las transacciones, quizá porque no es importante para la prueba en cuestión la fecha en que fueron realizadas.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//AccountManagerSpec.java
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//Given
+</span><span style="color:#75715e"></span>        Account account1 <span style="color:#f92672">=</span> anAccount<span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">withNumber</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;12345&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">withBalance</span><span style="color:#f92672">(</span>100<span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">with</span><span style="color:#f92672">(</span>
+                    aTransaction<span style="color:#f92672">().</span><span style="color:#a6e22e">withType</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Credito&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">withAmount</span><span style="color:#f92672">(</span>200<span style="color:#f92672">),</span>
+                    aTransaction<span style="color:#f92672">().</span><span style="color:#a6e22e">withType</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Credito&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">withAmount</span><span style="color:#f92672">(</span>100<span style="color:#f92672">),</span>
+                    aTransaction<span style="color:#f92672">().</span><span style="color:#a6e22e">withType</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Debito&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">withAmount</span><span style="color:#f92672">(</span>200<span style="color:#f92672">))</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+</code></pre></div><p>Cualquier desarrollador que lea el código de esta prueba ve claramente que la cuenta 1 tiene número &ldquo;12345&rdquo;, balance 100, y tres transacciones, 2 créditos de 200 y 100 respectivamente, y un débito de 200. Podemos notar que no establecimos fecha para las transacciones, quizá porque no es importante para la prueba en cuestión la fecha en que fueron realizadas.</p>
 <h2 id="tips-y-notas-finales">Tips y notas finales</h2>
-
 <p>Espero que en el artículo haya podido demostrar la utilidad de este patrón para generar datos (contexto) para nuestras pruebas unitarias. Por último les dejaré algunos tips de mi experiencia usándolos.</p>
-
 <ul>
-<li><p>Construir los builders a medida que construimos los objetos: Como comenté comenzando el artículo, debemos darle importancia al código de prueba. Lo ideal es que a medida que diseñamos el sistema y vamos añadiendo propiedades a nuestros objetos, vayamos actualizando los builders para poder construir objetos válidos con esas propiedades. De lo contrario las pruebas pudieran comenzar a romperse y fallar.</p></li>
-
-<li><p>Puede parecer que hay mucho código que escribir adicional solamente para instanciar un objeto en el contexto, pero créanme, vale el esfuerzo. Una vez escrito el builder puedes usarlo a través de toda tu suite de pruebas, acelerando la creación de nuevas pruebas que requieran del objeto. Además cuando vuelves luego de meses sin ver el código y lees la prueba, entiendes claramente como esta construido cada objeto gracias a las técnicas descritas para lograr mejor expresividad.</p></li>
-
-<li><p>Puedes tambien añadir métodos withoutX si deseas establecer a null alguna propiedad (en caso de que esto sea importante para el contexto).</p></li>
-
-<li><p>Puedes traducir los métodos si prefieres programar en castellano: conNumero(), conBalance(), unaCuenta(), con(), sin(), construir() etc.</p></li>
+<li>
+<p>Construir los builders a medida que construimos los objetos: Como comenté comenzando el artículo, debemos darle importancia al código de prueba. Lo ideal es que a medida que diseñamos el sistema y vamos añadiendo propiedades a nuestros objetos, vayamos actualizando los builders para poder construir objetos válidos con esas propiedades. De lo contrario las pruebas pudieran comenzar a romperse y fallar.</p>
+</li>
+<li>
+<p>Puede parecer que hay mucho código que escribir adicional solamente para instanciar un objeto en el contexto, pero créanme, vale el esfuerzo. Una vez escrito el builder puedes usarlo a través de toda tu suite de pruebas, acelerando la creación de nuevas pruebas que requieran del objeto. Además cuando vuelves luego de meses sin ver el código y lees la prueba, entiendes claramente como esta construido cada objeto gracias a las técnicas descritas para lograr mejor expresividad.</p>
+</li>
+<li>
+<p>Puedes tambien añadir métodos withoutX si deseas establecer a null alguna propiedad (en caso de que esto sea importante para el contexto).</p>
+</li>
+<li>
+<p>Puedes traducir los métodos si prefieres programar en castellano: conNumero(), conBalance(), unaCuenta(), con(), sin(), construir() etc.</p>
+</li>
 </ul>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

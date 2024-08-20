@@ -91,139 +91,65 @@
     <br/>
     <a class="label" href="http://adrianmoya.com/categories/git">git</a>
     </span>
-    <p>Han pasado meses desde que me cambié de usar subversion en mis proyectos a git. Si bien al principio me parecio complicado, la verdad es que git es bastante sencillo. Los comandos que se usan a diario son fáciles de aprender. Y para los casos complicados de resolución de conflictos, siempre hay respuesta por internet. Asi que me he animado a escribir una serie de artículos referente al uso de este poderoso <a href="http://es.wikipedia.org/wiki/Control_de_versiones">sistema de control de versiones</a> distribuido.
-</p>
-
+    <p>Han pasado meses desde que me cambié de usar subversion en mis proyectos a git. Si bien al principio me parecio complicado, la verdad es que git es bastante sencillo. Los comandos que se usan a diario son fáciles de aprender. Y para los casos complicados de resolución de conflictos, siempre hay respuesta por internet. Asi que me he animado a escribir una serie de artículos referente al uso de este poderoso <a href="http://es.wikipedia.org/wiki/Control_de_versiones">sistema de control de versiones</a> distribuido.</p>
 <p>El artículo de hoy sera referente al uso local de git en el terminal. Para los usuarios de windows (que estan poco acostumbrados al terminal) recomendaría que usaran algo como <a href="http://code.google.com/p/tortoisegit/">tortoiseGit</a>. Los conceptos son los mismos, solo que en lugar de escribir los comandos, accederan a las operaciones a través de menus contextuales.</p>
-
 <p>Siendo un SCV distribuido, es posible trabajar con el de manera local, sin necesitar un servidor central para hacer commit a los cambios. A continuación los comandos más comunes:</p>
-
 <h2 id="conceptos-básicos">Conceptos básicos</h2>
-
 <p>Para manejar los conceptos básicos de control de control de versiones, recomiendo la <a href="http://es.wikipedia.org/wiki/Control_de_versiones">pagina de wikipedia</a> referente al tema.</p>
-
 <h2 id="configuración-inicial">Configuración inicial</h2>
-
 <p>Podemos configurar nuestro nombre e email a nivel global (para todos los repositorios) con los comandos</p>
-
-<pre><code class="language-bash">$ git config --global user.name &quot;Firstname Lastname&quot;
-$ git config --global user.email &quot;your_email@youremail.com&quot;
-</code></pre>
-
-<p>Ademas, podemos configurar la salida de git para que la misma sea a color en el terminal.</p>
-
-<pre><code class="language-bash">$ git config --global color.ui true
-</code></pre>
-
-<h2 id="uso-local-de-git">Uso local de Git</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git config --global user.name <span style="color:#e6db74">&#34;Firstname Lastname&#34;</span>
+$ git config --global user.email <span style="color:#e6db74">&#34;your_email@youremail.com&#34;</span>
+</code></pre></div><p>Ademas, podemos configurar la salida de git para que la misma sea a color en el terminal.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git config --global color.ui true
+</code></pre></div><h2 id="uso-local-de-git">Uso local de Git</h2>
 <p>Lo primero que debemos hacer para usar git es inicializar un repositorio. Basta con entrar al directorio que queremos convertir en un repositorio y ejecutar el comando:</p>
-
-<pre><code class="language-bash">$ git init
-</code></pre>
-
-<p>Esto creara un directorio oculto .git que tendra toda la información del control de versiones. No mas directorios .svn en todos lados!</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git init
+</code></pre></div><p>Esto creara un directorio oculto .git que tendra toda la información del control de versiones. No mas directorios .svn en todos lados!</p>
 <h2 id="trabajando-con-el-repositorio">Trabajando con el repositorio</h2>
-
 <h3 id="estado-de-cambios">Estado de cambios</h3>
-
 <p>Para ver el estado del repositorio, o lo que es lo mismo un informe de los cambios realizados a archivos/directorios, tenemos el comando status:</p>
-
-<pre><code class="language-bash">$ git status
-</code></pre>
-
-<p>El comando status nos devuelve la siguiente información:</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git status
+</code></pre></div><p>El comando status nos devuelve la siguiente información:</p>
 <p><strong>Rama en la que nos encontramos:</strong> Git promueve el uso de ramas, y aca nos informa en que rama nos encontramos.</p>
-
 <p><strong>Cambios que seran publicados:</strong> Los archivos que hemos modificado y hemos añadido al commit.</p>
-
 <p><strong>Cambios que no seran publicados:</strong> Si hemos hecho cambios a algun archivo pero no lo hemos añadido al commit.</p>
-
 <p><strong>Archivos a los que no se les esta haciendo seguimiento (untracked):</strong> Son los archivos que se encuentran presentes en el directorio, pero que aun no han sido añadidos a git para hacerles seguimiento. Inicialmente todos los archivos se encuentran de esta manera.</p>
-
 <h3 id="añadir-cambios-al-commit">Añadir cambios al commit</h3>
-
 <p>Git maneja el concepto de área de transición (o staging area). Para publicar un grupo de cambios, debemos indicarle a git que archivos debe incluir en el commit pasándolos al area de transición. Para esto usamos el comando:</p>
-
-<pre><code class="language-bash">$ git add nombre_del_archivo
-</code></pre>
-
-<p>Si queremos añadir todos los cambios:</p>
-
-<pre><code class="language-bash">$ git add .
-</code></pre>
-
-<h3 id="para-remover-un-archivo-del-área-de-transición">Para remover un archivo del área de transición</h3>
-
-<pre><code class="language-bash">$ git reset HEAD nombre_del_archivo
-</code></pre>
-
-<h3 id="mover-o-eliminar-archivos">Mover o Eliminar archivos</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git add nombre_del_archivo
+</code></pre></div><p>Si queremos añadir todos los cambios:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git add .
+</code></pre></div><h3 id="para-remover-un-archivo-del-área-de-transición">Para remover un archivo del área de transición</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git reset HEAD nombre_del_archivo
+</code></pre></div><h3 id="mover-o-eliminar-archivos">Mover o Eliminar archivos</h3>
 <p>Para mover/renombrar archivos:</p>
-
-<pre><code class="language-bash">$ git mv archivo_original archivo_destino
-</code></pre>
-
-<p>Para eliminar archivos:</p>
-
-<pre><code class="language-bash">$ git rm nombre_del_archivo
-</code></pre>
-
-<p>Si eliminamos el archivo sin usar git, podemos recuperarlo con:</p>
-
-<pre><code class="language-bash">$ git checkout nombre_del_archivo
-</code></pre>
-
-<p>Y luego eliminarlo de la manera correcta (con git rm).</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git mv archivo_original archivo_destino
+</code></pre></div><p>Para eliminar archivos:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git rm nombre_del_archivo
+</code></pre></div><p>Si eliminamos el archivo sin usar git, podemos recuperarlo con:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git checkout nombre_del_archivo
+</code></pre></div><p>Y luego eliminarlo de la manera correcta (con git rm).</p>
 <h2 id="ramas">Ramas</h2>
-
 <p>El uso de ramas es sencillo y poderoso en git:</p>
-
 <h3 id="listar-ramas">Listar ramas</h3>
-
-<pre><code class="language-bash">$ git branch
-</code></pre>
-
-<h3 id="crear-una-nueva-rama">Crear una nueva rama</h3>
-
-<pre><code class="language-bash">$ git branch nombre_de_la_rama
-</code></pre>
-
-<h3 id="cambiarse-a-una-rama">Cambiarse a una rama</h3>
-
-<pre><code class="language-bash">$ git checkout nombre_de_la_rama
-</code></pre>
-
-<h3 id="combinar-ramas">Combinar ramas</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git branch
+</code></pre></div><h3 id="crear-una-nueva-rama">Crear una nueva rama</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git branch nombre_de_la_rama
+</code></pre></div><h3 id="cambiarse-a-una-rama">Cambiarse a una rama</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git checkout nombre_de_la_rama
+</code></pre></div><h3 id="combinar-ramas">Combinar ramas</h3>
 <p>Para combinar una rama con otra, debemos primero pasarnos a la rama destino, y luego ejecutar el comando merge:</p>
-
-<pre><code class="language-bash">$ git checkout rama_destino
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git checkout rama_destino
 $ git merge rama_a_combinar 
-</code></pre>
-
-<h3 id="eliminar-una-rama">Eliminar una rama</h3>
-
+</code></pre></div><h3 id="eliminar-una-rama">Eliminar una rama</h3>
 <p>Para eliminar una rama, existen dos métodos:</p>
-
 <p>Forma segura (verificando que la rama haya sido combinada):</p>
-
-<pre><code class="language-bash">$ git branch -d nombre_de_la_rama
-</code></pre>
-
-<p>Para forzar la eliminación de un branch sin combinar:</p>
-
-<pre><code class="language-bash">$ git branch -D nombre_de_la_rama
-</code></pre>
-
-<h2 id="ignorando-archivos">Ignorando archivos</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git branch -d nombre_de_la_rama
+</code></pre></div><p>Para forzar la eliminación de un branch sin combinar:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git branch -D nombre_de_la_rama
+</code></pre></div><h2 id="ignorando-archivos">Ignorando archivos</h2>
 <p>Para ignorar archivos, git utiliza un archivo especial llamado .gitignore (nótese el punto al inicio, para hacerlo oculto en sistemas mac/linux). Este archivo contiene una lista separada por retorno de carro de los archivos y directorios que git ignorará (no tomara en cuenta los cambios). Debe ser agregado al repositorio en la raiz y hacerle commit.</p>
-
 <p>Esto cubre todos los comandos básicos para trabajar local con git. Para conocer los comandos más comunes para trabajar con repositorios remotos, consulta el próximo artículo, <a href="/2013/01/usando-git-de-manera-remota/">Usando git de manera remota</a></p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

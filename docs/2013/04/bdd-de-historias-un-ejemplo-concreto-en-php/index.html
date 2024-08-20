@@ -91,73 +91,42 @@
     <br/>
     <a class="label" href="http://adrianmoya.com/categories/bdd">BDD</a><a class="label" href="http://adrianmoya.com/categories/php">PHP</a><a class="label" href="http://adrianmoya.com/categories/behat">Behat</a><a class="label" href="http://adrianmoya.com/categories/agilidad">Agilidad</a><a class="label" href="http://adrianmoya.com/categories/mink">Mink</a>
     </span>
-    
-
-<p>A continuación, veamos como es la implementación en PHP del ejemplo presentado en <a href="/2013/04/bdd-de-historias-un-ejemplo-concreto/">BDD de historias: un ejemplo concreto</a>.</p>
-
-<!-- more -->
-
+    <p>A continuación, veamos como es la implementación en PHP del ejemplo presentado en <a href="/2013/04/bdd-de-historias-un-ejemplo-concreto/">BDD de historias: un ejemplo concreto</a>.</p>
+<!-- raw HTML omitted -->
 <h2 id="las-librerías-y-herramientas">Las librerías y herramientas</h2>
-
 <p>Para este ejemplo concreto, realizado en PHP, voy a utilizar las siguientes librerías y herramientas:</p>
-
 <p><a href="http://silex.sensiolabs.org/"><strong>Silex</strong></a>: Silex es un micro framework basado en los componentes de <a href="http://symfony.com/">Symfony2</a>, el cual permite construir rápidamente una aplicación sencilla en PHP. También utilice <a href="http://twig.sensiolabs.org/">Twig</a> como mecanismo de plantillas para la vista.</p>
-
 <p><a href="http://behat.org/"><strong>Behat</strong></a>: Behat es un proyecto inspirado en Cucumber, y que es capaz de interpretar nuestras características y escenarios usando el mismo formato Dado/Cuando/Entonces (llamado Gherkin). Es la herramienta BDD por excelencia para el lenguaje PHP.</p>
-
 <p><a href="http://mink.behat.org/"><strong>Mink</strong></a>: Mink es una capa de abstracción que permite manipular, a través de un API en php, cualquier navegador de los populares del mercado (Firefox, IE, Chrome, etc). Para el caso de los navegadores tradicionales, mink hace uso de otras librerías como Selenium (que utilicé en la implementación del ejemplo en Java) Para el caso de este ejemplo, usaremos un navegador sin interfaz, que simula las peticiones de los navegadores tradicionales pero a nivel de código, llamado <a href="https://github.com/fabpot/goutte/">Goutte</a>, desarrollado justamente para realizar este tipo de pruebas, y el cual es soportado por Mink.</p>
-
 <p><a href="https://github.com/sebastianbergmann/phpunit/"><strong>PHPUnit</strong></a>: PHPUnit es una librería de la familia xUnit que permite hacer pruebas unitarias en PHP. Para el caso de este ejemplo particular, usaremos las aserciones de PHPUnit para validar los resultados de nuestras historias.</p>
-
 <p><a href="http://getcomposer.org/"><strong>Composer</strong></a>: Composer es un manejador de dependencias para PHP. Es moderno y fácil de usar, y permite definir dependencias externas en nuestro proyecto tanto para desarrollo como para el proyecto final.</p>
-
 <h2 id="implementando-el-ejemplo">Implementando el ejemplo</h2>
-
 <p>Al igual que en la <a href="/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java">implementación en Java</a>, la idea no es entrar en profundidad en las herramientas, esa será tarea de cada lector. Pero explicare a grandes rasgos como funcionan todas para nuestro ejemplo BDD:</p>
-
 <h3 id="preparando-el-ambiente-para-bdd">Preparando el ambiente para BDD</h3>
-
-<p><img src="/images/2013/04/setup-behat-php.png" alt="" />
+<p><img src="/images/2013/04/setup-behat-php.png" alt="">
 <strong>composer.json</strong>: En el <a href="http://getcomposer.org/doc/01-basic-usage.md#composer-json-project-setup">composer.json</a> definimos todas las dependencias de nuestro proyecto. Para la implementación de la aplicación, requerimos Silex y Twig. Para el desarrollo, requerimos behat (el framework BDD), mink (la capa de abstracción para controlar los navegadores), mink-extension (la extensión de Behat para integrar el uso de Mink), mink-goutte-driver (el driver de mink para controlar Goutte) y PHPUnit (para las aserciones).</p>
-
 <p><strong>FeatureContext.php</strong>: Esta clase contiene el codigo de cada uno de los pasos de nuestros escenarios. Aqui es donde estan definidos los métodos y las expresiones regulares que utiliza Behat para identificar las frases en el archivo de características y saber que método ejecutar.</p>
-
 <p><strong>Suma.feature</strong>: Este es nuestro archivo de característica, donde ponemos en lenguaje natural la historia y los escenarios, y que podemos extender a medida que profundizamos más en la característica. Nos sirve como documentación de la característica, y Behat ejecuta cada paso y verifica que nuestro sistema este cumpliendo con ellos.</p>
-
 <h3 id="la-aplicación-que-cumple-las-especificaciones">La aplicación que cumple las especificaciones</h3>
-
 <p>La aplicación esta implementada con Silex y Twig, a continuación comento los archivos del código fuente:</p>
-
-<p><img src="/images/2013/04/src-bddsample-php.png" alt="" />
+<p><img src="/images/2013/04/src-bddsample-php.png" alt="">
 <strong>index.twig</strong>: Es la plantilla que contiene el formulario con los campos de ingreso de las cifras y el botón calcular.</p>
-
 <p><strong>index.php</strong>: El controlador que atiende las peticiones del usuario y actualiza los campos.</p>
-
 <p><strong>.htaccess</strong>: Archivo de configuración para apache para tener una URL más limpia (ver <a href="http://silex.sensiolabs.org/doc/web_servers.html">cómo desplegar una app Silex</a>).</p>
-
 <h2 id="como-puedo-utilizar-el-ejemplo">Como puedo utilizar el ejemplo</h2>
-
 <p>Lo primero que hay que hacer es clonar el repositorio con el código fuente. Para esto debes tener <a href="http://git-scm.com/">Git</a> instalado en tu sistema. Las instrucciones sobre como clonar un repositorio puedes verlas en mi post <a href="/2013/01/usando-git-de-manera-remota/">Usando git de manera remota</a>, o en <a href="http://lmgtfy.com/?q=Como+clonar+un+repositorio+de+github">Google</a>. El repositorio está en mi <a href="https://github.com/adrianmoya/bddsample-php">cuenta de GitHub</a>, y puede clonarse así:</p>
-
 <pre><code>git clone git@github.com:adrianmoya/bddsample-php.git
 </code></pre>
-
 <p>Una vez tengas una copia local del repositorio, debes instalar las dependencias. Para esto es necesario <a href="http://getcomposer.org/doc/00-intro.md#installation-nix">instalar Composer</a>. Una vez instalado composer, ejecuta el siguiente comando:</p>
-
 <pre><code>php composer.phar install --dev
 </code></pre>
-
 <p>Composer comenzará a descargar todas las dependencias.</p>
-
-<p><img src="/images/2013/04/bddsample-php.png" alt="" />
+<p><img src="/images/2013/04/bddsample-php.png" alt="">
 Luego despliega la aplicación, y comprueba que esté funcionando. Por defecto, Behat espera encontrarla en localhost/bddsample.</p>
-
-<p><img src="/images/2013/04/test-results-php.png" alt="" />
+<p><img src="/images/2013/04/test-results-php.png" alt="">
 Finalmente, puedes ejecutar Behat, llamando al comando bin/behat. A diferencia de JUnit, hasta donde conozco no existe un IDE con integración para mostrar los resultados de Behat o PHPUnit. Puedes ver los resultados ejecutando el comando por la consola.</p>
-
 <p>Pero tambien puedes visualizar los resultados en el reporte html, que para el ejemplo esta configurado para generarse en behat/html-report. Se ve mucho mejor, y puedes configurarlo para que se despliegue en un servidor que todos puedan acceder para ver los resultados.</p>
-
-<p><img src="/images/2013/04/test-results-php-web.png" alt="" /></p>
+<p><img src="/images/2013/04/test-results-php-web.png" alt=""></p>
 
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

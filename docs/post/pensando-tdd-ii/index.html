@@ -92,96 +92,62 @@
     <a class="label" href="http://adrianmoya.com/categories/tdd">TDD</a><a class="label" href="http://adrianmoya.com/categories/testing">Testing</a>
     </span>
     <p>En mi <a href="/post/pensando-tdd-i/">artículo anterior</a>, exploramos el tren de pensamientos cuando se usa desarrollo guiado por pruebas (TDD) diseñando un componente para convertir dinero de USD a COP. En esta segunda parte, añadiré algo de diseño adicional e introduciré el tema de los dobles.</p>
-
-<p></p>
-
 <p>Hasta ahora, hemos diseñado un componente <code>MoneyConverter</code> con un método <code>convertUSDtoCOP()</code> que usa una tasa de conversión fija como parámetro del constructor. Obviamente, la tasa de conversión va a variar con el tiempo y vamos a querer obtener la tasa actual al momento de hacer la conversión para tener resultados reales.</p>
-
 <p>Siguiendo el principio de responsabilidad simple, queremos que otro componente se encargue de obtener la última tasa de cambio entre ambas monedas.</p>
-
 <h1 id="introduciendo-colaboradores">Introduciendo colaboradores</h1>
-
 <p>Dado que estoy diseñando el <code>MoneyConverter</code> usando TDD, los colaboradores serán introducidos como dobles (comúnmente conocidos como mocks). Para esto, añado la dependencia de Mockito al proyecto, pues esta es la librería que uso para mocking en Java. Para este ejemplo, es simplemente añadirla al pom.xml:</p>
-
-<pre><code class="language-xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.mockito&lt;/groupId&gt;
-    &lt;artifactId&gt;mockito-core&lt;/artifactId&gt;
-    &lt;version&gt;2.8.47&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-
-<p>Luego, imagino a este colaborador como un servicio, al cual le llamaré <code>ExchangeRateService</code>. Declararé un mock en mi prueba para comenzar a usarlo.</p>
-
-<pre><code class="language-java">@Mock private ExchangeRateService mockedExchageRateService;
-</code></pre>
-
-<p>Para usar este doble, debo inicializarlo durante el <code>setup()</code> de la prueba:</p>
-
-<pre><code class="language-java">MockitoAnnotations.initMocks(this);
-</code></pre>
-
-<p>El IDE se va a quejar inmediatamente acerca de que <code>ExchangeRateService</code> no existe. Deja que el IDE lo cree por tí, como una interface. ¿Por qué una interface? Pudiera ser una clase concreta, pero prefiero trabajar en una interface en este punto porque quiero enfocar mis esfuerzos de diseño en el protocolo usado para colaborar con ese objeto, osea, lo que voy a enviar y lo que voy a recibir de él. Cuando comience a diseñar el componente <code>ExchangeRateService</code>, será más fácil implementar esta interface para respetar el protocolo que voy a establecer ahora mismo. Aqui está lo que produjo el IDE:</p>
-
-<pre><code class="language-java">package net.velocitypartners.money;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dependency&gt;</span>
+    <span style="color:#f92672">&lt;groupId&gt;</span>org.mockito<span style="color:#f92672">&lt;/groupId&gt;</span>
+    <span style="color:#f92672">&lt;artifactId&gt;</span>mockito-core<span style="color:#f92672">&lt;/artifactId&gt;</span>
+    <span style="color:#f92672">&lt;version&gt;</span>2.8.47<span style="color:#f92672">&lt;/version&gt;</span>
+<span style="color:#f92672">&lt;/dependency&gt;</span>
+</code></pre></div><p>Luego, imagino a este colaborador como un servicio, al cual le llamaré <code>ExchangeRateService</code>. Declararé un mock en mi prueba para comenzar a usarlo.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Mock</span> <span style="color:#66d9ef">private</span> ExchangeRateService mockedExchageRateService<span style="color:#f92672">;</span>
+</code></pre></div><p>Para usar este doble, debo inicializarlo durante el <code>setup()</code> de la prueba:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">MockitoAnnotations<span style="color:#f92672">.</span><span style="color:#a6e22e">initMocks</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
+</code></pre></div><p>El IDE se va a quejar inmediatamente acerca de que <code>ExchangeRateService</code> no existe. Deja que el IDE lo cree por tí, como una interface. ¿Por qué una interface? Pudiera ser una clase concreta, pero prefiero trabajar en una interface en este punto porque quiero enfocar mis esfuerzos de diseño en el protocolo usado para colaborar con ese objeto, osea, lo que voy a enviar y lo que voy a recibir de él. Cuando comience a diseñar el componente <code>ExchangeRateService</code>, será más fácil implementar esta interface para respetar el protocolo que voy a establecer ahora mismo. Aqui está lo que produjo el IDE:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> net.velocitypartners.money<span style="color:#f92672">;</span>
  
-public interface ExchangeRateService {
-}
-</code></pre>
-
-<h1 id="obteniendo-la-tasa-de-cambio">Obteniendo la tasa de cambio</h1>
-
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ExchangeRateService</span> <span style="color:#f92672">{</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h1 id="obteniendo-la-tasa-de-cambio">Obteniendo la tasa de cambio</h1>
 <p>El próximo paso es pensar como quiero obtener la tasa de cambio del servicio. Creo que llamaré a un método de nombre <code>getExchangeRate(String fromCurrencyCode, String toCurrencyCode)</code>, pasando un par de códigos de moneda y esperando un resultado <code>BigDecimal</code>. Estoy decidiendo que este servicio debería manejar cualquier moneda como parámetro, aunque solo pasaré las que me interesan en este momento, COP y USD. Esto es porque pienso envolver un servicio externo con éste, asi que dejo la API abierta para el futuro. Añadamos esto a la interface de manera que quede como de esta manera:</p>
-
-<pre><code class="language-java">public interface ExchangeRateService {
-    BigDecimal getExchangeRate(String fromCurrencyCode, String toCurrencyCode);
-}
-</code></pre>
-
-<h1 id="qué-tan-frecuentemente-debería-actualizar-la-tasa-de-cambio">¿Qué tan frecuentemente debería actualizar la tasa de cambio?</h1>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ExchangeRateService</span> <span style="color:#f92672">{</span>
+    BigDecimal <span style="color:#a6e22e">getExchangeRate</span><span style="color:#f92672">(</span>String fromCurrencyCode<span style="color:#f92672">,</span> String toCurrencyCode<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h1 id="qué-tan-frecuentemente-debería-actualizar-la-tasa-de-cambio">¿Qué tan frecuentemente debería actualizar la tasa de cambio?</h1>
 <p>La frecuencia de las actualizaciones es también otra decisión de diseño. Para este ejemplo sencillo, decido consultar la tasa de cambio en cada llamada, y expresaré esto a través de mi prueba. Puede que esta no sea la mejor decisión a nivel de rendimiento, pero funcionará para el ejemplo. Comencemos entonces modificando el método <code>setup()</code> de la prueba para enviar el <code>ExchangeRateService</code> en el constructor del <code>MoneyConverter</code> en lugar de la tasa actual. El IDE va a quejarse de que no existe un constructor con ese tipo de parámetro, asi que le pedimos que cambie el constructor actual. Esto va a romper el constructor, pero por ahora, comentaré el código del constructor para poder seguir configurando el test. También voy a remover el <code>usdToCopExchangeRate</code>, que ya no es necesario. Mi método de <code>setup()</code> se ve asi:</p>
-
-<pre><code class="language-java">@Before public void setup(){ 
-    MockitoAnnotations.initMocks(this);  
-    converter = new MoneyConverter(mockedExchangeRateService); 
-}
-</code></pre>
-
-<p>Ahora, cambiemos la prueba: en la sección &ldquo;Given&rdquo;, voy a preparar un valor para cuando se llame al servicio de conversión, en este caso, voy a mantener la tasa de conversión de 2920.82 pesos por dólar del artículo anterior, para no tener que modificar mi aserción. La sección &ldquo;When&rdquo; va a ser la misma, llamando al método <code>convertUSDtoCOP()</code>. En la sección &ldquo;Then&rdquo;, quiero verificar que mi componente interactua con el <code>ExchangeRateService</code> de la manera que he decidido, actualizando la tasa con cada llamado al servicio de conversión. Usare la función <code>verify</code> de Mockito para esto. El código final se ve de esta manera:</p>
-
-<pre><code class="language-java">@Test public void itConvertsUSDtoCOP(){ 
-    //Given 
-    BigDecimal amountToConvert = new BigDecimal(&quot;10.00&quot;); 
-    when(mockedExchangeRateService.getExchangeRate(&quot;USD&quot;, &quot;COP&quot;)).thenReturn(new BigDecimal(&quot;2920.82&quot;)); 
-    //When 
-    BigDecimal result = converter.convertUSDtoCOP(amountToConvert); 
-    //Then 
-    assertEquals(new BigDecimal(&quot;29208.20&quot;), result); 
-    verify(mockedExchangeRateService).getExchangeRate(&quot;USD&quot;, &quot;COP&quot;); 
-}
-</code></pre>
-
-<p>Asi tenemos nuestra prueba que falla, expresando nuestro diseño. Podemos ahora implementar los cambios para hacerla pasar:</p>
-
-<pre><code class="language-java">public class MoneyConverter { 
-    private static final int SCALE = 2;  
-    private ExchangeRateService exchangeRateService;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Before</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span><span style="color:#f92672">(){</span> 
+    MockitoAnnotations<span style="color:#f92672">.</span><span style="color:#a6e22e">initMocks</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>  
+    converter <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MoneyConverter<span style="color:#f92672">(</span>mockedExchangeRateService<span style="color:#f92672">);</span> 
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Ahora, cambiemos la prueba: en la sección &ldquo;Given&rdquo;, voy a preparar un valor para cuando se llame al servicio de conversión, en este caso, voy a mantener la tasa de conversión de 2920.82 pesos por dólar del artículo anterior, para no tener que modificar mi aserción. La sección &ldquo;When&rdquo; va a ser la misma, llamando al método <code>convertUSDtoCOP()</code>. En la sección &ldquo;Then&rdquo;, quiero verificar que mi componente interactua con el <code>ExchangeRateService</code> de la manera que he decidido, actualizando la tasa con cada llamado al servicio de conversión. Usare la función <code>verify</code> de Mockito para esto. El código final se ve de esta manera:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Test</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">itConvertsUSDtoCOP</span><span style="color:#f92672">(){</span> 
+    <span style="color:#75715e">//Given 
+</span><span style="color:#75715e"></span>    BigDecimal amountToConvert <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;10.00&#34;</span><span style="color:#f92672">);</span> 
+    when<span style="color:#f92672">(</span>mockedExchangeRateService<span style="color:#f92672">.</span><span style="color:#a6e22e">getExchangeRate</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;USD&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;COP&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;2920.82&#34;</span><span style="color:#f92672">));</span> 
+    <span style="color:#75715e">//When 
+</span><span style="color:#75715e"></span>    BigDecimal result <span style="color:#f92672">=</span> converter<span style="color:#f92672">.</span><span style="color:#a6e22e">convertUSDtoCOP</span><span style="color:#f92672">(</span>amountToConvert<span style="color:#f92672">);</span> 
+    <span style="color:#75715e">//Then 
+</span><span style="color:#75715e"></span>    assertEquals<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;29208.20&#34;</span><span style="color:#f92672">),</span> result<span style="color:#f92672">);</span> 
+    verify<span style="color:#f92672">(</span>mockedExchangeRateService<span style="color:#f92672">).</span><span style="color:#a6e22e">getExchangeRate</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;USD&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;COP&#34;</span><span style="color:#f92672">);</span> 
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Asi tenemos nuestra prueba que falla, expresando nuestro diseño. Podemos ahora implementar los cambios para hacerla pasar:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MoneyConverter</span> <span style="color:#f92672">{</span> 
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> SCALE <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span>  
+    <span style="color:#66d9ef">private</span> ExchangeRateService exchangeRateService<span style="color:#f92672">;</span>
  
-    public MoneyConverter(ExchangeRateService exchangeRateService) { 
-        this.exchangeRateService = exchangeRateService; 
-    }
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MoneyConverter</span><span style="color:#f92672">(</span>ExchangeRateService exchangeRateService<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> 
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">exchangeRateService</span> <span style="color:#f92672">=</span> exchangeRateService<span style="color:#f92672">;</span> 
+    <span style="color:#f92672">}</span>
  
-    public BigDecimal convertUSDtoCOP(BigDecimal amountInUSD) { 
-        BigDecimal usdToCopExchangeRate = exchangeRateService.getExchangeRate(&quot;USD&quot;, &quot;COP&quot;); 
-        return amountInUSD.multiply(usdToCopExchangeRate).setScale(SCALE); 
-    }
-}
-</code></pre>
-
-<p>Ejecutamos la prueba y bingo! prueba en verde. Hemos codificado nuestro diseño de manera exitosa. Puedes ver el código de este artículo en mi <a href="https://github.com/adrianmoya/moneyconverter-tdd/">Github</a>, haciendo checkout de la rama &ldquo;part2&rdquo;.</p>
-
+    <span style="color:#66d9ef">public</span> BigDecimal <span style="color:#a6e22e">convertUSDtoCOP</span><span style="color:#f92672">(</span>BigDecimal amountInUSD<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> 
+        BigDecimal usdToCopExchangeRate <span style="color:#f92672">=</span> exchangeRateService<span style="color:#f92672">.</span><span style="color:#a6e22e">getExchangeRate</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;USD&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;COP&#34;</span><span style="color:#f92672">);</span> 
+        <span style="color:#66d9ef">return</span> amountInUSD<span style="color:#f92672">.</span><span style="color:#a6e22e">multiply</span><span style="color:#f92672">(</span>usdToCopExchangeRate<span style="color:#f92672">).</span><span style="color:#a6e22e">setScale</span><span style="color:#f92672">(</span>SCALE<span style="color:#f92672">);</span> 
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Ejecutamos la prueba y bingo! prueba en verde. Hemos codificado nuestro diseño de manera exitosa. Puedes ver el código de este artículo en mi <a href="https://github.com/adrianmoya/moneyconverter-tdd/">Github</a>, haciendo checkout de la rama &ldquo;part2&rdquo;.</p>
 <h1 id="cerrando">Cerrando</h1>
-
 <p>Espero que estos dos artículos expongan la idea de como aplicar el pensamiento del desarrollo guiado por pruebas en tus proyectos. Recuerda que aunque son tests, el propósito real es crear el API y expresar la relación y el protocolo de comunicación entre los componentes. Un buen conocimiento de las herramientas y librerías usadas te hará sentir en casa cuando estes aplicando esta técnica. Feliz desarrollo guiado por pruebas!</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

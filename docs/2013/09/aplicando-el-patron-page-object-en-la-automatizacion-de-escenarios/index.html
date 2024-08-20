@@ -92,121 +92,83 @@
     <a class="label" href="http://adrianmoya.com/categories/bdd">BDD</a><a class="label" href="http://adrianmoya.com/categories/testing">Testing</a><a class="label" href="http://adrianmoya.com/categories/selenium">Selenium</a><a class="label" href="http://adrianmoya.com/categories/cucumber">Cucumber</a>
     </span>
     <p>En los últimos dos post, he comentado acerca de patrones y técnicas para las pruebas unitarias. En esta oportunidad, hablaré de un patrón que podemos utilizar a nivel de nuestras pruebas de extremo a extremo (end to end). Se trata del patron Page Object.</p>
-
-<p></p>
-
 <h2 id="el-problema">El problema</h2>
-
 <p>Cuando comenzamos a escribir pruebas automatizadas que manipulan el sistema como si de nuestro usuario se tratase, como cuando automatizamos escenarios de BDD de historias, es normal que comencemos a escribir pruebas que tienen mucho conocimiento acerca de la estructura de nuestra aplicación, por ejemplo, el nombre de los campos, de los botones, de los enlaces, etc., pues de esta estructura nos valemos para decirle a nuestro navegador donde va a introducir texto, que va a pulsar, y de donde leer el mensaje esperado para poder realizar los asserts en nuestra prueba.</p>
-
 <p>El problema surge en que a medida que la aplicación evoluciona, la interfaz de usuario tambien lo hace. Generalmente, al ser la cara visible del sistema, es la parte en donde nuestro cliente nos da retroalimentación y donde se pone creativo. Pon aqui una lista, quitale esta columna y añade esta, cámbiale el botón por un enlace, y pare usted de contar. Como buenos agilistas que somos, abrazamos los cambios con alegría (no?). Pero cada cambio sencillo como reemplazar un campo de texto por un selector, puede quebrar nuestras pruebas automatizadas, en múltiples puntos.</p>
-
 <h2 id="una-estrategia-para-pruebas-más-robustas">Una estrategia para pruebas más robustas</h2>
-
 <p>La recomendación cuando automatizamos escenarios es que desacoplemos totalmente los temas relativos a la estructura de nuestra interfaz de usuario (elementos con los que interactuamos como botones, enlaces, etc) del código de nuestras pruebas, encapsulando esta información en objetos que representan los elementos de la interfaz de nuestra aplicación. De esta manera si la prueba necesita crear un usuario con nombre &ldquo;Adrian&rdquo; de edad 35, no importa si el nombre se introduce con un teclado virtual en la pantalla, o si la edad es un campo de texto o un selector de numeros, lo importante es que la prueba logra introducir esos datos a través de nuestra interfaz.</p>
-
 <h2 id="el-patrón-page-object">El patrón Page Object</h2>
-
 <p>El patrón <a href="http://code.google.com/p/selenium/wiki/PageObjects">Page Object</a> nos ayuda con la tarea de robustecer nuestras pruebas. Consiste en crear un objeto por cada conjunto de elementos significativos de la interfaz con la que interactuamos. Aunque el nombre nos sugiera (y generalmente suceda) que cada objeto debe representar una pagina de nuestra aplicación, lo cierto es que si dentro de la pagina tenemos componentes visuales que reutilizamos en otras partes, podemos construir un Page Object de ese elemento para poder reutilizarlo. Un ejemplo de esto sería el menu de navegación, que probablemente aparezca en muchas de nuestras páginas de la aplicación, o un selector de ciudad/estado, que podemos usar en distintos procedimientos, o hasta un area de notificaciones que siempre este presente durante el uso de la app. El objeto recibiría nuestro controlador del navegador y escondería su uso del código de la prueba.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//PaginaPrincipal.java
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PaginaPrincipal</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> WebDriver driver<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> BarraNavegacion barraNavegacion<span style="color:#f92672">;</span>
 
-<pre><code class="language-java">//PaginaPrincipal.java
-public class PaginaPrincipal {
-    private final WebDriver driver;
-    private final BarraNavegacion barraNavegacion;
-
-    public PaginaPrincipal(WebDriver driver) {
-        this.driver = driver;
-        barraNavegacion = new BarraNavegacion(driver);
-    }
-}
-</code></pre>
-
-<p>Dicho objeto de página debe exponer métodos que permitan al usuario que escribe la prueba hacer las cosas que pudiera hacer un humano interactuando con ese componente o página. Así, nuestra definición de pasos usaría estos métodos:</p>
-
-<pre><code class="language-java">//StepDefinitions.java
-PaginaPrincipal.irAModuloUsuario() // Nos permite navegar al modulo de usuarios
-PaginaPrincipal.introducirNombre(&quot;Adrian&quot;) // Nos permite introducir el nombre del usuario
-PaginaPrincipal.enviarFormulario() // Nos permite enviar el formulario de datos
-PaginaPrincipal.selecionarLenguaje(&quot;Inglés&quot;) // Nos permite seleccionar el lenguaje inglés
-PaginaPrincipal.leerMensajeRecibido() // Nos permite obtener el mensaje recibido despues de la operación.
-PaginaPrincipal.leerSiElUsuarioDeseaRecibirInformacion() // Nos permite saber si el usuario quiere recibir correos de nuestra parte.
-</code></pre>
-
-<p>Malos ejemplos de aplicar el patrón es tener métodos como estos:</p>
-
-<pre><code class="language-java">PaginaPrincipal.pulsarBotonEnviar() // Estamos revelando que la manera de enviar el formulario es con un botón.
-PaginaPrincipal.leerCampoConId(&quot;nombre&quot;) // Estamos revelando id de elementos html en la firma.
-PaginaPrincipal.escribirEnCampoConNombre(&quot;nombre&quot;, &quot;Adrian&quot;) // Nuevamente hay elementos html en la firma. 
-PaginaPrincipal.pulsarEnlace(&quot;Usuario&quot;) // Si el elemento cambia de ser un enlace?
-PaginaPrincipal.ponerRecibirInformacionEn(false) // Estamos asumiendo que el componente sera de verdadero/falso.
-</code></pre>
-
-<p>La regla de oro es: esconder detalles estructurales de la página, y expresar las cosas de manera más procedimental. Luego, dentro de este conjunto de métodos podemos trabajar con nuestro navegador y la estrucura de la página para realizar lo que queremos.</p>
-
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">PaginaPrincipal</span><span style="color:#f92672">(</span>WebDriver driver<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">driver</span> <span style="color:#f92672">=</span> driver<span style="color:#f92672">;</span>
+        barraNavegacion <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BarraNavegacion<span style="color:#f92672">(</span>driver<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Dicho objeto de página debe exponer métodos que permitan al usuario que escribe la prueba hacer las cosas que pudiera hacer un humano interactuando con ese componente o página. Así, nuestra definición de pasos usaría estos métodos:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//StepDefinitions.java
+</span><span style="color:#75715e"></span>PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">irAModuloUsuario</span><span style="color:#f92672">()</span> <span style="color:#75715e">// Nos permite navegar al modulo de usuarios
+</span><span style="color:#75715e"></span>PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">introducirNombre</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Adrian&#34;</span><span style="color:#f92672">)</span> <span style="color:#75715e">// Nos permite introducir el nombre del usuario
+</span><span style="color:#75715e"></span>PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">enviarFormulario</span><span style="color:#f92672">()</span> <span style="color:#75715e">// Nos permite enviar el formulario de datos
+</span><span style="color:#75715e"></span>PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">selecionarLenguaje</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Inglés&#34;</span><span style="color:#f92672">)</span> <span style="color:#75715e">// Nos permite seleccionar el lenguaje inglés
+</span><span style="color:#75715e"></span>PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">leerMensajeRecibido</span><span style="color:#f92672">()</span> <span style="color:#75715e">// Nos permite obtener el mensaje recibido despues de la operación.
+</span><span style="color:#75715e"></span>PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">leerSiElUsuarioDeseaRecibirInformacion</span><span style="color:#f92672">()</span> <span style="color:#75715e">// Nos permite saber si el usuario quiere recibir correos de nuestra parte.
+</span></code></pre></div><p>Malos ejemplos de aplicar el patrón es tener métodos como estos:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">pulsarBotonEnviar</span><span style="color:#f92672">()</span> <span style="color:#75715e">// Estamos revelando que la manera de enviar el formulario es con un botón.
+</span><span style="color:#75715e"></span>PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">leerCampoConId</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;nombre&#34;</span><span style="color:#f92672">)</span> <span style="color:#75715e">// Estamos revelando id de elementos html en la firma.
+</span><span style="color:#75715e"></span>PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">escribirEnCampoConNombre</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;nombre&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Adrian&#34;</span><span style="color:#f92672">)</span> <span style="color:#75715e">// Nuevamente hay elementos html en la firma. 
+</span><span style="color:#75715e"></span>PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">pulsarEnlace</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Usuario&#34;</span><span style="color:#f92672">)</span> <span style="color:#75715e">// Si el elemento cambia de ser un enlace?
+</span><span style="color:#75715e"></span>PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">ponerRecibirInformacionEn</span><span style="color:#f92672">(</span><span style="color:#66d9ef">false</span><span style="color:#f92672">)</span> <span style="color:#75715e">// Estamos asumiendo que el componente sera de verdadero/falso.
+</span></code></pre></div><p>La regla de oro es: esconder detalles estructurales de la página, y expresar las cosas de manera más procedimental. Luego, dentro de este conjunto de métodos podemos trabajar con nuestro navegador y la estrucura de la página para realizar lo que queremos.</p>
 <h2 id="navegando-a-otras-páginas">Navegando a otras páginas</h2>
-
 <p>Cuando una llamada a una operación resulta en la navegación a otra página, nuestro Page Object debe encargarse de construir y devolver otro Page Object que representa la otra página, de manera que nuestro usuario continúe realizando las operaciones en la otra página. Veamos un ejemplo:</p>
-
-<pre><code class="language-java">//PaginaPrincipal.java
-public PaginaUsuarios irAModuloUsuarios() {
-    return barraNavegacion.irAModuloUsuarios();
-}
-</code></pre>
-
-<pre><code class="language-java">//BarraNavegacion.java
-public PaginaUsuarios irAModuloUsuarios() {
-    driver.findElement(By.linkText(&quot;Usuarios&quot;)).click();
-    return new PaginaUsuarios(driver);
-}
-</code></pre>
-
-<p>Y en el lado de la prueba se usaría asi:</p>
-
-<pre><code class="language-java">//StepDefinitions.java
-PaginaUsuarios paginaUsuarios = PaginaPrincipal.irAModuloUsuario();
-</code></pre>
-
-<h2 id="donde-van-los-asserts">Donde van los asserts</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//PaginaPrincipal.java
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> PaginaUsuarios <span style="color:#a6e22e">irAModuloUsuarios</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">return</span> barraNavegacion<span style="color:#f92672">.</span><span style="color:#a6e22e">irAModuloUsuarios</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//BarraNavegacion.java
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> PaginaUsuarios <span style="color:#a6e22e">irAModuloUsuarios</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    driver<span style="color:#f92672">.</span><span style="color:#a6e22e">findElement</span><span style="color:#f92672">(</span>By<span style="color:#f92672">.</span><span style="color:#a6e22e">linkText</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Usuarios&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">click</span><span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> PaginaUsuarios<span style="color:#f92672">(</span>driver<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Y en el lado de la prueba se usaría asi:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//StepDefinitions.java
+</span><span style="color:#75715e"></span>PaginaUsuarios paginaUsuarios <span style="color:#f92672">=</span> PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">irAModuloUsuario</span><span style="color:#f92672">();</span>
+</code></pre></div><h2 id="donde-van-los-asserts">Donde van los asserts</h2>
 <p>Ahora toquemos el tema de los asserts que debemos hacer en la prueba. Si hablamos de responsabilidades de cada clase, la responsabilidad del Page Object es abstraernos de la estructura de la interfaz de usuario, y la responsabilidad de la prueba es verificar que cierta condición se cumple. Esto nos lleva a la conclusión de que dichos asserts DEBEN IR en la prueba y no en el page object. Por tanto los asserts ideales serían de la forma:</p>
-
-<pre><code class="language-java">//StepDefinitions.java
-assertThat(&quot;Mensaje de éxito inesperado&quot;, PaginaPrincipal.leerMensajeRecibido(), is(&quot;El usuario se ha creado con éxito&quot;));
-</code></pre>
-
-<p>Hay una aserción sin embargo que podríamos dejar dentro del page object, y es para verificar que el objeto se cargó correctamente. Queremos asumir que el objeto al instanciarlo se encuentra en la página correcta, de otro modo sus operaciones podrían fallar y generarnos algunos dolores de cabeza innecesarios. Esto podemos hacerlo en el constructor del objeto página, verificando algún elemento como el titulo de la página que sea el correcto.</p>
-
-<pre><code class="language-java">//PaginaPrincipal.java
-public PaginaPrincipal(WebDriver driver) {
-    this.driver = driver;
-    barraNavegacion = new BarraNavegacion(driver);
-    //Validemos que nos encontramos en PaginaPrincipal
-    assertThat(&quot;La pagina cargada no es la principal&quot;, driver.getTitle(), is(&quot;Pagina Principal&quot;));
-}
-</code></pre>
-
-<h2 id="llamadas-asíncronas">LLamadas asíncronas</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//StepDefinitions.java
+</span><span style="color:#75715e"></span>assertThat<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Mensaje de éxito inesperado&#34;</span><span style="color:#f92672">,</span> PaginaPrincipal<span style="color:#f92672">.</span><span style="color:#a6e22e">leerMensajeRecibido</span><span style="color:#f92672">(),</span> is<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;El usuario se ha creado con éxito&#34;</span><span style="color:#f92672">));</span>
+</code></pre></div><p>Hay una aserción sin embargo que podríamos dejar dentro del page object, y es para verificar que el objeto se cargó correctamente. Queremos asumir que el objeto al instanciarlo se encuentra en la página correcta, de otro modo sus operaciones podrían fallar y generarnos algunos dolores de cabeza innecesarios. Esto podemos hacerlo en el constructor del objeto página, verificando algún elemento como el titulo de la página que sea el correcto.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//PaginaPrincipal.java
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">PaginaPrincipal</span><span style="color:#f92672">(</span>WebDriver driver<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">driver</span> <span style="color:#f92672">=</span> driver<span style="color:#f92672">;</span>
+    barraNavegacion <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BarraNavegacion<span style="color:#f92672">(</span>driver<span style="color:#f92672">);</span>
+    <span style="color:#75715e">//Validemos que nos encontramos en PaginaPrincipal
+</span><span style="color:#75715e"></span>    assertThat<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;La pagina cargada no es la principal&#34;</span><span style="color:#f92672">,</span> driver<span style="color:#f92672">.</span><span style="color:#a6e22e">getTitle</span><span style="color:#f92672">(),</span> is<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Pagina Principal&#34;</span><span style="color:#f92672">));</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="llamadas-asíncronas">LLamadas asíncronas</h2>
 <p>Para el tema del manejo de llamadas asíncronas, tambien deberíamos tratarlo dentro del objeto de página. Si una operación resulta en una llamada ajax, queremos esconder de nuestro usuario del objeto que dicha llamada debe esperar a que cargue el div resultado con la tabla de resultados, ya que esto tambien representa un detalle de implementación más que de procedimientos. Al esconder estos detalles, ayudamos a que el objeto sea más sencillo de usar, ya que se trataría como si fuera un objeto síncrono, evitando reescribir el código de esperas en multiples pruebas.</p>
-
 <h2 id="tips-adicionales">Tips adicionales</h2>
-
 <ul>
 <li>Podemos tambien exponer operaciones completas que reutilicen varios métodos, como por ejemplo el siguiente para autenticarnos:</li>
 </ul>
-
-<pre><code class="language-java">//PaginaPrincipal.java
-public PaginaPrincipal autenticarseComo(String usuario, String password){
-    introducirNombre(usuario);
-    introducirPassword(password);
-    return enviarFormulario();
-}
-</code></pre>
-
-<ul>
-<li><p>El nombre del paso dentro del escenario nos da una pista de como debe llamarse el nombre del método que debe exponer nuestro page object. Usando el tip anterior podemos exponer la operación como un solo método, haciendo que las implementaciones de nuestros pasos sean de 1 o muy pocas líneas de codigo.</p></li>
-
-<li><p>Para el caso en que una acción nos lleve a otra página distinta al camino feliz, por ejemplo un login con usuario equivocado que en lugar de llevarnos a la página principal, nos va a devolver a la página de login nuevamente, debemos crear un método separado que devuelva la página que esperamos recibir en este flujo alternativo, de manera que podamos seguir interactuando con la interfaz. En ese caso debemos usar un nombre expresivo para la operación, como por ejemplo <code>autenticarseComoUsuarioInvalido(&quot;Adrian&quot;,&quot;passwordmalo&quot;);</code>, para que sea más claro al que utiliza nuestro objeto que debe utilizar este si espera que el login falle.</p></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//PaginaPrincipal.java
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> PaginaPrincipal <span style="color:#a6e22e">autenticarseComo</span><span style="color:#f92672">(</span>String usuario<span style="color:#f92672">,</span> String password<span style="color:#f92672">){</span>
+    introducirNombre<span style="color:#f92672">(</span>usuario<span style="color:#f92672">);</span>
+    introducirPassword<span style="color:#f92672">(</span>password<span style="color:#f92672">);</span>
+    <span style="color:#66d9ef">return</span> enviarFormulario<span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>
+<p>El nombre del paso dentro del escenario nos da una pista de como debe llamarse el nombre del método que debe exponer nuestro page object. Usando el tip anterior podemos exponer la operación como un solo método, haciendo que las implementaciones de nuestros pasos sean de 1 o muy pocas líneas de codigo.</p>
+</li>
+<li>
+<p>Para el caso en que una acción nos lleve a otra página distinta al camino feliz, por ejemplo un login con usuario equivocado que en lugar de llevarnos a la página principal, nos va a devolver a la página de login nuevamente, debemos crear un método separado que devuelva la página que esperamos recibir en este flujo alternativo, de manera que podamos seguir interactuando con la interfaz. En ese caso debemos usar un nombre expresivo para la operación, como por ejemplo <code>autenticarseComoUsuarioInvalido(&quot;Adrian&quot;,&quot;passwordmalo&quot;);</code>, para que sea más claro al que utiliza nuestro objeto que debe utilizar este si espera que el login falle.</p>
+</li>
 </ul>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

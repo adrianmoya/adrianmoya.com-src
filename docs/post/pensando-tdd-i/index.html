@@ -92,134 +92,97 @@
     <a class="label" href="http://adrianmoya.com/categories/tdd">TDD</a><a class="label" href="http://adrianmoya.com/categories/testing">Testing</a>
     </span>
     <p>Siempre escuchamos que TDD es una técnica de diseño que es guiada por pruebas. Pero dado que tenemos que escribir la prueba primero, nuestra mente comienza a pensar en términos de pruebas en lugar de diseño. Entonces comenzamos a pensar en casos borde, malas entradas, y cosas que son importante pensar, pero desvían nuestra atención del objetivo principal de la técnica, que es diseñar.</p>
-
 <p>En esta entrada voy a volcar mi tren de pensamientos cuando diseño a través de TDD, para que puedan contrastar la diferencia acerca de pensar enfocado en pruebas y pensar acerca de diseño. Así mismo, cada decisión de diseño va a resultar en código para nuestra prueba.</p>
-
-<p></p>
-
 <h1 id="el-ejercicio">El ejercicio</h1>
-
 <p>Nuestra area es construir un convertidor de dinero. Para hacer las cosas simples, solo necesitamos convertir entre dólares americanos (USD) y pesos colombianos (COP).</p>
-
 <h1 id="seleccionando-un-nombre-para-el-componente">Seleccionando un nombre para el componente</h1>
-
 <p>La primera decisión de diseño es el nombre del componente. He decidido llamarlo MoneyConverter, que denota su funcionalidad principal. Pense en llamarlo USD2COPConverter pero no sonaba muy bien. Voy a crear esta clase en paquete com.adrianmoya.money. Habiendo decidido el nombre y el paquete, primero creo una clase de prueba llamada MoneyConverterTest en ese paquete. Luego añado una instancia privada de la clase que estoy a punto de crear. El IDE se va a quejar de que la clase no existe, asi que simplemente le digo que la cree para mi. Asi se ve el código:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.adrianmoya.money<span style="color:#f92672">;</span>
 
-<pre><code class="language-java">package com.adrianmoya.money;
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MoneyConverterTest</span> <span style="color:#f92672">{</span>
 
-public class MoneyConverterTest {
-
-    private MoneyConverter converter;
-    
-}
-</code></pre>
-
-<h1 id="pensando-en-las-responsabilidades">Pensando en las responsabilidades</h1>
-
+	<span style="color:#66d9ef">private</span> MoneyConverter converter<span style="color:#f92672">;</span>
+	
+<span style="color:#f92672">}</span>
+</code></pre></div><h1 id="pensando-en-las-responsabilidades">Pensando en las responsabilidades</h1>
 <p>Cuando diseño un objeto, me gusta pensar en terminos de <a href="https://es.wikipedia.org/wiki/Tarjetas_CRC">Modelos CRC</a>, definiendo el nombre de la clase, las responsabilidades y finalmente los colaboradores. Ya decidi el nombre, y la responsabilidad de esta clase es muy simple: convertir entre dólares y pesos. Tambien tengo muy presente el <a href="https://es.wikipedia.org/wiki/Principio_de_responsabilidad_%C3%BAnica">Principio de Responsabilidad Simple</a>, para que mi componente haga solo una cosa y la haga bien. Esto me ayuda a crear componentes que son pequeños y fáciles de mantener.</p>
-
 <p>Teniendo clara la responsabilidad, pensemos acerca del <a href="https://es.wikipedia.org/wiki/Interfaz_de_programaci%C3%B3n_de_aplicaciones">API</a>. ¿Cómo quiero llamar la funcionalidad de este convertidor, y con qué parámetros? Para esto, pienso en un primer escenario, convertir dólares a pesos, y escribo una prueba con ese nombre. Divido la prueba en 3 secciones, <a href="/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/#separar-contexto">Dado/Cuando/Entonces</a>. Me gustan estos términos ya que inicialmente aprendí de pruebas haciendo BDD, pero podría haber usado Arreglar/Actuar/Asertar o cualquier otra plantilla. Luego, pienso en como llamar esta función, y lo escribo en la sección &ldquo;Cuando&rdquo;. Digamos que la llamo <code>convertUSDtoCOP()</code> y que recibirá la cantidad de dólares a convertir, retornando el resultado en pesos. Como se trata de dinero, me iré con un BigDecimal como el tipo de dato. Quiero que este ejemplo convierta 10 dólares, asi que mi código se ve así:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Test</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">itConvertsUSDtoCOP</span><span style="color:#f92672">(){</span>
+	<span style="color:#75715e">//Given
+</span><span style="color:#75715e"></span>	BigDecimal amountToConvert <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;10.00&#34;</span><span style="color:#f92672">);</span>
+	<span style="color:#75715e">//When
+</span><span style="color:#75715e"></span>	BigDecimal result <span style="color:#f92672">=</span> converter<span style="color:#f92672">.</span><span style="color:#a6e22e">convertUSDtoCOP</span><span style="color:#f92672">(</span>amountToConvert<span style="color:#f92672">);</span>
 
-<pre><code class="language-java">@Test
-public void itConvertsUSDtoCOP(){
-    //Given
-    BigDecimal amountToConvert = new BigDecimal(&quot;10.00&quot;);
-    //When
-    BigDecimal result = converter.convertUSDtoCOP(amountToConvert);
+<span style="color:#f92672">}</span>
+</code></pre></div><p>El IDE se va a quejar nuevamente, asi que le digo que cree el método en la clase. Asi se ve la clase MoneyConverter en este momento:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.adriamoya.money<span style="color:#f92672">;</span>
 
-}
-</code></pre>
+<span style="color:#f92672">import</span> java.math.BigDecimal<span style="color:#f92672">;</span>
 
-<p>El IDE se va a quejar nuevamente, asi que le digo que cree el método en la clase. Asi se ve la clase MoneyConverter en este momento:</p>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MoneyConverter</span> <span style="color:#f92672">{</span>
 
-<pre><code class="language-java">package com.adriamoya.money;
+	<span style="color:#66d9ef">public</span> BigDecimal <span style="color:#a6e22e">convertUSDtoCOP</span><span style="color:#f92672">(</span>BigDecimal bigDecimal<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#75715e">// TODO Auto-generated method stub
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
 
-import java.math.BigDecimal;
-
-public class MoneyConverter {
-
-    public BigDecimal convertUSDtoCOP(BigDecimal bigDecimal) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-}
-</code></pre>
-
-<h1 id="la-tasa-de-conversión">La tasa de conversión</h1>
-
+<span style="color:#f92672">}</span>
+</code></pre></div><h1 id="la-tasa-de-conversión">La tasa de conversión</h1>
 <p>Todavía necesitamos decidir como estará disponible la tasa de conversión para la clase. Podría pasarla como un parámetro adicional al método, pero no me gusta asi. Creo que para esta primera pasada, me iré con un argumento en el constructor. Añadiré un <code>Before</code> a la prueba para que instancie correctamente a la clase:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Before</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span><span style="color:#f92672">(){</span>
+	BigDecimal usdToCopExchangeRate <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;2920.8167&#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">//Today! 
+</span><span style="color:#75715e"></span>	converter <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MoneyConverter<span style="color:#f92672">(</span>usdToCopExchangeRate<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>El IDE se queja de nuevo! Vamos, crea ese constructor para mi. Listo. Asi queda la clase en este momento:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.adriamoya.money<span style="color:#f92672">;</span>
 
-<pre><code class="language-java">@Before
-public void setup(){
-    BigDecimal usdToCopExchangeRate = new BigDecimal(&quot;2920.8167&quot;); //Today! 
-    converter = new MoneyConverter(usdToCopExchangeRate);
-}
-</code></pre>
+<span style="color:#f92672">import</span> java.math.BigDecimal<span style="color:#f92672">;</span>
 
-<p>El IDE se queja de nuevo! Vamos, crea ese constructor para mi. Listo. Asi queda la clase en este momento:</p>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MoneyConverter</span> <span style="color:#f92672">{</span>
 
-<pre><code class="language-java">package com.adriamoya.money;
+	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MoneyConverter</span><span style="color:#f92672">(</span>BigDecimal usdToCopExchangeRate<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#75715e">// TODO Auto-generated constructor stub
+</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
 
-import java.math.BigDecimal;
+	<span style="color:#66d9ef">public</span> BigDecimal <span style="color:#a6e22e">convertUSDtoCOP</span><span style="color:#f92672">(</span>BigDecimal bigDecimal<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#75715e">// TODO Auto-generated method stub
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
 
-public class MoneyConverter {
-
-    public MoneyConverter(BigDecimal usdToCopExchangeRate) {
-        // TODO Auto-generated constructor stub
-    }
-
-    public BigDecimal convertUSDtoCOP(BigDecimal bigDecimal) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-}
-</code></pre>
-
-<p>Ya tenemos todo lo necesario para completar una prueba que falle. Dado una tasa de conversion de 2.920,82 pesos por dólar, mi expectativa es que 10 dólares sean convertidos a 29.208,20 pesos. Completo la prueba y la ejecuto:</p>
-
-<pre><code class="language-java">@Test
-public void itConvertsUSDtoCOP(){
-    //Given
-    BigDecimal amountToConvert = new BigDecimal(&quot;10.00&quot;);
-    //When
-    BigDecimal result = converter.convertUSDtoCOP(amountToConvert);
-    //Then
-    assertEquals(new BigDecimal(&quot;29208.20&quot;), result);
-}
-</code></pre>
-
-<p>Noten que he decidio utilizar una escala de 2 decimales para este ejemplo. Es una decisión de diseño, expresada como una prueba. Esto podría cambiar en el futuro, pero para mi esta bien empezar así.</p>
-
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Ya tenemos todo lo necesario para completar una prueba que falle. Dado una tasa de conversion de 2.920,82 pesos por dólar, mi expectativa es que 10 dólares sean convertidos a 29.208,20 pesos. Completo la prueba y la ejecuto:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Test</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">itConvertsUSDtoCOP</span><span style="color:#f92672">(){</span>
+	<span style="color:#75715e">//Given
+</span><span style="color:#75715e"></span>	BigDecimal amountToConvert <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;10.00&#34;</span><span style="color:#f92672">);</span>
+	<span style="color:#75715e">//When
+</span><span style="color:#75715e"></span>	BigDecimal result <span style="color:#f92672">=</span> converter<span style="color:#f92672">.</span><span style="color:#a6e22e">convertUSDtoCOP</span><span style="color:#f92672">(</span>amountToConvert<span style="color:#f92672">);</span>
+	<span style="color:#75715e">//Then
+</span><span style="color:#75715e"></span>	assertEquals<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> BigDecimal<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;29208.20&#34;</span><span style="color:#f92672">),</span> result<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Noten que he decidio utilizar una escala de 2 decimales para este ejemplo. Es una decisión de diseño, expresada como una prueba. Esto podría cambiar en el futuro, pero para mi esta bien empezar así.</p>
 <h1 id="añadiendo-una-implementación">Añadiendo una implementación</h1>
-
 <p>Voy a añadir una implementación para que pase la prueba:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MoneyConverter</span> <span style="color:#f92672">{</span>
+	
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> SCALE <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span> 
+	<span style="color:#66d9ef">private</span> BigDecimal usdToCopExchangeRate<span style="color:#f92672">;</span>
 
-<pre><code class="language-java">public class MoneyConverter {
-    
-    private static final int SCALE = 2; 
-    private BigDecimal usdToCopExchangeRate;
+	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MoneyConverter</span><span style="color:#f92672">(</span>BigDecimal usdToCopExchangeRate<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">usdToCopExchangeRate</span> <span style="color:#f92672">=</span> usdToCopExchangeRate<span style="color:#f92672">.</span><span style="color:#a6e22e">setScale</span><span style="color:#f92672">(</span>SCALE<span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
 
-    public MoneyConverter(BigDecimal usdToCopExchangeRate) {
-        this.usdToCopExchangeRate = usdToCopExchangeRate.setScale(SCALE);
-    }
+	<span style="color:#66d9ef">public</span> BigDecimal <span style="color:#a6e22e">convertUSDtoCOP</span><span style="color:#f92672">(</span>BigDecimal amountInUSD<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> amountInUSD<span style="color:#f92672">.</span><span style="color:#a6e22e">multiply</span><span style="color:#f92672">(</span>usdToCopExchangeRate<span style="color:#f92672">).</span><span style="color:#a6e22e">setScale</span><span style="color:#f92672">(</span>SCALE<span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
 
-    public BigDecimal convertUSDtoCOP(BigDecimal amountInUSD) {
-        return amountInUSD.multiply(usdToCopExchangeRate).setScale(SCALE);
-    }
-
-}
-</code></pre>
-
-<h1 id="cerrado-y-próximos-pasos">Cerrado y próximos pasos</h1>
-
+<span style="color:#f92672">}</span>
+</code></pre></div><h1 id="cerrado-y-próximos-pasos">Cerrado y próximos pasos</h1>
 <p>Como pueden ver del ejercicio, he tomado varias decisiones de diseño para nuestra clase mientras escribía la prueba. Mi mente ha estado enfocada en el componente y como quiero que trabaje y no en probar todos los casos posibles buscando hacerlo fallar.</p>
-
 <p>Este diseño inicial va a evolucionar con el tiempo a medida que la aplicación comienza a demandar más características. Si bien no he seguido los pasos de bebé recomendados por TDD, tampoco me he ido de bruces a tratar de diseñar un convertidor-de-todas-las-monedas genérico que podría no necesitar al final.</p>
-
 <p>Finalmente, si mi aplicación solo necesita convertir entre dólares y pesos, sé que la tasa de cambio no va a ser tan estable como quisiera. Así que ¿Cómo podría obtener la tasa actualizada para la conversión? En el próximo artículo, voy a diseñar esa parte usando TDD e introduciré un poco del uso de dobles.</p>
-
 <p>Descarga el código de este artículo en <a href="https://github.com/adrianmoya/moneyconverter-tdd/archive/firstpass.tar.gz">Github</a>.</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

@@ -92,72 +92,39 @@
     <a class="label" href="http://adrianmoya.com/categories/tdd">TDD</a><a class="label" href="http://adrianmoya.com/categories/agilidad">Agilidad</a><a class="label" href="http://adrianmoya.com/categories/junit">JUnit</a>
     </span>
     <p>En el post anterior, vimos como <a href="/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/">aplicar el patrón databuilder</a> puede ayudarnos a escribir el contexto inicial de nuestras especificaciones de manera más clara. En este artículo describiré algunas técnicas adicionales que ayudan a mejorar la expresividad de las pruebas.</p>
-
-<p></p>
-
 <h2 id="por-qué-es-importante-escribir-pruebas-expresivas">¿Por qué es importante escribir pruebas expresivas?</h2>
-
 <p>Cuando estamos aplicando una técnica como TDD/BDDSpec, vamos escribiendo especificaciones (pruebas, ejemplos de código) para describir cómo debe comportarse cada método de nuestros objetos. En el momento de escribirlas, tenemos fresco en la mente la funcionalidad que queremos lograr, y el significado de los resultados. Pero a medida que un sistema crece, y vamos pasando nuestro enfoque a otras partes del sistema, podemos pasar mucho tiempo sin volver a tocar estas pruebas, hasta que un día lejano, mientras construimos una nueva funcionalidad, rompemos una de las viejas pruebas.</p>
-
 <p>Es ahí cuando es importante la manera en que escribimos la especificación. Si no fuimos suficientemente expresivos, sabemos que la prueba que se rompió nos indica que hicimos algo que no debíamos, o que debemos refactorizar para incorporar el nuevo cambio. Pero exactamente ¿qué está pasando? ¿qué significa la barra roja? En este momento es útil haber aplicado algunas técnicas para que nuestra especificación fuera más sencilla de leer y entender en el futuro.</p>
-
 <p>Igualmente, cuando un nuevo miembro del equipo inicia a trabajar en un proyecto, le es más sencillo entender el diseño si las pruebas estan escritas de manera clara y expresando intención de lo que queremos hacer y las condiciones bajo las cuales se ejecuta el objeto bajo prueba.</p>
-
 <h2 id="nombres-de-pruebas-descriptivos">Nombres de pruebas descriptivos</h2>
-
 <p>Esta es básica, el nombre de nuestra prueba debe denotar la intención de la misma. En lugar de llamarla <code>testAlert</code>, deberiamos expresar con claridad que tipo de alerta y bajo que codiciones: <code>it_should_send_an_alert_when_balance_is_below_limit</code> expresa más claramente que se trata de una alerta cuando el balance esta por debajo de un límite. Si no te gusta usar <code>_</code> en el nombre (que es la manera más legible de escribir el nombre de la prueba en mi opinión) puedes usar el tradicional camelCase: <code>itShouldSendAnAlertWhenBalanceIsBelowLimit</code>. Incluso si sigues el tradicional patrón TDD de comenzar el método con la palabra <code>test</code>, asegurate de expresar de que trata la prueba <code>testSendAlertWhenBalanceIsBelowLimit</code>. Hay plugins para los IDEs que automáticamente separan estos nombres para colocar los espacios donde corresponde y que puedas leer claramente los títulos de cada prueba (por ejemplo <a href="http://marketplace.eclipse.org/content/storyteller">StoryTeller</a> para eclipse).</p>
-
 <h2 id="mensajes-de-error-descriptivos">Mensajes de error descriptivos</h2>
-
 <p>Todos conocen que existen 3 pasos que repetimos constantemente cuando diseñamos usando ejemplos de código: Escribir una prueba y que falle (rojo), que escribamos el mínimo código necesario para que pase (verde), y que refactoricemos el código para evitar duplicidad e incorporar mejores prácticas. Pero existe un paso implícito que viene después de que hacemos que la prueba falle, y es hacer que el mensaje de error exprese de manera clara que es lo que sucede antes de hacer pasar la prueba.</p>
-
 <p>No es suficiente con decir al final de una prueba que se valide que un resultado sea true. Cuando un mensaje de error dice que verdadero no es falso o que 20 es distinto de 25, esto no expresa aún qué esta pasando en la prueba, sobre todo si tenemos meses sin trabajar en esa sección del código. Se debe usar el parámetro <code>message</code> que reciben las assertions para describir con más claridad que significa ese verdadero o que significa ese 20. Un mensaje de error que diga &ldquo;Descuento de venta: se esperaba 20 y se obtuvo 25&rdquo; claramente indica que se trata del descuento de venta que no se esta recibiendo correctamente.</p>
-
 <p>Asi mismo cuando comparamos objetos, por lo general el mensaje de error muestra unos garabatos que representan la dirección de memoria del objeto. Esto no ayuda a determinar el error (más que saber que los dos objetos no son iguales, el mensaje será algo como &ldquo;Expected: TaxItem@123456 but was TaxItem@23456&rdquo;). Si sobreescribimos el método toString() del objeto, imprimiendo sus propiedades importantes separadas por coma, es más sencillo cuando los objetos no son iguales saber que propiedad es la que no es igual. Ejemplo:</p>
-
-<pre><code class="language-java">//TaxItem.java
-    @Override
-    public String toString() {
-        return &quot;TaxItem{&quot; + &quot;value=&quot; + value + &quot;, amount=&quot; + amount + '}';
-    }
-</code></pre>
-
-<p>Nos dará un mensaje como &ldquo;Expected: TaxItem{value=12.00, amount=200.00} but was TaxItem{value=16.00, amount=200.00}&ldquo;, lo que nos permitirá ver que los objetos son distintos porque la propiedad value es distinta.</p>
-
-<p><a name="separar-contexto"></a></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//TaxItem.java
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;TaxItem{&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;value=&#34;</span> <span style="color:#f92672">+</span> value <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, amount=&#34;</span> <span style="color:#f92672">+</span> amount <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;}&#39;</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>Nos dará un mensaje como &ldquo;Expected: TaxItem{value=12.00, amount=200.00} but was TaxItem{value=16.00, amount=200.00}&rdquo;, lo que nos permitirá ver que los objetos son distintos porque la propiedad value es distinta.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h2 id="usar-comentarios-para-separar-las-tres-fases-de-la-prueba">Usar comentarios para separar las tres fases de la prueba</h2>
-
 <p>Separar claramente el contexto, el ejemplo de código que se especifica, y las validaciones finales, hacen que una prueba sea mucho más legible. Puedes usar comentarios, como <code>//Arrange //Act //Assert</code> o <code>//Given //When //Then</code>. Esto ayuda permite al lector enfocarse en cada segmento, pudiendo ver con claridad el contexto, o por ejemplo concentrándose en cual es la operación que se está probando o qué resultados se esperan. Comentarios adicionales dentro de cada sección también ayudan si sientes que es necesario explicar algo adicional, pero si como mínimo tienes estos 3 comentarios separando las secciones ya estás ganando en expresividad.</p>
-
 <h2 id="usar-nombres-de-variables-descriptivos">Usar nombres de variables descriptivos</h2>
-
 <p>Bueno, esta técnica la heredamos de la escritura de código limpio, pero en especial es útil cuando escribimos pruebas. Supongamos que vamos a pasar en el constructor o en algún método del objeto un párametro que representa un usuario bloqueado. En lugar de solo construir una variable <code>user</code>, podemos llamarla <code>blockedUser</code>, y de esta manera quien lee la prueba a simple vista puede notar que el usuario que pasamos está bloqueado. O por ejemplo, vamos a pasar un colaborador en un constructor que para el ejemplo que estamos escribiendo no es necesario, pero que por ser parte del constructor igual necesitamos pasarlo. En lugar de pasar <code>null</code>, podemos definir una variable llamada <code>unusedLogger</code> igual a <code>null</code> y pasarla como parámetro. De nuevo, la prueba será más legible porque no ponemos al lector a preguntarse que es ese <code>null</code> que recibe la clase sino que de una vez entiende que es un Logger pero que no se usará.</p>
-
 <p>Finalmente, si una prueba devuelve <code>null</code>, y esto significa por ejemplo que un usuario no es encontrado (suponiendo que sea un método de búsqueda de usuario por id), entonces en lugar de hacer un assert que chequée que se devolvió <code>null</code>, definimos una constante <code>Customer NO_CUSTOMER_FOUND = null</code> y assertamos que el resultado sea igual a esta constante. Al leer la prueba, estaremos comunicando que significa que la operación devuelva <code>null</code>.</p>
-
 <h2 id="expresar-todo-el-contexto-de-la-prueba-en-la-prueba">Expresar todo el contexto de la prueba en la prueba</h2>
-
 <p>Aunque pueda parecer buena práctica construir algunos objetos en un método setup o algo similar, o heredando de otras clases con setups más complicados, lo cierto es que todas las pruebas deberían poder leerse completas sin obligar al lector a buscar de donde salen los objetos que estamos usando. Probablemente si una prueba falla, el desarrollador irá directamente a esa prueba a ver que pasa. Lo mejor es que pueda leer ahí mismo el contexto, como se construyeron los objetos que se usan en la prueba, sin tener que comenzar a viajar por otras partes del código de prueba para entender. Esto no quiere decir que si hay alguna operación de setup repetitiva no podamos extraerla a un método utilitario, siempre y cuando dicho método tenga un nombre expresivo y sea usado al comienzo de todas las pruebas que requieren dicho setup. De eso trata la próxima técnica.</p>
-
 <h2 id="usar-métodos-y-clases-ayudadoras-helpers">Usar métodos y clases ayudadoras (Helpers)</h2>
-
 <p>Ya vimos un ejemplo de una clase ayudadora en el post anterior cuando hablé de los <a href="/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/">databuilders</a>. Esta es una clase que nos permite construir el contexto de manera expresiva, ayudando al lector de la prueba a ver como estan construidos los objetos. Otros ejemplos de clases ayudadoras podrían ser fábricas para construir algunos colaboradores más complejos. Recordemos que añadir un método estático con nombres descriptivos ayuda aún más a entender lo que estamos haciendo.</p>
-
 <p>También se pueden crear métodos privados dentro de la clase de prueba que ayuden a comunicar nuestras intenciones y nos permitan reutilizar algo de código de las pruebas que sólo estén relacionados con ese set de pruebas. Por ejemplo si tenemos varias pruebas que requieren una factura con algunos ítems, podemos crear un método <code>anAccountWithSomeItems()</code> que internamente utilice los builders para construir este elemento. Sin embargo, debemos cuidar de no ocultarle información al lector usando los métodos privados. Es recomendable expresar las condiciones importantes para la prueba claramente, como describe la siguiente técnica.</p>
-
 <h2 id="enfocarse-en-lo-que-es-importante-no-añadir-detalles-sin-importancia">Enfocarse en lo que es importante (no añadir detalles sin importancia)</h2>
-
 <p>Dentro de una prueba, debemos enfocarnos en escribir de manera explícita todas las condiciones que afectan la prueba y no más. Algunas pruebas requieren de ciertas condiciones complejas que hay que colocar en el contexto. Para aquellas cosas que no sean de importancia (como agregar usuarios adicionales o transacciones dummy o cualquier otra cosa que se necesiten para completar el contexto pero que los detalles no afectarán la prueba en cuestión) podemos usar métodos helpers. Pero para aquellos elementos directamente relacionados con la prueba que hacemos, asegurémonos de expresar bien claro el contexto.</p>
-
 <p>Igualmente si vamos a validar la comunicación con los dobles, verifiquemos solo aquellas llamadas que realmente forman parte de las validaciones de la prueba en cuestión, y dejemos flexible la validación de otras llamadas que se hagan a los colaboradores.</p>
-
 <h2 id="una-prueba-por-cada-funcionalidad">Una prueba por cada funcionalidad</h2>
-
 <p>Hay operaciones que realizan más de una actividad dentro del sistema, como por ejemplo persistir un objeto en una BD y tambien enviar una alerta a otro sistema. En estos casos lo recomendable es hacer una prueba por cada una de estas actividades que realiza la operación, y NO MEZCLAR multiples aserciones y validaciones dentro de una sola prueba, pues hace que la misma se vuelva más compleja y difícil de leer. Es preferible tener multiples pruebas, una por cada actividad y así si falla una sola actividad, tenemos una prueba enfocada que nos dice claramente que es lo que falló y no una prueba compleja que chequea muchas cosas y que sea complicado saber en que parte está fallando.</p>
-
 <h2 id="finalmente">Finalmente</h2>
-
 <p>Aplicando estas simples técnicas ganaremos mucho en expresividad y comunicación de nuestra intención en cada prueba, lograremos que las pruebas documenten el código y se nos hará mas fácil entender que pasa cuando tengamos que lidiar con estas pruebas más adelante en la evolución de nuestra aplicación. Tengamos siempre presente expresar la prueba desde el punto de vista de qué queremos lograr y no del cómo lo estamos implementando. Hasta la próxima!</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>
