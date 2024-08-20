@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Análisis on Adrian Moya</title>
-    <link>http://adrianmoya.com/categories/an%C3%A1lisis/</link>
+    <link>https://adrianmoya.com/categories/an%C3%A1lisis/</link>
     <description>Recent content in Análisis on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Fri, 25 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/categories/an%C3%A1lisis/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://adrianmoya.com/categories/an%C3%A1lisis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Escribiendo mejores escenarios</title>
-      <link>http://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</link>
+      <link>https://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</link>
       <pubDate>Fri, 25 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</guid>
+      <guid>https://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</guid>
       <description>&lt;p&gt;Al momento de describir las características de un sistema a través de BDD, utilizamos ejemplos planteados en forma de escenarios para expresar cómo debe comportarse el sistema. Dichos escenarios son esenciales porque en ellos está plasmado el conocimiento del dominio de la aplicación, y sirven para documentar el sistema y también como insumo en el proceso de validación cuando los automatizamos utilizando herramientas BDD. A continuación veremos algunas preguntas que surgen y recomendaciones para lograr escenarios de calidad en nuestro proyecto.&lt;/p&gt;</description>
     </item>
     

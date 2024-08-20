@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Desarrollo on Adrian Moya</title>
-    <link>http://adrianmoya.com/categories/desarrollo/</link>
+    <link>https://adrianmoya.com/categories/desarrollo/</link>
     <description>Recent content in Desarrollo on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Sun, 11 Sep 2011 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/categories/desarrollo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Sep 2011 00:00:00 +0000</lastBuildDate><atom:link href="https://adrianmoya.com/categories/desarrollo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Probando constraints de clases de dominio en Grails</title>
-      <link>http://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</link>
+      <link>https://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</link>
       <pubDate>Sun, 11 Sep 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</guid>
+      <guid>https://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</guid>
       <description>&lt;p&gt;Comenzando con una serie de publicaciones que hare en el tema de las pruebas unitarias para grails, comenzaré detallando la manera de probar los constrains de una clase de Dominio. Para ello, tomare como ejemplo la siguiente clase, con dos propiedades y algunas restricciones:&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Ruby básico en un solo post</title>
-      <link>http://adrianmoya.com/2010/12/ruby-basico-en-un-solo-post/</link>
+      <link>https://adrianmoya.com/2010/12/ruby-basico-en-un-solo-post/</link>
       <pubDate>Tue, 14 Dec 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2010/12/ruby-basico-en-un-solo-post/</guid>
+      <guid>https://adrianmoya.com/2010/12/ruby-basico-en-un-solo-post/</guid>
       <description>&lt;p&gt;La siguiente no intenta ser una guia para enseñar ruby a personas que no programen. Más bien es mi guia rapida para programar ruby, pero cualquiera que tenga nociones de programación la puede encontrar útil.&lt;/p&gt;</description>
     </item>
     

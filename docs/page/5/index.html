@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.31.1" />
+	<meta name="generator" content="Hugo 0.81.0" />
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
@@ -11,24 +11,24 @@
   <title>Adrian Moya &middot; </title>
 
   
-  <link rel="stylesheet" href="http://adrianmoya.com/css/poole.css">
-  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde.css">
-  <link rel="stylesheet" href="http://adrianmoya.com/css/poole-overrides.css">
-  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://adrianmoya.com/css/hyde-x.css">
-  <link rel="stylesheet" href="http://adrianmoya.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://adrianmoya.com/css/poole.css">
+  <link rel="stylesheet" href="https://adrianmoya.com/css/hyde.css">
+  <link rel="stylesheet" href="https://adrianmoya.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="https://adrianmoya.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="https://adrianmoya.com/css/hyde-x.css">
+  <link rel="stylesheet" href="https://adrianmoya.com/css/highlight/zenburn.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
 
   
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmoya.com/touch-icon-144-precomposed.png">
-  <link href="http://adrianmoya.com/favicon.png" rel="icon">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://adrianmoya.com/touch-icon-144-precomposed.png">
+  <link href="https://adrianmoya.com/favicon.png" rel="icon">
 
   
   
   
-  <link href="http://adrianmoya.com/index.xml" rel="alternate" type="application/rss+xml" title="Adrian Moya &middot; " />
+  <link href="%7balternate%20%7bRSS%20application/rss&#43;xml%20%20index%20alternate%20%20false%20false%20true%20false%20false%200%7d%20/index.xml%20https://adrianmoya.com/index.xml%7d" rel="alternate" type="application/rss+xml" title="Adrian Moya &middot; " />
 
   <meta name="description" content="">
   <meta name="keywords" content="">
@@ -57,7 +57,7 @@
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item"><a href="http://adrianmoya.com/">Blog</a></li>
+      <li class="sidebar-nav-item"><a href="https://adrianmoya.com/">Blog</a></li>
       
     </ul>
 
@@ -69,15 +69,15 @@
       <a href="https://www.linkedin.com/in/moyaadrian"><i class="fa fa-linkedin-square fa-3x"></i></a>
       
       
-      <a href="http://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
+      <a href="https://www.twitter.com/adrianmoya"><i class="fa fa-twitter-square fa-3x"></i></a>
       
-      <a href="http://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      <a href="https://adrianmoya.com/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
       </li>
     </ul>
 
     
 
-    <p>Copyright &copy; 2009 <a href="http://adrianmoya.com/license/">License</a><br/>
+    <p>Copyright &copy; 2017 <a href="https://adrianmoya.com/license/">License</a><br/>
        Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
   </div>
 </div>
@@ -89,185 +89,128 @@
     
     <div class="post">
       <h1 class="post-title">
-        <a href="http://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/">Crear un template de Ubuntu Server 8.04 para XenServer 5.0</a>
+        <a href="https://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/">Crear un template de Ubuntu Server 8.04 para XenServer 5.0</a>
       </h1>
-      <span class="post-date">01/05/2009 &middot; Lectura de 4 minutos  &middot; <a href="http://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/#disqus_thread">Comentarios</a>
+      <span class="post-date">01/05/2009 &middot; Lectura de 4 minutos  &middot; <a href="https://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/#disqus_thread">Comentarios</a>
       
       
       <br/>
-      <a class="label" href="http://adrianmoya.com/categories/virtualizaci%C3%B3n">Virtualización</a>
+      <a class="label" href="https://adrianmoya.com/categories/virtualizaci%C3%B3n">Virtualización</a>
       </span>
       
-      <p>Hola! Bueno para inaugurar mi categoría de Virtualización en el Blog, he decidido escribir este breve tutorial a ver si le es útil a alguien en el planeta además de a mi. Esta basado en el único tutorial que consegui de este tema <a href="http://community.citrix.com/blogs/citrite/anilma/2008/07/02/Installing+Ubuntu+on+XenServer">aquí</a>. Le he dado unos toques personales que utilice en mi implementación. 
-
-En particular, utilice una imagen de Ubuntu JEOS de manera de solo tener la base del sistema operativo y poder desde ahí convertirlo en lo que queramos. Para conseguir el iso lo descargan desde <a href="http://www.ubuntu.com/products/whatisubuntu/serveredition/jeos">aquí</a>.</p>
-      <a href="http://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/">Continuar leyendo &rarr;</a>
+      <p>Hola! Bueno para inaugurar mi categoría de Virtualización en el Blog, he decidido escribir este breve tutorial a ver si le es útil a alguien en el planeta además de a mi. Esta basado en el único tutorial que consegui de este tema <a href="http://community.citrix.com/blogs/citrite/anilma/2008/07/02/Installing+Ubuntu+on+XenServer">aquí</a>. Le he dado unos toques personales que utilice en mi implementación. </p>
+      <a href="https://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/">Continuar leyendo &rarr;</a>
       
     </div>
     
     <div class="post">
       <h1 class="post-title">
-        <a href="http://adrianmoya.com/2008/06/pensar-deliberadamente/">Pensar Deliberadamente</a>
+        <a href="https://adrianmoya.com/2008/06/pensar-deliberadamente/">Pensar Deliberadamente</a>
       </h1>
-      <span class="post-date">17/06/2008 &middot; Lectura de 3 minutos  &middot; <a href="http://adrianmoya.com/2008/06/pensar-deliberadamente/#disqus_thread">Comentarios</a>
+      <span class="post-date">17/06/2008 &middot; Lectura de 3 minutos  &middot; <a href="https://adrianmoya.com/2008/06/pensar-deliberadamente/#disqus_thread">Comentarios</a>
       
       
       <br/>
-      <a class="label" href="http://adrianmoya.com/categories/crecimiento-personal">Crecimiento Personal</a>
+      <a class="label" href="https://adrianmoya.com/categories/crecimiento-personal">Crecimiento Personal</a>
       </span>
       
-      
-      <a href="http://adrianmoya.com/2008/06/pensar-deliberadamente/">Continuar leyendo &rarr;</a>
+      <p>Hola todos, he encontrado este tópico interesante acerca del pensamiento, me llamo la atención esto de pensar deliberadamente.</p>
+      <a href="https://adrianmoya.com/2008/06/pensar-deliberadamente/">Continuar leyendo &rarr;</a>
       
     </div>
     
     <div class="post">
       <h1 class="post-title">
-        <a href="http://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/">Conquistar el miedo = Definir el miedo</a>
+        <a href="https://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/">Conquistar el miedo = Definir el miedo</a>
       </h1>
-      <span class="post-date">02/06/2008 &middot; Lectura de 7 minutos  &middot; <a href="http://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/#disqus_thread">Comentarios</a>
+      <span class="post-date">02/06/2008 &middot; Lectura de 7 minutos  &middot; <a href="https://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/#disqus_thread">Comentarios</a>
       
       
       <br/>
-      <a class="label" href="http://adrianmoya.com/categories/crecimiento-personal">Crecimiento Personal</a>
+      <a class="label" href="https://adrianmoya.com/categories/crecimiento-personal">Crecimiento Personal</a>
       </span>
       
-      
-      <a href="http://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/">Continuar leyendo &rarr;</a>
+      <p>Hola todos! Voy a seguir compartiendo ideas de este libro interesante de la Semana de 4 horas de trabajo. Y lo seguiré haciendo porque muchas de las personas a las que se lo recomiendo nunca lo leeran. Asi que me ha parecido válido para quienes leen este Blog leer estos pequeños extractos de ideas, ya que aprovecharán ese conocimiento en sus vidas diarias y en sus situaciones personales. Asi que hoy quería compartir esta parte que me pareció excelente.</p>
+      <a href="https://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/">Continuar leyendo &rarr;</a>
       
     </div>
     
     <div class="post">
       <h1 class="post-title">
-        <a href="http://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/">El tiempo: la moneda del futuro</a>
+        <a href="https://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/">El tiempo: la moneda del futuro</a>
       </h1>
-      <span class="post-date">27/05/2008 &middot; Lectura de 5 minutos  &middot; <a href="http://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/#disqus_thread">Comentarios</a>
+      <span class="post-date">27/05/2008 &middot; Lectura de 5 minutos  &middot; <a href="https://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/#disqus_thread">Comentarios</a>
       
       
       <br/>
-      <a class="label" href="http://adrianmoya.com/categories/pensamientos">Pensamientos</a>
+      <a class="label" href="https://adrianmoya.com/categories/pensamientos">Pensamientos</a>
       </span>
       
-      
-      <a href="http://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/">Continuar leyendo &rarr;</a>
+      <p>Hola todos! a ver, me atrase un día de lo proyectado para escribir este post. Pero es que ayer domingo no tuve tiempo de escribirlo. Y precisamente DEL TIEMPO quería escribir!!! Pero no solamente del tiempo en cuanto a administrarlo se refiere, sino más bien a la importancia que actualmente tiene el tiempo como factor clave de la riqueza. Veamos:</p>
+      <a href="https://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/">Continuar leyendo &rarr;</a>
       
     </div>
     
     <div class="post">
       <h1 class="post-title">
-        <a href="http://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/">El delicado arte de ser feliz</a>
+        <a href="https://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/">El delicado arte de ser feliz</a>
       </h1>
-      <span class="post-date">18/05/2008 &middot; Lectura de 6 minutos  &middot; <a href="http://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/#disqus_thread">Comentarios</a>
+      <span class="post-date">18/05/2008 &middot; Lectura de 6 minutos  &middot; <a href="https://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/#disqus_thread">Comentarios</a>
       
       
       <br/>
-      <a class="label" href="http://adrianmoya.com/categories/crecimiento-personal">Crecimiento Personal</a>
+      <a class="label" href="https://adrianmoya.com/categories/crecimiento-personal">Crecimiento Personal</a>
       </span>
       
-      
-      <a href="http://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/">Continuar leyendo &rarr;</a>
+      <p>Hola todos, finalmente vengo a escribir al blog. Estuve tentado en toda la semana pero como buen ingeniero me gusta seguir procedimientos y me establecí escribir los domingos un resumen de la semana. El tema que he querido escribir es de la felicidad, ya que he tenido una semana de altibajos emocionales que me han puesto mucho a reflexionar.</p>
+      <a href="https://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/">Continuar leyendo &rarr;</a>
       
     </div>
     
     <div class="post">
       <h1 class="post-title">
-        <a href="http://adrianmoya.com/2008/05/inicio-del-blog/">Inicio del Blog</a>
+        <a href="https://adrianmoya.com/2008/05/inicio-del-blog/">Inicio del Blog</a>
       </h1>
-      <span class="post-date">08/05/2008 &middot; Lectura de 1 minutos  &middot; <a href="http://adrianmoya.com/2008/05/inicio-del-blog/#disqus_thread">Comentarios</a>
+      <span class="post-date">08/05/2008 &middot; Lectura de 1 minutos  &middot; <a href="https://adrianmoya.com/2008/05/inicio-del-blog/#disqus_thread">Comentarios</a>
       
       </span>
       
-      <p>Desde hace tiempo he querido escribir un Blog. Simplemente volcar algunas ideas que me van cruzando por la mente a medida que vivo distintas experiencias. El día de hoy cuando mi novia descubrió que el blog a su nombre ya estaba tomado por otra persona con su mismo nombre, me propuse verificar si el mio estaba disponible. Y asi fue como arrancó este blog.
-
-Siempre esperamos el momento correcto para comenzar a hacer tal o cual cosa, pero la mayoría de las personas nos engañamos con la frase de &ldquo;cuando tenga tiempo&rdquo;. Y asi un día nos damos cuenta que nunca hicimos aquellas cosas que nos llenarían en pos de cosas &ldquo;más importantes&rdquo; pero menos satisfactorias.</p>
-      <a href="http://adrianmoya.com/2008/05/inicio-del-blog/">Continuar leyendo &rarr;</a>
+      <p>Desde hace tiempo he querido escribir un Blog. Simplemente volcar algunas ideas que me van cruzando por la mente a medida que vivo distintas experiencias. El día de hoy cuando mi novia descubrió que el blog a su nombre ya estaba tomado por otra persona con su mismo nombre, me propuse verificar si el mio estaba disponible. Y asi fue como arrancó este blog.</p>
+      <a href="https://adrianmoya.com/2008/05/inicio-del-blog/">Continuar leyendo &rarr;</a>
       
     </div>
     
     
-
 <ul class="pagination">
-    
-    <li>
-        <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li
-    >
-    <a href="/page/4/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li
-    ><a href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li
-    ><a href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li
-    ><a href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li
-    ><a href="/page/4/">4</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li
-    class="active"><a href="/page/5/">5</a></li>
-    
-    
-    <li
-    class="disabled">
-    <a href="" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li>
-        <a href="/page/5/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/4/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/4/">4</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/5/">5</a>
+  </li>
+  <li class="page-item disabled">
+    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
+
 
   </div>
 </div>
@@ -283,7 +226,7 @@ var disqus_shortname = "blogdeadrianmoya";
 }());
 </script>
 
-<script src="http://adrianmoya.com/js/highlight.pack.js"></script>
+<script src="https://adrianmoya.com/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 <script>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>General on Adrian Moya</title>
-    <link>http://adrianmoya.com/categories/general/</link>
+    <link>https://adrianmoya.com/categories/general/</link>
     <description>Recent content in General on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Mon, 11 Jun 2012 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/categories/general/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jun 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://adrianmoya.com/categories/general/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Migrando mi blog a octopress y relanzamiento</title>
-      <link>http://adrianmoya.com/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/</link>
+      <link>https://adrianmoya.com/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/</link>
       <pubDate>Mon, 11 Jun 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/</guid>
+      <guid>https://adrianmoya.com/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/</guid>
       <description>&lt;p&gt;Finalmente he migrado mi blog a &lt;a href=&#34;http://octopress.org/&#34;&gt;Octopress&lt;/a&gt;, un framework de blogueo para hackers! Existen muchas razones técnicas por las que varios programadores/gente de IT esta migrando su blog a esta plataforma, entre ellas la velocidad, escalabilidad y la seguridad. Sin embargo la escalabilidad no es uno de los problemas de mi site, que tiene tráfico bastante bajo (cosa que espero mejorar), pero aqui estan mis razones por las que quise migrar:&lt;/p&gt;</description>
     </item>
     

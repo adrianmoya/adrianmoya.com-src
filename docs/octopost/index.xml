@@ -2,171 +2,171 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Octoposts on Adrian Moya</title>
-    <link>http://adrianmoya.com/octopost/</link>
+    <link>https://adrianmoya.com/octopost/</link>
     <description>Recent content in Octoposts on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Fri, 25 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="http://adrianmoya.com/octopost/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://adrianmoya.com/octopost/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Escribiendo mejores escenarios</title>
-      <link>http://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</link>
+      <link>https://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</link>
       <pubDate>Fri, 25 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</guid>
+      <guid>https://adrianmoya.com/2014/04/escribiendo-mejores-escenarios/</guid>
       <description>&lt;p&gt;Al momento de describir las características de un sistema a través de BDD, utilizamos ejemplos planteados en forma de escenarios para expresar cómo debe comportarse el sistema. Dichos escenarios son esenciales porque en ellos está plasmado el conocimiento del dominio de la aplicación, y sirven para documentar el sistema y también como insumo en el proceso de validación cuando los automatizamos utilizando herramientas BDD. A continuación veremos algunas preguntas que surgen y recomendaciones para lograr escenarios de calidad en nuestro proyecto.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Lanzamiento Ágiles 2014</title>
-      <link>http://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</link>
+      <link>https://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</link>
       <pubDate>Thu, 03 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</guid>
+      <guid>https://adrianmoya.com/2014/04/lanzamiento-agiles-2014/</guid>
       <description>&lt;p&gt;El 27 de marzo de 2014, en la universidad EAFIT en Medellín, Colombia, fue el &lt;a href=&#34;http://agiles2014.agiles.org/lanzamiento-oficial-de-agiles-2014/&#34;&gt;lanzamiento oficial de Ágiles 2014&lt;/a&gt;, el evento de agilidad más importante de la comunidad latinoamericana. Para complementar los artículos de otros miembros de la comunidad, les cuento como fue mi experiencia.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>AgileOpenBogota 2014: Mi experiencia</title>
-      <link>http://adrianmoya.com/2014/03/agileopenbogota-2014-mi-experiencia/</link>
+      <link>https://adrianmoya.com/2014/03/agileopenbogota-2014-mi-experiencia/</link>
       <pubDate>Sun, 16 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2014/03/agileopenbogota-2014-mi-experiencia/</guid>
+      <guid>https://adrianmoya.com/2014/03/agileopenbogota-2014-mi-experiencia/</guid>
       <description>&lt;p&gt;El sábado 8 de marzo de 2014 se llevó a cabo el Agile Open Bogotá 2014, en las instalaciones de la Cámara de Comercio de Bogotá. El evento contó con una asistencia aproximada de 150 personas, dedicadas al agilismo, dispuestas a compartir experiencias, enseñar y aprender. Tuve la oportunidad de asistir, y a continuación les comparto mi experiencia.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Pruebas automatizadas: una visión de desarrollador</title>
-      <link>http://adrianmoya.com/2014/02/pruebas-automatizadas-una-vision-de-desarrollador/</link>
+      <link>https://adrianmoya.com/2014/02/pruebas-automatizadas-una-vision-de-desarrollador/</link>
       <pubDate>Fri, 28 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2014/02/pruebas-automatizadas-una-vision-de-desarrollador/</guid>
+      <guid>https://adrianmoya.com/2014/02/pruebas-automatizadas-una-vision-de-desarrollador/</guid>
       <description>&lt;p&gt;El mundo de las pruebas en el desarrollo de software es muy amplio, y con la aplicación de metodologías ágiles cada vez más usadas, se ha borrado un poco la línea entre las tareas de un desarrollador y de un tester puro, y han comenzado a compartir algunas responsabilidades. A continuación expongo, desde mi punto de vista como desarrollador y no especialista en pruebas, cuál debe ser la colaboración de un desarrollador en esta parte importante del proceso de desarrollo.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Inyección de Características</title>
-      <link>http://adrianmoya.com/2014/02/inyeccion-de-caracteristicas/</link>
+      <link>https://adrianmoya.com/2014/02/inyeccion-de-caracteristicas/</link>
       <pubDate>Sun, 02 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2014/02/inyeccion-de-caracteristicas/</guid>
+      <guid>https://adrianmoya.com/2014/02/inyeccion-de-caracteristicas/</guid>
       <description>&lt;p&gt;Según la definición, BDD es una metodología que nos permite construir software que importa. La inyección de características es una técnica de análisis creada por Chris Matts que nos ayuda a encontrar características que nos permitan aportar el máximo de valor.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Organizando un proyecto BDD</title>
-      <link>http://adrianmoya.com/2014/01/organizando-un-proyecto-bdd/</link>
+      <link>https://adrianmoya.com/2014/01/organizando-un-proyecto-bdd/</link>
       <pubDate>Mon, 13 Jan 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2014/01/organizando-un-proyecto-bdd/</guid>
+      <guid>https://adrianmoya.com/2014/01/organizando-un-proyecto-bdd/</guid>
       <description>&lt;p&gt;Muchos proyectos que comienzan a usar BDD lo hacen escribiendo escenarios para sus historias de usuario. Esto podría dar a suponer que un escenario es una parte de una historia de usuario, pero lo cierto es que la relación entre historias de usuario y escenarios no es necesariamente jerárquica. También tenemos otros conceptos que son importantes dentro de la organización del proyecto, como las capacidades y características. Veamos algunas ideas de cómo se puede organizar un proyecto BDD y la relación entre algunos de sus artefactos. Todos estos conceptos son tomados de artículos de Liz Keogh y Chris Matts.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BDD: El panorama completo</title>
-      <link>http://adrianmoya.com/2013/11/bdd-el-panorama-completo/</link>
+      <link>https://adrianmoya.com/2013/11/bdd-el-panorama-completo/</link>
       <pubDate>Sat, 16 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/11/bdd-el-panorama-completo/</guid>
+      <guid>https://adrianmoya.com/2013/11/bdd-el-panorama-completo/</guid>
       <description>&lt;p&gt;El desarrollo guiado por comportamiento se vuelve cada vez más una técnica que todos quieren utilizar. Pero siento que no existe un concepto claro en la comunidad de qué implica utilizar BDD en un proyecto. Como muchos, comencé a explorar BDD desde el punto de vista de la automatización de escenarios. Pero a medida que fui profundizando en el estudio de BDD, descubrí que esto es sólo una pequeña parte de BDD, y que existe mucho más y se encuentra disperso en la internet por lo que es difícil ver el panorama completo.&lt;/p&gt;
 &lt;p&gt;Este post pretende ampliar la visión de BDD como metodología ágil, para aquellos que aún no han ido más allá de la automatización.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Aplicando el patrón Page Object en la automatización de escenarios</title>
-      <link>http://adrianmoya.com/2013/09/aplicando-el-patron-page-object-en-la-automatizacion-de-escenarios/</link>
+      <link>https://adrianmoya.com/2013/09/aplicando-el-patron-page-object-en-la-automatizacion-de-escenarios/</link>
       <pubDate>Sun, 29 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/09/aplicando-el-patron-page-object-en-la-automatizacion-de-escenarios/</guid>
+      <guid>https://adrianmoya.com/2013/09/aplicando-el-patron-page-object-en-la-automatizacion-de-escenarios/</guid>
       <description>&lt;p&gt;En los últimos dos post, he comentado acerca de patrones y técnicas para las pruebas unitarias. En esta oportunidad, hablaré de un patrón que podemos utilizar a nivel de nuestras pruebas de extremo a extremo (end to end). Se trata del patron Page Object.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Aumentando la expresividad de nuestras especificaciones</title>
-      <link>http://adrianmoya.com/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/</link>
+      <link>https://adrianmoya.com/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/</link>
       <pubDate>Thu, 05 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/</guid>
-      <description>&lt;p&gt;En el post anterior, vimos como &lt;a href=&#34;http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/&#34;&gt;aplicar el patrón databuilder&lt;/a&gt; puede ayudarnos a escribir el contexto inicial de nuestras especificaciones de manera más clara. En este artículo describiré algunas técnicas adicionales que ayudan a mejorar la expresividad de las pruebas.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/</guid>
+      <description>&lt;p&gt;En el post anterior, vimos como &lt;a href=&#34;https://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/&#34;&gt;aplicar el patrón databuilder&lt;/a&gt; puede ayudarnos a escribir el contexto inicial de nuestras especificaciones de manera más clara. En este artículo describiré algunas técnicas adicionales que ayudan a mejorar la expresividad de las pruebas.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Utilizando el patron Databuilder en nuestras pruebas unitarias</title>
-      <link>http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</link>
+      <link>https://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</link>
       <pubDate>Tue, 30 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</guid>
+      <guid>https://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</guid>
       <description>&lt;p&gt;Para aplicar TDD o BDDSpec de manera efectiva, es importante que conozcamos algunos patrones y técnicas que nos permitan mantener nuestra suite de pruebas ordenada y mantenible. El código de prueba debe ser tratado como ciudadano de primera categoría al igual que el de nuestra aplicación. A continuación describiré el uso del patrón DataBuilder, y cómo nos ayuda a escribir pruebas más expresivas.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BDD de especificaciones: un ejemplo concreto en Java</title>
-      <link>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</link>
+      <link>https://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</link>
       <pubDate>Sun, 14 Jul 2013 00:00:01 -0500</pubDate>
       
-      <guid>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</guid>
-      <description>&lt;p&gt;Esta es la implementación en Java de &lt;a href=&#34;http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/&#34;&gt;un ejemplo concreto de BDD de Especificaciones&lt;/a&gt;. Es importante que leas primero de que se trata el ejemplo en el artículo anterior, antes de proceder a ver la implementación.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</guid>
+      <description>&lt;p&gt;Esta es la implementación en Java de &lt;a href=&#34;https://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/&#34;&gt;un ejemplo concreto de BDD de Especificaciones&lt;/a&gt;. Es importante que leas primero de que se trata el ejemplo en el artículo anterior, antes de proceder a ver la implementación.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BDD de especificaciones: Un ejemplo concreto</title>
-      <link>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/</link>
+      <link>https://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/</link>
       <pubDate>Sun, 14 Jul 2013 00:00:00 -0500</pubDate>
       
-      <guid>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/</guid>
-      <description>&lt;p&gt;En un artículo anterior, había compartido con ustedes un &lt;a href=&#34;http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/&#34;&gt;ejemplo concreto de BDD de historias&lt;/a&gt;. Ahora toca el turno de un ejemplo de lo que es BDD de especificaciones.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/</guid>
+      <description>&lt;p&gt;En un artículo anterior, había compartido con ustedes un &lt;a href=&#34;https://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/&#34;&gt;ejemplo concreto de BDD de historias&lt;/a&gt;. Ahora toca el turno de un ejemplo de lo que es BDD de especificaciones.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Desarrollo Agil con BDD en Java</title>
-      <link>http://adrianmoya.com/2013/07/desarrollo-agil-con-bdd-en-java/</link>
+      <link>https://adrianmoya.com/2013/07/desarrollo-agil-con-bdd-en-java/</link>
       <pubDate>Tue, 09 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/07/desarrollo-agil-con-bdd-en-java/</guid>
+      <guid>https://adrianmoya.com/2013/07/desarrollo-agil-con-bdd-en-java/</guid>
       <description>&lt;p&gt;Continuando mi tour por las comunidades de desarrolladores de Bogotá, hice presencia en el &lt;a href=&#34;http://colombiajug.wordpress.com/2013/06/26/septimo-javaday/&#34;&gt;7mo. Java Day&lt;/a&gt; para compartir con la comunidad de Java mi charla de Desarrollo Ágil con BDD.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>#AgileOpenMedellin - Mi experiencia</title>
-      <link>http://adrianmoya.com/2013/06/agileopenmedellin-mi-experiencia/</link>
+      <link>https://adrianmoya.com/2013/06/agileopenmedellin-mi-experiencia/</link>
       <pubDate>Thu, 27 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/06/agileopenmedellin-mi-experiencia/</guid>
+      <guid>https://adrianmoya.com/2013/06/agileopenmedellin-mi-experiencia/</guid>
       <description>&lt;p&gt;El pasado sábado 22 de Junio de 2013, estuve participando en mi primer evento de agilidad en Colombia, el AgileOpen Medellín, que se llevó a cabo en &lt;a href=&#34;http://www.rutanmedellin.org/Paginas/inicio.aspx&#34;&gt;Ruta N&lt;/a&gt; de esta ciudad. Con mas de 70 sesiones y 580 participantes, el evento fue todo un éxito, con mucho intercambio de información, networking y mucho entusiasmo de los asistentes. A continuación mi experiencia.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Desarrollo Agil con BDD en PHP</title>
-      <link>http://adrianmoya.com/2013/06/desarrollo-agil-con-bdd-en-php/</link>
+      <link>https://adrianmoya.com/2013/06/desarrollo-agil-con-bdd-en-php/</link>
       <pubDate>Wed, 19 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/06/desarrollo-agil-con-bdd-en-php/</guid>
+      <guid>https://adrianmoya.com/2013/06/desarrollo-agil-con-bdd-en-php/</guid>
       <description>&lt;p&gt;El 12 de Junio de 2013 tuve la oportunidad de compartir mi charla acerca del Desarrollo Ágil utilizando BDD con la comunidad de PHP en Bogotá. Es la primera de una serie de charlas que tengo planificadas para este año donde pretendo difunfir el tema del desarrollo guiado por comportamiento con las comunidades de desarrolladores de la ciudad.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Usando dobles para especificar la comunicación entre objetos</title>
-      <link>http://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/</link>
+      <link>https://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/</link>
       <pubDate>Wed, 29 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/</guid>
-      <description>&lt;p&gt;Cuando usamos &lt;a href=&#34;http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/&#34;&gt;BDD de especificaciones para diseñar objetos&lt;/a&gt;, queremos describir el comportamiento de nuestros objetos como una unidad. Pero ¿qué pasa cuando este objeto debe interactuar con otros para lograr su propósito?. A continuación explicaré cómo hacer uso de dobles de prueba para describir la comunicación entre distintos objetos.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/2013/05/usando-dobles-para-especificar-la-comunicacion-entre-objetos/</guid>
+      <description>&lt;p&gt;Cuando usamos &lt;a href=&#34;https://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/&#34;&gt;BDD de especificaciones para diseñar objetos&lt;/a&gt;, queremos describir el comportamiento de nuestros objetos como una unidad. Pero ¿qué pasa cuando este objeto debe interactuar con otros para lograr su propósito?. A continuación explicaré cómo hacer uso de dobles de prueba para describir la comunicación entre distintos objetos.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Diseñando objetos con BDD de especificaciones</title>
-      <link>http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/</link>
+      <link>https://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/</link>
       <pubDate>Sun, 12 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/</guid>
-      <description>&lt;p&gt;Ya hemos visto en los artículos anteriores como utilizar el lenguaje natural del cliente para &lt;a href=&#34;http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/&#34;&gt;describir un sistema utilizando BDD de historias&lt;/a&gt;, y comunicar el comportamiento esperado a través de un conjunto de escenarios. Hoy comenzaremos a adentrarnos en el segundo nivel de BDD, para especificar el comportamiento del sistema a nivel técnico.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/2013/05/disenando-objetos-con-bdd-de-especificaciones/</guid>
+      <description>&lt;p&gt;Ya hemos visto en los artículos anteriores como utilizar el lenguaje natural del cliente para &lt;a href=&#34;https://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/&#34;&gt;describir un sistema utilizando BDD de historias&lt;/a&gt;, y comunicar el comportamiento esperado a través de un conjunto de escenarios. Hoy comenzaremos a adentrarnos en el segundo nivel de BDD, para especificar el comportamiento del sistema a nivel técnico.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BDD de historias: un ejemplo concreto en PHP</title>
-      <link>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/</link>
+      <link>https://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/</link>
       <pubDate>Mon, 22 Apr 2013 00:00:02 -0500</pubDate>
       
-      <guid>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/</guid>
+      <guid>https://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/</guid>
       <description>A continuación, veamos como es la implementación en PHP del ejemplo presentado en BDD de historias: un ejemplo concreto.
 Las librerías y herramientas Para este ejemplo concreto, realizado en PHP, voy a utilizar las siguientes librerías y herramientas:
 Silex: Silex es un micro framework basado en los componentes de Symfony2, el cual permite construir rápidamente una aplicación sencilla en PHP. También utilice Twig como mecanismo de plantillas para la vista.</description>
@@ -174,201 +174,201 @@ Silex: Silex es un micro framework basado en los componentes de Symfony2, el cua
     
     <item>
       <title>BDD de historias: un ejemplo concreto en Java</title>
-      <link>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/</link>
+      <link>https://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/</link>
       <pubDate>Mon, 22 Apr 2013 00:00:01 -0500</pubDate>
       
-      <guid>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/</guid>
-      <description>&lt;p&gt;A continuación, veamos como es la implementación en Java del ejemplo presentado en &lt;a href=&#34;http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/&#34;&gt;BDD de historias: un ejemplo concreto&lt;/a&gt;.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-java/</guid>
+      <description>&lt;p&gt;A continuación, veamos como es la implementación en Java del ejemplo presentado en &lt;a href=&#34;https://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/&#34;&gt;BDD de historias: un ejemplo concreto&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BDD de historias: un ejemplo concreto</title>
-      <link>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/</link>
+      <link>https://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/</link>
       <pubDate>Mon, 22 Apr 2013 00:00:00 -0500</pubDate>
       
-      <guid>http://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/</guid>
+      <guid>https://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/</guid>
       <description>Para continuar con la serie de artículos acerca del Desarrollo Guiado por Comportamiento, hoy les traigo un ejemplo de BDD de historias, junto con sus implementaciones en Java y PHP.
 La historia y sus escenarios Como he comentado en la serie de artículos de BDD, nuestra intención es partir desde los requerimientos del cliente. Así, para este ejemplo, vamos a partir con la siguiente historia de usuario (característica del sistema):</description>
     </item>
     
     <item>
       <title>Automatizando la verificación de historias en BDD</title>
-      <link>http://adrianmoya.com/2013/03/automatizando-la-verificacion-de-historias-en-bdd/</link>
+      <link>https://adrianmoya.com/2013/03/automatizando-la-verificacion-de-historias-en-bdd/</link>
       <pubDate>Sun, 31 Mar 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/03/automatizando-la-verificacion-de-historias-en-bdd/</guid>
-      <description>&lt;p&gt;En el artículo &lt;a href=&#34;http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/&#34;&gt;Describiendo Sistemas con BDD&lt;/a&gt;, vimos como escribir los requerimientos de un sistema utilizando el lenguaje natural del cliente, y describiendo los escenarios principales mediante una serie de pasos. En este artículo comentaré acerca de cómo automatizar estos requerimientos, y algunos tips que debemos tener en cuenta.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/2013/03/automatizando-la-verificacion-de-historias-en-bdd/</guid>
+      <description>&lt;p&gt;En el artículo &lt;a href=&#34;https://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/&#34;&gt;Describiendo Sistemas con BDD&lt;/a&gt;, vimos como escribir los requerimientos de un sistema utilizando el lenguaje natural del cliente, y describiendo los escenarios principales mediante una serie de pasos. En este artículo comentaré acerca de cómo automatizar estos requerimientos, y algunos tips que debemos tener en cuenta.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Participando en dojos de agilidad</title>
-      <link>http://adrianmoya.com/2013/02/participando-en-dojos-de-agilidad/</link>
+      <link>https://adrianmoya.com/2013/02/participando-en-dojos-de-agilidad/</link>
       <pubDate>Mon, 11 Feb 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/02/participando-en-dojos-de-agilidad/</guid>
+      <guid>https://adrianmoya.com/2013/02/participando-en-dojos-de-agilidad/</guid>
       <description>La semana pasada tuve la oportunidad de participar en 3 Dojos de agilidad patrocinados por Kleer, dictados por Carlos Peix @carlospeix, instructor y coach de agilidad. El sitio de encuentro fue HackBo, un espacio comunitario para la realización de eventos relacionados a tecnología y nuevas tendencias en Bogotá. A continuación les comento mis impresiones:
 ¿Qué son los dojos de agilidad? El término dojo proviene de las artes marciales, y en esencia es un sitio para la práctica y aprendizaje.</description>
     </item>
     
     <item>
       <title>Describiendo sistemas con BDD</title>
-      <link>http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/</link>
+      <link>https://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/</link>
       <pubDate>Thu, 07 Feb 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/</guid>
-      <description>&lt;p&gt;Luego de mi &lt;a href=&#34;http://adrianmoya.com/2013/01/introduccion-a-desarrollo-guiado-por-comportamiento-bdd/&#34;&gt;Introducción a BDD&lt;/a&gt;, quisiera comenzar a escribir acerca de BDD de historias, o Story BDD. Se trata de la parte de BDD que cubre las especificaciones de un sistema, expresadas en el lenguaje natural de nuestro cliente mediante características y escenarios.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/2013/02/describiendo-sistemas-con-bdd/</guid>
+      <description>&lt;p&gt;Luego de mi &lt;a href=&#34;https://adrianmoya.com/2013/01/introduccion-a-desarrollo-guiado-por-comportamiento-bdd/&#34;&gt;Introducción a BDD&lt;/a&gt;, quisiera comenzar a escribir acerca de BDD de historias, o Story BDD. Se trata de la parte de BDD que cubre las especificaciones de un sistema, expresadas en el lenguaje natural de nuestro cliente mediante características y escenarios.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Introducción a Desarrollo Guiado por Comportamiento (BDD)</title>
-      <link>http://adrianmoya.com/2013/01/introduccion-a-desarrollo-guiado-por-comportamiento-bdd/</link>
+      <link>https://adrianmoya.com/2013/01/introduccion-a-desarrollo-guiado-por-comportamiento-bdd/</link>
       <pubDate>Sat, 19 Jan 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/01/introduccion-a-desarrollo-guiado-por-comportamiento-bdd/</guid>
+      <guid>https://adrianmoya.com/2013/01/introduccion-a-desarrollo-guiado-por-comportamiento-bdd/</guid>
       <description>&lt;p&gt;A finales del año 2011 decidí que el 2012 sería el año en el que me enfocaría en aprender todo lo relacionado a las prácticas de pruebas del mundo ágil. Ya para ese entonces escuchaba y leía de BDD (Desarrollo guiado por comportamiento) pero decidí que me enfocaría en TDD &amp;ldquo;puro y simple&amp;rdquo; antes de comenzar a explorar otras prácticas &amp;ldquo;más avanzadas&amp;rdquo;. Y ahí fue cuando comenzo mi frustración.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Usando git de manera remota</title>
-      <link>http://adrianmoya.com/2013/01/usando-git-de-manera-remota/</link>
+      <link>https://adrianmoya.com/2013/01/usando-git-de-manera-remota/</link>
       <pubDate>Sat, 05 Jan 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/01/usando-git-de-manera-remota/</guid>
-      <description>&lt;p&gt;En el primer artículo, &lt;a href=&#34;http://adrianmoya.com/2012/07/usando-git-de-manera-local/&#34;&gt;Usando Git de manera local&lt;/a&gt;, mostré algunos de los comandos más útiles a la hora de trabajar con git de manera local. Continuando la serie de artículos de git, en esta oportunidad tratare el tema de los remotos. Git es un sistema de control de versiones distribuido, lo que nos permite conectar nuestro repositorio local a otra copia remota, y de esa manera poder trabajar en equipo con otros desarrolladores.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/2013/01/usando-git-de-manera-remota/</guid>
+      <description>&lt;p&gt;En el primer artículo, &lt;a href=&#34;https://adrianmoya.com/2012/07/usando-git-de-manera-local/&#34;&gt;Usando Git de manera local&lt;/a&gt;, mostré algunos de los comandos más útiles a la hora de trabajar con git de manera local. Continuando la serie de artículos de git, en esta oportunidad tratare el tema de los remotos. Git es un sistema de control de versiones distribuido, lo que nos permite conectar nuestro repositorio local a otra copia remota, y de esa manera poder trabajar en equipo con otros desarrolladores.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>¿Qué hay en una historia?</title>
-      <link>http://adrianmoya.com/2012/08/que-hay-en-una-historia/</link>
+      <link>https://adrianmoya.com/2012/08/que-hay-en-una-historia/</link>
       <pubDate>Wed, 08 Aug 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2012/08/que-hay-en-una-historia/</guid>
+      <guid>https://adrianmoya.com/2012/08/que-hay-en-una-historia/</guid>
       <description>&lt;p&gt;En estos dias he estado trabajando en un proyecto probando la práctica de especificación mediante ejemplos, o como es más comunmente conocida, desarrollo dirigido por comportamiento. Entre los principales promotores de esta práctica esta &lt;a href=&#34;http://dannorth.net/&#34;&gt;Dan North&lt;/a&gt;, quien ha escrito varios artículos del tema. Como no se consigue mucha documentación (a la fecha solo aparenta haber un libro dedicado, el de &lt;a href=&#34;http://www.amazon.com/Specification-Example-Successful-Deliver-Software/dp/1617290084/ref=sr_1_1?ie=UTF8&amp;amp;qid=1343940845&amp;amp;sr=8-1&amp;amp;keywords=specifications+by+example&#34;&gt;Especificación Mediante Ejemplos&lt;/a&gt; de &lt;a href=&#34;http://gojko.net/about/&#34;&gt;Gojko Adzic&lt;/a&gt;), he decidido traducir un artículo titulado &lt;a href=&#34;http://dannorth.net/whats-in-a-story/&#34;&gt;¿Qué hay en una historia?&lt;/a&gt; para ponerlo a disposición del público latinoamericano, ya que lo considero excelente para orientarnos en cómo escribir historias de usuario con pruebas de aceptación. Demás esta decir que las opiniones expresadas son las del autor original y no las mias propias. ¡Que lo disfruten!&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Usando git de manera local</title>
-      <link>http://adrianmoya.com/2012/07/usando-git-de-manera-local/</link>
+      <link>https://adrianmoya.com/2012/07/usando-git-de-manera-local/</link>
       <pubDate>Mon, 16 Jul 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2012/07/usando-git-de-manera-local/</guid>
+      <guid>https://adrianmoya.com/2012/07/usando-git-de-manera-local/</guid>
       <description>&lt;p&gt;Han pasado meses desde que me cambié de usar subversion en mis proyectos a git. Si bien al principio me parecio complicado, la verdad es que git es bastante sencillo. Los comandos que se usan a diario son fáciles de aprender. Y para los casos complicados de resolución de conflictos, siempre hay respuesta por internet. Asi que me he animado a escribir una serie de artículos referente al uso de este poderoso &lt;a href=&#34;http://es.wikipedia.org/wiki/Control_de_versiones&#34;&gt;sistema de control de versiones&lt;/a&gt; distribuido.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Como dar acceso público a multiples servicios de nuestra red interna utilizando un proxy reverso y hosts virtuales.</title>
-      <link>http://adrianmoya.com/2012/06/como-dar-acceso-publico-a-multiples-servicios-de-nuestra-red-interna-utilizando-un-proxy-reverso-y-hosts-virtuales/</link>
+      <link>https://adrianmoya.com/2012/06/como-dar-acceso-publico-a-multiples-servicios-de-nuestra-red-interna-utilizando-un-proxy-reverso-y-hosts-virtuales/</link>
       <pubDate>Mon, 18 Jun 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2012/06/como-dar-acceso-publico-a-multiples-servicios-de-nuestra-red-interna-utilizando-un-proxy-reverso-y-hosts-virtuales/</guid>
+      <guid>https://adrianmoya.com/2012/06/como-dar-acceso-publico-a-multiples-servicios-de-nuestra-red-interna-utilizando-un-proxy-reverso-y-hosts-virtuales/</guid>
       <description>&lt;p&gt;Es común tener en nuestra red interna (ya sea de casa o en la empresa) varios servicios corriendo y querer exponer dos o más de ellos públicamente a través de internet. Existen muchas maneras de realizar esto, pero personalmente me gusta una técnica conocida como Proxy Reverso combinada con el uso de hosts virtuales, que describo a continuación:&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Migrando mi blog a octopress y relanzamiento</title>
-      <link>http://adrianmoya.com/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/</link>
+      <link>https://adrianmoya.com/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/</link>
       <pubDate>Mon, 11 Jun 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/</guid>
+      <guid>https://adrianmoya.com/2012/06/migrando-mi-blog-a-octopress-y-relanzamiento/</guid>
       <description>&lt;p&gt;Finalmente he migrado mi blog a &lt;a href=&#34;http://octopress.org/&#34;&gt;Octopress&lt;/a&gt;, un framework de blogueo para hackers! Existen muchas razones técnicas por las que varios programadores/gente de IT esta migrando su blog a esta plataforma, entre ellas la velocidad, escalabilidad y la seguridad. Sin embargo la escalabilidad no es uno de los problemas de mi site, que tiene tráfico bastante bajo (cosa que espero mejorar), pero aqui estan mis razones por las que quise migrar:&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Probando constraints de clases de dominio en Grails</title>
-      <link>http://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</link>
+      <link>https://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</link>
       <pubDate>Sun, 11 Sep 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</guid>
+      <guid>https://adrianmoya.com/2011/09/probando-constraints-de-clases-de-dominio-en-grails/</guid>
       <description>&lt;p&gt;Comenzando con una serie de publicaciones que hare en el tema de las pruebas unitarias para grails, comenzaré detallando la manera de probar los constrains de una clase de Dominio. Para ello, tomare como ejemplo la siguiente clase, con dos propiedades y algunas restricciones:&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Añadir acceso via Apache a subversion en TurnkeyLinux Revision Control</title>
-      <link>http://adrianmoya.com/2011/08/anadir-acceso-via-apache-a-subversion-en-turnkeylinux-revision-control/</link>
+      <link>https://adrianmoya.com/2011/08/anadir-acceso-via-apache-a-subversion-en-turnkeylinux-revision-control/</link>
       <pubDate>Tue, 23 Aug 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2011/08/anadir-acceso-via-apache-a-subversion-en-turnkeylinux-revision-control/</guid>
+      <guid>https://adrianmoya.com/2011/08/anadir-acceso-via-apache-a-subversion-en-turnkeylinux-revision-control/</guid>
       <description>&lt;p&gt;La herramienta &lt;a href=&#34;http://www.turnkeylinux.org/revision-control&#34;&gt;TurnkeyLinux Revision Control&lt;/a&gt; ofrece de manera rápida un servidor de control de versiones con 4 conocidas y muy utilizadas herramientas para dicho trabajo: Subversion, Git, Bazaar y Mercurial. En lo personal yo lo utilizo más que todo para Subversion y Git. A pesar de venir preconfigurado con las opciones más deseables, en lo personal extraño la posibilidad de poder acceder subversion a través del protocolo http (usando Apache). A continuación explico el procedimiento para agregar esta característica  a esta herramienta:&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Estableciendo la zona horaria en TurnkeyLinux</title>
-      <link>http://adrianmoya.com/2011/08/estableciendo-la-zona-horaria-en-turnkeylinux/</link>
+      <link>https://adrianmoya.com/2011/08/estableciendo-la-zona-horaria-en-turnkeylinux/</link>
       <pubDate>Wed, 10 Aug 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2011/08/estableciendo-la-zona-horaria-en-turnkeylinux/</guid>
+      <guid>https://adrianmoya.com/2011/08/estableciendo-la-zona-horaria-en-turnkeylinux/</guid>
       <description>&lt;p&gt;Para algunas aplicaciones de turnkeylinux, es importante fijar las fechas y horas del sistema antes de comenzar a trabajar. Por ejemplo, si estamos instalando un blog o foro, y queremos saber la fecha y hora exacta en que se produce una publicación. O si estamos usando una herramienta de control de incidencias, y necesitamos precisión en cuanto a la fecha y hora en que se crea y responde una incidencia. Finalmente, en aplicaciones de base de datos, si es importante realizar una auditoria, es importante que el sistema refleje correctamente las fechas y horas de los registros de la base de datos.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Ruby básico en un solo post</title>
-      <link>http://adrianmoya.com/2010/12/ruby-basico-en-un-solo-post/</link>
+      <link>https://adrianmoya.com/2010/12/ruby-basico-en-un-solo-post/</link>
       <pubDate>Tue, 14 Dec 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2010/12/ruby-basico-en-un-solo-post/</guid>
+      <guid>https://adrianmoya.com/2010/12/ruby-basico-en-un-solo-post/</guid>
       <description>&lt;p&gt;La siguiente no intenta ser una guia para enseñar ruby a personas que no programen. Más bien es mi guia rapida para programar ruby, pero cualquiera que tenga nociones de programación la puede encontrar útil.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Tips para Sysadmins</title>
-      <link>http://adrianmoya.com/2010/05/tips-para-sysadmins/</link>
+      <link>https://adrianmoya.com/2010/05/tips-para-sysadmins/</link>
       <pubDate>Mon, 03 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2010/05/tips-para-sysadmins/</guid>
+      <guid>https://adrianmoya.com/2010/05/tips-para-sysadmins/</guid>
       <description>&lt;p&gt;En este post he decidido recopilar una serie de comandos que son utiles para aquellos que administramos sistemas linux, de manera de tener una referencia rápida al momento que haga falta. Espero que alguien la encuentre útil ademas de mi:&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Crear un template de Ubuntu Server 8.04 para XenServer 5.0</title>
-      <link>http://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/</link>
+      <link>https://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/</link>
       <pubDate>Fri, 01 May 2009 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/</guid>
+      <guid>https://adrianmoya.com/2009/05/crear-un-template-de-ubuntu-server-804-para-xenserver-50/</guid>
       <description>&lt;p&gt;Hola! Bueno para inaugurar mi categoría de Virtualización en el Blog, he decidido escribir este breve tutorial a ver si le es útil a alguien en el planeta además de a mi. Esta basado en el único tutorial que consegui de este tema &lt;a href=&#34;http://community.citrix.com/blogs/citrite/anilma/2008/07/02/Installing+Ubuntu+on+XenServer&#34;&gt;aquí&lt;/a&gt;. Le he dado unos toques personales que utilice en mi implementación. &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Pensar Deliberadamente</title>
-      <link>http://adrianmoya.com/2008/06/pensar-deliberadamente/</link>
+      <link>https://adrianmoya.com/2008/06/pensar-deliberadamente/</link>
       <pubDate>Tue, 17 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2008/06/pensar-deliberadamente/</guid>
+      <guid>https://adrianmoya.com/2008/06/pensar-deliberadamente/</guid>
       <description>&lt;p&gt;Hola todos, he encontrado este tópico interesante acerca del pensamiento, me llamo la atención esto de pensar deliberadamente.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Conquistar el miedo = Definir el miedo</title>
-      <link>http://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/</link>
+      <link>https://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/</link>
       <pubDate>Mon, 02 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/</guid>
+      <guid>https://adrianmoya.com/2008/06/conquistar-el-miedo-definir-el-miedo/</guid>
       <description>&lt;p&gt;Hola todos! Voy a seguir compartiendo ideas de este libro interesante de la Semana de 4 horas de trabajo. Y lo seguiré haciendo porque muchas de las personas a las que se lo recomiendo nunca lo leeran. Asi que me ha parecido válido para quienes leen este Blog leer estos pequeños extractos de ideas, ya que aprovecharán ese conocimiento en sus vidas diarias y en sus situaciones personales. Asi que hoy quería compartir esta parte que me pareció excelente.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>El tiempo: la moneda del futuro</title>
-      <link>http://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/</link>
+      <link>https://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/</link>
       <pubDate>Tue, 27 May 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/</guid>
+      <guid>https://adrianmoya.com/2008/05/el-tiempo-la-moneda-del-futuro/</guid>
       <description>&lt;p&gt;Hola todos! a ver, me atrase un día de lo proyectado para escribir este post. Pero es que ayer domingo no tuve tiempo de escribirlo. Y precisamente DEL TIEMPO quería escribir!!! Pero no solamente del tiempo en cuanto a administrarlo se refiere, sino más bien a la importancia que actualmente tiene el tiempo como factor clave de la riqueza. Veamos:&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>El delicado arte de ser feliz</title>
-      <link>http://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/</link>
+      <link>https://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/</link>
       <pubDate>Sun, 18 May 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/</guid>
+      <guid>https://adrianmoya.com/2008/05/el-delicado-arte-de-ser-feliz/</guid>
       <description>&lt;p&gt;Hola todos, finalmente vengo a escribir al blog. Estuve tentado en toda la semana pero como buen ingeniero me gusta seguir procedimientos y me establecí escribir los domingos un resumen de la semana. El tema que he querido escribir es de la felicidad, ya que he tenido una semana de altibajos emocionales que me han puesto mucho a reflexionar.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Inicio del Blog</title>
-      <link>http://adrianmoya.com/2008/05/inicio-del-blog/</link>
+      <link>https://adrianmoya.com/2008/05/inicio-del-blog/</link>
       <pubDate>Thu, 08 May 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2008/05/inicio-del-blog/</guid>
+      <guid>https://adrianmoya.com/2008/05/inicio-del-blog/</guid>
       <description>&lt;p&gt;Desde hace tiempo he querido escribir un Blog. Simplemente volcar algunas ideas que me van cruzando por la mente a medida que vivo distintas experiencias. El día de hoy cuando mi novia descubrió que el blog a su nombre ya estaba tomado por otra persona con su mismo nombre, me propuse verificar si el mio estaba disponible. Y asi fue como arrancó este blog.&lt;/p&gt;</description>
     </item>
     

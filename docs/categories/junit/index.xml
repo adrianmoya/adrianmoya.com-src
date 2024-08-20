@@ -2,54 +2,54 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JUnit on Adrian Moya</title>
-    <link>http://adrianmoya.com/categories/junit/</link>
+    <link>https://adrianmoya.com/categories/junit/</link>
     <description>Recent content in JUnit on Adrian Moya</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-us</language>
-    <lastBuildDate>Tue, 24 May 2016 08:14:30 -0500</lastBuildDate><atom:link href="http://adrianmoya.com/categories/junit/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 24 May 2016 08:14:30 -0500</lastBuildDate><atom:link href="https://adrianmoya.com/categories/junit/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pruebas con tiempo en java 8</title>
-      <link>http://adrianmoya.com/post/pruebas-con-tiempo-en-java-8/</link>
+      <link>https://adrianmoya.com/post/pruebas-con-tiempo-en-java-8/</link>
       <pubDate>Tue, 24 May 2016 08:14:30 -0500</pubDate>
       
-      <guid>http://adrianmoya.com/post/pruebas-con-tiempo-en-java-8/</guid>
-      <description>&lt;p&gt;En &lt;a href=&#34;http://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/&#34;&gt;mi artículo anterior&lt;/a&gt; revisé algunas técnicas para escribir pruebas que manipularan el tiempo en una aplicación legado. Hoy estaré compartiendo estrategias para escribir código que manipule el tiempo usando Java 8.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/post/pruebas-con-tiempo-en-java-8/</guid>
+      <description>&lt;p&gt;En &lt;a href=&#34;https://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/&#34;&gt;mi artículo anterior&lt;/a&gt; revisé algunas técnicas para escribir pruebas que manipularan el tiempo en una aplicación legado. Hoy estaré compartiendo estrategias para escribir código que manipule el tiempo usando Java 8.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Pruebas con tiempo en aplicaciones legado</title>
-      <link>http://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/</link>
+      <link>https://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/</link>
       <pubDate>Mon, 22 Feb 2016 16:04:31 -0500</pubDate>
       
-      <guid>http://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/</guid>
+      <guid>https://adrianmoya.com/post/pruebas-con-tiempo-en-aplicaciones-legado/</guid>
       <description>&lt;p&gt;Las pruebas unitarias que dependen del tiempo son siempre complicadas. La manera aceptada de hacerlas es envolver todas las llamadas para obtener la hora del sistema en un objeto &amp;ldquo;Clock&amp;rdquo;. Comenzando con Java 8, &lt;a href=&#34;https://jcp.org/en/jsr/detail?id=310&#34;&gt;la nueva API de fechas y hora&lt;/a&gt; introdujo el objeto &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/api/java/time/Clock.html&#34;&gt;Clock&lt;/a&gt; al lenguaje, que hace más simple inyectar en una clase y sustituir por un doble en una prueba. Antes de eso, en Java 7 y anteriores, era tu responsabilidad crear dicho objeto.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Aumentando la expresividad de nuestras especificaciones</title>
-      <link>http://adrianmoya.com/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/</link>
+      <link>https://adrianmoya.com/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/</link>
       <pubDate>Thu, 05 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/</guid>
-      <description>&lt;p&gt;En el post anterior, vimos como &lt;a href=&#34;http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/&#34;&gt;aplicar el patrón databuilder&lt;/a&gt; puede ayudarnos a escribir el contexto inicial de nuestras especificaciones de manera más clara. En este artículo describiré algunas técnicas adicionales que ayudan a mejorar la expresividad de las pruebas.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/2013/09/aumentando-la-expresividad-de-nuestras-especificaciones/</guid>
+      <description>&lt;p&gt;En el post anterior, vimos como &lt;a href=&#34;https://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/&#34;&gt;aplicar el patrón databuilder&lt;/a&gt; puede ayudarnos a escribir el contexto inicial de nuestras especificaciones de manera más clara. En este artículo describiré algunas técnicas adicionales que ayudan a mejorar la expresividad de las pruebas.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Utilizando el patron Databuilder en nuestras pruebas unitarias</title>
-      <link>http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</link>
+      <link>https://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</link>
       <pubDate>Tue, 30 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</guid>
+      <guid>https://adrianmoya.com/2013/07/utilizando-el-patron-databuilder-en-nuestras-pruebas-unitarias/</guid>
       <description>&lt;p&gt;Para aplicar TDD o BDDSpec de manera efectiva, es importante que conozcamos algunos patrones y técnicas que nos permitan mantener nuestra suite de pruebas ordenada y mantenible. El código de prueba debe ser tratado como ciudadano de primera categoría al igual que el de nuestra aplicación. A continuación describiré el uso del patrón DataBuilder, y cómo nos ayuda a escribir pruebas más expresivas.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BDD de especificaciones: un ejemplo concreto en Java</title>
-      <link>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</link>
+      <link>https://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</link>
       <pubDate>Sun, 14 Jul 2013 00:00:01 -0500</pubDate>
       
-      <guid>http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</guid>
-      <description>&lt;p&gt;Esta es la implementación en Java de &lt;a href=&#34;http://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/&#34;&gt;un ejemplo concreto de BDD de Especificaciones&lt;/a&gt;. Es importante que leas primero de que se trata el ejemplo en el artículo anterior, antes de proceder a ver la implementación.&lt;/p&gt;</description>
+      <guid>https://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto-en-java/</guid>
+      <description>&lt;p&gt;Esta es la implementación en Java de &lt;a href=&#34;https://adrianmoya.com/2013/07/bdd-de-especificaciones-un-ejemplo-concreto/&#34;&gt;un ejemplo concreto de BDD de Especificaciones&lt;/a&gt;. Es importante que leas primero de que se trata el ejemplo en el artículo anterior, antes de proceder a ver la implementación.&lt;/p&gt;</description>
     </item>
     
   </channel>
