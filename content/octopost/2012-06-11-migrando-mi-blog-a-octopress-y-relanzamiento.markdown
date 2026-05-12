@@ -4,7 +4,6 @@ date: "2012-06-11"
 comments: true
 categories: 
 - General
-published: true
 type: post
 ---
 

@@ -4,19 +4,16 @@
     <title>Behat on Adrian Moya</title>
     <link>https://adrianmoya.com/categories/behat/</link>
     <description>Recent content in Behat on Adrian Moya</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>es-us</language>
-    <lastBuildDate>Mon, 22 Apr 2013 00:00:02 -0500</lastBuildDate><atom:link href="https://adrianmoya.com/categories/behat/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Apr 2013 00:00:02 -0500</lastBuildDate>
+    <atom:link href="https://adrianmoya.com/categories/behat/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>BDD de historias: un ejemplo concreto en PHP</title>
       <link>https://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/</link>
       <pubDate>Mon, 22 Apr 2013 00:00:02 -0500</pubDate>
-      
       <guid>https://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto-en-php/</guid>
-      <description>A continuación, veamos como es la implementación en PHP del ejemplo presentado en BDD de historias: un ejemplo concreto.
-Las librerías y herramientas Para este ejemplo concreto, realizado en PHP, voy a utilizar las siguientes librerías y herramientas:
-Silex: Silex es un micro framework basado en los componentes de Symfony2, el cual permite construir rápidamente una aplicación sencilla en PHP. También utilice Twig como mecanismo de plantillas para la vista.</description>
+      <description>&lt;p&gt;A continuación, veamos como es la implementación en PHP del ejemplo presentado en &lt;a href=&#34;https://adrianmoya.com/2013/04/bdd-de-historias-un-ejemplo-concreto/&#34;&gt;BDD de historias: un ejemplo concreto&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;!-- more --&gt;&#xA;&lt;h2 id=&#34;las-librerías-y-herramientas&#34;&gt;Las librerías y herramientas&lt;/h2&gt;&#xA;&lt;p&gt;Para este ejemplo concreto, realizado en PHP, voy a utilizar las siguientes librerías y herramientas:&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://silex.sensiolabs.org/&#34;&gt;&lt;strong&gt;Silex&lt;/strong&gt;&lt;/a&gt;: Silex es un micro framework basado en los componentes de &lt;a href=&#34;http://symfony.com/&#34;&gt;Symfony2&lt;/a&gt;, el cual permite construir rápidamente una aplicación sencilla en PHP. También utilice &lt;a href=&#34;http://twig.sensiolabs.org/&#34;&gt;Twig&lt;/a&gt; como mecanismo de plantillas para la vista.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

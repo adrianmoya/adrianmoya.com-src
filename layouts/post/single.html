@@ -15,10 +15,10 @@
     <span class='st_googleplus_large' displayText='Google +'></span>
     <span class='st_sharethis_large' displayText='ShareThis'></span>
   </div>
-  {{ if .Site.DisqusShortname }}<div id="disqus_thread"></div>{{ end }}
+  {{ if .Site.Params.disqusShortname }}<div id="disqus_thread"></div>{{ end }}
 </div>
 
-{{ with .Site.DisqusShortname }}
+{{ with .Site.Params.disqusShortname }}
 <script type="text/javascript">
 var disqus_shortname = {{ . }};
 (function () {
@@ -30,7 +30,7 @@ var disqus_shortname = {{ . }};
 </script>
 {{ end }}
 
-{{ with .Site.DisqusShortname }}
+{{ with .Site.Params.disqusShortname }}
 <script type="text/javascript">
     var disqus_shortname = {{ . }};
     (function() {

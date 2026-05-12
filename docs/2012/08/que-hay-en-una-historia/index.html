@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>¿Qué hay en una historia? &middot; </title>
+  <title>¿Qué hay en una historia? &middot; Adrian Moya</title>
 
   
   <link rel="stylesheet" href="https://adrianmoya.com/css/poole.css">
@@ -49,9 +49,9 @@
     <div class="sidebar-about">
       
         <img src="https://www.gravatar.com/avatar/6d34a1145039fce454dea36c5464cf77?s=200"
-             alt="gravatar" title="">
+             alt="gravatar" title="Adrian Moya">
       
-      <h1></h1>
+      <h1>Adrian Moya</h1>
       
     </div>
 
@@ -101,7 +101,7 @@
 <p>Este, entonces, es el papel de una Historia. Debe ser una descripción de un requerimiento y sus beneficios de negocio, y un grupo de criterios por los cuales todos acordamos que está &ldquo;lista&rdquo;. Esto es una definición más rigurosa que en otras metodologías ágiles, donde es descrita como una &ldquo;promesa de conversación&rdquo; o una &ldquo;descripción de una característica&rdquo;. (Una historia BDD puede fácilmente describir un requerimiento no funcional, siempre y cuando el trabajo tenga un alcance, estimación y acuerdo entre las partes.)</p>
 <h2 id="la-estructura-de-una-historia">La estructura de una historia##</h2>
 <p>BDD provee la estructura para una historia. Esto no es obligatorio -puedes usar un formato de historia diferente y seguir haciendo BDD- pero lo presento aquí porque ha demostrado que funciona en muchos proyectos de todos los tipos y tamaños. Como mínimo, tu historia debería contener todos los elementos descritos en la plantilla. La plantilla de historia se ve asi:</p>
-<pre><code class="language-gherkin_es" data-lang="gherkin_es">Título (Una línea describiendo la historia)
+<pre tabindex="0"><code class="language-gherkin_es" data-lang="gherkin_es">Título (Una línea describiendo la historia)
     
 Narrativa:
 Como [un rol]
@@ -119,12 +119,12 @@ Y [otro resultado]...
     
 Escenario 2: ...
 </code></pre><h2 id="contando-la-historia">Contando la historia##</h2>
-<p>Una historia debe ser el producto de una conversación involucrando a varias personas. Un analista de negocio habla con un interesado del negocio<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --> acerca de una característica o requerimiento, y los ayuda a enmarcarla en narrativa de historia. Luego un encargado de pruebas ayuda a definir el alcance de la historia -en la forma de criterios de aceptación- determinando cuáles escenarios importan y cuáles son menos útiles. Un representante técnico proveerá una estimación aproximada de la cantidad de trabajo involucrado en la historia, y propondrá alternativas. Muchas grandes ideas para sistemas vienen de las personas que están desarrollándolos, además de las personas que lo solicitaron en primer lugar.</p>
+<p>Una historia debe ser el producto de una conversación involucrando a varias personas. Un analista de negocio habla con un interesado del negocio<sup><small><a name="1" href="#fn1">1</a></small></sup> acerca de una característica o requerimiento, y los ayuda a enmarcarla en narrativa de historia. Luego un encargado de pruebas ayuda a definir el alcance de la historia -en la forma de criterios de aceptación- determinando cuáles escenarios importan y cuáles son menos útiles. Un representante técnico proveerá una estimación aproximada de la cantidad de trabajo involucrado en la historia, y propondrá alternativas. Muchas grandes ideas para sistemas vienen de las personas que están desarrollándolos, además de las personas que lo solicitaron en primer lugar.</p>
 <p>Esto posiblemente sea un proceso iterativo. El interesado va a tener una idea de lo que quiere pero generalmente no sabrá cuánto trabajo está involucrado, o cómo ese trabajo será distribuido. Con la ayuda de los expertos técnicos y de pruebas, ellos entenderán el costo/beneficio de cada escenario y pueden juzgar acerca de si realmente quieren el requerimiento. Por supuesto, esto tambien está medido en relación a los otros requerimientos: es mejor cubrir más casos de borde en esta historia, o moverse hacia otra historia?</p>
 <p>Algunas veces el equipo de desarrollo simplemente no va a saber suficiente para ser capaz de realizar una estimación aproximada. En este caso pueden elegir llevar a cabo algo de trabajo investigativo, conocido como &ldquo;pico&rdquo;, de manera de entender más acerca del requerimiento.</p>
 <h2 id="las-características-de-una-buena-historia">Las características de una buena historia##</h2>
 <p>Usando el ejemplo del artículo <a href="http://dannorth.net/introducing-bdd">Introducción a BDD</a>, veamos los requerimientos para sacar efectivo de un cajero automático:</p>
-<pre><code class="language-gherkin_es" data-lang="gherkin_es">    Como dueño de una cuenta
+<pre tabindex="0"><code class="language-gherkin_es" data-lang="gherkin_es">    Como dueño de una cuenta
     Yo quiero retirar efectivo de un cajero automático
     De manera que pueda tener dinero cuando el banco esté cerrado.
     
@@ -189,7 +189,7 @@ Dueño de la cuenta retira efectivo de cajero defectuoso (supuesto: tarjeta vál
 <p>El desarrollo orientado a comportamiento usa una historia como la unidad de funcionalidad básica, y por tanto de entrega. Los criterios de aceptación son una parte intrínseca de la historia - en efecto ellas definen el alcance de su comportamiento, y nos dan una definición compartida de &ldquo;terminado&rdquo;. Son tambien usadas como base para la estimación cuando vamos a planificar.</p>
 <p>Mas importante, las historias son el resultado de conversaciones entre los interesados del proyecto, los analistas de negocios, los encargados de pruebas y los desarrolladores. BDD es tanto acerca de las interacciones entre las distintas personas en el proyecto como tambien acerca de las salidas del proceso de desarrollo.</p>
 <hr>
-<p><!-- raw HTML omitted -->1.<!-- raw HTML omitted --> De hecho debería ser la persona que en realidad le importa la característica, asi que podria ser igualmente una persona de operaciones, de legal o de seguridad dependiendo de la historia.</p>
+<p><a name="fn1" href="#1">1.</a> De hecho debería ser la persona que en realidad le importa la característica, asi que podria ser igualmente una persona de operaciones, de legal o de seguridad dependiendo de la historia.</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>
     <span class='st_twitter_large' displayText='Tweet'></span>

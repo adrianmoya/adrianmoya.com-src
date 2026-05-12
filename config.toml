@@ -1,14 +1,15 @@
 baseurl = "https://adrianmoya.com/"
-languageCode = "es-us"
+locale = "es-us"
 title = "Adrian Moya"
 theme = "hyde-x"
-disqusShortname = "blogdeadrianmoya"
 publishDir = "docs"
 
 [permalinks]
 octopost = "/:year/:month/:slug/"
 
 [params]
+    author = "Adrian Moya"
+    disqusShortname = "blogdeadrianmoya"
     theme = "theme-base-0b"
     highlight = "zenburn"
     googleAnalytics = "UA-32342484-1"
@@ -17,3 +18,8 @@ octopost = "/:year/:month/:slug/"
     twitter = "https://www.twitter.com/adrianmoya"
     rss = true
     gravatarHash = "6d34a1145039fce454dea36c5464cf77"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IA on Adrian Moya</title>
+    <link>https://adrianmoya.com/categories/ia/</link>
+    <description>Recent content in IA on Adrian Moya</description>
+    <generator>Hugo</generator>
+    <language>es-us</language>
+    <lastBuildDate>Tue, 12 May 2026 11:45:00 -0500</lastBuildDate>
+    <atom:link href="https://adrianmoya.com/categories/ia/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Convirtiéndome en un ingeniero de IA</title>
+      <link>https://adrianmoya.com/post/convirtiendome-en-un-ingeniero-de-ia/</link>
+      <pubDate>Tue, 12 May 2026 11:45:00 -0500</pubDate>
+      <guid>https://adrianmoya.com/post/convirtiendome-en-un-ingeniero-de-ia/</guid>
+      <description>&lt;p&gt;Hace más de un año que no escribo una línea de código. Como ingeniero de backend, solía disfrutar de escribir código y enorgullecerme de lo impecable y bien diseñado que quedaba a mis ojos. Pero la IA llegó y como a muchos, me tomó por sorpresa. Y como muchos, la miré con escepticismo en nuestro primer encuentro.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

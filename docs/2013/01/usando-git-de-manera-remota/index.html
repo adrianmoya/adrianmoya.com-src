@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Usando git de manera remota &middot; </title>
+  <title>Usando git de manera remota &middot; Adrian Moya</title>
 
   
   <link rel="stylesheet" href="https://adrianmoya.com/css/poole.css">
@@ -49,9 +49,9 @@
     <div class="sidebar-about">
       
         <img src="https://www.gravatar.com/avatar/6d34a1145039fce454dea36c5464cf77?s=200"
-             alt="gravatar" title="">
+             alt="gravatar" title="Adrian Moya">
       
-      <h1></h1>
+      <h1>Adrian Moya</h1>
       
     </div>
 
@@ -96,34 +96,34 @@
 <p>Las siguientes son las operaciones mas comunes que podemos realizar con repositorios remotos:</p>
 <h3 id="listar-repositorios-remotos">Listar repositorios remotos</h3>
 <p>Para listar los remotos configurados en un repositorio git, utilizamos el comando <code>remote</code>. Si le agregamos la opción <code>-v</code> nos da la información completa con los urls de búsqueda y empuje de información.</p>
-<pre><code>$ git remote
+<pre tabindex="0"><code>$ git remote
 $ git remote -v
 </code></pre><h3 id="clonando-un-remoto">Clonando un remoto</h3>
 <p>La manera más sencilla de comenzar a trabajar con un remoto es clonándolo. Esta operación genera una copia del repositorio en nuestro sistema de archivos local, y establece un remoto de nombre &ldquo;origin&rdquo; para el repositorio original. De esta manera queda automáticamente &ldquo;casado&rdquo; nuestro repositorio con el remoto.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone url_del_repositorio_remoto
-</code></pre></div><h3 id="agregareliminar-remotos">Agregar/Eliminar remotos</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone url_del_repositorio_remoto
+</span></span></code></pre></div><h3 id="agregareliminar-remotos">Agregar/Eliminar remotos</h3>
 <p>Para agregar/eliminar un remoto, utilizamos <code>remote add</code> o <code>remote rm</code> con los parámetros del repositorio remoto que queremos agregar/eliminar:</p>
-<pre><code>$ git remote add nombre_remoto url_remoto
+<pre tabindex="0"><code>$ git remote add nombre_remoto url_remoto
 $ git remote rm nombre_remoto
 </code></pre><h3 id="buscando-una-rama-del-remoto">Buscando una rama del remoto</h3>
 <p>Para buscar los cambios realizados en una rama del repositorio remoto, utilizamos el comando <code>fetch</code>. Esto actualizará la rama que estemos buscando en nuestra copia local con las actualizaciones realizadas en el repositorio remoto.</p>
-<pre><code>$ git fetch nombre_remoto nombre_rama
+<pre tabindex="0"><code>$ git fetch nombre_remoto nombre_rama
 </code></pre><h3 id="listado-ramas-remotas">Listado ramas remotas</h3>
 <p>Para ver las ramas remotas a las que hacemos seguimiento, utilizamos el comando <code>branch</code> con el parámetro <code>-r</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git branch -r
-</code></pre></div><h3 id="mezclando-las-ramas-remotas">Mezclando las ramas remotas</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git branch -r
+</span></span></code></pre></div><h3 id="mezclando-las-ramas-remotas">Mezclando las ramas remotas</h3>
 <p>Podemos mezclar una rama remota a nuestra rama local muy similar a como se hace trabajando de manera local. Primero nos pasamos a la rama destino, y luego utilizamos el comando <code>merge</code>, haciendo referencia a la rama remota (previamente buscada con <code>fetch</code>).</p>
-<pre><code>$ git checkout rama_destino
+<pre tabindex="0"><code>$ git checkout rama_destino
 $ git merge nombre_remoto/nombre_rama
 </code></pre><h3 id="empujando-cambios-a-una-rama-remota">Empujando cambios a una rama remota</h3>
 <p>Para empujar los cambios locales de una rama a una rama remota, se utiliza el comando <code>push</code>:</p>
-<pre><code>$ git push nombre_remoto nombre_rama
+<pre tabindex="0"><code>$ git push nombre_remoto nombre_rama
 </code></pre><h3 id="buscando-y-mezclando-en-un-mismo-paso">Buscando y Mezclando en un mismo paso</h3>
 <p>Podemos realizar las operaciones de busqueda y mezcla de ramas remotas utilizando el comando <code>pull</code>. Debemos estar en la rama destino, y ejecutar:</p>
-<pre><code>$ git pull nombre_remoto nombre_rama
+<pre tabindex="0"><code>$ git pull nombre_remoto nombre_rama
 </code></pre><h3 id="eliminando-una-rama-remota">Eliminando una rama remota</h3>
 <p>Si queremos eliminar una rama del repositorio remoto, utilizamos el comando <code>push</code> antecediendo el nombre de la rama con dos puntos (:).</p>
-<pre><code>$ git push nombre_remoto :nombre_rama
+<pre tabindex="0"><code>$ git push nombre_remoto :nombre_rama
 </code></pre><p>Esto cubre los comandos para trabajar con git de manera remota más comunes. Espero que sirvan de referencia rápida. En un próximo artículo comentaré de un flujo de trabajo en equipo usando git como control de versiones.</p>
   </div>
   <div><span class='st_facebook_large' displayText='Facebook'></span>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Aumentando la expresividad de nuestras especificaciones &middot; </title>
+  <title>Aumentando la expresividad de nuestras especificaciones &middot; Adrian Moya</title>
 
   
   <link rel="stylesheet" href="https://adrianmoya.com/css/poole.css">
@@ -49,9 +49,9 @@
     <div class="sidebar-about">
       
         <img src="https://www.gravatar.com/avatar/6d34a1145039fce454dea36c5464cf77?s=200"
-             alt="gravatar" title="">
+             alt="gravatar" title="Adrian Moya">
       
-      <h1></h1>
+      <h1>Adrian Moya</h1>
       
     </div>
 
@@ -102,13 +102,13 @@
 <p>Todos conocen que existen 3 pasos que repetimos constantemente cuando diseñamos usando ejemplos de código: Escribir una prueba y que falle (rojo), que escribamos el mínimo código necesario para que pase (verde), y que refactoricemos el código para evitar duplicidad e incorporar mejores prácticas. Pero existe un paso implícito que viene después de que hacemos que la prueba falle, y es hacer que el mensaje de error exprese de manera clara que es lo que sucede antes de hacer pasar la prueba.</p>
 <p>No es suficiente con decir al final de una prueba que se valide que un resultado sea true. Cuando un mensaje de error dice que verdadero no es falso o que 20 es distinto de 25, esto no expresa aún qué esta pasando en la prueba, sobre todo si tenemos meses sin trabajar en esa sección del código. Se debe usar el parámetro <code>message</code> que reciben las assertions para describir con más claridad que significa ese verdadero o que significa ese 20. Un mensaje de error que diga &ldquo;Descuento de venta: se esperaba 20 y se obtuvo 25&rdquo; claramente indica que se trata del descuento de venta que no se esta recibiendo correctamente.</p>
 <p>Asi mismo cuando comparamos objetos, por lo general el mensaje de error muestra unos garabatos que representan la dirección de memoria del objeto. Esto no ayuda a determinar el error (más que saber que los dos objetos no son iguales, el mensaje será algo como &ldquo;Expected: TaxItem@123456 but was TaxItem@23456&rdquo;). Si sobreescribimos el método toString() del objeto, imprimiendo sus propiedades importantes separadas por coma, es más sencillo cuando los objetos no son iguales saber que propiedad es la que no es igual. Ejemplo:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//TaxItem.java
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;TaxItem{&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;value=&#34;</span> <span style="color:#f92672">+</span> value <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, amount=&#34;</span> <span style="color:#f92672">+</span> amount <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;}&#39;</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-</code></pre></div><p>Nos dará un mensaje como &ldquo;Expected: TaxItem{value=12.00, amount=200.00} but was TaxItem{value=16.00, amount=200.00}&rdquo;, lo que nos permitirá ver que los objetos son distintos porque la propiedad value es distinta.</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//TaxItem.java</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;TaxItem{&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;value=&#34;</span> <span style="color:#f92672">+</span> value <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, amount=&#34;</span> <span style="color:#f92672">+</span> amount <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;}&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Nos dará un mensaje como &ldquo;Expected: TaxItem{value=12.00, amount=200.00} but was TaxItem{value=16.00, amount=200.00}&rdquo;, lo que nos permitirá ver que los objetos son distintos porque la propiedad value es distinta.</p>
+<p><a name="separar-contexto"></a></p>
 <h2 id="usar-comentarios-para-separar-las-tres-fases-de-la-prueba">Usar comentarios para separar las tres fases de la prueba</h2>
 <p>Separar claramente el contexto, el ejemplo de código que se especifica, y las validaciones finales, hacen que una prueba sea mucho más legible. Puedes usar comentarios, como <code>//Arrange //Act //Assert</code> o <code>//Given //When //Then</code>. Esto ayuda permite al lector enfocarse en cada segmento, pudiendo ver con claridad el contexto, o por ejemplo concentrándose en cual es la operación que se está probando o qué resultados se esperan. Comentarios adicionales dentro de cada sección también ayudan si sientes que es necesario explicar algo adicional, pero si como mínimo tienes estos 3 comentarios separando las secciones ya estás ganando en expresividad.</p>
 <h2 id="usar-nombres-de-variables-descriptivos">Usar nombres de variables descriptivos</h2>

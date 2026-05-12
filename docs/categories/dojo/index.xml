@@ -4,18 +4,16 @@
     <title>Dojo on Adrian Moya</title>
     <link>https://adrianmoya.com/categories/dojo/</link>
     <description>Recent content in Dojo on Adrian Moya</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>es-us</language>
-    <lastBuildDate>Mon, 11 Feb 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://adrianmoya.com/categories/dojo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Feb 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adrianmoya.com/categories/dojo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Participando en dojos de agilidad</title>
       <link>https://adrianmoya.com/2013/02/participando-en-dojos-de-agilidad/</link>
       <pubDate>Mon, 11 Feb 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://adrianmoya.com/2013/02/participando-en-dojos-de-agilidad/</guid>
-      <description>La semana pasada tuve la oportunidad de participar en 3 Dojos de agilidad patrocinados por Kleer, dictados por Carlos Peix @carlospeix, instructor y coach de agilidad. El sitio de encuentro fue HackBo, un espacio comunitario para la realización de eventos relacionados a tecnología y nuevas tendencias en Bogotá. A continuación les comento mis impresiones:
-¿Qué son los dojos de agilidad? El término dojo proviene de las artes marciales, y en esencia es un sitio para la práctica y aprendizaje.</description>
+      <description>&lt;p&gt;La semana pasada tuve la oportunidad de participar en 3 Dojos de agilidad patrocinados por &lt;a href=&#34;http://www.kleer.la/&#34;&gt;Kleer&lt;/a&gt;, dictados por Carlos Peix &lt;a href=&#34;https://twitter.com/carlospeix&#34;&gt;@carlospeix&lt;/a&gt;, instructor y coach de agilidad. El sitio de encuentro fue &lt;a href=&#34;http://www.hackbo.co/&#34;&gt;HackBo&lt;/a&gt;, un espacio comunitario para la realización de eventos relacionados a tecnología y nuevas tendencias en Bogotá. A continuación les comento mis impresiones:&lt;/p&gt;&#xA;&lt;!-- more --&gt;&#xA;&lt;h2 id=&#34;qué-son-los-dojos-de-agilidad&#34;&gt;¿Qué son los dojos de agilidad?&lt;/h2&gt;&#xA;&lt;p&gt;El término &lt;a href=&#34;http://es.wikipedia.org/wiki/D%C5%8Dj%C5%8D&#34;&gt;dojo&lt;/a&gt; proviene de las artes marciales, y en esencia es un sitio para la práctica y aprendizaje. En el caso de la agilidad, se ha tomado el término para referirse a espacios donde practicar las técnicas ágiles de desarrollo de software. El más común es el dojo de codificación, pero en esta oportunidad, le sumaron dos actividades bien interesantes, el dojo de arquitectura y el dojo de coaching.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

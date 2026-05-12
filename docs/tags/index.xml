@@ -4,62 +4,51 @@
     <title>Tags on Adrian Moya</title>
     <link>https://adrianmoya.com/tags/</link>
     <description>Recent content in Tags on Adrian Moya</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>es-us</language>
-    <lastBuildDate>Sun, 11 Sep 2011 00:00:00 +0000</lastBuildDate><atom:link href="https://adrianmoya.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Sep 2011 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://adrianmoya.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>grails</title>
+      <title>Grails</title>
       <link>https://adrianmoya.com/tags/grails/</link>
       <pubDate>Sun, 11 Sep 2011 00:00:00 +0000</pubDate>
-      
       <guid>https://adrianmoya.com/tags/grails/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>tests</title>
+      <title>Tests</title>
       <link>https://adrianmoya.com/tags/tests/</link>
       <pubDate>Sun, 11 Sep 2011 00:00:00 +0000</pubDate>
-      
       <guid>https://adrianmoya.com/tags/tests/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>unit</title>
+      <title>Unit</title>
       <link>https://adrianmoya.com/tags/unit/</link>
       <pubDate>Sun, 11 Sep 2011 00:00:00 +0000</pubDate>
-      
       <guid>https://adrianmoya.com/tags/unit/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>turnkeylinux</title>
+      <title>Turnkeylinux</title>
       <link>https://adrianmoya.com/tags/turnkeylinux/</link>
       <pubDate>Wed, 10 Aug 2011 00:00:00 +0000</pubDate>
-      
       <guid>https://adrianmoya.com/tags/turnkeylinux/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>ubuntu</title>
+      <title>Ubuntu</title>
       <link>https://adrianmoya.com/tags/ubuntu/</link>
       <pubDate>Fri, 01 May 2009 00:00:00 +0000</pubDate>
-      
       <guid>https://adrianmoya.com/tags/ubuntu/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>xenserver</title>
+      <title>Xenserver</title>
       <link>https://adrianmoya.com/tags/xenserver/</link>
       <pubDate>Fri, 01 May 2009 00:00:00 +0000</pubDate>
-      
       <guid>https://adrianmoya.com/tags/xenserver/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Como dar acceso público a multiples servicios de nuestra red interna utilizando un proxy reverso y hosts virtuales. &middot; </title>
+  <title>Como dar acceso público a multiples servicios de nuestra red interna utilizando un proxy reverso y hosts virtuales. &middot; Adrian Moya</title>
 
   
   <link rel="stylesheet" href="https://adrianmoya.com/css/poole.css">
@@ -49,9 +49,9 @@
     <div class="sidebar-about">
       
         <img src="https://www.gravatar.com/avatar/6d34a1145039fce454dea36c5464cf77?s=200"
-             alt="gravatar" title="">
+             alt="gravatar" title="Adrian Moya">
       
-      <h1></h1>
+      <h1>Adrian Moya</h1>
       
     </div>
 
@@ -105,64 +105,62 @@
 <ul>
 <li>Instalamos los componentes necesarios (Apache, certificados SSL).</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install apache2 ssl-cert
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install apache2 ssl-cert
+</span></span></code></pre></div><ul>
 <li>Editamos el archivo de puertos de apache, para deshabilitar el puerto 80 que es el puerto de http, y habilitar los host virtuales para el puerto 443 (https). Este    paso es opcional, pero me gusta hacerlo porque es mas seguro acceder via https a los servicios, sobre todo si vamos a introducir contraseñas para hacer login. Simplemente basta con comentar la linea <code>Listen 80</code> en el archivo <code>/etc/apache2/ports.conf</code> y agregar la linea <code>NameVirtualHost *:443</code> debajo de <code>Listen 443</code>.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-apache" data-lang="apache">    <span style="color:#75715e">#NameVirtualHost *:80</span>
-    <span style="color:#75715e">#Listen 80</span>
-    
-    <span style="color:#f92672">&lt;IfModule</span> <span style="color:#e6db74">mod_ssl.c</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#75715e"># If you add NameVirtualHost *:443 here, you will also have to change</span>
-        <span style="color:#75715e"># the VirtualHost statement in /etc/apache2/sites-available/default-ssl</span>
-        <span style="color:#75715e"># to &lt;VirtualHost *:443&gt;</span>
-        <span style="color:#75715e"># Server Name Indication for SSL named virtual hosts is currently not</span>
-        <span style="color:#75715e"># supported by MSIE on Windows XP.</span>
-        Listen <span style="color:#ae81ff">443</span>
-        NameVirtualHost *:443
-    <span style="color:#f92672">&lt;/IfModule&gt;</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-apache" data-lang="apache"><span style="display:flex;"><span>    <span style="color:#75715e">#NameVirtualHost *:80</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#Listen 80</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;IfModule</span> <span style="color:#e6db74">mod_ssl.c</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If you add NameVirtualHost *:443 here, you will also have to change</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># the VirtualHost statement in /etc/apache2/sites-available/default-ssl</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># to &lt;VirtualHost *:443&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Server Name Indication for SSL named virtual hosts is currently not</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># supported by MSIE on Windows XP.</span>
+</span></span><span style="display:flex;"><span>        Listen <span style="color:#ae81ff">443</span>
+</span></span><span style="display:flex;"><span>        NameVirtualHost *:443
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/IfModule&gt;</span>
+</span></span></code></pre></div><ul>
 <li>Habilitamos los modulos de apache <code>ssl</code>, <code>proxy</code> y <code>proxy_http</code> y reiniciamos el servidor.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    $ sudo a2enmod ssl proxy proxy_http
-    $ sudo service apache2 restart
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    $ sudo a2enmod ssl proxy proxy_http
+</span></span><span style="display:flex;"><span>    $ sudo service apache2 restart
+</span></span></code></pre></div><ul>
 <li>Deshabilitamos el sitio por defecto de apache.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    $ sudo a2dissite default
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    $ sudo a2dissite default
+</span></span></code></pre></div><ul>
 <li>Ahora, por cada servicio que queremos exponer, creamos un host virtual en apache, asignándole un dominio. Aqui pueden usar dominios gratuitos (por ejemplo de <a href="http://www.no-ip.com/">NO-IP</a>), subdominios de algun dominio que les pertenezca. Estos dominios debemos configurarlos para que apunten a la IP Pública de nuestra red. Luego para cada uno de ellos, creamos la configuración en la ruta <code>/etc/apache2/sites-available/</code>. La plantilla es como sigue (usare como ejemplo un sitio blog ficticio con un dominio gratuito):</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-apache" data-lang="apache"><span style="color:#75715e">#/etc/apache2/sites-available/miblog.no-ip.org</span>
-<span style="color:#75715e">#VHost configuration for miblog</span>
-
-<span style="color:#f92672">&lt;VirtualHost</span> <span style="color:#e6db74">*:443</span><span style="color:#f92672">&gt;</span>
-        ServerName miblog.no-ip.org
-        ProxyPass               /       http://192.168.1.x/
-        ProxyPassReverse        /       http://192.168.1.x/
-        SSLCertificateFile    <span style="color:#e6db74">/etc/ssl/certs/ssl-cert-snakeoil.pem</span>
-        SSLCertificateKeyFile <span style="color:#e6db74">/etc/ssl/private/ssl-cert-snakeoil.key</span>
-        SSLEngine <span style="color:#66d9ef">on</span>
-        SSLProxyEngine <span style="color:#66d9ef">on</span>
-<span style="color:#f92672">&lt;/VirtualHost&gt;</span>
-
-</code></pre></div><p>Noten que a pesar de que para acceder al proxy uso https, internamente puedo usar http. El certificado SSL del proxy esta cubriendo todas los servicios internos y por tanto no es necesario instalar un certificado en cada uno de ellos. Por supuesto los datos viajan desde el proxy al servicio sin encriptación, por tanto si desean una seguridad en la red interna, simplemente expongan cada servicio por https y configuran el proxy de manera acorde.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-apache" data-lang="apache"><span style="display:flex;"><span><span style="color:#75715e">#/etc/apache2/sites-available/miblog.no-ip.org</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#VHost configuration for miblog</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;VirtualHost</span> <span style="color:#e6db74">*:443</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        ServerName miblog.no-ip.org
+</span></span><span style="display:flex;"><span>        ProxyPass               /       http://192.168.1.x/
+</span></span><span style="display:flex;"><span>        ProxyPassReverse        /       http://192.168.1.x/
+</span></span><span style="display:flex;"><span>        SSLCertificateFile    <span style="color:#e6db74">/etc/ssl/certs/ssl-cert-snakeoil.pem</span>
+</span></span><span style="display:flex;"><span>        SSLCertificateKeyFile <span style="color:#e6db74">/etc/ssl/private/ssl-cert-snakeoil.key</span>
+</span></span><span style="display:flex;"><span>        SSLEngine <span style="color:#66d9ef">on</span>
+</span></span><span style="display:flex;"><span>        SSLProxyEngine <span style="color:#66d9ef">on</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/VirtualHost&gt;</span>
+</span></span></code></pre></div><p>Noten que a pesar de que para acceder al proxy uso https, internamente puedo usar http. El certificado SSL del proxy esta cubriendo todas los servicios internos y por tanto no es necesario instalar un certificado en cada uno de ellos. Por supuesto los datos viajan desde el proxy al servicio sin encriptación, por tanto si desean una seguridad en la red interna, simplemente expongan cada servicio por https y configuran el proxy de manera acorde.</p>
 <p>Si no deseamos usar SSL (no recomendado) simplemente usamos una plantilla como la que sigue (y en este caso no comentar la linea <code>Listen 80</code> en la configuración de puertos de apache):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-apache" data-lang="apache"><span style="color:#75715e">#/etc/apache2/sites-available/miblog.no-ip.org</span>
-<span style="color:#75715e">#VHost configuration for miblog</span>
-
-<span style="color:#f92672">&lt;VirtualHost</span> <span style="color:#e6db74">*:80</span><span style="color:#f92672">&gt;</span>
-        ServerName miblog.no-ip.org
-        ProxyPass               /       http://192.168.1.x/
-        ProxyPassReverse        /       http://192.168.1.x/
-<span style="color:#f92672">&lt;/VirtualHost&gt;</span>
-
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-apache" data-lang="apache"><span style="display:flex;"><span><span style="color:#75715e">#/etc/apache2/sites-available/miblog.no-ip.org</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#VHost configuration for miblog</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;VirtualHost</span> <span style="color:#e6db74">*:80</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        ServerName miblog.no-ip.org
+</span></span><span style="display:flex;"><span>        ProxyPass               /       http://192.168.1.x/
+</span></span><span style="display:flex;"><span>        ProxyPassReverse        /       http://192.168.1.x/
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/VirtualHost&gt;</span>
+</span></span></code></pre></div><ul>
 <li>Luego de crear el sitio, lo activamos y reiniciamos apache</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo a2ensite miblog.no-ip.org
-$ sudo service apache2 reload
-</code></pre></div><p>Cada vez que queremos añadir un sitio nuevo, repetimos los 2 pasos anteriores.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo a2ensite miblog.no-ip.org
+</span></span><span style="display:flex;"><span>$ sudo service apache2 reload
+</span></span></code></pre></div><p>Cada vez que queremos añadir un sitio nuevo, repetimos los 2 pasos anteriores.</p>
 <ul>
 <li>El siguiente paso debemos realizarlo en la aplicación de administración del router. La misma varía por cada modelo, asi que deben consultar el manual, pero generalmente se accede a ella en la dirección 192.168.1.1. Lo que debemos configurar aqui es el redireccionamiento de puertos. Queremos apuntar el puerto 80 (si usamos http) y el puerto 443 (https) para que se redirijan a la dirección interna del proxy usando el protocolo TCP. En mi router (un Belkin) la cosa se ve mas o menos asi:</li>
 </ul>
